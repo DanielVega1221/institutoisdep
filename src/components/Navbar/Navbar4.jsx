@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ilustracion22 from "../../assets/ilustracion22.png";
 import "./navbar4Style.css"; // Asegúrate de que este archivo existe en la misma carpeta
 
 const NavbarElegante = () => {
@@ -13,7 +14,7 @@ const NavbarElegante = () => {
         {/* Logo */}
         <div className="navbar-logo">
           <img
-            src="src/assets/logonew.png"
+            src={ilustracion22}
             alt="ISDEP Logo"
             className="navbar-logo-img"
           />

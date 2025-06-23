@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import ilustracion22 from "../../assets/ilustracion22.png";
 import "./navbar2Style.css";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,7 +20,7 @@ const Navbar = () => {
         {/* Logo a la izquierda */}
         <div className="navbar-logo">
           <img
-            src="src/assets/ilustracion22.png"
+            src={ilustracion22}
             alt="ISDEP Logo"
           />
         </div>
