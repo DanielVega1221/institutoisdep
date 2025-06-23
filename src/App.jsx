@@ -57,14 +57,14 @@ function App() {
         right: 0,
         top: "50%",
         transform: "translateY(-50%)",
-        zIndex: 2, // Si el navbar tiene z-index 999, pon aquí menos (ej: 10)
-        pointerEvents: "none" // <--- SOLO el wrapper, el botón sí debe ser interactivo
+        zIndex: 1, // Cambia el z-index a 1 para que el botón sea interactivo y siga debajo de los menús (z-index: 10001)
+        pointerEvents: "auto"
       }}>
         <button
           onClick={handleChangeStyle}
           disabled={loading}
           style={{
-            pointerEvents: "auto", // <--- El botón sí es clickeable
+            pointerEvents: "auto",
             padding: "1rem 2.5rem",
             fontSize: "1.3rem",
             borderRadius: "2rem",

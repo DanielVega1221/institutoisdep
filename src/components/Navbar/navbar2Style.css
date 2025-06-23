@@ -71,6 +71,14 @@
   justify-content: center;
   min-width: 44px;
   min-height: 32px;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+  background: #e0e7ff;
+  border-color: #4338ca;
+  box-shadow: 0 2px 8px #312e8133;
 }
 
 /* ===== MENÚ MOBILE ===== */
@@ -88,6 +96,11 @@
     opacity 0.3s cubic-bezier(.4,0,.2,1),
     padding 0.3s cubic-bezier(.4,0,.2,1),
     transform 0.4s cubic-bezier(.4,0,.2,1);
+  z-index: 10001 !important; /* Asegura que el menú móvil esté por encima de todo, incluso del botón */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
 }
 
 .navbar-links-mobile.active {
@@ -95,6 +108,7 @@
   opacity: 1;
   padding: 18px 0;
   transform: translateY(0);
+  z-index: 10001 !important; /* Asegura que el menú móvil esté por encima de todo, incluso del botón */
 }
 
 .navbar-links-mobile a {
