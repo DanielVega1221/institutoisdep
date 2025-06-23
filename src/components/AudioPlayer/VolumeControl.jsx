@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Music2, Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./volumeControl.css";
+import "./VolumeControl.css";
 
 // Asegúrate de importar el archivo de música si lo usas directamente aquí (NO lo necesitas si lo recibes por props):
 // import music from '../../assets/Music.mp3'; // <-- Solo si lo usas aquí directamente
