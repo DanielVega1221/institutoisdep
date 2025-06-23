@@ -41,7 +41,8 @@
   gap: 1rem;
 }
 
-.navbar1-links-desktop a {
+.navbar1-links-desktop a,
+.navbar1-links-mobile a {
   background-color: #312e81;
   color: white;
   text-decoration: none;
@@ -49,14 +50,17 @@
   border-radius: 1.5rem;
   font-size: 1.1rem;
   font-family: 'DM Serif Display', serif;
-  transition: background 0.3s ease, transform 0.1s ease;
+  transition: background 0.3s, transform 0.1s, box-shadow 0.2s;
 }
 
-.navbar1-links-desktop a:hover {
+.navbar1-links-desktop a:hover,
+.navbar1-links-mobile a:hover {
   background-color: #4338ca;
+  box-shadow: 0 2px 8px #312e8133;
 }
 
-.navbar1-links-desktop a:active {
+.navbar1-links-desktop a:active,
+.navbar1-links-mobile a:active {
   transform: scale(0.96);
 }
 

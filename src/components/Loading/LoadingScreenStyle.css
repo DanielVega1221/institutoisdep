@@ -131,3 +131,10 @@
   /* Evita que el placeholder cambie de tamaño por el spinner */
   transition: none;
 }
+
+.cambio-estilo-btn:hover,
+.cambio-estilo-btn:focus {
+  background: #4338ca;
+  box-shadow: 0 4px 16px #312e8140;
+  outline: none;
+}

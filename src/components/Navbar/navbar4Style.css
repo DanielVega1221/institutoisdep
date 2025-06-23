@@ -120,6 +120,24 @@
   background: #f1f5f9;
 }
 
+/* Transition enhancements */
+.navbar-links-desktop a,
+.navbar-links-mobile a {
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.navbar-links-desktop a:hover,
+.navbar-links-mobile a:hover {
+  color: #2563eb;
+  background: #e0e7ff;
+  box-shadow: 0 2px 8px #2563eb33;
+}
+
+.navbar-links-desktop a:active,
+.navbar-links-mobile a:active {
+  transform: scale(0.96);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .navbar-links-desktop {

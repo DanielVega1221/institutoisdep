@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#3f2480] to-white" style={{ minHeight: "100vh", position: "relative" }}>
       {/* Navbar SIEMPRE arriba */}
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 100 }}>
         <NavbarComponent />
       </div>
 
@@ -57,12 +57,13 @@ function App() {
         right: 0,
         top: "50%",
         transform: "translateY(-50%)",
-        zIndex: 1, // Cambia el z-index a 1 para que el botón sea interactivo y siga debajo de los menús (z-index: 10001)
+        zIndex: 10, // BAJA el z-index del botón para que los menús (z-index: 10001) estén por encima
         pointerEvents: "auto"
       }}>
         <button
           onClick={handleChangeStyle}
           disabled={loading}
+          className="cambio-estilo-btn"
           style={{
             pointerEvents: "auto",
             padding: "1rem 2.5rem",
@@ -74,7 +75,7 @@ function App() {
             boxShadow: "0 2px 12px #0002",
             fontFamily: "'DM Serif Display', serif",
             cursor: "pointer",
-            transition: "background 0.2s",
+            transition: "background 0.2s, box-shadow 0.2s",
             display: "flex",
             alignItems: "center",
             gap: "12px"
