@@ -1,0 +1,117 @@
+.navbar3 {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  /* Glassmorphism: fondo blanco semitransparente + blur + borde sutil */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1.5px solid rgba(60, 60, 100, 0.10);
+  box-shadow: 0 4px 24px 0 rgba(60,60,100,0.07);
+}
+
+.navbar3-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Imagen del logo */
+.navbar3-logo-img {
+  height: 48px;
+  object-fit: contain;
+  background: none;
+  border: none;
+}
+
+/* Enlaces estilo "pill" */
+.navbar3-links-desktop {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar3-links-desktop a {
+  padding: 6px 18px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  transition: background 0.3s;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar3-links-desktop a:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Botón hamburguesa */
+.navbar3-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Menú móvil */
+.navbar3-links-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-16px);
+  transition:
+    max-height 0.4s cubic-bezier(.4,0,.2,1),
+    opacity 0.3s cubic-bezier(.4,0,.2,1),
+    padding 0.3s cubic-bezier(.4,0,.2,1),
+    transform 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+.navbar3-links-mobile.active {
+  max-height: 300px;
+  opacity: 1;
+  padding: 18px 0;
+  transform: translateY(0);
+}
+
+.navbar3-links-mobile a {
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid #ddd;
+}
+
+.navbar3-links-mobile a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar3-links-desktop {
+    display: none;
+  }
+
+  .navbar3-toggle {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar3-links-mobile {
+    display: none !important;
+  }
+}
