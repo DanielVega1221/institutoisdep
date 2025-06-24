@@ -13,7 +13,7 @@ const VolumeControl = ({ audioSrc }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Forzar reproducción tras la primera interacción si autoplay falla
+  // Forzar reproducción tras la primera interacción (click/tap) en cualquier lado, desktop o mobile
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -27,12 +27,15 @@ const VolumeControl = ({ audioSrc }) => {
           .then(() => setIsPlaying(true))
           .catch(() => {
             setIsPlaying(false);
-            // Handler para el primer evento de usuario
+            // Handler para el primer evento de usuario (click/tap)
             const resumeAudio = () => {
               audio.play().then(() => setIsPlaying(true));
               window.removeEventListener("pointerdown", resumeAudio);
+              window.removeEventListener("touchstart", resumeAudio);
             };
-            window.addEventListener("pointerdown", resumeAudio);
+            // Usa { once: true } para ambos eventos
+            window.addEventListener("pointerdown", resumeAudio, { once: true });
+            window.addEventListener("touchend", resumeAudio, { once: true });
           });
       }
     }
