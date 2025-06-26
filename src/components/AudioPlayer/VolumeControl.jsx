@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, Music2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./volumeControl.css";
+import "./VolumeControl.css";
 
 const VolumeControl = ({ audioSrc }) => {
   const audioRef = useRef(null);

@@ -8,40 +8,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1s;
+  transition: opacity 0.8s;
   opacity: 1;
 }
 
 .loading-overlay.fade-in {
   opacity: 1;
   pointer-events: all;
-  transition: opacity 1s;
 }
 
 .loading-overlay.fade-out {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1s;
-}
-
-@keyframes overlayFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .loading-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeInContent 0.6s;
-  background: rgba(49, 46, 129, 0.92);
-  padding: 2.5rem 3.5rem;
-  border-radius: 2.5rem;
-  box-shadow: 0 8px 32px #0005;
+  animation: fadeInContent 0.8s;
 }
 
 @keyframes fadeInContent {
@@ -57,14 +42,10 @@
 
 .loading-icon {
   margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .gear-spin {
   animation: spin 1.2s linear infinite;
-  filter: drop-shadow(0 2px 8px #0004);
 }
 
 @keyframes spin {
@@ -80,51 +61,4 @@
   letter-spacing: 0.04em;
   text-align: center;
   text-shadow: 0 2px 8px #0002;
-  margin-top: 0.5rem;
-  animation: textFadeIn 1.2s;
-}
-
-@keyframes textFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* BONUS: Spinner pequeño para el botón */
-.spinner {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  min-height: 18px;
-  box-sizing: border-box;
-  border: 3px solid rgba(255, 255, 255, 0.4);
-  border-top: 3px solid #fff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  transition: opacity 0.4s, transform 0.4s;
-  opacity: 1;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.spinner.spinner-fadeout {
-  opacity: 0;
-  transform: scale(0.7);
-  pointer-events: none;
-}
-
-.spinner-placeholder {
-  width: 22px;
-  height: 22px;
-  min-width: 22px;
-  min-height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /* El espacio siempre está reservado */
 }
