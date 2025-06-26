@@ -1,67 +1,48 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoadingScreenStyle.css";
 
-const LoadingScreen = ({ show, onFinish, onPhaseChange }) => {
-  const [phase, setPhase] = useState(show ? "fade-in" : "hidden");
-  const fadeOutRef = useRef(false);
+const LoadingScreen = ({ show, onFinish }) => {
+  const [visible, setVisible] = useState(show);
+  const [showContent, setShowContent] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    if (show && phase === "hidden") {
-      setPhase("fade-in");
-      fadeOutRef.current = false;
-    } else if (!show && phase !== "hidden" && phase !== "fade-out") {
-      setPhase("fade-out");
-      fadeOutRef.current = true;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [show]);
+    if (show) {
+      setVisible(true);
+      setShowContent(false);
+      setFadeOut(false);
 
-  useEffect(() => {
-    let t1, t2;
-    if (phase === "fade-in") {
-      onPhaseChange?.("fade-in");
-      t1 = setTimeout(() => setPhase("content"), 1000);
-    }
-    if (phase === "content") {
-      onPhaseChange?.("content");
-      t2 = setTimeout(() => {
-        setPhase("fade-out");
-        fadeOutRef.current = true;
-      }, 2000);
-    }
-    if (phase === "fade-out") onPhaseChange?.("fade-out");
-    if (phase === "hidden") {
-      onPhaseChange?.("hidden");
-      onFinish?.();
-    }
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, [phase, onPhaseChange, onFinish]);
+      // Mostrar el contenido después de 5 segundos
+      const timer1 = setTimeout(() => setShowContent(true), 5000);
 
-  const handleTransitionEnd = () => {
-    if (phase === "fade-out" && fadeOutRef.current) {
-      setPhase("hidden");
-      fadeOutRef.current = false;
-    }
-  };
+      // Fade out después de 10 segundos
+      const timer2 = setTimeout(() => {
+        setFadeOut(true);
+        // Llama a onFinish después del fade out (0.8s)
+        setTimeout(() => {
+          setVisible(false);
+          setShowContent(false);
+          setFadeOut(false);
+          if (onFinish) onFinish();
+        }, 800);
+      }, 10000);
 
-  if (phase === "hidden") return null;
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else {
+      setVisible(false);
+      setShowContent(false);
+      setFadeOut(false);
+    }
+  }, [show, onFinish]);
+
+  if (!visible) return null;
 
   return (
-    <div
-      className={`loading-overlay${
-        phase === "fade-in" || phase === "content" ? " fade-in" : " fade-out"
-      }`}
-      onTransitionEnd={handleTransitionEnd}
-      style={
-        phase === "fade-in"
-          ? { animation: "overlayFadeIn 1s forwards" }
-          : undefined
-      }
-    >
-      {phase === "content" && (
+    <div className={`loading-overlay${fadeOut ? " fade-out" : " fade-in"}`}>
+      {showContent && (
         <div className="loading-content">
           <span className="loading-icon">
             <svg
@@ -72,20 +53,15 @@ const LoadingScreen = ({ show, onFinish, onPhaseChange }) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle
-                cx="25"
-                cy="25"
-                r="20"
-                stroke="#fff"
-                strokeWidth="6"
-                opacity="0.2"
-              />
-              <path
-                d="M25 7v6M25 37v6M43 25h-6M13 25H7M36.77 13.23l-4.24 4.24M17.47 32.53l-4.24 4.24M36.77 36.77l-4.24-4.24M17.47 17.47l-4.24-4.24"
-                stroke="#fff"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
+              <g>
+                <circle cx="25" cy="25" r="20" stroke="#fff" strokeWidth="6" opacity="0.2"/>
+                <path
+                  d="M25 7v6M25 37v6M43 25h-6M13 25H7M36.77 13.23l-4.24 4.24M17.47 32.53l-4.24 4.24M36.77 36.77l-4.24-4.24M17.47 17.47l-4.24-4.24"
+                  stroke="#fff"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </g>
             </svg>
           </span>
           <span className="loading-text">Cargando nuevo estilo</span>

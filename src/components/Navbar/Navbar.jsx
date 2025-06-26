@@ -3,10 +3,10 @@ import logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "inicio", href: "#" },
-  { label: "informacion", href: "#" },
-  { label: "cursos", href: "#" },
-  { label: "contacto", href: "#" },
+  { label: "Inicio", href: "#" },
+  { label: "Informacion", href: "#" },
+  { label: "Cursos", href: "#" },
+  { label: "Contacto", href: "#" },
 ];
 
 const Navbar = () => {
