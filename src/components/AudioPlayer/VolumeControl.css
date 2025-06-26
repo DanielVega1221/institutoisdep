@@ -1,102 +1,227 @@
-.volume-card {
+.volume-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  bottom: 24px;
+  right: 32px;
   z-index: 9999;
-  flex-direction: row; /* Botón a la derecha, menú a la izquierda */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Elimina cualquier ancho o alineación rara */
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  pointer-events: auto;
+  background: none;
 }
 
-/* Efecto glow */
+/* Glow wrapper */
 .glow-wrapper {
-  position: relative;
-  display: flex;
+  border-radius: 50%;
+  padding: 4px;
+  transition: all 0.3s ease-in-out;
+  /* Corrige alineación */
   align-items: center;
   justify-content: center;
-  order: 2; /* Botón a la derecha */
+  display: flex;
 }
 
-.glow-wrapper::after {
-  content: "";
-  position: absolute;
-  width: 64px;
-  height: 64px;
+.glow-active {
+  animation: glowPulse 2s infinite ease-in-out;
+  background: conic-gradient(from 0deg, #F5B900, #ffe066, #F5B900);
+  background-size: 200% 200%;
+  filter: drop-shadow(0 0 8px rgba(245, 185, 0, 0.35));
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 0;
-  pointer-events: none;
 }
 
-.glow-active::after {
-  opacity: 1;
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
+@keyframes glowPulse {
   0% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 1;
   }
   50% {
-    transform: scale(1.2);
-    opacity: 0.2;
+    transform: scale(1.08);
+    opacity: 0.7;
   }
   100% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 1;
   }
 }
 
+/* Botón */
 .volume-button {
-  position: relative;
-  z-index: 1;
-  background-color: #1d4ed8;
-  color: white;
+  background-color: #F5B900;
+  color: #0B1F3A;
   border: none;
   padding: 14px;
   border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(245, 185, 0, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, color 0.2s;
 }
 
+.volume-button:hover,
+.volume-button:focus {
+  background-color: #ffe066;
+  color: #0B1F3A;
+}
+
+/* Menú */
 .volume-menu {
-  background: white;
-  border: 1px solid #ddd;
+  margin-top: 10px;
+  background-color: #fffbe6;
+  border: 1px solid #F5B900;
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 12px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.15);
-  order: 1; /* Menú a la izquierda */
+  gap: 10px;
+  box-shadow: 0 2px 14px rgba(245, 185, 0, 0.13);
+  min-width: 140px;
+  max-width: 90vw;
+  /* Alinea el menú respecto al botón */
+  position: absolute;
+  right: 0;
+  bottom: 60px;
 }
 
-.volume-menu input[type="range"] {
+.volume-menu input[type="range"].volume-slider {
   width: 120px;
-  accent-color: #1d4ed8;
+  accent-color: #F5B900;
+  background: transparent;
+  border-radius: 6px;
   height: 6px;
-  border-radius: 4px;
+  outline: none;
+  /* Quita el thumb por defecto y personaliza */
+  -webkit-appearance: none;
+  appearance: none;
   margin: 0;
-  vertical-align: middle;
+  padding: 0;
 }
 
-.mute-btn {
-  background: #f3f4f6;
-  border: 1px solid #ddd;
+/* Barra de fondo más oscura y estilizada */
+.volume-menu input[type="range"].volume-slider::-webkit-slider-runnable-track {
+  height: 7px;
+  background: #bfa900;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px #0001;
+}
+
+.volume-menu input[type="range"].volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  padding: 6px;
+  background: #F5B900;
+  border: 2.5px solid #fffbe6;
+  box-shadow: 0 1px 4px #f5b90044;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: -5.5px; /* Centra el thumb */
+}
+
+.volume-menu input[type="range"].volume-slider:focus::-webkit-slider-thumb {
+  outline: none;
+  background: #ffe066;
+}
+
+.volume-menu input[type="range"].volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #F5B900;
+  border: 2.5px solid #fffbe6;
+  box-shadow: 0 1px 4px #f5b90044;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.volume-menu input[type="range"].volume-slider:focus::-moz-range-thumb {
+  outline: none;
+  background: #ffe066;
+}
+
+.volume-menu input[type="range"].volume-slider::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #F5B900;
+  border: 2.5px solid #fffbe6;
+  box-shadow: 0 1px 4px #f5b90044;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.volume-menu input[type="range"].volume-slider:focus::-ms-thumb {
+  outline: none;
+  background: #ffe066;
+}
+
+/* Track para Firefox */
+.volume-menu input[type="range"].volume-slider::-moz-range-track {
+  height: 7px;
+  background: #bfa900;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px #0001;
+}
+
+/* Track para IE */
+.volume-menu input[type="range"].volume-slider::-ms-fill-lower,
+.volume-menu input[type="range"].volume-slider::-ms-fill-upper {
+  background: #bfa900;
+  border-radius: 6px;
+}
+
+/* Quita el borde azul en focus */
+.volume-menu input[type="range"].volume-slider:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffe06655;
+}
+
+.volume-menu button {
+  background: #F5B900;
+  color: #0B1F3A;
+  border: 1px solid #F5B900;
+  border-radius: 50%;
+  padding: 7px 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1d4ed8;
-  transition: background 0.2s;
+  transition: background 0.2s, border 0.2s;
+  font-size: 1.1rem;
+}
+
+.volume-menu button:hover,
+.volume-menu button:focus {
+  background: #ffe066;
+  border: 1px solid #ffe066;
+  color: #0B1F3A;
+}
+
+.mute-btn-icon {
+  background: #F5B900;
+  color: #222;
+  border: 1px solid #F5B900;
+  border-radius: 50%;
+  padding: 7px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border 0.2s;
+  font-size: 1.1rem;
+}
+
+.mute-btn-icon:hover,
+.mute-btn-icon:focus {
+  background: #ffe066;
+  border: 1px solid #ffe066;
+  color: #222;
 }

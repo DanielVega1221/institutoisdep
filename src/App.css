@@ -1,0 +1,136 @@
+/* Merriweather font import */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Degradado más evidente: de #FAF8F5 a #E3DFD7 */
+  background: linear-gradient(180deg, #FAF8F5 0%, #E3DFD7 100%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: introFadeIn 0.7s cubic-bezier(.4,0,.2,1);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+.intro-overlay.intro-fadeout {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes introFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 320px;
+  min-height: 180px;
+  animation: introContentFadeIn 1.2s cubic-bezier(.4,0,.2,1);
+  height: auto;
+  justify-content: center;
+  gap: 0;
+}
+
+.intro-phrase {
+  opacity: 0;
+  pointer-events: none;
+  font-size: 1.5rem;
+  color: #0B1F3A;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-bottom: 2.1rem;
+  min-height: 2.5em;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+  animation: none;
+}
+
+.intro-phrase.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introTextAppear 1s;
+}
+
+@keyframes introTextAppear {
+  0% { opacity: 0; transform: translateY(24px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+.intro-main-text,
+.intro-main-text-second,
+.intro-desc-text {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-main-text.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introTextAppear 1s;
+  font-size: 1.6rem;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  color: #0B1F3A;
+  margin-bottom: 2.1rem;
+  min-height: 2.5em;
+}
+
+.intro-main-text-second {
+  margin-bottom: 1.5rem;
+  font-size: 1.35rem;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  color: #0B1F3A;
+  min-height: 2.2em;
+}
+
+.intro-main-text-second.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introSecondPush 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.intro-desc-text {
+  font-size: 1.08rem;
+  color: #0B1F3A;
+  font-family: 'Merriweather', serif;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  min-height: 1.8em;
+}
+
+.intro-desc-text.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introDescAppear 1s 0.5s both;
+}
+
+@keyframes introSecondPush {
+  0% { opacity: 0; transform: translateY(40px);}
+  60% { opacity: 1; transform: translateY(-10px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes introDescAppear {
+  0% { opacity: 0; transform: translateY(18px);}
+  100% { opacity: 1; transform: translateY(0);}
+}

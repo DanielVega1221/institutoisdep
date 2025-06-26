@@ -108,9 +108,8 @@
   animation: spin 0.8s linear infinite;
   transition: opacity 0.4s, transform 0.4s;
   opacity: 1;
-  display: block;
+  display: inline-block;
   vertical-align: middle;
-  margin: 0 auto;
 }
 
 .spinner.spinner-fadeout {
@@ -128,13 +127,4 @@
   align-items: center;
   justify-content: center;
   /* El espacio siempre está reservado */
-  /* Evita que el placeholder cambie de tamaño por el spinner */
-  transition: none;
-}
-
-.cambio-estilo-btn:hover,
-.cambio-estilo-btn:focus {
-  background: #4338ca;
-  box-shadow: 0 4px 16px #312e8140;
-  outline: none;
 }
