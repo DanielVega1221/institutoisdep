@@ -11,33 +11,39 @@ const VolumeControl = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // Usar un solo objeto Audio y manejar autoplay bloqueado por navegador
+    // Crea el objeto Audio solo una vez
     const audio = new Audio(audioSrc);
     audio.loop = true;
     audio.volume = volume;
     audioRef.current = audio;
 
-    const tryPlay = () => {
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {
-          setIsPlaying(false);
-          // Si falla, espera primer interacción del usuario (click/tap)
-          const resumeAudio = () => {
-            audio.play().then(() => setIsPlaying(true));
-            window.removeEventListener("pointerdown", resumeAudio);
-            window.removeEventListener("touchend", resumeAudio);
-          };
-          window.addEventListener("pointerdown", resumeAudio, { once: true });
-          window.addEventListener("touchend", resumeAudio, { once: true });
-        });
+    // Handler universal para cualquier interacción
+    const resumeAudio = () => {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
+      }
     };
 
-    tryPlay();
+    // Intenta reproducir automáticamente
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => {
+        setIsPlaying(false);
+        // Escucha cualquier interacción táctil o click
+        window.addEventListener("touchstart", resumeAudio, { once: true, passive: false });
+        window.addEventListener("pointerdown", resumeAudio, { once: true, passive: false });
+        window.addEventListener("click", resumeAudio, { once: true, passive: false });
+      });
 
     return () => {
       audio.pause();
+      window.removeEventListener("touchstart", resumeAudio);
+      window.removeEventListener("pointerdown", resumeAudio);
+      window.removeEventListener("click", resumeAudio);
     };
     // eslint-disable-next-line
   }, [audioSrc]);
@@ -57,7 +63,6 @@ const VolumeControl = ({ audioSrc }) => {
           onClick={() => setMenuOpen((prev) => !prev)}
           whileTap={{ scale: 0.9 }}
         >
-          {/* Icono de nota musical alternativo (Music2) */}
           <Music2 size={24} color="#222" strokeWidth={2.2} />
         </motion.button>
         <AnimatePresence>
