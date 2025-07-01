@@ -4,7 +4,7 @@ import Footer from './components/Footer/Footer.jsx';
 import './App.css';
 import VolumeControl from "./components/AudioPlayer/VolumeControl.jsx";
 import music from "./assets/Music.mp3";
-import ilustracion from "./assets/ilustracion.png";
+import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
 
 function App() {
