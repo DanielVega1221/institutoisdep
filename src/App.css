@@ -1,49 +1,133 @@
 /* Merriweather font import */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
+/* Paleta de colores */
+:root {
+  --color-bg-general: #D7E3F4;
+  --color-azul-profundo: #0F2A4E;
+  --color-gris-azulado: #3E4A57;
+  --color-dorado: #C69A00;
+  --color-dorado-hover: #A67800;
+  --color-gris-celeste: #B0C4D9;
+  --color-blanco: #FFFFFF;
+}
+
+/* Fondo general */
+body {
+  background: #D7E3F4;
+  color: var(--color-gris-azulado);
+}
+
+/* Navbar y Footer fondo claro pero no blanco */
+.custom-navbar {
+  background: #eaf1fa;
+  /* ...otras reglas existentes... */
+}
+
+.footer-main {
+  background: #eaf1fa;
+  /* ...otras reglas existentes... */
+}
+
+/* Overlay animación inicio */
 .intro-overlay {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  /* Degradado más evidente: de #FAF8F5 a #E3DFD7 */
-  background: linear-gradient(180deg, #FAF8F5 0%, #E3DFD7 100%);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: introFadeIn 0.7s cubic-bezier(.4,0,.2,1);
-  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+  background: #789bc4; /* azul sobrio pastel */
+  transition: background 1.2s cubic-bezier(.4,0,.2,1), opacity 0.7s cubic-bezier(.4,0,.2,1);
+  opacity: 1;
+  overflow: hidden;
 }
 
 .intro-overlay.intro-fadeout {
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
 }
 
-@keyframes introFadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+.intro-bg-initial {
+  background: #789bc4; /* azul sobrio pastel */
 }
 
-.intro-content {
+.intro-bg-second {
+  background: #D7E3F4;
+}
+
+.intro-logo-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 28px auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  min-width: 320px;
-  min-height: 180px;
-  animation: introContentFadeIn 1.2s cubic-bezier(.4,0,.2,1);
-  height: auto;
   justify-content: center;
-  gap: 0;
+}
+
+.intro-logo-shadow {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  margin: auto;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(32px);
+  opacity: 0.55;
+  transition: background 1.2s;
+  pointer-events: none;
+}
+
+.intro-logo-shadow.initial {
+  background: var(--color-blanco);
+}
+
+.intro-logo-shadow.second {
+  background: var(--color-gris-celeste);
+}
+
+.intro-ilustracion {
+  width: 180px;
+  max-width: 50vw;
+  height: 180px;
+  object-fit: contain;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  margin: auto;
+  opacity: 0;
+  filter: none;
+  transition: opacity 0.7s, filter 1.2s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.intro-ilustracion.visible {
+  opacity: 1;
+}
+
+.logo-fadein {
+  animation: logoFadeIn 0.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+.logo-fadeout {
+  animation: logoFadeOut 0.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes logoFadeIn {
+  0% { opacity: 0; transform: scale(0.92);}
+  100% { opacity: 1; transform: scale(1);}
+}
+
+@keyframes logoFadeOut {
+  0% { opacity: 1; transform: scale(1);}
+  100% { opacity: 0; transform: scale(1.08);}
 }
 
 .intro-phrase {
   opacity: 0;
   pointer-events: none;
   font-size: 1.5rem;
-  color: #0B1F3A;
   font-family: 'Merriweather', serif;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -54,14 +138,23 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), color 1.2s;
   animation: none;
+  color: #0F2A4E; /* Contraste fuerte para fondo claro y pastel */
+  text-shadow: none;
 }
 
 .intro-phrase.active {
   opacity: 1;
   pointer-events: auto;
   animation: introTextAppear 1s;
+}
+
+.intro-phrase.aurora-text {
+  color: #0F2A4E; /* Contraste fuerte para fondo celeste pastel */
+  /* Nueva sombra sutil, más elegante y legible */
+  text-shadow: 0 2px 8px #b0c4d9, 0 1px 2px #fff;
+  transition: color 1.2s, text-shadow 1.2s;
 }
 
 @keyframes introTextAppear {
@@ -123,6 +216,54 @@
   pointer-events: auto;
   animation: introDescAppear 1s 0.5s both;
 }
+
+@keyframes introSecondPush {
+  0% { opacity: 0; transform: translateY(40px);}
+  60% { opacity: 1; transform: translateY(-10px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes introDescAppear {
+  0% { opacity: 0; transform: translateY(18px);}
+  100% { opacity: 1; transform: translateY(0);}
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  color: #0B1F3A;
+  min-height: 2.2em;
+}
+
+.intro-main-text-second.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introSecondPush 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.intro-desc-text {
+  font-size: 1.08rem;
+  color: #0B1F3A;
+  font-family: 'Merriweather', serif;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  min-height: 1.8em;
+}
+
+.intro-desc-text.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: introDescAppear 1s 0.5s both;
+}
+
+@keyframes introSecondPush {
+  0% { opacity: 0; transform: translateY(40px);}
+  60% { opacity: 1; transform: translateY(-10px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes introDescAppear {
+  0% { opacity: 0; transform: translateY(18px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
 
 @keyframes introSecondPush {
   0% { opacity: 0; transform: translateY(40px);}

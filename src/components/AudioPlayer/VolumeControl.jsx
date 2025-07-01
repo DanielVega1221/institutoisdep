@@ -63,7 +63,7 @@ const VolumeControl = ({ audioSrc }) => {
           onClick={() => setMenuOpen((prev) => !prev)}
           whileTap={{ scale: 0.9 }}
         >
-          <Music2 size={24} color="#222" strokeWidth={2.2} />
+          <Music2 size={24} color="#fff" strokeWidth={2.2} />
         </motion.button>
         <AnimatePresence>
           {menuOpen && (
@@ -89,9 +89,9 @@ const VolumeControl = ({ audioSrc }) => {
                 className="mute-btn-icon"
               >
                 {muted ? (
-                  <VolumeX size={20} color="#222" strokeWidth={2.2} />
+                  <VolumeX size={20} color="#fff" strokeWidth={2.2} />
                 ) : (
-                  <Volume2 size={20} color="#222" strokeWidth={2.2} />
+                  <Volume2 size={20} color="#fff" strokeWidth={2.2} />
                 )}
               </button>
             </motion.div>

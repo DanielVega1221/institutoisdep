@@ -1,9 +1,10 @@
 .footer-main {
-  background: #fdfaf4;
-  color: #0B1F3A;
+  background: #eaf1fa;
+  color: #0F2A4E;
   padding: 0 0 0 0;
   font-family: 'Merriweather', serif;
   width: 100%;
+  min-height: 90px;
 }
 
 .footer-content {
@@ -13,7 +14,7 @@
   gap: 32px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 32px 24px 32px;
+  padding: 56px 32px 36px 32px;
 }
 
 .footer-col {
@@ -41,25 +42,25 @@
 .footer-cta-title {
   font-size: 1.18rem;
   font-weight: 700;
-  color: #0B1F3A;
+  color: #0F2A4E;
   margin-bottom: 6px;
 }
 
 .footer-cta-question {
   font-size: 1rem;
-  color: #0B1F3A;
+  color: #3E4A57;
   margin-bottom: 2px;
 }
 
 .footer-cta-desc {
   font-size: 1rem;
-  color: #A67C00;
+  color: #01204f;
   margin: 10px 0 14px 0;
 }
 
 .footer-contact-btn {
   display: inline-block;
-  background: #A67C00;
+  background: #01204f;
   color: #fff;
   font-weight: 600;
   border: none;
@@ -69,13 +70,32 @@
   text-decoration: none;
   margin-top: 6px;
   transition: background 0.2s, color 0.2s;
-  box-shadow: 0 2px 8px #a67c0022;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #01204f22;
 }
 
-.footer-contact-btn:hover,
-.footer-contact-btn:focus {
-  background: #9c7e3f;
-  color: #fffbe6;
+.footer-contact-btn::after {
+  /* Elimina la animación de expansión, solo efecto de iluminación */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #ffffff33 0%, #01204f22 100%);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-contact-btn:hover::after,
+.footer-contact-btn:focus::after {
+  opacity: 1;
+}
+
+.footer-contact-btn span,
+.footer-contact-btn svg {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-col-right {
@@ -104,16 +124,19 @@
 }
 
 .footer-social-icons a {
-  color: #111;
+  color: #fbb61f;
   display: flex;
   align-items: center;
   transition: color 0.2s;
   font-size: 1.3rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.footer-social-icons a:hover,
-.footer-social-icons a:focus {
-  color: #A67C00;
+/* Elimina la animación de hover de los iconos sociales */
+.footer-social-icons a::after {
+  display: none !important;
 }
 
 .footer-logo-centered {
@@ -125,7 +148,7 @@
 }
 
 .footer-logo-centered img {
-  height: 84px;
+  height: 90px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -142,7 +165,7 @@
 .footer-legal {
   text-align: center;
   font-size: 0.98rem;
-  color: #9c7e3f;
+  color: #01204f;
   padding: 14px 0 12px 0;
   opacity: 0.85;
   background: none;

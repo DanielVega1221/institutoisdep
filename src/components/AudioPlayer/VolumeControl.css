@@ -27,9 +27,9 @@
 
 .glow-active {
   animation: glowPulse 2s infinite ease-in-out;
-  background: conic-gradient(from 0deg, #F5B900, #ffe066, #F5B900);
+  background: conic-gradient(from 0deg, #16315b, #2a4a7b, #16315b);
   background-size: 200% 200%;
-  filter: drop-shadow(0 0 8px rgba(245, 185, 0, 0.35));
+  filter: drop-shadow(0 0 8px rgba(22, 49, 91, 0.35));
   border-radius: 50%;
 }
 
@@ -50,14 +50,14 @@
 
 /* Botón */
 .volume-button {
-  background-color: #F5B900;
-  color: #0B1F3A;
+  background-color: #16315b;
+  color: #fff;
   border: none;
   padding: 14px;
   border-radius: 9999px;
   cursor: pointer;
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(245, 185, 0, 0.18);
+  box-shadow: 0 4px 12px rgba(22, 49, 91, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,25 +66,24 @@
 
 .volume-button:hover,
 .volume-button:focus {
-  background-color: #ffe066;
-  color: #0B1F3A;
+  background-color: #2a4a7b;
+  color: #fff;
 }
 
 /* Menú */
 .volume-menu {
   margin-top: 10px;
-  background-color: #fffbe6;
-  border: 1px solid #F5B900;
+  background-color: #f4f7fb;
+  border: 1px solid #16315b;
   border-radius: 8px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 2px 14px rgba(245, 185, 0, 0.13);
+  box-shadow: 0 2px 14px rgba(22, 49, 91, 0.13);
   min-width: 140px;
   max-width: 90vw;
-  /* Alinea el menú respecto al botón */
   position: absolute;
   right: 0;
   bottom: 60px;
@@ -92,22 +91,20 @@
 
 .volume-menu input[type="range"].volume-slider {
   width: 120px;
-  accent-color: #F5B900;
+  accent-color: #16315b;
   background: transparent;
   border-radius: 6px;
   height: 6px;
   outline: none;
-  /* Quita el thumb por defecto y personaliza */
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
   padding: 0;
 }
 
-/* Barra de fondo más oscura y estilizada */
 .volume-menu input[type="range"].volume-slider::-webkit-slider-runnable-track {
   height: 7px;
-  background: #bfa900;
+  background: #2a4a7b;
   border-radius: 6px;
   box-shadow: 0 1px 2px #0001;
 }
@@ -118,76 +115,73 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #F5B900;
-  border: 2.5px solid #fffbe6;
-  box-shadow: 0 1px 4px #f5b90044;
+  background: #16315b;
+  border: 2.5px solid #f4f7fb;
+  box-shadow: 0 1px 4px #16315b44;
   cursor: pointer;
   transition: background 0.2s;
-  margin-top: -5.5px; /* Centra el thumb */
+  margin-top: -5.5px;
 }
 
 .volume-menu input[type="range"].volume-slider:focus::-webkit-slider-thumb {
   outline: none;
-  background: #ffe066;
+  background: #2a4a7b;
 }
 
 .volume-menu input[type="range"].volume-slider::-moz-range-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #F5B900;
-  border: 2.5px solid #fffbe6;
-  box-shadow: 0 1px 4px #f5b90044;
+  background: #16315b;
+  border: 2.5px solid #f4f7fb;
+  box-shadow: 0 1px 4px #16315b44;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .volume-menu input[type="range"].volume-slider:focus::-moz-range-thumb {
   outline: none;
-  background: #ffe066;
+  background: #2a4a7b;
 }
 
 .volume-menu input[type="range"].volume-slider::-ms-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #F5B900;
-  border: 2.5px solid #fffbe6;
-  box-shadow: 0 1px 4px #f5b90044;
+  background: #16315b;
+  border: 2.5px solid #f4f7fb;
+  box-shadow: 0 1px 4px #16315b44;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .volume-menu input[type="range"].volume-slider:focus::-ms-thumb {
   outline: none;
-  background: #ffe066;
+  background: #2a4a7b;
 }
 
-/* Track para Firefox */
 .volume-menu input[type="range"].volume-slider::-moz-range-track {
   height: 7px;
-  background: #bfa900;
+  background: #2a4a7b;
   border-radius: 6px;
   box-shadow: 0 1px 2px #0001;
 }
 
-/* Track para IE */
 .volume-menu input[type="range"].volume-slider::-ms-fill-lower,
 .volume-menu input[type="range"].volume-slider::-ms-fill-upper {
-  background: #bfa900;
+  background: #2a4a7b;
   border-radius: 6px;
 }
 
-/* Quita el borde azul en focus */
 .volume-menu input[type="range"].volume-slider:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #ffe06655;
+  box-shadow: 0 0 0 2px #16315b55;
 }
 
 .volume-menu button {
-  background: #F5B900;
-  color: #0B1F3A;
-  border: 1px solid #F5B900;
+  background: #16315b;
+  color: #fff;
+  border: 1px solid #16315b;
   border-radius: 50%;
   padding: 7px 8px;
   cursor: pointer;
@@ -200,15 +194,15 @@
 
 .volume-menu button:hover,
 .volume-menu button:focus {
-  background: #ffe066;
-  border: 1px solid #ffe066;
-  color: #0B1F3A;
+  background: #2a4a7b;
+  border: 1px solid #2a4a7b;
+  color: #fff;
 }
 
 .mute-btn-icon {
-  background: #F5B900;
-  color: #222;
-  border: 1px solid #F5B900;
+  background: #16315b;
+  color: #fff;
+  border: 1px solid #16315b;
   border-radius: 50%;
   padding: 7px 8px;
   cursor: pointer;
@@ -219,6 +213,12 @@
   font-size: 1.1rem;
 }
 
+.mute-btn-icon:hover,
+.mute-btn-icon:focus {
+  background: #2a4a7b;
+  border: 1px solid #2a4a7b;
+  color: #fff;
+}
 .mute-btn-icon:hover,
 .mute-btn-icon:focus {
   background: #ffe066;

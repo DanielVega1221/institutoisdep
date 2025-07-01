@@ -16,7 +16,7 @@ const Navbar = () => {
   const handleClose = () => setMenuOpen(false);
 
   return (
-    <header className="custom-navbar">
+    <header className="custom-navbar" style={{ minHeight: 90, height: 90 }}>
       <div className="navbar-logo">
         <img src={logo} alt="Logo" />
       </div>

@@ -4,6 +4,8 @@ import Footer from './components/Footer/Footer.jsx';
 import './App.css';
 import VolumeControl from "./components/AudioPlayer/VolumeControl.jsx";
 import music from "./assets/Music.mp3";
+import ilustracion from "./assets/ilustracion.png";
+import logo from "./assets/Logo1.png";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -11,18 +13,24 @@ function App() {
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [colorBg, setColorBg] = useState("initial"); // "initial" | "second"
+  const [showLogo1, setShowLogo1] = useState(true);
 
   useEffect(() => {
-    // Primera frase
+    // Primera frase y logo
     const t1 = setTimeout(() => setActive1(true), 300);
-    // Segunda frase
-    const t2 = setTimeout(() => setActive2(true), 3000);
+    // Segunda frase, cambia fondo y logo (con animación)
+    const t2 = setTimeout(() => {
+      setActive2(true);
+      setColorBg("second");
+      setShowLogo1(false);
+    }, 4000);
     // Tercera frase
-    const t3 = setTimeout(() => setActive3(true), 5200);
+    const t3 = setTimeout(() => setActive3(true), 6200);
     // Fade out
-    const t4 = setTimeout(() => setFadeOut(true), 8700);
+    const t4 = setTimeout(() => setFadeOut(true), 9700);
     // Ocultar overlay
-    const t5 = setTimeout(() => setShowIntro(false), 9500);
+    const t5 = setTimeout(() => setShowIntro(false), 11500);
 
     return () => {
       clearTimeout(t1);
@@ -33,18 +41,37 @@ function App() {
     };
   }, []);
 
+  const introBgClass = colorBg === "second" ? "intro-bg-second" : "intro-bg-initial";
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#3f2480] to-white" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {showIntro && (
-        <div className={`intro-overlay${fadeOut ? " intro-fadeout" : ""}`}>
+        <div className={`intro-overlay ${introBgClass}${fadeOut ? " intro-fadeout" : ""}`}>
           <div className="intro-content">
-            <div className={`intro-phrase${active1 ? " active" : ""}`}>
+            <div className="intro-logo-wrapper">
+              <div
+                className={`intro-logo-shadow ${showLogo1 ? "initial" : "second"}`}
+              />
+              <img
+                src={ilustracion}
+                alt="ISDEP Ilustración"
+                className={`intro-ilustracion${active1 && showLogo1 ? " visible logo-fadein" : ""}${!showLogo1 ? " logo-fadeout" : ""}`}
+                style={{ zIndex: showLogo1 ? 2 : 1 }}
+              />
+              <img
+                src={logo}
+                alt="ISDEP Logo"
+                className={`intro-ilustracion${active1 && !showLogo1 ? " visible logo-fadein" : ""}${showLogo1 ? " logo-fadeout" : ""}`}
+                style={{ zIndex: !showLogo1 ? 2 : 1 }}
+              />
+            </div>
+            <div className={`intro-phrase${active1 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
               ¿te acordas cuando buscábamos mejor percepción del hombre y no la letra perfecta?
             </div>
-            <div className={`intro-phrase${active2 ? " active" : ""}`}>
+            <div className={`intro-phrase${active2 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
               Bueno, ahora nos renovamos
             </div>
-            <div className={`intro-phrase${active3 ? " active" : ""}`}>
+            <div className={`intro-phrase${active3 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
               Un nuevo capítulo en la educación. ISDEP, renovado para formar más que profesionales.
             </div>
           </div>
