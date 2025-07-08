@@ -6,6 +6,7 @@ import VolumeControl from "./components/AudioPlayer/VolumeControl.jsx";
 import music from "./assets/Music.mp3";
 import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
+import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -78,6 +79,7 @@ function App() {
         </div>
       )}
       <Navbar />
+      <SobreNosotros />
       <VolumeControl audioSrc={music} />
       <div style={{ flex: 1 }} />
       <Footer />
