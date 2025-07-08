@@ -7,6 +7,7 @@ import music from "./assets/Music.mp3";
 import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
 import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
+import LoadingScreen from "./components/Loading/LoadingScreen.jsx"; // Asegúrate de importar el loading
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#3f2480] to-white" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      {/* Si tienes un LoadingScreen, colócalo aquí si lo deseas, pero no bloquees el resto */}
       {showIntro && (
         <div className={`intro-overlay ${introBgClass}${fadeOut ? " intro-fadeout" : ""}`}>
           <div className="intro-content">

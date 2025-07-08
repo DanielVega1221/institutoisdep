@@ -93,18 +93,19 @@ const slides = [
 
 const AUTO_PLAY_TIME = 5000;
 
-const SobreNosotros = () => {
+const SobreNosotros = ({ autoPlay = true }) => {
   const [active, setActive] = useState(0);
   const [animDirection, setAnimDirection] = useState("next");
   const timerRef = useRef();
 
   useEffect(() => {
+    if (!autoPlay) return; // No iniciar autoplay si no corresponde
     timerRef.current = setTimeout(() => {
       setAnimDirection("next");
       setActive((prev) => (prev + 1) % slides.length);
     }, AUTO_PLAY_TIME);
     return () => clearTimeout(timerRef.current);
-  }, [active]);
+  }, [active, autoPlay]);
 
   const goTo = (idx) => {
     clearTimeout(timerRef.current);
