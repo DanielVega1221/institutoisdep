@@ -16,9 +16,10 @@ const Navbar = () => {
   const handleClose = () => setMenuOpen(false);
 
   return (
-    <header className="custom-navbar" style={{ minHeight: 90, height: 90 }}>
+    <header className="custom-navbar" style={{ minHeight: 110, height: 110 }}>
       <div className="navbar-logo">
         <img src={logo} alt="Logo" />
+        <div className="navbar-logo-subtitle">Instituto Superior de Enseñanza Profesional</div>
       </div>
       {/* Desktop links */}
       <nav className="navbar-links">

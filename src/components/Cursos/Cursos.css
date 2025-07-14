@@ -1,0 +1,521 @@
+/* Sección principal de Cursos */
+.cursos-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #f1f3f6 0%, #ffffff 50%, #f8f9fa 100%);
+  min-height: 60vh;
+  position: relative;
+  font-family: 'Merriweather', serif;
+}
+
+.cursos-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #0F2A4E 20%, #B8860B 50%, #0F2A4E 80%, transparent 100%);
+}
+
+.cursos-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.8s ease;
+}
+
+/* Header con título */
+.cursos-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.cursos-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.cursos-icon {
+  color: #0F2A4E;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(15, 42, 78, 0.2));
+}
+
+.cursos-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0F2A4E;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.02em;
+  font-family: 'Merriweather', serif;
+}
+
+.cursos-title-line {
+  width: 120px;
+  height: 6px;
+  background: linear-gradient(90deg, #0F2A4E 0%, #B8860B 50%, #0F2A4E 100%);
+  margin: 0 auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(15, 42, 78, 0.3);
+}
+
+/* Acordeón */
+.accordion-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.accordion-trigger {
+  width: 100%;
+  padding: 28px 40px;
+  background: #0F2A4E;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 1s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.accordion-trigger.expanded {
+  background: #B8860B;
+}
+
+.accordion-trigger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.accordion-trigger:hover::before {
+  left: 100%;
+}
+
+.accordion-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(15, 42, 78, 0.4);
+}
+
+.accordion-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.02em;
+  transition: all 0.6s ease-in-out;
+  font-family: 'Merriweather', serif;
+}
+
+.accordion-arrow {
+  transition: all 0.6s ease-in-out;
+  color: white;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.accordion-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Container de cards */
+.cards-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-in-out;
+  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+}
+
+.cards-container.expanded {
+  max-height: 5000px;
+  opacity: 1;
+}
+
+.cards-container:not(.expanded) {
+  max-height: 0;
+  opacity: 0;
+}
+
+.cards-grid {
+  padding: 60px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* Cards individuales */
+.curso-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: var(--delay);
+}
+
+.cards-container.expanded .curso-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.curso-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.curso-card.transitioning {
+  transition-duration: 0.4s;
+}
+
+/* Animación específica para cerrar */
+.cards-container.animating:not(.expanded) .curso-card {
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: all 0.3s ease-in;
+  transition-delay: calc(0.6s - var(--delay));
+}
+
+.card-content {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(20px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.card-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0F2A4E 0%, #B8860B 50%, #0F2A4E 100%);
+}
+
+.card-content:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Emoji de la card */
+.card-emoji {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Header de la card */
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.card-titulo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F2A4E;
+  margin: 0;
+  line-height: 1.2;
+  flex: 1;
+  letter-spacing: -0.01em;
+  font-family: 'Merriweather', serif;
+}
+
+.card-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tipo-badge {
+  background: #0F2A4E;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(15, 42, 78, 0.3);
+  letter-spacing: 0.02em;
+  font-family: 'Merriweather', serif;
+}
+
+.duracion-badge {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  color: #0F2A4E;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid #0F2A4E;
+  box-shadow: 0 2px 8px rgba(15, 42, 78, 0.2);
+  letter-spacing: 0.02em;
+  font-family: 'Merriweather', serif;
+}
+
+/* Contenido de la card */
+.card-mini-intro {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e8f4f8 100%);
+  padding: 16px 16px 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border-left: 4px solid #B8860B;
+  position: relative;
+}
+
+.card-mini-intro p {
+  font-size: 0.95rem;
+  color: #0F2A4E;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+  font-style: italic;
+  font-family: 'Merriweather', serif;
+}
+
+.card-descripcion-container {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.card-descripcion {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+  font-family: 'Merriweather', serif;
+}
+
+/* Botón de la card */
+.card-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e4d7a 50%, #2a5b8a 100%);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: stretch;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(15, 42, 78, 0.3);
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+  font-family: 'Merriweather', serif;
+}
+
+.card-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.card-button:hover::before {
+  left: 100%;
+}
+
+.card-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(15, 42, 78, 0.4);
+  background: linear-gradient(135deg, #1e4d7a 0%, #0F2A4E 50%, #1a3b5e 100%);
+}
+
+.card-button:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Estilos del acordeón - contenido */
+.accordion-content {
+  background: #f8f9fa;
+  transition: all 0.8s ease;
+  overflow: hidden;
+}
+
+.accordion-content.expanded {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.accordion-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cursos-section {
+    padding: 80px 16px;
+  }
+
+  .cursos-title {
+    font-size: 2.5rem;
+  }
+
+  .cursos-title-wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .accordion-trigger {
+    padding: 24px 28px;
+  }
+
+  .accordion-text {
+    font-size: 1.2rem;
+  }
+
+  .cards-grid {
+    padding: 40px 28px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .card-content {
+    padding: 32px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-badges {
+    flex-direction: row;
+    align-self: flex-start;
+  }
+
+  .card-titulo {
+    font-size: 1.5rem;
+  }
+
+  .card-subtitulo {
+    font-size: 1.1rem;
+  }
+
+  .card-descripcion {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cursos-section {
+    padding: 60px 12px;
+  }
+
+  .cursos-title {
+    font-size: 2rem;
+  }
+
+  .accordion-trigger {
+    padding: 20px 24px;
+  }
+
+  .accordion-text {
+    font-size: 1.1rem;
+  }
+
+  .cards-grid {
+    padding: 32px 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card-content {
+    padding: 24px;
+  }
+
+  .card-titulo {
+    font-size: 1.3rem;
+  }
+
+  .card-badges {
+    flex-direction: column;
+  }
+
+  .card-button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
+
+@media (min-width: 1600px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cards-container.expanded .curso-card {
+  animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--delay);
+}

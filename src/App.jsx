@@ -7,6 +7,7 @@ import music from "./assets/Music.mp3";
 import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
 import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
+import Cursos from "./components/Cursos/Cursos.jsx";
 import LoadingScreen from "./components/Loading/LoadingScreen.jsx"; // Asegúrate de importar el loading
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
   const introBgClass = colorBg === "second" ? "intro-bg-second" : "intro-bg-initial";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#3f2480] to-white" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div className="app-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", margin: 0, padding: 0, width: "100%" }}>
       {/* Si tienes un LoadingScreen, colócalo aquí si lo deseas, pero no bloquees el resto */}
       {showIntro && (
         <div className={`intro-overlay ${introBgClass}${fadeOut ? " intro-fadeout" : ""}`}>
@@ -69,7 +70,7 @@ function App() {
               />
             </div>
             <div className={`intro-phrase${active1 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
-              ¿te acordas cuando buscábamos mejor percepción del hombre y no la letra perfecta?
+              ¿Te acordas cuando buscábamos mejor percepción del hombre y no la letra perfecta?
             </div>
             <div className={`intro-phrase${active2 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
               Bueno, ahora nos renovamos
@@ -82,6 +83,7 @@ function App() {
       )}
       <Navbar />
       <SobreNosotros />
+      <Cursos />
       <VolumeControl audioSrc={music} />
       <div style={{ flex: 1 }} />
       <Footer />

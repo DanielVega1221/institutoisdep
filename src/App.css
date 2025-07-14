@@ -1,6 +1,33 @@
 /* Merriweather font import */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
+/* Reset global margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.app-container {
+  background: #D7E3F4;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Paleta de colores */
 :root {
   --color-bg-general: #D7E3F4;
@@ -226,10 +253,6 @@ body {
 @keyframes introDescAppear {
   0% { opacity: 0; transform: translateY(18px);}
   100% { opacity: 1; transform: translateY(0);}
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
-  color: #0B1F3A;
-  min-height: 2.2em;
 }
 
 .intro-main-text-second.active {
@@ -252,18 +275,6 @@ body {
   pointer-events: auto;
   animation: introDescAppear 1s 0.5s both;
 }
-
-@keyframes introSecondPush {
-  0% { opacity: 0; transform: translateY(40px);}
-  60% { opacity: 1; transform: translateY(-10px);}
-  100% { opacity: 1; transform: translateY(0);}
-}
-
-@keyframes introDescAppear {
-  0% { opacity: 0; transform: translateY(18px);}
-  100% { opacity: 1; transform: translateY(0);}
-}
-
 
 @keyframes introSecondPush {
   0% { opacity: 0; transform: translateY(40px);}
