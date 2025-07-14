@@ -234,27 +234,6 @@
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
-/* Sección de certificados */
-.sobre-nosotros-cert-card {
-  margin: 48px auto 32px auto;
-  max-width: 540px;
-  background: linear-gradient(90deg, #16315b 60%, #2a4a7b 100%);
-  color: #fff;
-  font-family: 'Merriweather', serif;
-  font-size: 1.13rem;
-  font-weight: 600;
-  border-radius: 32px;
-  box-shadow: 0 4px 24px #16315b22;
-  padding: 28px 36px;
-  text-align: center;
-  letter-spacing: 0.01em;
-  transition: box-shadow 0.2s;
-}
-
-.sobre-nosotros-cert-card:hover {
-  box-shadow: 0 8px 40px #16315b33;
-}
-
 /* Responsive Design */
 @media (max-width: 900px) {
   .sobre-nosotros-carousel {
@@ -285,12 +264,6 @@
 
   .carousel-dots {
     bottom: 90px;
-  }
-
-  .sobre-nosotros-cert-card {
-    margin: 32px 16px 24px 16px;
-    padding: 24px 28px;
-    font-size: 1.05rem;
   }
 }
 
@@ -361,11 +334,5 @@
     width: 10px;
     height: 10px;
     border: 1px solid rgba(255, 255, 255, 0.9);
-  }
-
-  .sobre-nosotros-cert-card {
-    margin: 24px 12px 24px 12px;
-    padding: 20px 24px;
-    font-size: 1rem;
   }
 }

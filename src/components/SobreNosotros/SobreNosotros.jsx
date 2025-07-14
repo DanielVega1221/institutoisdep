@@ -310,9 +310,6 @@ const SobreNosotros = ({ autoPlay = true }) => {
           </div>
         </div>
       </div>
-      <div className="sobre-nosotros-cert-card">
-        Contamos con certificados de validez nacional e internacional, lo que te permite ejercer profesionalmente tanto en el país como el exterior
-      </div>
       
       {/* Sección de estadísticas */}
       <div className="sobre-nosotros-stats">

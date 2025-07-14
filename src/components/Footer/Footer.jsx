@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../assets/Logo1.png";
-import banderita from "../../assets/banderita.png"; // Importa la banderita
+
 
 const Footer = () => (
   <footer className="footer-main">
@@ -42,7 +42,6 @@ const Footer = () => (
         </div>
         <div className="footer-logo-centered">
           <img src={logo} alt="ISDEP Logo" />
-          <img src={banderita} alt="Argentina" className="footer-banderita-below" />
         </div>
       </div>
     </div>
