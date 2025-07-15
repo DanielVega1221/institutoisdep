@@ -1,5 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./SobreNosotros_new.css";
+
+// Swiper components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 // Importar imágenes optimizadas
 import slide1 from "../../assets/optimized/1.jpg";
@@ -102,97 +112,79 @@ const slides = [
 const AUTO_PLAY_TIME = 5000;
 
 const SobreNosotros = ({ autoPlay = true }) => {
-  const [active, setActive] = useState(0);
-  const [prevActive, setPrevActive] = useState(0);
-  const [animDirection, setAnimDirection] = useState("next");
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [loadedImages, setLoadedImages] = useState(new Set([0])); // Precargar primera imagen
-  const timerRef = useRef();
-
-  // Precargar imágenes adyacentes
-  const preloadAdjacentImages = (currentIndex) => {
-    const nextIndex = (currentIndex + 1) % slides.length;
-    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-    
-    setLoadedImages(prev => new Set([...prev, currentIndex, nextIndex, prevIndex]));
-  };
-
-  useEffect(() => {
-    preloadAdjacentImages(active);
-  }, [active]);
-
-  // Auto-play effect con pausa
-  useEffect(() => {
-    if (!autoPlay || isPaused || isTransitioning) return;
-    
-    timerRef.current = setTimeout(() => {
-      // Activar transición automática (siempre hacia adelante)
-      setPrevActive(active);
-      setAnimDirection("next");
-      setIsTransitioning(true);
-      setActive((prev) => (prev + 1) % slides.length);
-      
-      // Terminar transición después de la animación
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 800);
-    }, AUTO_PLAY_TIME);
-    
-    return () => clearTimeout(timerRef.current);
-  }, [active, autoPlay, isPaused, isTransitioning]);
-
-  // Handlers para pausa al hover
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-    clearTimeout(timerRef.current);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-    // El timer se reiniciará automáticamente por el useEffect
-  };
-
-  const goTo = (idx) => {
-    if (isTransitioning || idx === active) return;
-    
-    clearTimeout(timerRef.current);
-    setPrevActive(active);
-    setAnimDirection(idx > active ? "next" : "prev");
-    setIsTransitioning(true);
-    setActive(idx);
-    
-    // Terminar transición después de la animación
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 800);
-  };
-
-  const prevSlide = () => {
-    setIsPaused(true); // Pausar autoplay temporalmente
-    goTo((active - 1 + slides.length) % slides.length);
-    // Reanudar autoplay después de un momento
-    setTimeout(() => setIsPaused(false), 1000);
-  };
-  
-  const nextSlide = () => {
-    setIsPaused(true); // Pausar autoplay temporalmente
-    goTo((active + 1) % slides.length);
-    // Reanudar autoplay después de un momento
-    setTimeout(() => setIsPaused(false), 1000);
-  };
-
   return (
     <section className="sobre-nosotros-main">
       <div className="sobre-nosotros-carousel-outer">
-        <div 
-          className="sobre-nosotros-carousel"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="sobre-nosotros-carousel">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay, EffectFade]}
+            slidesPerView={1}
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            }}
+            pagination={{
+              el: '.swiper-pagination',
+              clickable: true,
+              bulletClass: 'carousel-dot',
+              bulletActiveClass: 'carousel-dot active',
+              renderBullet: (index, className) => {
+                return `<button class="${className}" aria-label="Ir al slide ${index + 1}"></button>`;
+              },
+            }}
+            autoplay={autoPlay ? {
+              delay: AUTO_PLAY_TIME,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            } : false}
+            effect="fade"
+            fadeEffect={{
+              crossFade: true
+            }}
+            speed={800}
+            loop={true}
+            lazy={{
+              loadPrevNext: true,
+              loadPrevNextAmount: 1,
+            }}
+            className="carousel-swiper"
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={index}>
+                <div className="carousel-slide">
+                  <picture>
+                    <source srcSet={slide.webp} type="image/webp" />
+                    <img
+                      src={slide.img}
+                      alt={slide.alt}
+                      className="swiper-lazy"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }}
+                    />
+                    <div className="swiper-lazy-preloader"></div>
+                  </picture>
+                  
+                  <div className="carousel-overlay">
+                    <div className="carousel-content">
+                      {typeof slide.text === "string" ? slide.text : slide.text}
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Buttons */}
           <button
-            className="carousel-arrow carousel-arrow-left"
-            onClick={prevSlide}
+            className="carousel-arrow carousel-arrow-left swiper-button-prev"
             aria-label="Anterior"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -200,92 +192,8 @@ const SobreNosotros = ({ autoPlay = true }) => {
             </svg>
           </button>
           
-          <div className="carousel-slide-container">
-            {/* Slide que sale (solo durante transición) */}
-            {isTransitioning && (
-              <div 
-                className={`carousel-slide carousel-anim-${animDirection}-exit`} 
-                key={`exit-${prevActive}`}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  zIndex: 1
-                }}
-              >
-                <picture>
-                  <source srcSet={slides[prevActive].webp} type="image/webp" />
-                  <img
-                    src={slides[prevActive].img}
-                    alt={slides[prevActive].alt}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'center'
-                    }}
-                  />
-                </picture>
-                
-                <div className="carousel-overlay">
-                  <div className="carousel-content">
-                    {typeof slides[prevActive].text === "string"
-                      ? slides[prevActive].text
-                      : slides[prevActive].text}
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {/* Slide que entra */}
-            <div 
-              className={`carousel-slide ${isTransitioning ? `carousel-anim-${animDirection}` : ''}`} 
-              key={`enter-${active}`}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: isTransitioning ? 2 : 1
-              }}
-            >
-              <picture>
-                <source srcSet={slides[active].webp} type="image/webp" />
-                <img
-                  src={slides[active].img}
-                  alt={slides[active].alt}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center'
-                  }}
-                  loading={active === 0 ? "eager" : "lazy"}
-                />
-              </picture>
-              
-              <div className="carousel-overlay">
-                <div className="carousel-content">
-                  {typeof slides[active].text === "string"
-                    ? slides[active].text
-                    : slides[active].text}
-                </div>
-              </div>
-            </div>
-          </div>
-          
           <button
-            className="carousel-arrow carousel-arrow-right"
-            onClick={nextSlide}
+            className="carousel-arrow carousel-arrow-right swiper-button-next"
             aria-label="Siguiente"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -293,21 +201,8 @@ const SobreNosotros = ({ autoPlay = true }) => {
             </svg>
           </button>
           
-          <div className="carousel-dots">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                className={`carousel-dot${active === idx ? " active" : ""}`}
-                onClick={() => {
-                  setIsPaused(true); // Pausar autoplay temporalmente
-                  goTo(idx);
-                  // Reanudar autoplay después de un momento
-                  setTimeout(() => setIsPaused(false), 1000);
-                }}
-                aria-label={`Ir al slide ${idx + 1}`}
-              />
-            ))}
-          </div>
+          {/* Custom Pagination */}
+          <div className="carousel-dots swiper-pagination"></div>
         </div>
       </div>
       

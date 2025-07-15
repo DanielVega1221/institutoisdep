@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-/* Carrusel principal */
+/* Carrusel principal con Swiper */
 .sobre-nosotros-carousel {
   display: flex;
   align-items: center;
@@ -35,6 +35,11 @@
   padding: 0;
   position: relative;
   overflow: hidden;
+}
+
+.carousel-swiper {
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-slide-container {
@@ -51,17 +56,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Posicionamiento para slides durante transición */
-.carousel-slide.carousel-anim-next,
-.carousel-slide.carousel-anim-prev,
-.carousel-slide.carousel-anim-next-exit,
-.carousel-slide.carousel-anim-prev-exit {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Reset default Swiper styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hide default Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
 }
 
 /* Optimizaciones para imágenes con transiciones suaves */
@@ -84,6 +99,29 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Swiper lazy loading styles */
+.swiper-lazy-preloader {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -21px;
+  margin-top: -21px;
+  z-index: 10;
+  transform-origin: 50%;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  border-top-color: rgba(255, 255, 255, 0.8);
+  animation: swiper-preloader-spin 1s infinite linear;
+}
+
+@keyframes swiper-preloader-spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .carousel-overlay {
@@ -140,92 +178,6 @@
   100% { background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px; }
 }
 
-/* Animaciones del carrusel - Slides que entran */
-.carousel-anim-next {
-  animation: slideInFromRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.carousel-anim-prev {
-  animation: slideInFromLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Animaciones del carrusel - Slides que salen */
-.carousel-anim-next-exit {
-  animation: slideOutToLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.carousel-anim-prev-exit {
-  animation: slideOutToRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Animación de entrada desde la derecha (cuando se va hacia adelante) */
-@keyframes slideInFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%) scale(0.95);
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Animación de entrada desde la izquierda (cuando se va hacia atrás) */
-@keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%) scale(0.95);
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-/* Animación de salida hacia la izquierda (slide que se va cuando avanza) */
-@keyframes slideOutToLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-100%) scale(0.95);
-    filter: blur(2px);
-  }
-}
-
-/* Animación de salida hacia la derecha (slide que se va cuando retrocede) */
-@keyframes slideOutToRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%) scale(0.95);
-    filter: blur(2px);
-  }
-}
-
-/* Animación de respaldo (fade simple) */
-@keyframes carouselFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* Estilos de los botones de navegación */
 .carousel-arrow {
   position: absolute;
@@ -274,7 +226,7 @@
 
 /* Dots de navegación - DENTRO del carrusel */
 .carousel-dots {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   gap: 14px;
@@ -284,6 +236,10 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+}
+
+.carousel-dots .swiper-pagination-bullet {
+  display: none;
 }
 
 .carousel-dot {
@@ -647,12 +603,6 @@
   .carousel-dots {
     bottom: 25px;
   }
-
-  .sobre-nosotros-cert-card {
-    margin: 32px 16px 24px 16px;
-    padding: 24px 28px;
-    font-size: 1.05rem;
-  }
 }
 
 /* Media query intermedia para tablets */
@@ -723,10 +673,48 @@
     height: 10px;
     border: 1px solid rgba(255, 255, 255, 0.9);
   }
+}
 
-  .sobre-nosotros-cert-card {
-    margin: 24px 12px 24px 12px;
-    padding: 20px 24px;
-    font-size: 1rem;
+/* Optimizaciones específicas para Swiper en mobile */
+@media (max-width: 768px) {
+  .carousel-swiper {
+    /* Optimizar rendimiento en mobile */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
+
+  .carousel-slide img {
+    /* Mejorar rendimiento de imágenes en mobile */
+    transform: translateZ(0);
+    will-change: auto;
+  }
+
+  /* Desactivar algunos efectos hover en touch devices */
+  .sobre-nosotros-carousel:hover .carousel-slide img {
+    transform: translateZ(0) scale(1);
+    filter: brightness(1) contrast(1);
+  }
+
+  .sobre-nosotros-carousel:hover .carousel-content span:first-child {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    filter: brightness(1);
+  }
+
+  .sobre-nosotros-carousel:hover .carousel-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 42, 78, 0.85) 0%,
+      rgba(15, 42, 78, 0.65) 50%,
+      rgba(15, 42, 78, 0.75) 100%
+    );
+    backdrop-filter: none;
+  }
+}
+
+/* Smooth transitions for Swiper fade effect */
+.swiper-fade .swiper-slide {
+  transition-property: opacity;
+  transition-duration: 800ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
