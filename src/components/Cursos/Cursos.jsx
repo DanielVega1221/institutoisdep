@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { intereses } from "../Contacto/Contacto";
+import Contacto from "../Contacto/Contacto";
 import "./Cursos.css";
 
 const cursosData = [
@@ -84,8 +86,18 @@ const cursosData = [
   }
 ];
 
-const Cursos = () => {
+const Cursos = ({ setSelectedInteres, contactoRef }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Para scroll y auto-selección
+  const handleSolicitarInfo = (titulo) => {
+    setSelectedInteres(titulo);
+    setTimeout(() => {
+      if (contactoRef && contactoRef.current) {
+        contactoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 100);
+  };
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
@@ -114,6 +126,7 @@ const Cursos = () => {
     }
   };
 
+  // Render
   return (
     <section className="cursos-section">
       <div className="cursos-container">
@@ -123,7 +136,7 @@ const Cursos = () => {
             <svg className="cursos-icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
               <path d="M12 3L1 9L12 15L21 10.09V17H23V9L12 3ZM5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z" fill="currentColor"/>
             </svg>
-            <h2 className="cursos-title">Conocé nuestras carreras y cursos</h2>
+            <h2 className="cursos-title">Conocé nuestros cursos y carreras</h2>
           </div>
           <div className="cursos-title-line"></div>
         </div>
@@ -136,7 +149,7 @@ const Cursos = () => {
             aria-expanded={isExpanded}
           >
             <span className="accordion-text">
-              {isExpanded ? 'Ocultar carreras y cursos' : 'Ver todas nuestras carreras y cursos'}
+              {isExpanded ? 'Ocultar cursos y carrerasS' : 'Ver todos nuestros cursos y carreras'}
             </span>
             <svg 
               className={`accordion-arrow ${isExpanded ? 'rotated' : ''}`} 
@@ -160,7 +173,6 @@ const Cursos = () => {
                 >
                   <div className="card-content">
                     <div className="card-emoji">{curso.emoji}</div>
-                    
                     <div className="card-header">
                       <h3 className="card-titulo">{curso.titulo}</h3>
                       <div className="card-badges">
@@ -175,16 +187,13 @@ const Cursos = () => {
                         </span>
                       </div>
                     </div>
-                    
                     <div className="card-mini-intro">
                       <p>{curso.miniIntro}</p>
                     </div>
-                    
                     <div className="card-descripcion-container">
                       <p className="card-descripcion">{curso.descripcion}</p>
                     </div>
-
-                    <button className="card-button">
+                    <button className="card-button" onClick={() => handleSolicitarInfo(curso.titulo)}>
                       <span>Solicitá más información</span>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -199,6 +208,7 @@ const Cursos = () => {
       </div>
     </section>
   );
-};
+  
+}
 
 export default Cursos;

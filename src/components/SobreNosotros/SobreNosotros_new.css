@@ -158,8 +158,34 @@
 .carousel-content span:first-child {
   color: #ffffff !important;
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 4.5rem;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.carousel-content span {
+  font-size: 2.3rem;
+  font-weight: 400;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .carousel-content span:first-child {
+    font-size: 2.2rem;
+  }
+  .carousel-content span {
+    font-size: 1.15rem;
+  }
+}
+@media (max-width: 600px) {
+  .carousel-content span:first-child {
+    font-size: 1.3rem;
+  }
+  .carousel-content span {
+    font-size: 0.95rem;
+  }
 }
 
 /* Placeholder para carga de imágenes */

@@ -1,3 +1,7 @@
+body, html {
+  font-size: 17px;
+}
+/* Los textos principales heredan este tamaño */
 /* Componente principal */
 .sobre-nosotros-main {
   width: 100%;

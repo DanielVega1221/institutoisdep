@@ -17,6 +17,16 @@
   background: linear-gradient(90deg, transparent 0%, #0F2A4E 20%, #B8860B 50%, #0F2A4E 80%, transparent 100%);
 }
 
+.cursos-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #0F2A4E 20%, #B8860B 50%, #0F2A4E 80%, transparent 100%);
+}
+
 .cursos-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -32,6 +42,7 @@
 
 .cursos-title-wrapper {
   display: flex;
+  font-size: 2.4rem;
   align-items: center;
   justify-content: center;
   gap: 20px;
@@ -42,10 +53,11 @@
   color: #0F2A4E;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(15, 42, 78, 0.2));
+  font-size: 3.2rem;
 }
 
 .cursos-title {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: #0F2A4E;
   margin: 0;
@@ -214,10 +226,6 @@
   background: linear-gradient(90deg, #0F2A4E 0%, #B8860B 50%, #0F2A4E 100%);
 }
 
-.card-content:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.1);
-}
 
 /* Emoji de la card */
 .card-emoji {
@@ -351,15 +359,7 @@
   transition: left 0.6s ease;
 }
 
-.card-button:hover::before {
-  left: 100%;
-}
 
-.card-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(15, 42, 78, 0.4);
-  background: linear-gradient(135deg, #1e4d7a 0%, #0F2A4E 50%, #1a3b5e 100%);
-}
 
 .card-button:active {
   transform: translateY(-1px) scale(1.01);

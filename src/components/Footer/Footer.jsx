@@ -13,7 +13,7 @@ const Footer = () => (
         <div className="footer-info">Teléfono fijo: 469 0044</div>
         <div className="footer-info">Mar del Plata, Buenos Aires</div>
         <div className="footer-info">Argentina</div>
-        <div className="footer-info">Inscripto bajo Ley 13.047, Artículo 2, Licencia C</div>
+        <div className="footer-info">Inscripto bajo Ley 13.046, Artículo 2, Licencia C</div>
       </div>
       {/* Columna central: Call to action */}
       <div className="footer-col footer-col-center">

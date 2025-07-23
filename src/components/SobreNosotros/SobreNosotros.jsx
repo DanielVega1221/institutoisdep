@@ -35,7 +35,7 @@ const slides = [
       <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
         <span style={{
           fontWeight: 900,
-          fontSize: "1.35rem",
+          fontSize: "2rem",
           color: "#0F2A4E",
           display: "block",
           marginBottom: "0.5em",
@@ -55,7 +55,7 @@ const slides = [
       <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
         <span style={{
           fontWeight: 900,
-          fontSize: "1.18rem",
+          fontSize: "2rem",
           color: "#0F2A4E",
           display: "block",
           marginBottom: "0.5em",
@@ -75,7 +75,7 @@ const slides = [
       <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
         <span style={{
           fontWeight: 900,
-          fontSize: "1.18rem",
+          fontSize: "2rem",
           color: "#0F2A4E",
           display: "block",
           marginBottom: "0.5em",
@@ -95,7 +95,7 @@ const slides = [
       <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
         <span style={{
           fontWeight: 900,
-          fontSize: "1.18rem",
+          fontSize: "2rem",
           color: "#0F2A4E",
           display: "block",
           marginBottom: "0.5em",

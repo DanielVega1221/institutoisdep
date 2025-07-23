@@ -8,7 +8,9 @@ import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
 import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 import Cursos from "./components/Cursos/Cursos.jsx";
-import LoadingScreen from "./components/Loading/LoadingScreen.jsx"; // Asegúrate de importar el loading
+import LoadingScreen from "./components/Loading/LoadingScreen.jsx";
+import Anuncios from "./components/Anuncios/Anuncios.jsx";
+import Contacto from "./components/Contacto/Contacto.jsx";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -16,23 +18,34 @@ function App() {
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [colorBg, setColorBg] = useState("initial"); // "initial" | "second"
+  const [colorBg, setColorBg] = useState("initial");
   const [showLogo1, setShowLogo1] = useState(true);
+  // Estado global para integración Cursos -> Contacto
+  const [selectedInteres, setSelectedInteres] = useState(null);
+  const contactoRef = React.useRef(null);
+  const cursosRef = React.useRef(null);
+  const anunciosRef = React.useRef(null);
+
+  // Scroll handler para Navbar
+  const handleNav = (section) => {
+    let ref = null;
+    if (section === "Cursos") ref = cursosRef;
+    if (section === "Contacto") ref = contactoRef;
+    if (section === "Anuncios") ref = anunciosRef;
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   useEffect(() => {
-    // Primera frase y logo
     const t1 = setTimeout(() => setActive1(true), 300);
-    // Segunda frase, cambia fondo y logo (con animación)
     const t2 = setTimeout(() => {
       setActive2(true);
       setColorBg("second");
       setShowLogo1(false);
     }, 4000);
-    // Tercera frase
     const t3 = setTimeout(() => setActive3(true), 6200);
-    // Fade out
     const t4 = setTimeout(() => setFadeOut(true), 9700);
-    // Ocultar overlay
     const t5 = setTimeout(() => setShowIntro(false), 11500);
 
     return () => {
@@ -48,7 +61,6 @@ function App() {
 
   return (
     <div className="app-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", margin: 0, padding: 0, width: "100%" }}>
-      {/* Si tienes un LoadingScreen, colócalo aquí si lo deseas, pero no bloquees el resto */}
       {showIntro && (
         <div className={`intro-overlay ${introBgClass}${fadeOut ? " intro-fadeout" : ""}`}>
           <div className="intro-content">
@@ -81,9 +93,17 @@ function App() {
           </div>
         </div>
       )}
-      <Navbar />
+      <Navbar handleNav={handleNav} />
       <SobreNosotros />
-      <Cursos />
+      <section ref={cursosRef}>
+        <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} />
+      </section>
+      <section ref={contactoRef}>
+        <Contacto ref={contactoRef} selectedInteres={selectedInteres} setSelectedInteres={setSelectedInteres} />
+      </section>
+      <section ref={anunciosRef}>
+        <Anuncios />
+      </section>
       <VolumeControl audioSrc={music} />
       <div style={{ flex: 1 }} />
       <Footer />

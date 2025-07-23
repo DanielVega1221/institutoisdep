@@ -3,13 +3,12 @@ import logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Inicio", href: "#" },
-  { label: "Informacion", href: "#" },
   { label: "Cursos", href: "#" },
   { label: "Contacto", href: "#" },
+  { label: "Anuncios", href: "#" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ handleNav }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleToggle = () => setMenuOpen((prev) => !prev);
@@ -25,9 +24,13 @@ const Navbar = () => {
       <nav className="navbar-links">
         {navItems.map((item, idx) => (
           <React.Fragment key={item.label}>
-            <a className="navbar-link" href={item.href}>
+            <button
+              className="navbar-link"
+              type="button"
+              onClick={() => handleNav(item.label)}
+            >
               {item.label}
-            </a>
+            </button>
             {idx < navItems.length - 1 && <span className="navbar-separator" />}
           </React.Fragment>
         ))}
@@ -53,14 +56,17 @@ const Navbar = () => {
         className={`navbar-mobile-menu${menuOpen ? " active" : ""}`}
       >
         {navItems.map((item) => (
-          <a
+          <button
             key={item.label}
             className="navbar-link"
-            href={item.href}
-            onClick={handleClose}
+            type="button"
+            onClick={() => {
+              handleNav(item.label);
+              handleClose();
+            }}
           >
             {item.label}
-          </a>
+          </button>
         ))}
       </nav>
       {/* Overlay for closing menu on click outside */}
