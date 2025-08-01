@@ -206,48 +206,7 @@ const SobreNosotros = ({ autoPlay = true }) => {
         </div>
       </div>
       
-      {/* Sección de estadísticas */}
-      <div className="sobre-nosotros-stats">
-        <div className="stats-item">
-          <div className="stats-icon">
-            <img src={card1} alt="ALGRA" />
-          </div>
-          <div className="stats-content">
-            <div className="stats-title">Miembros de ALGRA</div>
-            <div className="stats-description">
-              Formamos parte de la Asociación Latinoamericana de Grafología, promoviendo la investigación y el desarrollo de la disciplina en toda la región.
-            </div>
-          </div>
-        </div>
-        
-        <div className="stats-divider"></div>
-        
-        <div className="stats-item">
-          <div className="stats-icon">
-            <img src={card2} alt="Cámara Argentina" />
-          </div>
-          <div className="stats-content">
-            <div className="stats-title">Avalados por la Cámara Argentina</div>
-            <div className="stats-description">
-              Contamos con el respaldo de entidades profesionales que certifican la calidad y seriedad de nuestra formación educativa.
-            </div>
-          </div>
-        </div>
-        
-        <div className="stats-divider"></div>
-        
-        <div className="stats-item">
-          <div className="stats-icon">
-            <img src={banderita} alt="Argentina" />
-          </div>
-          <div className="stats-content">
-            <div className="stats-title">Certificación Oficial en todo el Territorio Argentino</div>
-            <div className="stats-description">
-              Nuestros títulos tienen validez nacional y reconocimiento en el exterior, permitiendo ejercer profesionalmente sin límites.
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </section>
   );
 };

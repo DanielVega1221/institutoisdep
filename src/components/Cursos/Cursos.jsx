@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { intereses } from "../Contacto/Contacto";
 import Contacto from "../Contacto/Contacto";
 import "./Cursos.css";
@@ -88,6 +88,25 @@ const cursosData = [
 
 const Cursos = ({ setSelectedInteres, contactoRef }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Minimizar acordeón si la sección sale de pantalla
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && isExpanded) {
+          setIsExpanded(false);
+        }
+      },
+      { threshold: 0.01 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, [isExpanded]);
 
   // Para scroll y auto-selección
   const handleSolicitarInfo = (titulo) => {
@@ -128,7 +147,7 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
 
   // Render
   return (
-    <section className="cursos-section">
+    <section className="cursos-section" ref={sectionRef}>
       <div className="cursos-container">
         {/* Título general */}
         <div className="cursos-header">
@@ -149,7 +168,7 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
             aria-expanded={isExpanded}
           >
             <span className="accordion-text">
-              {isExpanded ? 'Ocultar cursos y carrerasS' : 'Ver todos nuestros cursos y carreras'}
+              {isExpanded ? 'Ocultar cursos y carreras' : 'Ver todos nuestros cursos y carreras'}
             </span>
             <svg 
               className={`accordion-arrow ${isExpanded ? 'rotated' : ''}`} 
@@ -208,7 +227,6 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
       </div>
     </section>
   );
-  
-}
+};
 
 export default Cursos;

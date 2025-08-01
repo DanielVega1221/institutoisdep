@@ -13,7 +13,7 @@ const Footer = () => (
         <div className="footer-info">Teléfono fijo: 469 0044</div>
         <div className="footer-info">Mar del Plata, Buenos Aires</div>
         <div className="footer-info">Argentina</div>
-        <div className="footer-info">Inscripto bajo Ley 13.046, Artículo 2, Licencia C</div>
+        <div className="footer-info">Inscripto bajo Ley 13.046, Artículo 2, Inciso C</div>
       </div>
       {/* Columna central: Call to action */}
       <div className="footer-col footer-col-center">
@@ -23,7 +23,18 @@ const Footer = () => (
         <div className="footer-cta-desc">
           Escribinos y te ayudamos a elegir la formación que mejor se adapta a vos.
         </div>
-        <a href="mailto:isdep@hotmail.com.ar" className="footer-contact-btn">Contactar</a>
+        <button
+          className="footer-contact-btn"
+          type="button"
+          onClick={() => {
+            const section = document.getElementById('contacto-section');
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }}
+        >
+          Contactar
+        </button>
       </div>
       {/* Columna derecha: Redes sociales */}
       <div className="footer-col footer-col-right">
@@ -42,6 +53,7 @@ const Footer = () => (
         </div>
         <div className="footer-logo-centered">
           <img src={logo} alt="ISDEP Logo" />
+          <div className="footer-logo-subtitle">Instituto Superior de Enseñanza Profesional</div>
         </div>
       </div>
     </div>

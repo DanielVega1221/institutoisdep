@@ -20,6 +20,7 @@ const Navbar = ({ handleNav }) => {
         <img src={logo} alt="Logo" />
         <div className="navbar-logo-subtitle">Instituto Superior de Enseñanza Profesional</div>
       </div>
+      <div className="navbar-mobile-title">Instituto Superior de Enseñanza Profesional</div>
       {/* Desktop links */}
       <nav className="navbar-links">
         {navItems.map((item, idx) => (
