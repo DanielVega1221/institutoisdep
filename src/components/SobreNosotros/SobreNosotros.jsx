@@ -3,7 +3,7 @@ import "./SobreNosotros_new.css";
 
 // Swiper components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Swiper styles
 import 'swiper/css';
@@ -12,101 +12,29 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Importar imágenes optimizadas
-import slide1 from "../../assets/optimized/1.jpg";
-import slide1WebP from "../../assets/optimized/1.webp";
-import slide2 from "../../assets/optimized/2.jpg";
-import slide2WebP from "../../assets/optimized/2.webp";
-import slide3 from "../../assets/optimized/3.jpg";
-import slide3WebP from "../../assets/optimized/3.webp";
-import slide4 from "../../assets/optimized/4.jpg";
-import slide4WebP from "../../assets/optimized/4.webp";
-
-// Importar imágenes para la sección de stats
-import banderita from "../../assets/banderita.png";
+import logo1 from "../../assets/Logo1.png";
 import card1 from "../../assets/card1.png";
 import card2 from "../../assets/card2.png";
 
 const slides = [
   {
-    img: slide1,
-    webp: slide1WebP,
-    alt: "Capacitando Alumnos, Formando Profesionales",
-    text: (
-      <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
-        <span style={{
-          fontWeight: 900,
-          fontSize: "2rem",
-          color: "#0F2A4E",
-          display: "block",
-          marginBottom: "0.5em",
-          letterSpacing: "0.01em"
-        }}>
-          Capacitando Alumnos, Formando Profesionales
-        </span>
-        <span>Creamos trayectorias educativas que unen conocimiento, vocación y compromiso ético.</span>
-      </div>
-    ),
+    img: logo1,
+    alt: "Logo ISDEP",
+    title: "Capacitando Alumnos, Formando Profesionales",
+    subtitle: "Vanguardia educativa para un mundo en cambio"
   },
   {
-    img: slide2,
-    webp: slide2WebP,
-    alt: "Vanguardia Educativa para un Mundo en Cambio",
-    text: (
-      <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
-        <span style={{
-          fontWeight: 900,
-          fontSize: "2rem",
-          color: "#0F2A4E",
-          display: "block",
-          marginBottom: "0.5em",
-          letterSpacing: "0.01em"
-        }}>
-          Vanguardia Educativa para un Mundo en Cambio
-        </span>
-        <span>Integramos tecnología, pensamiento crítico y metodologías modernas para formar líderes preparados.</span>
-      </div>
-    ),
+    img: card1,
+    alt: "Card 1",
+    title: "Integrante de la Asociación Latinoamericana de Grafología",
+    subtitle: ""
   },
   {
-    img: slide3,
-    webp: slide3WebP,
-    alt: "Educación Profesional con Proyección Internacional",
-    text: (
-      <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
-        <span style={{
-          fontWeight: 900,
-          fontSize: "2rem",
-          color: "#0F2A4E",
-          display: "block",
-          marginBottom: "0.5em",
-          letterSpacing: "0.01em"
-        }}>
-          Educación Profesional con Proyección Internacional
-        </span>
-        <span>Certificaciones válidas en todo el país y reconocimiento internacional para tu carrera profesional.</span>
-      </div>
-    ),
-  },
-  {
-    img: slide4,
-    webp: slide4WebP,
-    alt: "Instituto Superior de Enseñanza Profesional",
-    text: (
-      <div style={{ textAlign: "center", fontFamily: "'Merriweather', serif" }}>
-        <span style={{
-          fontWeight: 900,
-          fontSize: "2rem",
-          color: "#0F2A4E",
-          display: "block",
-          marginBottom: "0.5em",
-          letterSpacing: "0.01em"
-        }}>
-          Instituto Superior de Enseñanza Profesional
-        </span>
-        <span>Más que un instituto: una comunidad educativa con historia, valores y mirada de futuro.</span>
-      </div>
-    ),
-  },
+    img: card2,
+    alt: "Card 2",
+    title: "Certificación y Validación Nacional",
+    subtitle: "ISDEP Inscripto en la Cámara Argentina de Comercio para su Certificación y Validación Nacional en todo el Territorio Argentino."
+  }
 ];
 
 const AUTO_PLAY_TIME = 5000;
@@ -117,7 +45,7 @@ const SobreNosotros = ({ autoPlay = true }) => {
       <div className="sobre-nosotros-carousel-outer">
         <div className="sobre-nosotros-carousel">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectFade]}
+            modules={[Navigation, Pagination, Autoplay]}
             slidesPerView={1}
             navigation={{
               nextEl: '.swiper-button-next',
@@ -137,51 +65,31 @@ const SobreNosotros = ({ autoPlay = true }) => {
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             } : false}
-            effect="fade"
-            fadeEffect={{
-              crossFade: true
-            }}
             speed={800}
             loop={true}
-            lazy={{
-              loadPrevNext: true,
-              loadPrevNextAmount: 1,
-            }}
             className="carousel-swiper"
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
-                <div className="carousel-slide">
-                  <picture>
-                    <source srcSet={slide.webp} type="image/webp" />
-                    <img
-                      src={slide.img}
-                      alt={slide.alt}
-                      className="swiper-lazy"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'center'
-                      }}
-                    />
-                    <div className="swiper-lazy-preloader"></div>
-                  </picture>
-                  
-                  <div className="carousel-overlay">
+                <div className="carousel-slide carousel-slide-horizontal">
+                  <div className="carousel-slide-img">
+                        <img
+                          src={slide.img}
+                          alt={slide.alt}
+                          loading={index === 0 ? "eager" : "lazy"}
+                          className="carousel-img"
+                        />
+                  </div>
+                  <div className="carousel-slide-text">
                     <div className="carousel-content">
-                      {typeof slide.text === "string" ? slide.text : slide.text}
+                      <span className="carousel-title">{slide.title}</span>
+                      {slide.subtitle && <span className="carousel-subtitle">{slide.subtitle}</span>}
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-
           {/* Custom Navigation Buttons */}
           <button
             className="carousel-arrow carousel-arrow-left swiper-button-prev"
@@ -191,7 +99,6 @@ const SobreNosotros = ({ autoPlay = true }) => {
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          
           <button
             className="carousel-arrow carousel-arrow-right swiper-button-next"
             aria-label="Siguiente"
@@ -200,7 +107,6 @@ const SobreNosotros = ({ autoPlay = true }) => {
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          
           {/* Custom Pagination */}
           <div className="carousel-dots swiper-pagination"></div>
         </div>

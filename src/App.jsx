@@ -95,14 +95,14 @@ function App() {
       )}
       <Navbar handleNav={handleNav} />
       <SobreNosotros />
+      <section ref={anunciosRef}>
+        <Anuncios />
+      </section>
       <section ref={cursosRef}>
         <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} />
       </section>
       <section ref={contactoRef}>
         <Contacto ref={contactoRef} selectedInteres={selectedInteres} setSelectedInteres={setSelectedInteres} />
-      </section>
-      <section ref={anunciosRef}>
-        <Anuncios />
       </section>
       <VolumeControl audioSrc={music} />
       <div style={{ flex: 1 }} />

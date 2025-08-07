@@ -5,6 +5,7 @@
   min-height: 60vh;
   position: relative;
   font-family: 'Merriweather', serif;
+  margin-top: 6rem;
 }
 
 .cursos-section::before {
