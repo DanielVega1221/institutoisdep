@@ -1,3 +1,16 @@
+/* Estilo para el subtítulo extra: Título adquirido */
+.card-titulo-adquirido {
+  font-size: 1.05rem;
+  color: #0F2A4E;
+  background: #f5f7fa00;
+  border-radius: 10px;
+  padding: 10px 18px;
+  margin: 4px 0 8px 0;
+  font-weight: 600;
+
+  font-family: 'Merriweather', serif;
+  display: block;
+}
 /* Sección principal de Cursos */
 .cursos-section {
   padding: 100px 20px;

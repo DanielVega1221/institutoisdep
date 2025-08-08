@@ -9,8 +9,9 @@ const cursosData = [
     emoji: "🎓",
     titulo: "Psicografología",
     subtitulo: "Formación Profesional en Psicografología",
+    tituloAdquirido: "Perito en Psicografología Científica",
     tipo: "Carrera técnica",
-    duracion: "1 a 2 años",
+    duracion: "2 años",
     miniIntro: "Explorá el universo de la escritura como herramienta de evaluación psicológica y profesional.",
     descripcion: "Formación completa en análisis grafológico para aplicar en ámbitos clínicos, educativos y forenses."
   },
@@ -19,6 +20,7 @@ const cursosData = [
     emoji: "🕵️",
     titulo: "Ciencias Criminalistas",
     subtitulo: "Diplomatura en Ciencias Criminalistas",
+    tituloAdquirido: "Diplomado/a en Ciencias Criminalistas",
     tipo: "Diplomatura",
     duracion: "8 a 12 meses",
     miniIntro: "Sumate al mundo de la investigación científica del delito desde una perspectiva profesional.",
@@ -29,6 +31,7 @@ const cursosData = [
     emoji: "🧩",
     titulo: "Perfilamiento Criminal",
     subtitulo: "Perfilamiento Criminal",
+    tituloAdquirido: "Especialista en Perfilamiento Criminal",
     tipo: "Curso especializado",
     duracion: "4 a 6 meses",
     miniIntro: "Aprendé a identificar patrones conductuales y construir perfiles delictivos.",
@@ -37,18 +40,20 @@ const cursosData = [
   {
     id: 4,
     emoji: "🧠",
-    titulo: "Psicología Social",
-    subtitulo: "Psicología Social (3 años)",
+    titulo: "Psicólogo/a Social",
+    subtitulo: "Psicólogo/a Social (3 años)",
+    tituloAdquirido: "Psicólogo/a Social",
     tipo: "Carrera terciaria",
     duracion: "3 años",
-    miniIntro: "Descubrí cómo la sociedad moldea la conducta humana desde una mirada integradora.",
-    descripcion: "Formación profesional en intervención grupal, comunitaria y organizacional con enfoque social."
+    miniIntro: "La Psicología Social estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. El psicólogo/a social interviene en procesos grupales, comunitarios y organizacionales, promoviendo el bienestar y la integración social.",
+    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales. El profesional puede desempeñarse en ámbitos educativos, comunitarios, institucionales y de salud, desarrollando proyectos de intervención, prevención y promoción social, y facilitando procesos de cambio y desarrollo humano."
   },
   {
     id: 5,
     emoji: "🧾",
     titulo: "Grafología Forense",
     subtitulo: "Grafología Forense",
+    tituloAdquirido: "Perito Grafólogo/a Forense",
     tipo: "Curso profesional",
     duracion: "6 a 9 meses",
     miniIntro: "Capacitate en el análisis legal de manuscritos y documentos gráficos.",
@@ -59,6 +64,7 @@ const cursosData = [
     emoji: "✒️",
     titulo: "Firmas y Rúbricas",
     subtitulo: "Firmas y Rúbricas",
+    tituloAdquirido: "Especialista en Análisis de Firmas y Rúbricas",
     tipo: "Curso intensivo",
     duracion: "2 a 3 meses",
     miniIntro: "Explorá el valor simbólico y legal de las firmas en la identidad escrita.",
@@ -69,6 +75,7 @@ const cursosData = [
     emoji: "🆘",
     titulo: "Primeros Auxilios Psicológicos",
     subtitulo: "Operador en Primeros Auxilios Psicológicos",
+    tituloAdquirido: "Operador/a en Primeros Auxilios Psicológicos",
     tipo: "Curso de intervención",
     duracion: "3 a 5 meses",
     miniIntro: "Formate para contener y asistir emocionalmente en situaciones de emergencia.",
@@ -79,6 +86,7 @@ const cursosData = [
     emoji: "🎨",
     titulo: "Análisis de Dibujos",
     subtitulo: "Análisis de Dibujos",
+    tituloAdquirido: "Especialista en Análisis de Dibujos Proyectivos",
     tipo: "Curso proyectivo",
     duracion: "3 a 4 meses",
     miniIntro: "Aprendé a interpretar gráficamente el mundo interno de niños, adolescentes y adultos.",
@@ -206,6 +214,12 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
                         </span>
                       </div>
                     </div>
+                    {/* Subtítulo extra: Título adquirido */}
+                    {curso.tituloAdquirido && (
+                      <div className="card-titulo-adquirido">
+                        <span><strong>Título:</strong> {curso.tituloAdquirido}</span>
+                      </div>
+                    )}
                     <div className="card-mini-intro">
                       <p>{curso.miniIntro}</p>
                     </div>

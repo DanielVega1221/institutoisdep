@@ -27,7 +27,7 @@ const slides = [
     img: card1,
     alt: "Card 1",
     title: "Integrante de la Asociación Latinoamericana de Grafología",
-    subtitle: ""
+    subtitle: "Eduardo Marzano. Consultor en Grafopsicología."
   },
   {
     img: card2,

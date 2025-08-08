@@ -7,7 +7,7 @@
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  padding: 80px 32px 60px 32px;
+  padding: 80px 32px 20px 32px;
   overflow: hidden;
 }
 
@@ -417,7 +417,7 @@
   max-width: 750px;
   margin-left: 0;
   margin-right: auto;
-  background: #fff;
+  background: #cecece;
   border-top-right-radius: 300px;
   border-bottom-right-radius: 300px;
   border-top-left-radius: 0;
