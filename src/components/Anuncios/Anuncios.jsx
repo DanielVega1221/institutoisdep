@@ -34,7 +34,7 @@ const Anuncios = () => {
     <>
       <section className="anuncios-section">
         <div className="anuncios-card-container" style={{ marginBottom: '6rem' }}>
-          <h2 className="anuncios-titulo">Anuncios</h2>
+          
           <div className="anuncios-list">
             {/* Anuncio 1 - Primer estilo */}
             <div>
