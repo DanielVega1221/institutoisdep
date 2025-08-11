@@ -1,9 +1,11 @@
 import React from "react";
 import "./Anuncios.css";
-import imagen from "../../assets/imagen.jpg";
+import imagen1 from "../../assets/imagen1.jpeg";
+import imagen2 from "../../assets/imagen2.jpeg";
 import logo1 from "../../assets/Logo1.png";
 
-const anuncio1 = {
+
+const anuncio2 = {
   titulo: "Nuevo Curso: Grafología Aplicada",
   subtitulo: "Profundizá en técnicas de análisis grafológico",
   descripcion: "Un curso práctico para quienes desean llevar la grafología al ámbito profesional o personal.",
@@ -16,15 +18,15 @@ const anuncio1 = {
   ]
 };
 
-const anuncio2 = {
-  titulo: "Nueva carrera",
-  subtitulo: "Psicología Social - Duración: 3 años",
+const anuncio1 = {
+  titulo: "Psicología Social",
+  subtitulo: "Nueva carrera",
   descripcion:
-    "La Psicología Social es una rama de la psicología que estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. Examina fenómenos como la conformidad, la obediencia, la persuasión, la agresión, los prejuicios y la discriminación. Además, explora cómo las interacciones sociales, las normas, las relaciones intergrupales y el entorno social influyen en el comportamiento humano y en la percepción de uno mismo y de los demás. El rol del psicólogo social es multifacético: puede intervenir en ámbitos educativos, comunitarios, institucionales y de salud, desarrollando proyectos de prevención, promoción y transformación social, facilitando procesos de cambio y desarrollo humano, y promoviendo el bienestar y la integración social.",
+    "La Psicología Social es una rama de la psicología que estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. ",
   info: "Inscripción abierta 2025",
   items: [
     "Título oficial: Psicólogo/a Social",
-    "Docentes especializados en psicología social",
+    "Duración: 3 años"
   ]
 };
 const Anuncios = () => {
@@ -38,7 +40,7 @@ const Anuncios = () => {
             <div>
               <div className="anuncio-card">
                 <div className="anuncio-img-wrapper">
-                  <img src={imagen} alt="Imagen anuncio" className="anuncio-img" />
+                  <img src={imagen1} alt="Imagen anuncio" className="anuncio-img" />
                   <div className="anuncio-logo-wrapper">
                     <div className="anuncio-logo-circle">
                       <img src={logo1} alt="Logo" className="anuncio-logo-img" />
@@ -65,7 +67,7 @@ const Anuncios = () => {
             {/* Anuncio 2 - Segundo estilo */}
             <div>
               <div className="anuncio-card-alt-full" style={{ marginTop: '2rem' }}>
-                <div className="anuncio-img-bg-alt" style={{ backgroundImage: `url(${imagen})` }}>
+                <div className="anuncio-img-bg-alt" style={{ backgroundImage: `url(${imagen2})` }}>
                   <div className="anuncio-content-alt">
                     <h3 className="anuncio-titulo-alt-full">{anuncio2.titulo}</h3>
                     <h4 className="anuncio-subtitulo-alt-full">{anuncio2.subtitulo}</h4>
