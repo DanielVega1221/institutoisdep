@@ -40,7 +40,7 @@ const Anuncios = () => {
             <div>
               <div className="anuncio-card">
                 <div className="anuncio-img-wrapper">
-                  <img src={imagen1} alt="Imagen anuncio" className="anuncio-img" />
+                  <img src={imagen2} alt="Imagen anuncio" className="anuncio-img" />
                   <div className="anuncio-logo-wrapper">
                     <div className="anuncio-logo-circle">
                       <img src={logo1} alt="Logo" className="anuncio-logo-img" />
@@ -67,7 +67,7 @@ const Anuncios = () => {
             {/* Anuncio 2 - Segundo estilo */}
             <div>
               <div className="anuncio-card-alt-full" style={{ marginTop: '2rem' }}>
-                <div className="anuncio-img-bg-alt" style={{ backgroundImage: `url(${imagen2})` }}>
+                <div className="anuncio-img-bg-alt" style={{ backgroundImage: `url(${imagen1})` }}>
                   <div className="anuncio-content-alt">
                     <h3 className="anuncio-titulo-alt-full">{anuncio2.titulo}</h3>
                     <h4 className="anuncio-subtitulo-alt-full">{anuncio2.subtitulo}</h4>

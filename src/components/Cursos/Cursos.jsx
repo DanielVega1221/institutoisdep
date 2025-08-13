@@ -13,7 +13,9 @@ const cursosData = [
     tipo: "Carrera técnica",
     duracion: "2 años",
     miniIntro: "Explorá el universo de la escritura como herramienta de evaluación psicológica y profesional.",
-    descripcion: "Formación completa en análisis grafológico para aplicar en ámbitos clínicos, educativos y forenses."
+    descripcion: "Formación completa en análisis grafológico para aplicar en ámbitos clínicos, educativos y forenses.",
+    items: [],
+    extra: "",
   },
   {
     id: 2,
@@ -24,7 +26,9 @@ const cursosData = [
     tipo: "Diplomatura",
     duracion: "8 a 12 meses",
     miniIntro: "Sumate al mundo de la investigación científica del delito desde una perspectiva profesional.",
-    descripcion: "Integra conocimientos en criminalística, perfilación, pericias y análisis forense moderno."
+    descripcion: "Integra conocimientos en criminalística, perfilación, pericias y análisis forense moderno.",
+    items: [],
+    extra: "",
   },
   {
     id: 3,
@@ -35,7 +39,9 @@ const cursosData = [
     tipo: "Curso especializado",
     duracion: "4 a 6 meses",
     miniIntro: "Aprendé a identificar patrones conductuales y construir perfiles delictivos.",
-    descripcion: "Capacitación técnica en criminal profiling, enfocado en criminología, tipologías y análisis psicológico."
+    descripcion: "Capacitación técnica en criminal profiling, enfocado en criminología, tipologías y análisis psicológico.",
+    items: [],
+    extra: "",
   },
   {
     id: 4,
@@ -43,10 +49,18 @@ const cursosData = [
     titulo: "Psicólogo/a Social",
     subtitulo: "Psicólogo/a Social (3 años)",
     tituloAdquirido: "Psicólogo/a Social",
-    tipo: "Carrera terciaria",
+    tipo: "Carrera",
     duracion: "3 años",
     miniIntro: "La Psicología Social estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. El psicólogo/a social interviene en procesos grupales, comunitarios y organizacionales, promoviendo el bienestar y la integración social.",
-    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales. El profesional puede desempeñarse en ámbitos educativos, comunitarios, institucionales y de salud, desarrollando proyectos de intervención, prevención y promoción social, y facilitando procesos de cambio y desarrollo humano."
+    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales. El profesional puede desempeñarse en ámbitos educativos, comunitarios, institucionales y de salud, desarrollando proyectos de intervención, prevención y promoción social, y facilitando procesos de cambio y desarrollo humano.",
+    items: [
+      "Modalidad online con clases en vivo",
+      "Certificación oficial",
+      "Aval ministerial",
+      "Acompañamiento docente permanente",
+      "Enfoque grupal comunitario"
+    ],
+    extra: "Formate para intervenir en ámbitos de salud, educación, comunidad y organizaciones.\n \n Cupos limitados- reservá tu lugar hoy"
   },
   {
     id: 5,
@@ -57,7 +71,9 @@ const cursosData = [
     tipo: "Curso profesional",
     duracion: "6 a 9 meses",
     miniIntro: "Capacitate en el análisis legal de manuscritos y documentos gráficos.",
-    descripcion: "Especialización en pericias grafológicas para determinar autenticidad, autoría y falsificación."
+    descripcion: "Especialización en pericias grafológicas para determinar autenticidad, autoría y falsificación.",
+    items: [],
+    extra: ""
   },
   {
     id: 6,
@@ -68,7 +84,9 @@ const cursosData = [
     tipo: "Curso intensivo",
     duracion: "2 a 3 meses",
     miniIntro: "Explorá el valor simbólico y legal de las firmas en la identidad escrita.",
-    descripcion: "Estudio detallado de la rúbrica y firma como reflejo psíquico y objeto de análisis técnico."
+    descripcion: "Estudio detallado de la rúbrica y firma como reflejo psíquico y objeto de análisis técnico.",
+    items: [],
+    extra: ""
   },
   {
     id: 7,
@@ -79,7 +97,9 @@ const cursosData = [
     tipo: "Curso de intervención",
     duracion: "3 a 5 meses",
     miniIntro: "Formate para contener y asistir emocionalmente en situaciones de emergencia.",
-    descripcion: "Técnicas prácticas de contención, estabilización emocional y derivación segura."
+    descripcion: "Técnicas prácticas de contención, estabilización emocional y derivación segura.",
+    items: [],
+    extra: ""
   },
   {
     id: 8,
@@ -90,7 +110,9 @@ const cursosData = [
     tipo: "Curso proyectivo",
     duracion: "3 a 4 meses",
     miniIntro: "Aprendé a interpretar gráficamente el mundo interno de niños, adolescentes y adultos.",
-    descripcion: "Aplicación psicológica del dibujo en procesos diagnósticos, terapéuticos y forenses."
+    descripcion: "Aplicación psicológica del dibujo en procesos diagnósticos, terapéuticos y forenses.",
+    items: [],
+    extra: ""
   }
 ];
 
@@ -225,6 +247,27 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
                     </div>
                     <div className="card-descripcion-container">
                       <p className="card-descripcion">{curso.descripcion}</p>
+                      {curso.items && curso.items.length > 0 && (
+                        <div className="card-items-container">
+                          <ul className="card-items">
+                            {curso.items.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {curso.extra && (
+                        <div className="card-extra">
+                          <p>
+                            {curso.extra.split('\n').map((line, idx) => (
+                              <React.Fragment key={idx}>
+                                {line}
+                                {idx < curso.extra.split('\n').length - 1 && <br />}
+                              </React.Fragment>
+                            ))}
+                          </p>
+                        </div>
+                      )}
                     </div>
                     <button className="card-button" onClick={() => handleSolicitarInfo(curso.titulo)}>
                       <span>Solicitá más información</span>

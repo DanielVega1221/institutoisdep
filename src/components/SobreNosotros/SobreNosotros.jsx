@@ -26,8 +26,8 @@ const slides = [
   {
     img: card1,
     alt: "Card 1",
-    title: "Eduardo Marzano. Consultor en Grafopsicología.",
-    subtitle: "Integrante de la Asociación Latinoamericana de Grafología"
+    title: "",
+    subtitle: "Eduardo Marzano.\nConsultor en Grafopsicología.\nIntegrante de la Asociación Latinoamericana de Grafología"
   },
   {
     img: card2,
@@ -83,7 +83,16 @@ const SobreNosotros = ({ autoPlay = true }) => {
                   <div className="carousel-slide-text">
                     <div className="carousel-content">
                       <span className="carousel-title">{slide.title}</span>
-                      {slide.subtitle && <span className="carousel-subtitle">{slide.subtitle}</span>}
+                      {slide.subtitle && (
+                        <span className="carousel-subtitle">
+                          {slide.subtitle.split('\n').map((line, idx) => (
+                            <React.Fragment key={idx}>
+                              {line}
+                              {idx < slide.subtitle.split('\n').length - 1 && <br />}
+                            </React.Fragment>
+                          ))}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

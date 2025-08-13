@@ -1,3 +1,39 @@
+/* Card visual para los items de cada curso */
+.card-items-container {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e8f4f8 100%);
+  border-radius: 12px;
+  margin: 16px 0 0 0;
+  padding: 18px 22px;
+  box-shadow: 0 2px 8px rgba(15, 42, 78, 0.07);
+  border-left: 4px solid #b8870b00;
+}
+
+.card-items {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #0F2A4E;
+  font-size: 1rem;
+  font-family: 'Merriweather', serif;
+}
+
+/* Estilo para el texto extra de cada curso */
+.card-extra {
+  background: linear-gradient(135deg, #fff9e600 0%, #f8f4e600 100%);
+  border-radius: 12px;
+  margin: 16px 0 0 0;
+  padding: 18px 22px;
+  box-shadow: 0 2px 8px rgba(184, 135, 11, 0);
+  border-left: 4px solid #0f2a4e00;
+}
+
+.card-extra p {
+  margin: 0;
+  color: #0F2A4E;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  font-family: 'Merriweather', serif;
+}
 /* Estilo para el subtítulo extra: Título adquirido */
 .card-titulo-adquirido {
   font-size: 1.05rem;
