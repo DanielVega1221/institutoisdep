@@ -46,9 +46,9 @@ const cursosData = [
   {
     id: 4,
     emoji: "🧠",
-    titulo: "Psicólogo/a Social",
-    subtitulo: "Psicólogo/a Social (3 años)",
-    tituloAdquirido: "Psicólogo/a Social",
+    titulo: "Psicólogo Social",
+    subtitulo: "Psicólogo Social (3 años)",
+    tituloAdquirido: "Psicólogo Social",
     tipo: "Carrera",
     duracion: "3 años",
     miniIntro: "La Psicología Social estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. El psicólogo/a social interviene en procesos grupales, comunitarios y organizacionales, promoviendo el bienestar y la integración social.",

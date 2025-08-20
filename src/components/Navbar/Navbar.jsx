@@ -6,6 +6,7 @@ const navItems = [
   { label: "Cursos", href: "#" },
   { label: "Contacto", href: "#" },
   { label: "Anuncios", href: "#" },
+  { label: "Equipo docente", href: "#" }, // Nuevo botón agregado
 ];
 
 const Navbar = ({ handleNav }) => {

@@ -2,6 +2,7 @@ import React from "react";
 import "./Anuncios.css";
 import imagen1 from "../../assets/imagen1.jpeg";
 import imagen2 from "../../assets/imagen2.jpeg";
+import imagen3 from "../../assets/imagen3.png";
 import logo1 from "../../assets/Logo1.png";
 
 
@@ -23,12 +24,14 @@ const anuncio1 = {
   subtitulo: "Nueva carrera",
   descripcion:
     "La Psicología Social es una rama de la psicología que estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. ",
-  info: "Inscripción abierta 2025",
+  info: "Inscripciones abiertas en marzo y agosto", 
   items: [
     "Título oficial: Psicólogo/a Social",
     "Duración: 3 años"
   ]
 };
+
+
 const Anuncios = () => {
   return (
     <>
@@ -40,6 +43,10 @@ const Anuncios = () => {
             <div>
               <div className="anuncio-card">
                 <div className="anuncio-img-wrapper">
+                  <div className="anuncio-titulo-overlay">
+                    <h3 className="anuncio-titulo-overlay-text">{anuncio1.subtitulo}</h3>
+                    <h4 className="anuncio-subtitulo-overlay-text">{anuncio1.titulo}</h4>
+                  </div>
                   <img src={imagen2} alt="Imagen anuncio" className="anuncio-img" />
                   <div className="anuncio-logo-wrapper">
                     <div className="anuncio-logo-circle">
@@ -49,8 +56,6 @@ const Anuncios = () => {
                 </div>
                 <div className="anuncio-info-wrapper">
                   <div className="anuncio-info-card">
-                    <h3 className="anuncio-titulo">{anuncio1.titulo}</h3>
-                    <h4 className="anuncio-subtitulo">{anuncio1.subtitulo}</h4>
                     <p className="anuncio-descripcion">{anuncio1.descripcion}</p>
                     {anuncio1.items && (
                       <ul className="anuncio-items">
@@ -64,6 +69,7 @@ const Anuncios = () => {
                 </div>
               </div>
             </div>
+            
             {/* Anuncio 2 - Segundo estilo */}
             <div>
               <div className="anuncio-card-alt-full" style={{ marginTop: '2rem' }}>
@@ -80,6 +86,36 @@ const Anuncios = () => {
                       </ul>
                     )}
                     <span className="anuncio-datos-alt-full">{anuncio2.info}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Anuncio 3 - Primer estilo */}
+            <div>
+              <div className="anuncio-card">
+                <div className="anuncio-img-wrapper">
+                  <div className="anuncio-titulo-overlay">
+                    <h3 className="anuncio-titulo-overlay-text">{anuncio1.subtitulo}</h3>
+                    <h4 className="anuncio-subtitulo-overlay-text">{anuncio1.titulo}</h4>
+                  </div>
+                  <img src={imagen3} alt="Imagen anuncio" className="anuncio-img" />
+                  <div className="anuncio-logo-wrapper">
+                    <div className="anuncio-logo-circle">
+                      <img src={logo1} alt="Logo" className="anuncio-logo-img" />
+                    </div>
+                  </div>
+                </div>
+                <div className="anuncio-info-wrapper">
+                  <div className="anuncio-info-card">
+                    <p className="anuncio-descripcion">{anuncio1.descripcion}</p>
+                    {anuncio1.items && (
+                      <ul className="anuncio-items">
+                        {anuncio1.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <span className="anuncio-datos">{anuncio1.info}</span>
                   </div>
                 </div>
               </div>
