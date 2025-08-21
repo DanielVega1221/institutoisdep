@@ -26,7 +26,7 @@ const anuncio1 = {
     "La Psicología Social es una rama de la psicología que estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. ",
   info: "Inscripciones abiertas en marzo y agosto", 
   items: [
-    "Título oficial: Psicólogo/a Social",
+    "Título oficial: Psicólogo Social",
     "Duración: 3 años"
   ]
 };
