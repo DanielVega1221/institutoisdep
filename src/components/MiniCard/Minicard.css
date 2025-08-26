@@ -1,0 +1,124 @@
+.minicard-imgicon {
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+	display: block;
+}
+
+
+.minicard-bg {
+	width: 100vw;
+	min-height: 540px;
+	background: linear-gradient(135deg, #1976d2 0%, #26c6da 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3.5rem 0 2.5rem 0;
+	box-sizing: border-box;
+}
+
+.minicard-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 420px;
+	color: #fff;
+}
+
+.minicard-logo {
+	width: 170px;
+	margin-bottom: 0.5rem;
+}
+
+.minicard-subtitle {
+	font-size: 1.25rem;
+	font-weight: 500;
+	letter-spacing: 1.5px;
+	margin-bottom: 1.2rem;
+	text-align: center;
+}
+
+.minicard-banner {
+	background: #155fa0;
+	border-radius: 2rem;
+	padding: 0.6rem 2.2rem;
+	font-size: 1.35rem;
+	font-weight: 700;
+	margin-bottom: 2.2rem;
+	letter-spacing: 1px;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+	text-align: center;
+}
+
+.minicard-list {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: stretch;
+	gap: 2.1rem;
+}
+
+.minicard-row {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	font-size: 1.25rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+}
+
+.minicard-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+}
+
+.minicard-row-title {
+	color: #fff;
+	font-size: 1.18rem;
+	font-weight: 700;
+	text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.minicard-nueva {
+	background: #26c6da;
+	color: #fff;
+	font-size: 0.95rem;
+	font-weight: 700;
+	border-radius: 8px;
+	padding: 0.15em 0.7em;
+	margin-left: 0.5em;
+	vertical-align: middle;
+}
+
+@media (max-width: 800px) {
+	.minicard-list {
+		flex-direction: column;
+		gap: 1.2rem;
+	}
+}
+
+@media (max-width: 600px) {
+	.minicard-bg {
+		padding: 2rem 0 1.5rem 0;
+		min-height: 420px;
+	}
+	.minicard-content {
+		max-width: 98vw;
+		padding: 0 0.5rem;
+	}
+	.minicard-logo {
+		width: 120px;
+	}
+	.minicard-banner {
+		font-size: 1.05rem;
+		padding: 0.5rem 1.2rem;
+	}
+	.minicard-row {
+		font-size: 1.02rem;
+	}
+}

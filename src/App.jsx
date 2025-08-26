@@ -10,6 +10,7 @@ import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 import Cursos from "./components/Cursos/Cursos.jsx";
 import LoadingScreen from "./components/Loading/LoadingScreen.jsx";
 import Anuncios from "./components/Anuncios/Anuncios.jsx";
+import MiniCard from "./components/MiniCard/MiniCard.jsx";
 import Contacto from "./components/Contacto/Contacto.jsx";
 
 function App() {
@@ -98,6 +99,7 @@ function App() {
       <section ref={anunciosRef}>
         <Anuncios />
       </section>
+      <MiniCard />
       <section ref={cursosRef}>
         <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} />
       </section>
