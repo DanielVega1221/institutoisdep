@@ -10,7 +10,6 @@ import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 import Cursos from "./components/Cursos/Cursos.jsx";
 import LoadingScreen from "./components/Loading/LoadingScreen.jsx";
 import Anuncios from "./components/Anuncios/Anuncios.jsx";
-import MiniCard from "./components/MiniCard/MiniCard.jsx";
 import Contacto from "./components/Contacto/Contacto.jsx";
 
 function App() {
@@ -26,6 +25,7 @@ function App() {
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
   const anunciosRef = React.useRef(null);
+  const [focusCarrera, setFocusCarrera] = useState(null);
 
   // Scroll handler para Navbar
   const handleNav = (section) => {
@@ -59,6 +59,14 @@ function App() {
   }, []);
 
   const introBgClass = colorBg === "second" ? "intro-bg-second" : "intro-bg-initial";
+
+  // Maneja navegación y enfoque de carrera desde Anuncios
+  const handleIrACursos = (carrera) => {
+    setFocusCarrera(carrera);
+    if (cursosRef.current) {
+      cursosRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <div className="app-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", margin: 0, padding: 0, width: "100%" }}>
@@ -97,11 +105,10 @@ function App() {
       <Navbar handleNav={handleNav} />
       <SobreNosotros />
       <section ref={anunciosRef}>
-        <Anuncios />
+        <Anuncios irACursos={handleIrACursos} />
       </section>
-      <MiniCard />
       <section ref={cursosRef}>
-        <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} />
+        <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} focusCarrera={focusCarrera} setFocusCarrera={setFocusCarrera} />
       </section>
       <section ref={contactoRef}>
         <Contacto ref={contactoRef} selectedInteres={selectedInteres} setSelectedInteres={setSelectedInteres} />

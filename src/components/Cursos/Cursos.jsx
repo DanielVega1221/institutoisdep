@@ -8,7 +8,7 @@ const cursosData = [
     emoji: "🎓",
     titulo: "Psicografología",
     subtitulo: "Formación Profesional en Psicografología",
-    tituloAdquirido: "Perito en Psicografología Científica",
+    tituloAdquirido: "Perito en Psicografología",
     tipo: "Carrera técnica",
     duracion: "2 años",
     miniIntro: "Explorá el universo de la escritura como herramienta de evaluación psicológica y profesional.",
@@ -21,7 +21,7 @@ const cursosData = [
     emoji: "🕵️",
     titulo: "Ciencias Criminalistas",
     subtitulo: "Diplomatura en Ciencias Criminalistas",
-    tituloAdquirido: "Diplomado/a en Ciencias Criminalistas",
+    tituloAdquirido: "Diplomatura en Criminalística",
     tipo: "Diplomatura",
     duracion: "8 a 12 meses",
     miniIntro: "Sumate al mundo de la investigación científica del delito desde una perspectiva profesional.",
@@ -115,9 +115,12 @@ const cursosData = [
   }
 ];
 
-const Cursos = ({ setSelectedInteres, contactoRef }) => {
+const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef(null);
+  const cardTitleRefs = useRef({});
+  const [pendingFocus, setPendingFocus] = useState(null);
+  const [bouncing, setBouncing] = useState(null);
 
   // Minimizar acordeón si la sección sale de pantalla
   useEffect(() => {
@@ -147,6 +150,65 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
       }
     }, 100);
   };
+
+  // Enfocar card cuando focusCarrera cambia
+  useEffect(() => {
+    if (focusCarrera) {
+      if (!isExpanded) {
+        setTimeout(() => {
+          setIsExpanded(true);
+          setPendingFocus(focusCarrera);
+        }, 1000); // 1 segundo de delay antes de expandir el acordeón
+      } else {
+        setPendingFocus(focusCarrera);
+      }
+    }
+  }, [focusCarrera, isExpanded, setFocusCarrera]);
+
+  // Cuando el acordeón se expande y hay un pendingFocus, hacer scroll a la card
+  useEffect(() => {
+    if (isExpanded && pendingFocus) {
+      setTimeout(() => {
+        // Buscar ref por todas las claves posibles
+        let ref = cardTitleRefs.current[pendingFocus];
+        if (!ref) {
+          // Buscar por título o título adquirido
+          Object.keys(cardTitleRefs.current).forEach(key => {
+            if (key.includes(pendingFocus) || pendingFocus.includes(key)) {
+              ref = cardTitleRefs.current[key];
+            }
+          });
+        }
+        
+        const focusKey = pendingFocus;
+        console.log('Buscando:', focusKey, 'Encontrado ref:', !!ref);
+        console.log('Refs disponibles:', Object.keys(cardTitleRefs.current));
+        
+        if (ref) {
+          // Siempre hacer scroll primero para asegurar visibilidad
+          ref.scrollIntoView({ behavior: "smooth", block: "center" });
+          
+          // Luego hacer bounce
+          setTimeout(() => {
+            setBouncing(focusKey);
+            setTimeout(() => {
+              setBouncing(current => (current === focusKey ? null : current));
+            }, 1200);
+          }, 1000);
+        } else {
+          console.log('No se encontró ref para:', focusKey);
+          // Hacer bounce de todos modos
+          setBouncing(focusKey);
+          setTimeout(() => {
+            setBouncing(current => (current === focusKey ? null : current));
+          }, 1200);
+        }
+        
+        setPendingFocus(null);
+        if (setFocusCarrera) setFocusCarrera(null);
+      }, 1500);
+    }
+  }, [isExpanded, pendingFocus, setFocusCarrera]);
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
@@ -215,15 +277,29 @@ const Cursos = ({ setSelectedInteres, contactoRef }) => {
           <div className={`cards-container ${isExpanded ? 'expanded' : ''}`}>
             <div className="cards-grid">
               {cursosData.map((curso) => (
-                <div 
-                  key={curso.id} 
+                <div
+                  key={curso.id}
                   className="curso-card"
                   style={{ '--delay': `${curso.id * 0.15}s` }}
                 >
                   <div className="card-content">
-                    <div className="card-emoji">{curso.emoji}</div>
+                    <div
+                      className={`card-emoji${bouncing === curso.titulo || bouncing === curso.tituloAdquirido ? ' bounce' : ''}`}
+                    >
+                      {curso.emoji}
+                    </div>
                     <div className="card-header">
-                      <h3 className="card-titulo">{curso.titulo}</h3>
+                      <h3
+                        className="card-titulo"
+                        ref={el => {
+                          if (el) {
+                            cardTitleRefs.current[curso.titulo] = el;
+                            cardTitleRefs.current[curso.tituloAdquirido] = el;
+                          }
+                        }}
+                      >
+                        {curso.titulo}
+                      </h3>
                       <div className="card-badges">
                         <span 
                           className="tipo-badge"
