@@ -1,7 +1,6 @@
 import React from "react";
 import "./Anuncios.css";
 import imagen1 from "../../assets/imagen1.jpeg";
-import imagen2 from "../../assets/imagen2.jpeg";
 import imagen3 from "../../assets/imagen3.png";
 import logo1 from "../../assets/Logo1.png";
 

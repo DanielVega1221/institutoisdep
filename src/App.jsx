@@ -91,7 +91,7 @@ function App() {
               />
             </div>
             <div className={`intro-phrase${active1 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
-              ¿Te acordas cuando buscábamos mejor percepción del hombre y no la letra perfecta?
+              ¿Te acordas cuando buscábamos una mejor percepción del hombre y no la letra perfecta?
             </div>
             <div className={`intro-phrase${active2 ? " active" : ""}${colorBg === "second" ? " aurora-text" : ""}`}>
               Bueno, ahora nos renovamos
