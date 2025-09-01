@@ -42,11 +42,11 @@ const Anuncios = ({ irACursos }) => {
                 </div>
                 <div className="anuncio-info-wrapper">
                   <div className="anuncio-info-card">
-                    <h3 className="anuncio-titulo-overlay-text" style={{ color: '#fff', marginBottom: '0.7rem', marginTop: 0 }}>{anuncio3.carrera}</h3>
-                    <h4 className="anuncio-subtitulo-overlay-text" style={{ color: '#fff', marginTop: 0 }}>{anuncio3.titulo}</h4>
-                    <div className="anuncio-duracion" style={{fontWeight:600, color:'#fff', marginTop:'1rem', fontSize:'1.1rem'}}>Duración: {anuncio3.duracion}</div>
+                    <h3 className="anuncio-titulo-overlay-text" style={{ color: '#fff', marginBottom: '0.7rem', marginTop: 0 }}>{anuncio1.carrera}</h3>
+                    <h4 className="anuncio-subtitulo-overlay-text" style={{ color: '#fff', marginTop: 0 }}>{anuncio1.titulo}</h4>
+                    <div className="anuncio-duracion" style={{fontWeight:600, color:'#fff', marginTop:'1rem', fontSize:'1.1rem'}}>Duración: {anuncio1.duracion}</div>
                     <button
-                      onClick={() => irACursos('Diplomatura en Criminalística')}
+                      onClick={() => irACursos('Psicólogo Social')}
                       style={{
                         marginTop: '1.2rem',
                         background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)',
@@ -146,11 +146,11 @@ const Anuncios = ({ irACursos }) => {
                 }}>
                   <img src={logo1} alt="Logo ISDEP" style={{ width: '54px', height: '54px', objectFit: 'contain', borderRadius: '50%' }} />
                 </div>
-                <h3 className="anuncio-titulo-alt-full" style={{ color: '#1976d2', fontSize: '2rem', fontWeight: 800, marginBottom: '0.7rem', letterSpacing: '0.5px', textAlign: 'center' }}>{anuncio1.carrera}</h3>
-                <h4 className="anuncio-subtitulo-alt-full" style={{ color: '#0d2346', fontSize: '1.2rem', fontWeight: 600, marginBottom: '1.2rem', textAlign: 'center' }}>{anuncio1.titulo}</h4>
-                <div className="anuncio-duracion-alt-full" style={{ color: '#1565c0', fontWeight: 700, fontStyle: 'italic', marginBottom: '1.5rem', display: 'block', fontSize: '1.15rem' }}>Duración: {anuncio1.duracion}</div>
+                <h3 className="anuncio-titulo-alt-full" style={{ color: '#1976d2', fontSize: '2rem', fontWeight: 800, marginBottom: '0.7rem', letterSpacing: '0.5px', textAlign: 'center' }}>{anuncio3.carrera}</h3>
+                <h4 className="anuncio-subtitulo-alt-full" style={{ color: '#0d2346', fontSize: '1.2rem', fontWeight: 600, marginBottom: '1.2rem', textAlign: 'center' }}>{anuncio3.titulo}</h4>
+                <div className="anuncio-duracion-alt-full" style={{ color: '#1565c0', fontWeight: 700, fontStyle: 'italic', marginBottom: '1.5rem', display: 'block', fontSize: '1.15rem' }}>Duración: {anuncio3.duracion}</div>
                 <button
-                  onClick={() => irACursos('Psicólogo Social')}
+                  onClick={() => irACursos('Diplomatura en Criminalística')}
                   style={{
                     marginTop: '0.5rem',
                     background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)',
