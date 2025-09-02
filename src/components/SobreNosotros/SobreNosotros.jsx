@@ -27,7 +27,7 @@ const slides = [
     img: card1,
     alt: "Card 1",
     title: "",
-    subtitle: "Eduardo Marzano.\n Perito en Psicología Forense. \n Consultor en Grafopsicología.\nIntegrante de la Asociación Latinoamericana de Grafología"
+    subtitle: "Eduardo Marzano.\n Perito en Psicología Forense. \n Consultor en Grafopsicología.\n\nIntegrante de la Asociación Latinoamericana de Grafología"
   },
   {
     img: card2,
