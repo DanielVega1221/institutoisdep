@@ -1,36 +1,126 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import Contacto from "../Contacto/Contacto";
 import "./Cursos.css";
+import cursosImg from "../../assets/cursos.png";
 
 const cursosData = [
   {
     id: 1,
-    emoji: "🎓",
-    titulo: "Psicografología",
-    subtitulo: "Formación Profesional en Psicografología",
-    tituloAdquirido: "Perito en Psicografología",
-    tipo: "Carrera técnica",
+    titulo: "Formación Profesional en Grafología",
+    subtitulo: "Formación Profesional en Grafología",
+    tituloAdquirido: "Perito en Psicografología Científica",
+    tipo: "Formación Profesional",
     duracion: "2 años",
-    miniIntro: "Explorá el universo de la escritura como herramienta de evaluación psicológica y profesional.",
-    descripcion: "Formación completa en análisis grafológico para aplicar en ámbitos clínicos, educativos y forenses.",
+    miniIntro: "Formate en grafología científica y profesional.",
+    descripcion: "Formación completa en grafología científica para aplicar en ámbitos clínicos, educativos y forenses.",
     items: [],
     extra: "",
   },
   {
     id: 2,
-    emoji: "🕵️",
-    titulo: "Ciencias Criminalistas",
-    subtitulo: "Diplomatura en Ciencias Criminalistas",
-    tituloAdquirido: "Diplomatura en Criminalística",
-    tipo: "Diplomatura",
-    duracion: "8 a 12 meses",
-    miniIntro: "Sumate al mundo de la investigación científica del delito desde una perspectiva profesional.",
-    descripcion: "Integra conocimientos en criminalística, perfilación, pericias y análisis forense moderno.",
+    titulo: "Grafología Emocional",
+    subtitulo: "Capacitación Profesional",
+    tituloAdquirido: "",
+    tipo: "Capacitación Profesional",
+    duracion: "2 meses",
+    miniIntro: "Capacitación intensiva en grafología emocional.",
+    descripcion: "Aprendé a analizar la escritura desde una perspectiva emocional y profesional.",
     items: [],
     extra: "",
   },
   {
     id: 3,
+    titulo: "Psicología Social",
+    subtitulo: "Psicología Social",
+    tituloAdquirido: "Psicólogo Social",
+    tipo: "Carrera",
+    duracion: "3 años",
+    miniIntro: "Formate para intervenir en ámbitos de salud, educación, comunidad y organizaciones.",
+    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales.",
+    items: [
+      "Modalidad online con clases en vivo",
+      "Certificación oficial",
+      "Aval ministerial",
+      "Acompañamiento docente permanente",
+      "Enfoque grupal comunitario"
+    ],
+    extra: "Cupos limitados- reservá tu lugar hoy"
+  },
+  {
+    id: 4,
+    titulo: "Diplomatura en Criminalística",
+    subtitulo: "Formación Profesional",
+    tituloAdquirido: "Diplomatura en Criminalística",
+    tipo: "Formación Profesional",
+    duracion: "12 meses",
+    miniIntro: "Sumate al mundo de la investigación científica del delito.",
+    descripcion: "Integra conocimientos en criminalística, perfilación, pericias y análisis forense moderno.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 5,
+    titulo: "Detección de Abuso sexual infantil",
+    subtitulo: "Capacitación Profesional",
+    tituloAdquirido: "",
+    tipo: "Capacitación Profesional",
+    duracion: "4 meses",
+    miniIntro: "Capacitación profesional en detección de abuso sexual infantil.",
+    descripcion: "Aprendé a detectar y abordar situaciones de abuso sexual infantil desde una perspectiva profesional.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 6,
+    titulo: "Psicología Social y Criminalística Aplicada",
+    subtitulo: "Capacitación Profesional",
+    tituloAdquirido: "",
+    tipo: "Capacitación Profesional",
+    duracion: "4 meses",
+    miniIntro: "Capacitación en la intersección entre psicología social y criminalística.",
+    descripcion: "Formate en la aplicación de la psicología social en el ámbito criminalístico.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 7,
+    titulo: "Tecnografía Pericial Grafología",
+    subtitulo: "Post Grado p/ Peritos",
+    tituloAdquirido: "",
+    tipo: "Post Grado p/ Peritos",
+    duracion: "Consultar",
+    miniIntro: "Especialización en tecnografía pericial aplicada a la grafología.",
+    descripcion: "Consultá por esta formación avanzada para peritos en grafología.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 8,
+    titulo: "Análisis de Firmas y Rúbricas",
+    subtitulo: "Capacitación Profesional",
+    tituloAdquirido: "",
+    tipo: "Capacitación Profesional",
+    duracion: "Consultar",
+    miniIntro: "Capacitación profesional en análisis de firmas y rúbricas.",
+    descripcion: "Aprendé a analizar firmas y rúbricas desde una perspectiva técnica y profesional.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 9,
+    titulo: "Operador en Primeros Auxilios Psicológicos",
+    subtitulo: "Capacitación Profesional",
+    tituloAdquirido: "",
+    tipo: "Capacitación Profesional",
+    duracion: "Consultar",
+    miniIntro: "Formate para asistir emocionalmente en situaciones de emergencia.",
+    descripcion: "Capacitación profesional para operar en primeros auxilios psicológicos.",
+    items: [],
+    extra: "",
+  },
+  {
+    id: 10,
     emoji: "🧩",
     titulo: "Perfilamiento Criminal",
     subtitulo: "Perfilamiento Criminal",
@@ -43,26 +133,7 @@ const cursosData = [
     extra: "",
   },
   {
-    id: 4,
-    emoji: "🧠",
-    titulo: "Psicólogo Social",
-    subtitulo: "Psicólogo Social (3 años)",
-    tituloAdquirido: "Psicólogo Social",
-    tipo: "Carrera",
-    duracion: "3 años",
-    miniIntro: "La Psicología Social estudia cómo los pensamientos, sentimientos y comportamientos de las personas son influenciados por la presencia real, imaginada o implícita de otros individuos. El psicólogo/a social interviene en procesos grupales, comunitarios y organizacionales, promoviendo el bienestar y la integración social.",
-    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales. El profesional puede desempeñarse en ámbitos educativos, comunitarios, institucionales y de salud, desarrollando proyectos de intervención, prevención y promoción social, y facilitando procesos de cambio y desarrollo humano.",
-    items: [
-      "Modalidad online con clases en vivo",
-      "Certificación oficial",
-      "Aval ministerial",
-      "Acompañamiento docente permanente",
-      "Enfoque grupal comunitario"
-    ],
-    extra: "Formate para intervenir en ámbitos de salud, educación, comunidad y organizaciones.\n \n Cupos limitados- reservá tu lugar hoy"
-  },
-  {
-    id: 5,
+    id: 11,
     emoji: "🧾",
     titulo: "Grafología Forense",
     subtitulo: "Grafología Forense",
@@ -75,33 +146,7 @@ const cursosData = [
     extra: ""
   },
   {
-    id: 6,
-    emoji: "✒️",
-    titulo: "Firmas y Rúbricas",
-    subtitulo: "Firmas y Rúbricas",
-    tituloAdquirido: "Especialista en Análisis de Firmas y Rúbricas",
-    tipo: "Curso intensivo",
-    duracion: "2 a 3 meses",
-    miniIntro: "Explorá el valor simbólico y legal de las firmas en la identidad escrita.",
-    descripcion: "Estudio detallado de la rúbrica y firma como reflejo psíquico y objeto de análisis técnico.",
-    items: [],
-    extra: ""
-  },
-  {
-    id: 7,
-    emoji: "🆘",
-    titulo: "Primeros Auxilios Psicológicos",
-    subtitulo: "Operador en Primeros Auxilios Psicológicos",
-    tituloAdquirido: "Operador/a en Primeros Auxilios Psicológicos",
-    tipo: "Curso de intervención",
-    duracion: "3 a 5 meses",
-    miniIntro: "Formate para contener y asistir emocionalmente en situaciones de emergencia.",
-    descripcion: "Técnicas prácticas de contención, estabilización emocional y derivación segura.",
-    items: [],
-    extra: ""
-  },
-  {
-    id: 8,
+    id: 12,
     emoji: "🎨",
     titulo: "Análisis de Dibujos",
     subtitulo: "Análisis de Dibujos",
@@ -282,12 +327,10 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                   className="curso-card"
                   style={{ '--delay': `${curso.id * 0.15}s` }}
                 >
+                  <div className="curso-card-img-wrapper">
+                    <img src={cursosImg} alt="Curso" className="curso-card-img" />
+                  </div>
                   <div className="card-content">
-                    <div
-                      className={`card-emoji${bouncing === curso.titulo || bouncing === curso.tituloAdquirido ? ' bounce' : ''}`}
-                    >
-                      {curso.emoji}
-                    </div>
                     <div className="card-header">
                       <h3
                         className="card-titulo"

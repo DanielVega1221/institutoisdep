@@ -275,11 +275,20 @@
   white-space: normal;
   padding: 0 8px;
   align-self: center;
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(.4,0,.2,1), visibility 0.4s cubic-bezier(.4,0,.2,1);
+  visibility: visible;
+}
+
+.navbar-mobile-title.hide {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 900px) {
   .navbar-mobile-title {
     display: block;
+  margin-bottom: 18px;
   }
 }
 

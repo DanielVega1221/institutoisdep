@@ -1,3 +1,141 @@
+
+/* Card grande grafología dividida en dos secciones */
+.anuncio-card-grafologia {
+  width: 100%;
+  max-width: 950px;
+  margin: 3rem 0;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px rgba(30, 42, 100, 0.13);
+  background: #f7f7f7;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.anuncio-card-grafologia-img-wrapper {
+  width: 100%;
+  height: 500px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  overflow: hidden;
+  display: block;
+}
+
+
+.anuncio-card-grafologia-img-bg {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .anuncio-card-grafologia-img-wrapper {
+    height: 320px;
+  }
+  .anuncio-card-grafologia-img-bg {
+    min-height: 220px;
+    height: 220px;
+  }
+}
+
+.anuncio-card-grafologia-content {
+  margin: 2.5rem 2.2rem 2.5rem 2.2rem;
+  padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #f7f7f7;
+}
+
+.anuncio-card-grafologia-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 1.2rem;
+  font-family: 'Merriweather', serif;
+  letter-spacing: 0.01em;
+}
+
+.anuncio-card-grafologia-text {
+  font-size: 1.13rem;
+  color: #333;
+  margin-bottom: 0.9rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .anuncio-card-grafologia {
+    width: 100%;
+    max-width: 99vw;
+    margin: 2rem 0;
+  }
+  .anuncio-card-grafologia-img-wrapper {
+    height: 200px;
+  }
+  .anuncio-card-grafologia-img {
+    object-fit: cover;
+  }
+  .anuncio-card-grafologia-content {
+    margin: 1.2rem 0.7rem 1.2rem 0.7rem;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+  .anuncio-card-grafologia-title {
+    font-size: 1.3rem;
+  }
+  .anuncio-card-grafologia-text {
+    font-size: 0.98rem;
+  }
+}
+/* Portada especial Historia de la Grafología */
+
+.anuncio-portada-grafologia {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #d7e3f4;
+  overflow: hidden;
+}
+
+.anuncio-portada-img {
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0.8rem 0.8rem 0 0;
+  box-shadow: 0 4px 24px rgba(30, 42, 100, 0.10);
+}
+
+.anuncio-portada-card {
+  width: 100%;
+  max-width: 700px;
+  margin: 2.5rem auto 0 auto;
+  background: #d7e3f4;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px rgba(30, 42, 100, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 1.1rem;
+}
 /* Card principal de la sección de anuncios, con bordes de colores arriba y abajo */
 .anuncios-card-container {
   position: relative;
@@ -246,6 +384,8 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .anuncio-card {

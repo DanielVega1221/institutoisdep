@@ -1,8 +1,10 @@
 import React from "react";
 import "./Anuncios.css";
+
 import imagen1 from "../../assets/imagen1.jpeg";
 import imagen3 from "../../assets/imagen3.png";
 import logo1 from "../../assets/Logo1.png";
+import grafologiaImg from "../../assets/GrafologiaEmocional.png";
 
 
 const anuncio2 = {
@@ -69,39 +71,21 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </div>
-            {/* Anuncio 2 - Segundo estilo */}
-            <div>
-              <div className="anuncio-card-alt-full" style={{ marginTop: '2rem' }}>
-                <div className="anuncio-img-bg-alt" style={{ backgroundImage: `url(${imagen1})` }}>
-                  <div className="anuncio-content-alt">
-                    <h3 className="anuncio-titulo-alt-full">{anuncio2.carrera}</h3>
-                    <h4 className="anuncio-subtitulo-alt-full">{anuncio2.titulo}</h4>
-                    <div className="anuncio-duracion-alt-full" style={{fontWeight:600, color:'#1976d2', marginTop:'1rem', fontSize:'1.1rem'}}>Duración: {anuncio2.duracion}</div>
-                    <button
-                      onClick={() => irACursos('Perito en Psicografología')}
-                      style={{
-                        marginTop: '1.2rem',
-                        background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '24px',
-                        padding: '0.7rem 2rem',
-                        fontWeight: 'bold',
-                        fontSize: '1.05rem',
-                        boxShadow: '0 2px 8px rgba(25, 118, 210, 0.15)',
-                        cursor: 'pointer',
-                        transition: 'background 0.2s',
-                      }}
-                      onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1565c0 0%, #1976d2 100%)'}
-                      onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)'}
-                    >
-                      Más info
-                    </button>
-                  </div>
-                </div>
+            {/* Card grande dividida en dos secciones */}
+            <div className="anuncio-card-grafologia">
+              <div className="anuncio-card-grafologia-img-wrapper">
+                <div
+                  className="anuncio-card-grafologia-img-bg"
+                  style={{ backgroundImage: `url(${grafologiaImg})` }}
+                  aria-label="Grafología Emocional"
+                />
+              </div>
+              <div className="anuncio-card-grafologia-content">
+                <h2 className="anuncio-card-grafologia-title">Duda la mente, tiembla la mano</h2>
+                <p className="anuncio-card-grafologia-text">Dictado por Alberto Antonio Domínguez Aguilera.</p>
+                <p className="anuncio-card-grafologia-text">Técnico Superior en Grafología. Tit. Of. Nro. 506087.</p>
               </div>
             </div>
-            {/* Anuncio 3 - Diplomatura en Criminalística */}
             
             {/* Anuncio 4 - Nuevo diseño de borde a borde */}
             <div className="anuncio-card-alt-full" style={{
