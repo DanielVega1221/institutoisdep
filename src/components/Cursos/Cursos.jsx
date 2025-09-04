@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Contacto from "../Contacto/Contacto";
 import "./Cursos.css";
-import cursosImg from "../../assets/cursos.png";
+import cursosImg from "../../assets/cursos - copia.png";
 
 const cursosData = [
   {
