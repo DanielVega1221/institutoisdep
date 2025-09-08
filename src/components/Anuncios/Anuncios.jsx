@@ -5,6 +5,7 @@ import imagen1 from "../../assets/imagen1.jpeg";
 import imagen3 from "../../assets/imagen3.png";
 import logo1 from "../../assets/Logo1.png";
 import grafologiaImg from "../../assets/GrafologiaEmocional.png";
+import curtImg from "../../assets/curt.png";
 
 
 const anuncio2 = {
@@ -80,10 +81,17 @@ const Anuncios = ({ irACursos }) => {
                   aria-label="Grafología Emocional"
                 />
               </div>
-              <div className="anuncio-card-grafologia-content">
-                <h2 className="anuncio-card-grafologia-title">Duda la mente, tiembla la mano</h2>
-                <p className="anuncio-card-grafologia-text">Dictado por Alberto Antonio Domínguez Aguilera.</p>
-                <p className="anuncio-card-grafologia-text">Técnico Superior en Grafología. Tit. Of. Nro. 506087.</p>
+              <div className="anuncio-card-grafologia-content anuncio-card-grafologia-content-split">
+                <div className="anuncio-card-grafologia-content-left">
+                  <h2 className="anuncio-card-grafologia-title">Duda la mente, tiembla la mano</h2>
+                  <p className="anuncio-card-grafologia-text">Dictado por Alberto Antonio Domínguez Aguilera.</p>
+                  <p className="anuncio-card-grafologia-text">Técnico Superior en Grafología. Tit. Of. Nro. 506087.</p>
+                </div>
+                <div className="anuncio-card-grafologia-content-right">
+                  <div className="anuncio-card-grafologia-curt-card">
+                    <img src={curtImg} alt="Curt" className="anuncio-card-grafologia-curt-img" />
+                  </div>
+                </div>
               </div>
             </div>
             
