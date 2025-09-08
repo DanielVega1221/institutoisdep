@@ -1,3 +1,10 @@
+@media (max-width: 900px) {
+  .anuncio-card-grafologia-content-right {
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.2rem;
+  }
+}
 
 /* Card grande grafología dividida en dos secciones */
 .anuncio-card-grafologia {
@@ -72,6 +79,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  flex-direction: column;
 }
 
 .anuncio-card-grafologia-curt-card {
@@ -84,6 +93,10 @@
   justify-content: center;
   max-width: 220px;
   max-height: 220px;
+  height: 100%;
+  flex-direction: column;
+  /* Centrado vertical y horizontal */
+  text-align: center;
 }
 
 .anuncio-card-grafologia-curt-img {
@@ -91,6 +104,7 @@
   height: auto;
   object-fit: contain;
   border-radius: 1rem;
+  margin: 0.5rem;
 }
 
 @media (max-width: 900px) {
