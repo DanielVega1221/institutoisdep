@@ -30,7 +30,7 @@ const Anuncios = ({ irACursos }) => {
   return (
     <>
       <section className="anuncios-section">
-        <div className="anuncios-card-container" style={{ marginBottom: '6rem' }}>
+        <div className="anuncios-card-container anuncios-card-container-spaced">
           
           <div className="anuncios-list">
     <div>
@@ -45,26 +45,12 @@ const Anuncios = ({ irACursos }) => {
                 </div>
                 <div className="anuncio-info-wrapper">
                   <div className="anuncio-info-card">
-                    <h3 className="anuncio-titulo-overlay-text" style={{ color: '#fff', marginBottom: '0.7rem', marginTop: 0 }}>{anuncio1.carrera}</h3>
-                    <h4 className="anuncio-subtitulo-overlay-text" style={{ color: '#fff', marginTop: 0 }}>{anuncio1.titulo}</h4>
-                    <div className="anuncio-duracion" style={{fontWeight:600, color:'#fff', marginTop:'1rem', fontSize:'1.1rem'}}>Duración: {anuncio1.duracion}</div>
+                    <h3 className="anuncio-titulo-overlay-text anuncio-titulo-overlay-text-white">{anuncio1.carrera}</h3>
+                    <h4 className="anuncio-subtitulo-overlay-text anuncio-subtitulo-overlay-text-white">{anuncio1.titulo}</h4>
+                    <div className="anuncio-duracion">Duración: {anuncio1.duracion}</div>
                     <button
                       onClick={() => irACursos('Psicólogo Social')}
-                      style={{
-                        marginTop: '1.2rem',
-                        background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '24px',
-                        padding: '0.7rem 2rem',
-                        fontWeight: 'bold',
-                        fontSize: '1.05rem',
-                        boxShadow: '0 2px 8px rgba(25, 118, 210, 0.15)',
-                        cursor: 'pointer',
-                        transition: 'background 0.2s',
-                      }}
-                      onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1565c0 0%, #1976d2 100%)'}
-                      onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)'}
+                      className="anuncio-boton-principal"
                     >
                       Más info
                     </button>
@@ -76,8 +62,8 @@ const Anuncios = ({ irACursos }) => {
             <div className="anuncio-card-grafologia">
               <div className="anuncio-card-grafologia-img-wrapper">
                 <div
-                  className="anuncio-card-grafologia-img-bg"
-                  style={{ backgroundImage: `url(${grafologiaImg})` }}
+                  className="anuncio-card-grafologia-img-bg anuncio-card-grafologia-img-bg-grafologia"
+                  style={{ '--bg-image': `url(${grafologiaImg})` }}
                   aria-label="Grafología Emocional"
                 />
               </div>
@@ -95,72 +81,43 @@ const Anuncios = ({ irACursos }) => {
               </div>
             </div>
             
-            {/* Anuncio 4 - Nuevo diseño de borde a borde */}
-            <div className="anuncio-card-alt-full" style={{
-              marginTop: '2rem',
-              background: 'linear-gradient(90deg, #e3f2fd 0%, #bbdefb 100%)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: '340px',
-              border: '2.5px solid #1976d2',
-              borderRadius: '0',
-              boxShadow: '0 2px 16px rgba(25, 118, 210, 0.08)',
-              width: '100vw',
-              marginLeft: 'calc(-50vw + 50%)',
-              marginRight: 'calc(-50vw + 50%)'
-            }}>
-              <div style={{
-                background: 'rgba(255,255,255,0.95)',
-                borderRadius: '32px',
-                boxShadow: '0 8px 32px rgba(25, 118, 210, 0.10)',
-                padding: '2.5rem 3.5rem',
-                maxWidth: '600px',
-                width: '100%',
-                margin: '2rem auto',
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                border: '2.5px solid #B8860B',
-                boxSizing: 'border-box',
-              }}>
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  margin: '0 auto 1rem auto',
-                  borderRadius: '50%',
-                  background: 'linear-gradient(180deg, #f5ede2 0%, #42a5f5 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 2px 8px rgba(25, 118, 210, 0.10)'
-                }}>
-                  <img src={logo1} alt="Logo ISDEP" style={{ width: '54px', height: '54px', objectFit: 'contain', borderRadius: '50%' }} />
+            {/* Anuncio 4 - Diseño Poster/Flyer Criminalística */}
+            <div className="anuncio-card-alt-full anuncio-card-criminalistica">
+              <div className="anuncio-card-criminalistica-content">
+                {/* Sección Izquierda - Contenido Principal */}
+                <div className="anuncio-criminalistica-content-left">
+                  <h3 className="anuncio-titulo-alt-full anuncio-titulo-criminalistica">
+                    CARRERA DE FORMACIÓN PROFESIONAL EN
+                    <span>Criminología y Criminalística</span>
+                  </h3>
+                  <h4 className="anuncio-subtitulo-alt-full anuncio-subtitulo-criminalistica">
+                    Vení y Formate como un Profesional
+                  </h4>
+                  <p className="anuncio-descripcion-criminalistica">
+                    Desarrollá habilidades técnicas y científicas para la investigación criminal y el análisis forense.
+                  </p>
+                  <div className="anuncio-modalidad-criminalistica">
+                    • Modalidad a distancia
+                  </div>
                 </div>
-                <h3 className="anuncio-titulo-alt-full" style={{ color: '#1976d2', fontSize: '2rem', fontWeight: 800, marginBottom: '0.7rem', letterSpacing: '0.5px', textAlign: 'center' }}>{anuncio3.carrera}</h3>
-                <h4 className="anuncio-subtitulo-alt-full" style={{ color: '#0d2346', fontSize: '1.2rem', fontWeight: 600, marginBottom: '1.2rem', textAlign: 'center' }}>{anuncio3.titulo}</h4>
-                <div className="anuncio-duracion-alt-full" style={{ color: '#1565c0', fontWeight: 700, fontStyle: 'italic', marginBottom: '1.5rem', display: 'block', fontSize: '1.15rem' }}>Duración: {anuncio3.duracion}</div>
-                <button
-                  onClick={() => irACursos('Diplomatura en Criminalística')}
-                  style={{
-                    marginTop: '0.5rem',
-                    background: 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '24px',
-                    padding: '0.9rem 2.5rem',
-                    fontWeight: 'bold',
-                    fontSize: '1.15rem',
-                    boxShadow: '0 2px 8px rgba(25, 118, 210, 0.15)',
-                    cursor: 'pointer',
-                    transition: 'background 0.2s',
-                  }}
-                  onMouseOver={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1565c0 0%, #1976d2 100%)'}
-                  onMouseOut={e => e.currentTarget.style.background = 'linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)'}
-                >
-                  Más info
-                </button>
+                
+                {/* Sección Derecha - Call to Action */}
+                <div className="anuncio-criminalistica-content-right">
+                  <div className="anuncio-logo-circle-criminalistica">
+                    <img src={logo1} alt="Logo ISDEP" className="anuncio-logo-img-criminalistica" />
+                  </div>
+                  <h5 className="anuncio-cta-text">Más Información</h5>
+                  <div className="anuncio-duracion-alt-full anuncio-duracion-criminalistica">
+                    Duración: {anuncio3.duracion}
+                  </div>
+                  <button
+                    onClick={() => irACursos('Diplomatura en Criminalística')}
+                    className="anuncio-boton-criminalistica"
+                  >
+                    Inscribite Ahora
+                  </button>
+
+                </div>
               </div>
             </div>
             
