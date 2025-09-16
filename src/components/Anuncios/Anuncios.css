@@ -11,7 +11,7 @@
   width: 100%;
   max-width: 950px;
   margin: 3rem 0;
-  border-radius: 1.5rem;
+  border-radius: 0;
   box-shadow: 0 6px 32px rgba(30, 42, 100, 0.13);
   background: #f7f7f7;
   overflow: hidden;
@@ -85,7 +85,7 @@
 
 .anuncio-card-grafologia-curt-card {
   background: #ffffff00;
-  border-radius: 1.2rem;
+  border-radius: 0;
   box-shadow: 0 4px 24px rgba(30, 42, 100, 0);
   padding: 1.2rem;
   display: flex;
@@ -103,7 +103,7 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 1rem;
+  border-radius: 0;
   margin: 0.5rem;
 }
 
@@ -179,7 +179,7 @@
   max-width: 900px;
   display: block;
   margin: 0 auto;
-  border-radius: 0.8rem 0.8rem 0 0;
+  border-radius: 0;
   box-shadow: 0 4px 24px rgba(30, 42, 100, 0.10);
 }
 
@@ -188,7 +188,7 @@
   max-width: 700px;
   margin: 2.5rem auto 0 auto;
   background: #d7e3f4;
-  border-radius: 1.2rem;
+  border-radius: 0;
   box-shadow: 0 4px 32px rgba(30, 42, 100, 0.10);
   padding: 2.5rem 2rem 2rem 2rem;
   min-height: 120px;
@@ -359,7 +359,7 @@
   text-align: center;
   background: rgba(255, 255, 255, 0);
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .anuncio-titulo-overlay-text {
@@ -495,7 +495,7 @@
 .anuncio-info-card {
   background: #ffffff00;
   color: #d9e1f0;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 2px 8px rgba(30, 42, 100, 0);
   padding: 2rem 2.5rem;
   width: 100%;
@@ -600,13 +600,49 @@
   font-size: 1.1rem;
 }
 
+/* Información de títulos para Psicología Social */
+.anuncio-titulos-info {
+  margin: 1rem 0;
+  color: #ffffff;
+}
+
+.anuncio-titulo-intermedio,
+.anuncio-titulo-final {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  line-height: 1.4;
+}
+
+.anuncio-titulo-intermedio strong,
+.anuncio-titulo-final strong {
+  color: #e0f2fe;
+  font-weight: 600;
+}
+
+/* Títulos para el poster de Psicología */
+.anuncio-titulos-psicologia {
+  margin: 1.2rem 0;
+}
+
+.anuncio-titulo-info-psicologia {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #2c5282;
+  line-height: 1.4;
+}
+
+.anuncio-titulo-info-psicologia strong {
+  color: #1a365d;
+  font-weight: 700;
+}
+
 /* Botón principal */
 .anuncio-boton-principal {
   margin-top: 1.2rem;
   background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
   color: #fff;
   border: none;
-  border-radius: 24px;
+  border-radius: 0;
   padding: 0.7rem 2rem;
   font-weight: bold;
   font-size: 1.05rem;
@@ -626,13 +662,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 600px;
+  padding: 4rem 0;
   border: none;
   border-radius: 0;
   box-shadow: 0 20px 60px rgba(30, 58, 95, 0.4);
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  margin-left: calc(-50vw + 50% - 32px);
+  margin-right: calc(-50vw + 50% - 32px);
   position: relative;
   overflow: hidden;
 }
@@ -649,6 +685,7 @@
   transform: skewX(-15deg);
   clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
   z-index: 1;
+  animation: criminalistica-float-right 8s ease-in-out infinite;
 }
 
 .anuncio-card-criminalistica::after {
@@ -662,6 +699,7 @@
   transform: skewX(15deg);
   clip-path: polygon(0% 0%, 80% 0%, 100% 100%, 20% 100%);
   z-index: 1;
+  animation: criminalistica-float-left 6s ease-in-out infinite;
 }
 
 /* Contenedor interno de la card de criminalística - REDISEÑADO */
@@ -997,8 +1035,762 @@
   }
 }
 
+/* ===== DISEÑO POSTER PSICOLOGÍA SOCIAL - NUEVO ESTILO ONDAS ===== */
+.anuncio-card-psicologia {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: calc(-50vw + 50% - 32px);
+  margin-right: calc(-50vw + 50% - 32px);
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d4a5a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 30px 80px rgba(15, 20, 25, 0.6);
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elemento morfológico izquierdo - más grande */
+.anuncio-card-psicologia::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: -15%;
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, rgba(56, 178, 172, 0.18), rgba(129, 230, 217, 0.12));
+  border-radius: 60% 40% 30% 70%;
+  animation: morph-left 10s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Elemento morfológico derecho - original */
+.anuncio-card-psicologia::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -10%;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(45deg, rgba(56, 178, 172, 0.2), rgba(129, 230, 217, 0.15));
+  border-radius: 50% 30% 70% 40%;
+  animation: morph-right 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Animación para elemento izquierdo - más lenta y suave */
+@keyframes morph-left {
+  0%, 100% { 
+    border-radius: 60% 40% 30% 70%; 
+    transform: rotate(0deg) scale(1); 
+  }
+  25% { 
+    border-radius: 40% 60% 70% 30%; 
+    transform: rotate(-45deg) scale(1.05); 
+  }
+  50% { 
+    border-radius: 30% 70% 60% 40%; 
+    transform: rotate(-90deg) scale(0.95); 
+  }
+  75% { 
+    border-radius: 70% 30% 40% 60%; 
+    transform: rotate(-135deg) scale(1.02); 
+  }
+}
+
+/* Animación para elemento derecho - original mejorada */
+@keyframes morph-right {
+  0%, 100% { 
+    border-radius: 50% 30% 70% 40%; 
+    transform: rotate(0deg) scale(1); 
+  }
+  25% { 
+    border-radius: 30% 70% 40% 50%; 
+    transform: rotate(90deg) scale(1.08); 
+  }
+  50% { 
+    border-radius: 70% 40% 50% 30%; 
+    transform: rotate(180deg) scale(0.92); 
+  }
+  75% { 
+    border-radius: 40% 50% 30% 70%; 
+    transform: rotate(270deg) scale(1.05); 
+  }
+}
+
+.anuncio-card-psicologia-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0;
+  box-shadow: 0 25px 60px rgba(15, 20, 25, 0.4);
+  padding: 0;
+  max-width: 900px;
+  width: 90%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+  min-height: 450px;
+  overflow: hidden;
+}
+
+.anuncio-psicologia-content-main {
+  padding: 3.5rem 3rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.anuncio-psicologia-content-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #38b2ac 0%, #81e6d9 100%);
+}
+
+.anuncio-psicologia-sidebar {
+  background: linear-gradient(135deg, #38b2ac 0%, #4fd1c7 100%);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.anuncio-psicologia-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: -20px;
+  width: 40px;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transform: skewY(-10deg);
+}
+
+.anuncio-titulo-psicologia {
+  color: #1a365d;
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.anuncio-titulo-psicologia .highlight {
+  color: #38b2ac;
+  display: block;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+.anuncio-subtitulo-psicologia {
+  color: #2d3748;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.anuncio-descripcion-psicologia {
+  color: #4a5568;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.anuncio-especialidades-psicologia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.anuncio-especialidad-tag {
+  background: rgba(56, 178, 172, 0.1);
+  color: #319795;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 2px solid #38b2ac;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.anuncio-logo-circle-psicologia {
+  width: 110px;
+  height: 110px;
+  margin: 0 0 2rem 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(56, 178, 172, 0.3);
+  backdrop-filter: blur(10px);
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  animation: pulse-logo 3s ease-in-out infinite;
+}
+
+@keyframes pulse-logo {
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(56, 178, 172, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(56, 178, 172, 0.5); }
+}
+
+.anuncio-logo-img-psicologia {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.anuncio-cta-psicologia {
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+}
+
+.anuncio-duracion-psicologia {
+  color: #ffffff;
+  font-weight: 600;
+  font-style: normal;
+  margin: 0 0 2rem 0;
+  display: block;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.anuncio-boton-psicologia {
+  background: #ffffff;
+  color: #319795;
+  border: 3px solid #ffffff;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.anuncio-boton-psicologia:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(56, 178, 172, 0.4);
+}
+
+/* ===== DISEÑO POSTER GRAFOLOGÍA EMOCIONAL ===== */
+.anuncio-card-grafologia-poster {
+  margin: 3rem 0;
+  background: linear-gradient(45deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 30px 80px rgba(26, 32, 44, 0.5);
+  width: 100vw;
+  margin-left: calc(-50vw + 50% - 32px);
+  margin-right: calc(-50vw + 50% - 32px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Formas geométricas hexagonales para grafología */
+.anuncio-card-grafologia-poster::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(60deg, #5a67d8 0%, #667eea 100%);
+  clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  opacity: 0.3;
+  z-index: 1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.anuncio-card-grafologia-poster::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  left: 8%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(120deg, #5a67d8 0%, #9f7aea 100%);
+  clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  opacity: 0.2;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.anuncio-card-grafologia-poster-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0;
+  box-shadow: 0 25px 60px rgba(26, 32, 44, 0.4);
+  padding: 0;
+  max-width: 900px;
+  width: 90%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+  min-height: 450px;
+}
+
+.anuncio-grafologia-content-main {
+  padding: 3.5rem 3rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.8rem;
+  position: relative;
+}
+
+.anuncio-grafologia-content-main::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -10px;
+  width: 20px;
+  height: 60%;
+  background: linear-gradient(180deg, #5a67d8 0%, #667eea 100%);
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+}
+
+.anuncio-grafologia-sidebar {
+  background: linear-gradient(180deg, #5a67d8 0%, #667eea 100%);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.anuncio-titulo-grafologia {
+  color: #2d3748;
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.anuncio-titulo-grafologia span {
+  color: #5a67d8;
+  display: block;
+  font-size: 1.2em;
+}
+
+.anuncio-subtitulo-grafologia {
+  color: #4a5568;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.anuncio-descripcion-grafologia {
+  color: #718096;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.anuncio-especialidad-grafologia {
+  background: rgba(90, 103, 216, 0.1);
+  color: #5a67d8;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px;
+  border: 2px solid #5a67d8;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+.anuncio-logo-circle-grafologia {
+  width: 100px;
+  height: 100px;
+  margin: 0 0 1.5rem 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.anuncio-logo-img-grafologia {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.anuncio-cta-grafologia {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+}
+
+.anuncio-duracion-grafologia {
+  color: #ffffff;
+  font-weight: 600;
+  font-style: normal;
+  margin: 0 0 2rem 0;
+  display: block;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.anuncio-boton-grafologia {
+  background: #ffffff;
+  color: #5a67d8;
+  border: 3px solid #ffffff;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.anuncio-boton-grafologia:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(90, 103, 216, 0.4);
+}
+
+/* ===== RESPONSIVE PARA PSICOLOGÍA SOCIAL ===== */
+@media (max-width: 900px) {
+  .anuncio-card-psicologia {
+    min-height: 700px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .anuncio-card-psicologia-content {
+    grid-template-columns: 1fr;
+    max-width: 95%;
+    min-height: auto;
+  }
+  
+  .anuncio-psicologia-content-main {
+    padding: 2.5rem 2rem;
+    order: 1;
+  }
+  
+  .anuncio-psicologia-content-main::before {
+    display: none;
+  }
+  
+  .anuncio-psicologia-sidebar {
+    padding: 2.5rem 2rem;
+    order: 2;
+  }
+  
+  .anuncio-psicologia-sidebar::before {
+    display: none;
+  }
+  
+  .anuncio-titulo-psicologia {
+    font-size: 2.2rem;
+  }
+  
+  .anuncio-cta-psicologia {
+    font-size: 1.5rem;
+  }
+  
+  /* Ajustar formas geométricas para móvil */
+  .anuncio-card-psicologia::before {
+    top: -30%;
+    left: -20%;
+    width: 100%;
+    height: 80%;
+  }
+  
+  .anuncio-card-psicologia::after {
+    top: -20%;
+    right: -10%;
+    width: 80%;
+    height: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .anuncio-card-psicologia {
+    min-height: 650px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .anuncio-card-psicologia-content {
+    max-width: 98%;
+    margin: 1rem auto;
+  }
+  
+  .anuncio-psicologia-content-main {
+    padding: 2rem 1.5rem;
+  }
+  
+  .anuncio-psicologia-sidebar {
+    padding: 2rem 1.5rem;
+  }
+  
+  .anuncio-titulo-psicologia {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  .anuncio-titulo-psicologia span {
+    font-size: 1.1em;
+  }
+  
+  .anuncio-subtitulo-psicologia {
+    font-size: 1.2rem;
+  }
+  
+  .anuncio-descripcion-psicologia {
+    font-size: 1rem;
+  }
+  
+  .anuncio-cta-psicologia {
+    font-size: 1.4rem;
+  }
+  
+  .anuncio-logo-circle-psicologia {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .anuncio-logo-img-psicologia {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .anuncio-boton-psicologia {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .anuncio-especialidades-psicologia {
+    justify-content: center;
+  }
+  
+  .anuncio-especialidad-tag {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  /* Formas geométricas más sutiles en móvil */
+  .anuncio-card-psicologia::before {
+    opacity: 0.8;
+  }
+  
+  .anuncio-card-psicologia::after {
+    opacity: 0.6;
+  }
+}
+
+/* ===== RESPONSIVE PARA GRAFOLOGÍA EMOCIONAL ===== */
+@media (max-width: 900px) {
+  .anuncio-card-grafologia-poster {
+    min-height: 700px;
+    margin: 2rem 0;
+  }
+  
+  .anuncio-card-grafologia-poster-content {
+    grid-template-columns: 1fr;
+    max-width: 95%;
+    min-height: auto;
+  }
+  
+  .anuncio-grafologia-content-main {
+    padding: 2.5rem 2rem;
+    order: 1;
+  }
+  
+  .anuncio-grafologia-content-main::after {
+    display: none;
+  }
+  
+  .anuncio-grafologia-sidebar {
+    padding: 2.5rem 2rem;
+    order: 2;
+  }
+  
+  .anuncio-titulo-grafologia {
+    font-size: 2.2rem;
+  }
+  
+  .anuncio-cta-grafologia {
+    font-size: 1.5rem;
+  }
+  
+  /* Ajustar formas geométricas para móvil */
+  .anuncio-card-grafologia-poster::before {
+    top: -30%;
+    right: -20%;
+    width: 100%;
+    height: 80%;
+  }
+  
+  .anuncio-card-grafologia-poster::after {
+    bottom: -20%;
+    left: -10%;
+    width: 80%;
+    height: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .anuncio-card-grafologia-poster {
+    min-height: 650px;
+    margin: 1.5rem 0;
+  }
+  
+  .anuncio-card-grafologia-poster-content {
+    max-width: 98%;
+    margin: 1rem auto;
+  }
+  
+  .anuncio-grafologia-content-main {
+    padding: 2rem 1.5rem;
+  }
+  
+  .anuncio-grafologia-sidebar {
+    padding: 2rem 1.5rem;
+  }
+  
+  .anuncio-titulo-grafologia {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  .anuncio-titulo-grafologia span {
+    font-size: 1.1em;
+  }
+  
+  .anuncio-subtitulo-grafologia {
+    font-size: 1.2rem;
+  }
+  
+  .anuncio-descripcion-grafologia {
+    font-size: 1rem;
+  }
+  
+  .anuncio-cta-grafologia {
+    font-size: 1.4rem;
+  }
+  
+  .anuncio-logo-circle-grafologia {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .anuncio-logo-img-grafologia {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .anuncio-boton-grafologia {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .anuncio-especialidad-grafologia {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  /* Formas geométricas más sutiles en móvil */
+  .anuncio-card-grafologia-poster::before {
+    opacity: 0.8;
+  }
+  
+  .anuncio-card-grafologia-poster::after {
+    opacity: 0.6;
+  }
+}
+
 /* Background image para grafología */
 .anuncio-card-grafologia-img-bg-grafologia {
   background-image: var(--bg-image);
+}
+
+/* ===== ANIMACIONES CRIMINALÍSTICA ===== */
+@keyframes criminalistica-float-right {
+  0%, 100% { 
+    transform: skewX(-15deg) translateX(0px); 
+  }
+  50% { 
+    transform: skewX(-15deg) translateX(15px); 
+  }
+}
+
+@keyframes criminalistica-float-left {
+  0%, 100% { 
+    transform: skewX(15deg) translateX(0px); 
+  }
+  50% { 
+    transform: skewX(15deg) translateX(-12px); 
+  }
 }
 
