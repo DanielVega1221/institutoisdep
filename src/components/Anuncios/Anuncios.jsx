@@ -6,10 +6,10 @@ import imagen3 from "../../assets/imagen3.png";
 import grafologiaImg from "../../assets/GrafologiaEmocional.png";
 import curtImg from "../../assets/curt.png";
 
-const anuncio2 = {
-  carrera: "Grafología Emocional",
-  titulo: "Perito en Psicografología",
-  duracion: "2 meses",
+const anuncio3 = {
+  carrera: "Criminalística",
+  titulo: "Diplomatura en Criminalística",
+  duracion: "1 año",
 };
 
 const anuncio1 = {
@@ -20,11 +20,7 @@ const anuncio1 = {
   duracion: "3 años",
 };
 
-const anuncio3 = {
-  carrera: "Criminalística",
-  titulo: "Diplomatura en Criminalística",
-  duracion: "1 año",
-};
+
 
 const Anuncios = ({ irACursos }) => {
   return (
@@ -74,16 +70,12 @@ const Anuncios = ({ irACursos }) => {
                   aria-label="Grafología Emocional"
                 />
               </div>
-              <div className="anuncio-card-grafologia-content anuncio-card-grafologia-content-split">
-                <div className="anuncio-card-grafologia-content-left">
-                  <h2 className="anuncio-card-grafologia-title">Duda la mente, tiembla la mano</h2>
-                  <p className="anuncio-card-grafologia-text">Dictado por Alberto Antonio Domínguez Aguilera.</p>
-                  <p className="anuncio-card-grafologia-text">Técnico Superior en Grafología. Tit. Of. Nro. 506087.</p>
-                </div>
-                <div className="anuncio-card-grafologia-content-right">
-                  <div className="anuncio-card-grafologia-curt-card">
-                    <img src={curtImg} alt="Curt" className="anuncio-card-grafologia-curt-img" />
-                  </div>
+              <div className="anuncio-card-grafologia-content anuncio-card-grafologia-content-centered">
+                <h2 className="anuncio-card-grafologia-title-centered">Duda la mente, tiembla la mano</h2>
+                <h3 className="anuncio-card-grafologia-profesor-title">Dictado por Alberto Antonio Domínguez Aguilera</h3>
+                <p className="anuncio-card-grafologia-profesor-subtitle">Técnico Superior en Grafología. Tit. Of. Nro. 506087.</p>
+                <div className="anuncio-card-grafologia-curt-container">
+                  <img src={curtImg} alt="Curt" className="anuncio-card-grafologia-curt-img-centered" />
                 </div>
               </div>
             </div>
@@ -94,8 +86,7 @@ const Anuncios = ({ irACursos }) => {
               <div className="anuncio-card-psicologia-content">
                 <div className="anuncio-psicologia-content-main">
                   <h3 className="anuncio-titulo-psicologia">
-                    FORMACIÓN PROFESIONAL EN
-                    <span className="highlight">Psicología Social</span>
+                    FORMACIÓN PROFESIONAL EN <span className="titulo-highlight">Psicología Social</span>
                   </h3>
                   <h4 className="anuncio-subtitulo-psicologia">
                     "Comprender las relaciones humanas"
@@ -141,54 +132,14 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </div>
-            {/* Anuncio 2 - Diseño Poster Grafología Emocional */}
-            <div className="anuncio-card-grafologia-poster">
-              <div className="anuncio-card-grafologia-poster-content">
-                <div className="anuncio-grafologia-content-main">
-                  <h3 className="anuncio-titulo-grafologia">
-                    FORMACIÓN PROFESIONAL EN
-                    <span>Grafología Emocional</span>
-                  </h3>
-                  <h4 className="anuncio-subtitulo-grafologia">
-                    "Duda la mente, tiembla la mano"
-                  </h4>
-                  <p className="anuncio-descripcion-grafologia">
-                    Análisis científico de la escritura para el estudio de la personalidad y estados emocionales. Técnicas avanzadas de peritaje grafológico.
-                  </p>
-                  <div className="anuncio-especialidad-grafologia">
-                    • Grafología Emocional
-                  </div>
-                </div>
-                <div className="anuncio-grafologia-sidebar">
-                  <div className="anuncio-logo-circle-grafologia">
-                    <img
-                      src={logo1}
-                      alt="Logo ISDEP"
-                      className="anuncio-logo-img-grafologia"
-                    />
-                  </div>
-                  <h5 className="anuncio-cta-grafologia">Especialízate Ahora</h5>
-                  <div className="anuncio-duracion-grafologia">
-                    Duración: {anuncio2.duracion}
-                  </div>
-                  <button
-                    onClick={() => irACursos("Perito en Psicografología")}
-                    className="anuncio-boton-grafologia"
-                  >
-                    Más Información
-                  </button>
-                </div>
-              </div>
-            </div>
-
+            
             {/* Anuncio 5 - Diseño Poster/Flyer Criminalística */}
             <div className="anuncio-card-criminalistica">
               <div className="anuncio-card-criminalistica-content">
                 {/* Sección Izquierda - Contenido Principal */}
                 <div className="anuncio-criminalistica-content-left">
                   <h3 className="anuncio-titulo-alt-full anuncio-titulo-criminalistica">
-                    CARRERA DE FORMACIÓN PROFESIONAL EN
-                    <span>Criminología y Criminalística</span>
+                    CARRERA DE FORMACIÓN PROFESIONAL EN <span className="titulo-highlight">Criminalística</span>
                   </h3>
                   <h4 className="anuncio-subtitulo-alt-full anuncio-subtitulo-criminalistica">
                     Vení y Formate como un Profesional
@@ -224,11 +175,11 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
-  );
+        </section>
+      </>
+    );
 };
 
 export default Anuncios;
