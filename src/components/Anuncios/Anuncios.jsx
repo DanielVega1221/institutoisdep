@@ -29,13 +29,14 @@ const Anuncios = ({ irACursos }) => {
         <div className="anuncios-card-container anuncios-card-container-spaced">
           <div className="anuncios-list">
             {/* Anuncio 1 - Psicología Social (Old Style) */}
-            <div className="anuncio-card">
-              <div className="anuncio-img-wrapper">
-                <img src={imagen3} alt="Imagen anuncio" className="anuncio-img" />
-                <div className="anuncio-logo-wrapper">
-                  <div className="anuncio-logo-circle">
-                    <img src={logo1} alt="Logo" className="anuncio-logo-img" />
-                  </div>
+            <div className="anuncio-card anuncio-card-psico-old" style={{position: 'relative'}}>
+              <div className="anuncio-img-wrapper anuncio-img-wrapper-completa">
+                <img src={imagen3} alt="Imagen anuncio" className="anuncio-img anuncio-img-completa" />
+              </div>
+              {/* Logo superpuesto entre imagen y texto */}
+              <div className="anuncio-logo-wrapper-superpuesto">
+                <div className="anuncio-logo-circle">
+                  <img src={logo1} alt="Logo" className="anuncio-logo-img" />
                 </div>
               </div>
               <div className="anuncio-info-wrapper">
