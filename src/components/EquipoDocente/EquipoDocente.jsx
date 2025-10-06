@@ -6,7 +6,6 @@ import { cloudinaryImages } from '../../utils/cloudinaryImages';
 const EquipoDocente = () => {
   const docentes = [
     {
-<<<<<<< HEAD
       id: 1,
       nombre: "Dr. María Elena Rodríguez",
       titulo: "Doctora en Psicología Clínica",
@@ -60,55 +59,6 @@ const EquipoDocente = () => {
       cloudinaryId: "instituto-isdep/profesores/profesor",
       fallbackImage: cloudinaryImages.people.profesor
     }
-=======
-    id: 1,
-    nombre: "Dra. María Elena Rodríguez",
-    titulo: "Doctora en Psicología",
-    especialidad: "Grafología aplicada a la evaluación de la personalidad",
-    experiencia: "15 años de experiencia en investigación y docencia",
-    imagen: professorGirl
-  },
-  {
-    id: 2,
-    nombre: "Lic. Carlos Alberto Méndez",
-    titulo: "Licenciado en Grafología",
-    especialidad: "Perito Calígrafo Judicial y Análisis de Escritura Forense",
-    experiencia: "12 años de experiencia en el ámbito judicial",
-    imagen: profesorImg
-  },
-  {
-    id: 3,
-    nombre: "Dra. Ana Patricia Silva",
-    titulo: "Doctora en Ciencias de la Educación",
-    especialidad: "Metodología de la enseñanza y formación de grafólogos",
-    experiencia: "20 años de trayectoria académica",
-    imagen: professorGirl
-  },
-  {
-    id: 4,
-    nombre: "Prof. Roberto Ariel Vera",
-    titulo: "Profesor en Grafotecnia",
-    especialidad: "Técnicas avanzadas de análisis grafológico",
-    experiencia: "10 años de experiencia en talleres y cursos prácticos",
-    imagen: profesorImg
-  },
-  {
-    id: 5,
-    nombre: "Lic. Sofía Beatriz Morales",
-    titulo: "Licenciada en Psicología",
-    especialidad: "Aplicaciones terapéuticas de la grafología",
-    experiencia: "14 años de experiencia clínica y docente",
-    imagen: professorGirl
-  },
-  {
-    id: 6,
-    nombre: "Dr. Alejandro José Fernández",
-    titulo: "Doctor en Psicopedagogía",
-    especialidad: "Evaluación grafológica en contextos educativos",
-    experiencia: "18 años de experiencia en investigación y asesoramiento institucional",
-    imagen: profesorImg
-  }
->>>>>>> 63ac8b8eee32eca21c0b7e2976054f188bbf6ece
   ];
 
   return (
