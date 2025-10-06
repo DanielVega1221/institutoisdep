@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/Logo1.png";
+import { cloudinaryImages } from "../../utils/cloudinaryImages";
 import "./Navbar.css";
 
 const navItems = [
@@ -26,7 +26,7 @@ const Navbar = ({ handleNav }) => {
     <>
       <header className={`navbar${menuOpen ? ' menu-open' : ''}`}>
         <div className="navbar-logo">
-          <img src={logo} alt="Instituto ISDEP" className="navbar-logo-img" />
+          <img src={cloudinaryImages.icons.logo1} alt="Instituto ISDEP" className="navbar-logo-img" />
           <div className="navbar-subtitle-desktop">
             <div className="subtitle-line">Instituto Superior de</div>
             <div className="subtitle-line">Enseñanza Profesional</div>
@@ -51,7 +51,7 @@ const Navbar = ({ handleNav }) => {
       <div className={`navbar-overlay ${menuOpen ? 'active' : ''}`}>
         <div className="overlay-header">
           <div className="overlay-logo">
-            <img src={logo} alt="Instituto ISDEP" />
+            <img src={cloudinaryImages.icons.logo1} alt="Instituto ISDEP" />
             <div className="overlay-subtitle">
               <div className="subtitle-line">Instituto Superior de</div>
               <div className="subtitle-line">Enseñanza Profesional</div>

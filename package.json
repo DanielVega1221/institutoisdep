@@ -8,9 +8,17 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "optimize-images": "node optimize-images.js"
+    "optimize-images": "node optimize-images.js",
+    "process:all-images": "node scripts/process-all-images.cjs",
+    "cloudinary:check": "node check-images.cjs",
+    "cloudinary:upload": "node upload-images.cjs",
+    "cloudinary:upload:optimized": "node scripts/upload-optimized-images.cjs",
+    "cloudinary:security": "node security-check.cjs",
+    "cloudinary:setup": "npm run cloudinary:security && npm run cloudinary:upload && npm run cloudinary:check"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.14.3",
+    "@cloudinary/url-gen": "^1.22.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.19.1",
     "lucide-react": "^0.522.0",
@@ -24,10 +32,13 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
+    "cloudinary": "^2.7.0",
+    "dotenv": "^17.2.3",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "sharp": "^0.34.4",
     "vite": "^6.3.5"
   }
 }

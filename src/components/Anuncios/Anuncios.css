@@ -38,6 +38,165 @@
   }
 }
 
+/* ===== ANIMACIONES UNIFICADAS PARA TODOS LOS ANUNCIOS ===== */
+@keyframes anuncioSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes anuncioContentFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes anuncioHoverFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Animaciones aplicadas a todos los anuncios con retrasos escalonados */
+.anuncio-card-grafologia-seminario {
+  animation: anuncioSlideIn 0.8s ease-out 0.2s both;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.anuncio-card-psicologia {
+  animation: anuncioSlideIn 0.8s ease-out 0.4s both;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.anuncio-card-criminalistica {
+  animation: anuncioSlideIn 0.8s ease-out 0.6s both;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.anuncio-card-grafologia-seminario:hover,
+.anuncio-card-psicologia:hover,
+.anuncio-card-criminalistica:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 80px rgba(30, 58, 138, 0.5);
+}
+
+.anuncio-card-grafologia-seminario-content {
+  animation: anuncioContentFadeIn 1s ease-out 0.5s both;
+}
+
+.anuncio-card-psicologia-content {
+  animation: anuncioContentFadeIn 1s ease-out 0.7s both;
+}
+
+.anuncio-card-criminalistica-content {
+  animation: anuncioContentFadeIn 1s ease-out 0.9s both;
+}
+
+/* Animaciones para los botones */
+.anuncio-boton-grafologia-seminario,
+.anuncio-boton-psicologia,
+.anuncio-boton-criminalistica {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.anuncio-boton-grafologia-seminario:hover,
+.anuncio-boton-psicologia:hover,
+.anuncio-boton-criminalistica:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.anuncio-boton-grafologia-seminario::before,
+.anuncio-boton-psicologia::before,
+.anuncio-boton-criminalistica::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.anuncio-boton-grafologia-seminario:hover::before,
+.anuncio-boton-psicologia:hover::before,
+.anuncio-boton-criminalistica:hover::before {
+  left: 100%;
+}
+
+/* Animaciones para los logos - sin rotación */
+.anuncio-logo-circle-grafologia-seminario,
+.anuncio-logo-circle-psicologia,
+.anuncio-logo-circle-criminalistica {
+  transition: all 0.4s ease;
+}
+
+.anuncio-card-grafologia-seminario:hover .anuncio-logo-circle-grafologia-seminario,
+.anuncio-card-psicologia:hover .anuncio-logo-circle-psicologia,
+.anuncio-card-criminalistica:hover .anuncio-logo-circle-criminalistica {
+  transform: scale(1.1);
+}
+
+/* Animaciones para títulos y texto */
+@keyframes anuncioTextSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.anuncio-titulo-grafologia-seminario,
+.anuncio-titulo-psicologia,
+.anuncio-titulo-criminalistica {
+  animation: anuncioTextSlide 0.6s ease-out 1s both;
+}
+
+.anuncio-subtitulo-grafologia-seminario,
+.anuncio-subtitulo-psicologia,
+.anuncio-subtitulo-criminalistica {
+  animation: anuncioTextSlide 0.6s ease-out 1.2s both;
+}
+
+.anuncio-descripcion-criminalistica,
+.anuncio-descripcion-psicologia,
+.anuncio-grafologia-descripcion-elegante {
+  animation: anuncioTextSlide 0.6s ease-out 1.4s both;
+}
+
+/* Animación de pulsación para los call-to-action */
+@keyframes anuncioPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.anuncio-cta-text {
+  animation: anuncioPulse 2s ease-in-out infinite;
+}
+
 /* ===== GRAFOLOGÍA EMOCIONAL - SEMINARIO PROFESIONAL ===== */
 .anuncio-card-grafologia-seminario {
   margin: 3rem 0;
@@ -59,14 +218,14 @@
   overflow: hidden;
 }
 
-/* Overlay simplificado para mejor rendimiento */
+/* Overlay unificado para Grafología - igual a los otros */
 .anuncio-card-grafologia-seminario-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(30, 58, 138, 0.75); /* Overlay simple en lugar de gradiente complejo */
+  background: rgba(30, 58, 95, 0.75); /* Mismo overlay que los otros anuncios */
   z-index: 1;
 }
 

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Contacto from "../Contacto/Contacto";
 import CursoModal from "./CursoModal";
 import "./Cursos.css";
-import cursosBannerImg from "../../assets/optimized/cursosBanner.jpg";
+import { cloudinaryImages } from "../../utils/cloudinaryImages";
 
 const cursosData = [
   {
@@ -474,7 +474,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                   <div className="curso-card-banner">
                     <div 
                       className="curso-card-banner-bg"
-                      style={{ backgroundImage: `url(${cursosBannerImg})` }}
+                      style={{ backgroundImage: `url(${cloudinaryImages.banners.cursosBanner})` }}
                     >
                       <div className="curso-card-banner-overlay"></div>
                       {/* Icono flotante en el banner */}

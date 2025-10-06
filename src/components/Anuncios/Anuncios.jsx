@@ -1,19 +1,7 @@
 import React, { memo } from "react";
 import "./Anuncios.css";
-import StaticAnuncioCard from "../StaticAnuncioCard";
-
-import logo1 from "../../assets/Logo1.png";
-import curtImg from "../../assets/curt.png";
-
-// Importar imágenes optimizadas y originales para fallback
-import anuncio1ImagenOpt from "../../assets/optimized/anuncio1imagen.jpg";
-import anuncio2ImagenOpt from "../../assets/optimized/anuncio2imagen.jpg";
-import anuncio3ImagenOpt from "../../assets/optimized/anuncio3imagen.jpg";
-
-// Importar originales como fallback
-import anuncio1ImagenOrig from "../../assets/anuncio1imagen.jpg";
-import anuncio2ImagenOrig from "../../assets/anuncio2imagen.jpg";
-import anuncio3ImagenOrig from "../../assets/anuncio3imagen.jpg";
+import CloudinaryAnuncioCard from "../CloudinaryAnuncioCard";
+import { cloudinaryImages } from "../../utils/cloudinaryImages";
 
 const anuncioGrafologia = {
   carrera: "Grafología Emocional",
@@ -44,9 +32,9 @@ const Anuncios = ({ irACursos }) => {
         <div className="anuncios-card-container anuncios-card-container-spaced">
           <div className="anuncios-list">
             {/* ===== ANUNCIO GRAFOLOGÍA EMOCIONAL ===== */}
-            <StaticAnuncioCard
-              optimizedSrc={anuncio1ImagenOpt}
-              fallbackSrc={anuncio1ImagenOrig}
+            <CloudinaryAnuncioCard
+              backgroundSrc={cloudinaryImages.anuncios.anuncio1}
+              fallbackSrc={cloudinaryImages.anuncios.anuncio1}
               className="anuncio-card-grafologia-seminario"
             >
               <div className="anuncio-card-grafologia-seminario-overlay"></div>
@@ -82,7 +70,7 @@ const Anuncios = ({ irACursos }) => {
                       </p>
                     </div>
                     <div className="anuncio-grafologia-autor-imagen-nueva">
-                      <img src={curtImg} alt="Curt August Honroth" className="anuncio-curt-img-rectangular" />
+                      <img src={cloudinaryImages.icons.curt} alt="Curt August Honroth" className="anuncio-curt-img-rectangular" />
                     </div>
                   </div>
                   
@@ -96,7 +84,7 @@ const Anuncios = ({ irACursos }) => {
                 <div className="anuncio-grafologia-seminario-content-right">
                   <div className="anuncio-logo-circle-grafologia-seminario">
                     <img
-                      src={logo1}
+                      src={cloudinaryImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-grafologia-seminario"
                     />
@@ -110,12 +98,12 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </StaticAnuncioCard>
+            </CloudinaryAnuncioCard>
             
             {/* ===== ANUNCIO PSICOLOGÍA SOCIAL ===== */}
-            <StaticAnuncioCard
-              optimizedSrc={anuncio2ImagenOpt}
-              fallbackSrc={anuncio2ImagenOrig}
+            <CloudinaryAnuncioCard
+              backgroundSrc={cloudinaryImages.anuncios.anuncio2}
+              fallbackSrc={cloudinaryImages.anuncios.anuncio2}
               className="anuncio-card-psicologia"
             >
               <div className="anuncio-card-psicologia-overlay"></div>
@@ -137,7 +125,7 @@ const Anuncios = ({ irACursos }) => {
                 <div className="anuncio-psicologia-content-right">
                   <div className="anuncio-logo-circle-psicologia">
                     <img
-                      src={logo1}
+                      src={cloudinaryImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-psicologia"
                     />
@@ -154,12 +142,12 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </StaticAnuncioCard>
+            </CloudinaryAnuncioCard>
             
             {/* ===== ANUNCIO CRIMINALÍSTICA ===== */}
-            <StaticAnuncioCard
-              optimizedSrc={anuncio3ImagenOpt}
-              fallbackSrc={anuncio3ImagenOrig}
+            <CloudinaryAnuncioCard
+              backgroundSrc={cloudinaryImages.anuncios.anuncio3}
+              fallbackSrc={cloudinaryImages.anuncios.anuncio3}
               className="anuncio-card-criminalistica"
             >
               <div className="anuncio-card-criminalistica-overlay"></div>
@@ -182,7 +170,7 @@ const Anuncios = ({ irACursos }) => {
                 <div className="anuncio-criminalistica-content-right">
                   <div className="anuncio-logo-circle-criminalistica">
                     <img
-                      src={logo1}
+                      src={cloudinaryImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-criminalistica"
                     />
@@ -199,7 +187,7 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </StaticAnuncioCard>
+            </CloudinaryAnuncioCard>
             </div>
           </div>
         </section>

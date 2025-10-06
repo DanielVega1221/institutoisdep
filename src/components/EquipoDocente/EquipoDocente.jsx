@@ -1,7 +1,7 @@
 import React from 'react';
 import './EquipoDocente.css';
-import profesorImg from '../../assets/profesor.jpg';
-import professorGirl from '../../assets/profesor-girl.jpg';
+import CloudinaryImage from '../CloudinaryImage';
+import { cloudinaryImages } from '../../utils/cloudinaryImages';
 
 const EquipoDocente = () => {
   const docentes = [
@@ -11,7 +11,8 @@ const EquipoDocente = () => {
       titulo: "Doctora en Psicología Clínica",
       especialidad: "Especialista en Terapia Cognitivo-Conductual",
       experiencia: "15 años de experiencia",
-      imagen: professorGirl
+      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
+      fallbackImage: cloudinaryImages.people.profesorGirl
     },
     {
       id: 2,
@@ -19,7 +20,8 @@ const EquipoDocente = () => {
       titulo: "Licenciado en Grafología",
       especialidad: "Perito Calígrafo Judicial",
       experiencia: "12 años de experiencia",
-      imagen: profesorImg
+      cloudinaryId: "instituto-isdep/profesores/profesor",
+      fallbackImage: cloudinaryImages.people.profesor
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ const EquipoDocente = () => {
       titulo: "Doctora en Educación",
       especialidad: "Especialista en Metodología de la Enseñanza",
       experiencia: "20 años de experiencia",
-      imagen: professorGirl
+      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
+      fallbackImage: cloudinaryImages.people.profesorGirl
     },
     {
       id: 4,
@@ -35,7 +38,8 @@ const EquipoDocente = () => {
       titulo: "Profesor en Artes Visuales",
       especialidad: "Ilustración y Diseño Gráfico",
       experiencia: "8 años de experiencia",
-      imagen: profesorImg
+      cloudinaryId: "instituto-isdep/profesores/profesor",
+      fallbackImage: cloudinaryImages.people.profesor
     },
     {
       id: 5,
@@ -43,7 +47,8 @@ const EquipoDocente = () => {
       titulo: "Licenciada en Musicoterapia",
       especialidad: "Terapia Musical para Adultos Mayores",
       experiencia: "10 años de experiencia",
-      imagen: professorGirl
+      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
+      fallbackImage: cloudinaryImages.people.profesorGirl
     },
     {
       id: 6,
@@ -51,7 +56,8 @@ const EquipoDocente = () => {
       titulo: "Doctor en Psicología Educacional",
       especialidad: "Evaluación y Diagnóstico Psicopedagógico",
       experiencia: "18 años de experiencia",
-      imagen: profesorImg
+      cloudinaryId: "instituto-isdep/profesores/profesor",
+      fallbackImage: cloudinaryImages.people.profesor
     }
   ];
 
@@ -71,8 +77,9 @@ const EquipoDocente = () => {
               {docentes.map((docente) => (
                 <div key={docente.id} className="docente-card">
                   <div className="docente-image-container">
-                    <img 
-                      src={docente.imagen} 
+                    <CloudinaryImage
+                      src={docente.fallbackImage}
+                      fallbackSrc={docente.fallbackImage}
                       alt={docente.nombre}
                       className="docente-image"
                     />

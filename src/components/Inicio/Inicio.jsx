@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Inicio.css';
-
-// Importar imagen optimizada
-import fondoInicioOpt from '../../assets/optimized/fondoInicio.jpg';
+import { cloudinaryImages } from '../../utils/cloudinaryImages';
 
 const Inicio = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -18,15 +16,15 @@ const Inicio = () => {
       console.warn('⚠️ Error cargando imagen de inicio');
       setImageLoaded(true); // Continuar de todas formas
     };
-    img.src = fondoInicioOpt;
+    img.src = cloudinaryImages.banners.fondoInicio;
   }, []);
 
   return (
     <section 
       className={`inicio-hero inicio-optimized-background ${imageLoaded ? 'loaded' : 'loading'}`}
       style={{
-        '--bg-image': `url(${fondoInicioOpt})`,
-        backgroundImage: `url(${fondoInicioOpt})`
+        '--bg-image': `url(${cloudinaryImages.banners.fondoInicio})`,
+        backgroundImage: `url(${cloudinaryImages.banners.fondoInicio})`
       }}
     >
       <div className="inicio-overlay">

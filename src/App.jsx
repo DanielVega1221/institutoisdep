@@ -7,8 +7,7 @@ import Footer from './components/Footer/Footer.jsx';
 import './App.css';
 import VolumeControl from "./components/AudioPlayer/VolumeControl.jsx";
 import music from "./assets/Music.mp3";
-import ilustracion from "./assets/Ilustracion.png";
-import logo from "./assets/Logo1.png";
+import { cloudinaryImages } from "./utils/cloudinaryImages";
 import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 import Cursos from "./components/Cursos/Cursos.jsx";
 import EquipoDocente from "./components/EquipoDocente/EquipoDocente.jsx";
@@ -83,13 +82,13 @@ function App() {
                 className={`intro-logo-shadow ${showLogo1 ? "initial" : "second"}`}
               />
               <img
-                src={ilustracion}
+                src={cloudinaryImages.cards.ilustracion}
                 alt="ISDEP Ilustración"
                 className={`intro-ilustracion${active1 && showLogo1 ? " visible logo-fadein" : ""}${!showLogo1 ? " logo-fadeout" : ""}`}
                 style={{ zIndex: showLogo1 ? 2 : 1 }}
               />
               <img
-                src={logo}
+                src={cloudinaryImages.icons.logo1}
                 alt="ISDEP Logo"
                 className={`intro-ilustracion${active1 && !showLogo1 ? " visible logo-fadein" : ""}${showLogo1 ? " logo-fadeout" : ""}`}
                 style={{ zIndex: !showLogo1 ? 2 : 1 }}
