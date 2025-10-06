@@ -6,53 +6,53 @@ import professorGirl from '../../assets/profesor-girl.jpg';
 const EquipoDocente = () => {
   const docentes = [
     {
-      id: 1,
-      nombre: "Dr. María Elena Rodríguez",
-      titulo: "Doctora en Psicología Clínica",
-      especialidad: "Especialista en Terapia Cognitivo-Conductual",
-      experiencia: "15 años de experiencia",
-      imagen: professorGirl
-    },
-    {
-      id: 2,
-      nombre: "Lic. Carlos Alberto Mendez",
-      titulo: "Licenciado en Grafología",
-      especialidad: "Perito Calígrafo Judicial",
-      experiencia: "12 años de experiencia",
-      imagen: profesorImg
-    },
-    {
-      id: 3,
-      nombre: "Dra. Ana Patricia Silva",
-      titulo: "Doctora en Educación",
-      especialidad: "Especialista en Metodología de la Enseñanza",
-      experiencia: "20 años de experiencia",
-      imagen: professorGirl
-    },
-    {
-      id: 4,
-      nombre: "Prof. Roberto Ariel Vera",
-      titulo: "Profesor en Artes Visuales",
-      especialidad: "Ilustración y Diseño Gráfico",
-      experiencia: "8 años de experiencia",
-      imagen: profesorImg
-    },
-    {
-      id: 5,
-      nombre: "Lic. Sofía Beatriz Morales",
-      titulo: "Licenciada en Musicoterapia",
-      especialidad: "Terapia Musical para Adultos Mayores",
-      experiencia: "10 años de experiencia",
-      imagen: professorGirl
-    },
-    {
-      id: 6,
-      nombre: "Dr. Alejandro José Fernández",
-      titulo: "Doctor en Psicología Educacional",
-      especialidad: "Evaluación y Diagnóstico Psicopedagógico",
-      experiencia: "18 años de experiencia",
-      imagen: profesorImg
-    }
+    id: 1,
+    nombre: "Dra. María Elena Rodríguez",
+    titulo: "Doctora en Psicología",
+    especialidad: "Grafología aplicada a la evaluación de la personalidad",
+    experiencia: "15 años de experiencia en investigación y docencia",
+    imagen: professorGirl
+  },
+  {
+    id: 2,
+    nombre: "Lic. Carlos Alberto Méndez",
+    titulo: "Licenciado en Grafología",
+    especialidad: "Perito Calígrafo Judicial y Análisis de Escritura Forense",
+    experiencia: "12 años de experiencia en el ámbito judicial",
+    imagen: profesorImg
+  },
+  {
+    id: 3,
+    nombre: "Dra. Ana Patricia Silva",
+    titulo: "Doctora en Ciencias de la Educación",
+    especialidad: "Metodología de la enseñanza y formación de grafólogos",
+    experiencia: "20 años de trayectoria académica",
+    imagen: professorGirl
+  },
+  {
+    id: 4,
+    nombre: "Prof. Roberto Ariel Vera",
+    titulo: "Profesor en Grafotecnia",
+    especialidad: "Técnicas avanzadas de análisis grafológico",
+    experiencia: "10 años de experiencia en talleres y cursos prácticos",
+    imagen: profesorImg
+  },
+  {
+    id: 5,
+    nombre: "Lic. Sofía Beatriz Morales",
+    titulo: "Licenciada en Psicología",
+    especialidad: "Aplicaciones terapéuticas de la grafología",
+    experiencia: "14 años de experiencia clínica y docente",
+    imagen: professorGirl
+  },
+  {
+    id: 6,
+    nombre: "Dr. Alejandro José Fernández",
+    titulo: "Doctor en Psicopedagogía",
+    especialidad: "Evaluación grafológica en contextos educativos",
+    experiencia: "18 años de experiencia en investigación y asesoramiento institucional",
+    imagen: profesorImg
+  }
   ];
 
   return (
