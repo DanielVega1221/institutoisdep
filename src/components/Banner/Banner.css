@@ -1,0 +1,152 @@
+/* Fuente optimizada para carga no bloqueante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
+
+/* Banner optimizado para mejor rendimiento */
+.banner-container {
+  width: 100%;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #fef3e2 100%);
+  /* Animación del gradiente removida para mejor rendimiento */
+  overflow: hidden;
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(203, 213, 225, 0.8);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.8);
+}
+
+/* Efecto de brillo simplificado - solo se activa en hover */
+.banner-container:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%
+  );
+  animation: shine 2s ease-out 1; /* Solo una vez en hover */
+}
+
+.banner-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Texto con animación optimizada */
+.scrolling-text {
+  display: flex;
+  animation: scroll 30s linear infinite; /* Más lento = menos CPU */
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Pausar animación cuando no es visible */
+.banner-container:not(:hover) .scrolling-text {
+  animation-play-state: running;
+}
+
+/* Pausar animación para usuarios que prefieren movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-text {
+    animation: none;
+    transform: translateX(0);
+  }
+  
+  .banner-container:hover::before {
+    animation: none;
+  }
+}
+
+/* Pausar animación cuando el tab no está activo */
+.document-hidden .scrolling-text {
+  animation-play-state: paused;
+}
+
+.banner-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #475569;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3px;
+  margin-right: 3rem;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 0 2rem;
+}
+
+/* Animación de desplazamiento simplificada */
+@keyframes scroll {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Efecto de brillo solo en hover */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Responsive optimizado */
+@media (max-width: 768px) {
+  .banner-container {
+    height: 50px;
+  }
+  
+  .banner-text {
+    font-size: 0.9rem;
+    margin-right: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .scrolling-text {
+    animation-duration: 35s; /* Más lento en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-container {
+    height: 45px;
+  }
+  
+  .banner-text {
+    font-size: 0.8rem;
+    margin-right: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .scrolling-text {
+    animation-duration: 40s; /* Muy lento para ahorrar batería */
+  }
+  
+  /* Pausar animación en móviles pequeños si es necesario */
+  @media (prefers-reduced-motion: reduce) {
+    .scrolling-text {
+      animation: none;
+      transform: translateX(0);
+    }
+  }
+}

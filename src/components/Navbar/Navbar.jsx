@@ -3,89 +3,90 @@ import logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Cursos", href: "#" },
-  { label: "Contacto", href: "#" },
-  { label: "Anuncios", href: "#" },
-  { label: "Equipo docente", href: "#" }, // Nuevo botón agregado
+  { label: "Equipo docente" },
+  { label: "Anuncios" },
+  { label: "Cursos" },
+  { label: "Contacto" },
 ];
 
 const Navbar = ({ handleNav }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleToggle = () => setMenuOpen((prev) => !prev);
+  const handleToggle = () => setMenuOpen(!menuOpen);
   const handleClose = () => setMenuOpen(false);
 
+  const handleNavClick = (label) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      if (handleNav) handleNav(label);
+    }, 500);
+  };
+
   return (
-    <header className="custom-navbar" style={{ minHeight: 110, height: 110 }}>
-      <div className="navbar-logo">
-        <img src={logo} alt="Logo" />
-        <div className="navbar-logo-subtitle">Instituto Superior de Enseñanza Profesional</div>
-      </div>
-  <div className="navbar-mobile-title">
-    {menuOpen ? (
-      <img src={logo} alt="Logo" style={{ height: 44, margin: '0 auto', display: 'block' }} />
-    ) : (
-      "Instituto Superior de Enseñanza Profesional"
-    )}
-  </div>
-      {/* Desktop links */}
-      <nav className="navbar-links">
-        {navItems.map((item, idx) => (
-          <React.Fragment key={item.label}>
+    <>
+      <header className={`navbar${menuOpen ? ' menu-open' : ''}`}>
+        <div className="navbar-logo">
+          <img src={logo} alt="Instituto ISDEP" className="navbar-logo-img" />
+          <div className="navbar-subtitle-desktop">
+            <div className="subtitle-line">Instituto Superior de</div>
+            <div className="subtitle-line">Enseñanza Profesional</div>
+          </div>
+        </div>
+        <div className="navbar-subtitle-mobile">
+          <div className="subtitle-line">Instituto Superior de</div>
+          <div className="subtitle-line">Enseñanza Profesional</div>
+        </div>
+        <button
+          className={`navbar-hamburger ${menuOpen ? 'active' : ''}`}
+          onClick={handleToggle}
+          aria-label="Toggle menu"
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+      </header>
+
+      {/* Overlay Menu */}
+      <div className={`navbar-overlay ${menuOpen ? 'active' : ''}`}>
+        <div className="overlay-header">
+          <div className="overlay-logo">
+            <img src={logo} alt="Instituto ISDEP" />
+            <div className="overlay-subtitle">
+              <div className="subtitle-line">Instituto Superior de</div>
+              <div className="subtitle-line">Enseñanza Profesional</div>
+            </div>
+          </div>
+          <div className="overlay-subtitle-mobile">
+            <div className="subtitle-line">Instituto Superior de</div>
+            <div className="subtitle-line">Enseñanza Profesional</div>
+          </div>
+          <button
+            className="close-button"
+            onClick={handleClose}
+            aria-label="Close menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <nav className="overlay-nav">
+          {navItems.map((item, index) => (
             <button
-              className="navbar-link"
-              type="button"
-              onClick={() => handleNav(item.label)}
+              key={item.label}
+              className="nav-link"
+              onClick={() => handleNavClick(item.label)}
+              style={{
+                animationDelay: `${0.1 + index * 0.1}s`
+              }}
             >
               {item.label}
             </button>
-            {idx < navItems.length - 1 && <span className="navbar-separator" />}
-          </React.Fragment>
-        ))}
-      </nav>
-      {/* Hamburger button */}
-      <button
-        className="navbar-hamburger"
-        aria-label="Abrir menú"
-        aria-expanded={menuOpen}
-        aria-controls="navbar-mobile-menu"
-        onClick={handleToggle}
-        type="button"
-      >
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect y="7" width="32" height="3.5" rx="1.5" fill="#0B1F3A" />
-          <rect y="14" width="32" height="3.5" rx="1.5" fill="#0B1F3A" />
-          <rect y="21" width="32" height="3.5" rx="1.5" fill="#0B1F3A" />
-        </svg>
-      </button>
-      {/* Mobile menu */}
-      <nav
-        id="navbar-mobile-menu"
-        className={`navbar-mobile-menu${menuOpen ? " active" : ""}`}
-      >
-        {navItems.map((item) => (
-          <button
-            key={item.label}
-            className="navbar-link"
-            type="button"
-            onClick={() => {
-              handleNav(item.label);
-              handleClose();
-            }}
-          >
-            {item.label}
-          </button>
-        ))}
-      </nav>
-      {/* Overlay for closing menu on click outside */}
-      {menuOpen && (
-        <div
-          className="navbar-mobile-overlay"
-          onClick={handleClose}
-          aria-hidden="true"
-        />
-      )}
-    </header>
+          ))}
+        </nav>
+      </div>
+    </>
   );
 };
 

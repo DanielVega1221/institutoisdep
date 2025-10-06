@@ -1,0 +1,785 @@
+/* ===== MODAL DEL CURSO ===== */
+.curso-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease-out;
+  overflow-y: auto;
+  /* Asegurar que el modal se centre correctamente */
+  min-height: 100vh;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.curso-modal {
+  background: transparent;
+  border: none;
+  border-radius: 24px;
+  max-width: 850px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.2), /* Sombras más ligeras */
+    0 5px 25px rgba(0, 0, 0, 0.1);
+  animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animación más rápida */
+  position: relative;
+  margin: auto;
+  will-change: transform, opacity; /* Optimización GPU */
+}
+
+/* Animación mejorada para el modal - optimizada */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95); /* Menos movimiento */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.curso-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.curso-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.curso-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(30, 58, 138, 0.3);
+  border-radius: 3px;
+}
+
+.curso-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 58, 138, 0.5);
+}
+
+
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Header estilizado como mini-banner */
+.curso-modal-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2d5a87 50%, #3182ce 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 20px 25px;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  min-height: 80px;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+/* Efecto shimmer en el header - optimizado */
+.curso-modal-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  animation: headerShimmer 6s infinite; /* Reducido a la mitad la frecuencia */
+  pointer-events: none;
+  will-change: transform; /* Optimización para GPU */
+}
+
+@keyframes headerShimmer {
+  0% { 
+    left: -100%; 
+    transform: translateZ(0); /* Forzar aceleración GPU */
+  }
+  100% { 
+    left: 100%; 
+    transform: translateZ(0);
+  }
+}
+
+/* Contenedor del ícono y título */
+.modal-header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+  position: relative;
+  flex: 1;
+}
+
+/* Ícono del header estilizado - optimizado */
+.modal-icon-header {
+  background: rgba(255, 255, 255, 0.25);
+  /* backdrop-filter: blur(10px); - Removido para mejor rendimiento */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease; /* Transiciones más rápidas */
+  flex-shrink: 0;
+  color: white;
+  will-change: transform; /* Optimización GPU */
+}
+
+.modal-icon-header:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Contenedor del título */
+.modal-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+/* Categoría en el header */
+.modal-categoria {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Título en el header */
+.modal-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de cerrar estilizado - optimizado */
+.modal-close-btn {
+  background: rgba(255, 255, 255, 0.25);
+  /* backdrop-filter: blur(10px); - Removido para mejor rendimiento */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease; /* Transiciones más rápidas */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  position: relative;
+  will-change: transform; /* Optimización GPU */
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05) rotate(90deg); /* Menos escala para mejor rendimiento */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Contenido del modal - optimizado */
+.curso-modal-content {
+  padding: 0 25px;
+  background: rgba(255, 255, 255, 0.98); /* Más opacidad, menos blur necesario */
+  backdrop-filter: blur(8px); /* Reducido de 20px a 8px */
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30, 58, 138, 0.3) transparent;
+  min-height: 0;
+  will-change: scroll-position; /* Optimización para scroll */
+}
+
+.curso-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.curso-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.curso-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(30, 58, 138, 0.3);
+  border-radius: 3px;
+}
+
+.curso-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 58, 138, 0.5);
+}
+
+/* Badges del modal mejorados */
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  padding-top: 10px;
+}
+
+.modal-tipo-badge {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--badge-color, #1e3a8a) 0%, var(--badge-color-dark, #0f2a4e) 100%);
+  box-shadow: 
+    0 6px 20px rgba(30, 58, 138, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-tipo-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+
+.modal-duracion-badge {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #2d5a87 0%, #1e3a8a 100%);
+  color: white;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 
+    0 6px 20px rgba(45, 90, 135, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.modal-duracion-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(45, 90, 135, 0.4);
+}
+
+.modal-modalidad-badge {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #3182ce 0%, #2d5a87 100%);
+  color: white;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 
+    0 6px 20px rgba(49, 130, 206, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.modal-modalidad-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(49, 130, 206, 0.4);
+}
+
+/* Título adquirido en modal */
+.modal-titulo-adquirido {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2d5a87 100%);
+  border-radius: 16px;
+  padding: 22px 25px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-titulo-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-titulo-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.modal-titulo-value {
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Intro del modal mejorada */
+.modal-intro {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(226, 232, 240, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px 25px;
+  margin-bottom: 25px;
+  border-left: 4px solid #3182ce;
+  border: 1px solid rgba(49, 130, 206, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(49, 130, 206, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.modal-intro p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* Descripción del modal mejorada */
+.modal-descripcion {
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-descripcion p {
+  margin: 0;
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* Contenido del curso en modal mejorado */
+.modal-contenido {
+  margin-bottom: 35px;
+}
+
+.modal-contenido-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #374151;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.modal-contenido-titulo svg {
+  color: #B8860B;
+}
+
+.modal-contenido-titulo::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(184, 134, 11, 0.3) 0%, transparent 100%);
+  margin-left: 15px;
+}
+
+.modal-contenido-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(226, 232, 240, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.modal-contenido-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.5s ease forwards;
+  animation-delay: var(--delay, 0s);
+  position: relative;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.modal-contenido-item:not(:last-child) {
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.modal-contenido-item:hover {
+  color: #374151;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+.modal-item-check {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.modal-contenido-item:hover .modal-item-check {
+  transform: scale(1.1);
+}
+
+/* Grid de información adicional */
+.modal-info-grid {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.modal-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.modal-info-icon {
+  font-size: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.modal-info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.modal-info-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-info-value {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Extra del modal */
+.modal-extra {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-left: 4px solid #B8860B;
+}
+
+.modal-extra-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Footer del modal mejorado - optimizado */
+.curso-modal-footer {
+  padding: 25px 30px;
+  background: rgba(255, 255, 255, 0.98); /* Más opacidad, menos blur */
+  backdrop-filter: blur(6px); /* Reducido de 20px a 6px */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(30, 58, 138, 0.1);
+  border-radius: 0 0 24px 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.curso-modal-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  right: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(30, 58, 138, 0.2) 20%, rgba(30, 58, 138, 0.4) 50%, rgba(30, 58, 138, 0.2) 80%, transparent 100%);
+}
+
+.modal-footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-cta-section {
+  text-align: center;
+}
+
+.modal-cta-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin: 0 0 8px 0;
+}
+
+.modal-cta-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.modal-action-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2d5a87 50%, #3182ce 100%);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 18px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 
+    0 8px 30px rgba(30, 58, 138, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.modal-action-btn:hover::before {
+  left: 100%;
+}
+
+.modal-action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a8a 50%, #2d5a87 100%);
+}
+
+.modal-action-btn:active {
+  transform: translateY(-1px);
+}
+
+.modal-btn-icon-left,
+.modal-btn-icon {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.modal-action-btn:hover .modal-btn-icon {
+  transform: translateX(3px);
+}
+
+.modal-action-btn:hover .modal-btn-icon-left {
+  transform: translateX(-3px);
+}
+
+/* Responsive mejorado para modal */
+@media (max-width: 768px) {
+  .curso-modal-backdrop {
+    padding: 10px;
+    align-items: flex-start;
+    padding-top: 40px; /* Más espacio superior en móviles */
+  }
+  
+  .curso-modal {
+    max-height: 90vh;
+    border-radius: 20px;
+    margin: 0;
+    max-width: 100%; /* Aprovecha todo el ancho en móviles */
+  }
+  
+  .curso-modal-header {
+    padding: 18px 20px;
+    min-height: 70px;
+  }
+  
+  .modal-icon-header {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .modal-titulo {
+    font-size: 18px;
+  }
+  
+  .modal-close-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .curso-modal-content {
+    padding: 15px 25px 25px 25px;
+  }
+  
+  .curso-modal-footer {
+    padding: 20px 25px;
+  }
+  
+  .modal-header-content {
+    gap: 12px;
+  }
+  
+  .modal-titulo {
+    font-size: 20px;
+  }
+  
+  .modal-badges {
+    gap: 8px;
+    flex-direction: column;
+  }
+  
+  .modal-tipo-badge,
+  .modal-duracion-badge,
+  .modal-modalidad-badge {
+    font-size: 12px;
+    padding: 8px 14px;
+    align-self: flex-start;
+  }
+  
+  .modal-contenido-lista {
+    padding: 20px;
+  }
+  
+  .modal-action-btn {
+    padding: 16px 25px;
+    font-size: 15px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .modal-btn-icon-left {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .curso-modal-backdrop {
+    padding: 8px;
+    padding-top: 30px; /* Espacio superior para móviles pequeños */
+  }
+  
+  .curso-modal-header {
+    padding: 15px 18px;
+    min-height: 60px;
+  }
+  
+  .modal-icon-header {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .modal-titulo {
+    font-size: 16px;
+  }
+  
+  .modal-close-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .curso-modal-content {
+    padding: 0 20px;
+  }
+  
+  .curso-modal-footer {
+    padding: 20px;
+  }
+  
+  .modal-contenido-titulo {
+    font-size: 16px;
+  }
+  
+  .modal-cta-title {
+    font-size: 16px;
+  }
+}

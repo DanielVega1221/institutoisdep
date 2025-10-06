@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import Navbar from './components/Navbar/Navbar.jsx';
+import Banner from './components/Banner/Banner.jsx';
+import Inicio from './components/Inicio/Inicio.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import './App.css';
 import VolumeControl from "./components/AudioPlayer/VolumeControl.jsx";
@@ -8,7 +11,7 @@ import ilustracion from "./assets/Ilustracion.png";
 import logo from "./assets/Logo1.png";
 import SobreNosotros from "./components/SobreNosotros/SobreNosotros.jsx";
 import Cursos from "./components/Cursos/Cursos.jsx";
-import LoadingScreen from "./components/Loading/LoadingScreen.jsx";
+import EquipoDocente from "./components/EquipoDocente/EquipoDocente.jsx";
 import Anuncios from "./components/Anuncios/Anuncios.jsx";
 import Contacto from "./components/Contacto/Contacto.jsx";
 
@@ -25,6 +28,7 @@ function App() {
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
   const anunciosRef = React.useRef(null);
+  const equipoDocenteRef = React.useRef(null);
   const [focusCarrera, setFocusCarrera] = useState(null);
 
   // Scroll handler para Navbar
@@ -33,6 +37,7 @@ function App() {
     if (section === "Cursos") ref = cursosRef;
     if (section === "Contacto") ref = contactoRef;
     if (section === "Anuncios") ref = anunciosRef;
+    if (section === "Equipo docente") ref = equipoDocenteRef;
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -70,7 +75,7 @@ function App() {
 
   return (
     <div className="app-container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", margin: 0, padding: 0, width: "100%" }}>
-      {showIntro && (
+      {showIntro && ReactDOM.createPortal(
         <div className={`intro-overlay ${introBgClass}${fadeOut ? " intro-fadeout" : ""}`}>
           <div className="intro-content">
             <div className="intro-logo-wrapper">
@@ -100,15 +105,23 @@ function App() {
               Un nuevo capítulo en la educación. ISDEP, renovado para formar más que profesionales.
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
       <Navbar handleNav={handleNav} />
+      <Banner />
+      <Inicio />
+      {/* Espaciador para el alto del Navbar fijo */}
+      <div style={{ height: 80 }} />
       <SobreNosotros />
       <section ref={anunciosRef}>
         <Anuncios irACursos={handleIrACursos} />
       </section>
       <section ref={cursosRef}>
         <Cursos setSelectedInteres={setSelectedInteres} contactoRef={contactoRef} focusCarrera={focusCarrera} setFocusCarrera={setFocusCarrera} />
+      </section>
+      <section ref={equipoDocenteRef}>
+        <EquipoDocente />
       </section>
       <section ref={contactoRef}>
         <Contacto ref={contactoRef} selectedInteres={selectedInteres} setSelectedInteres={setSelectedInteres} />

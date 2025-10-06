@@ -1,162 +1,317 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Contacto from "../Contacto/Contacto";
+import CursoModal from "./CursoModal";
 import "./Cursos.css";
-import cursosImg from "../../assets/cursos - copia.png";
+import cursosBannerImg from "../../assets/optimized/cursosBanner.jpg";
 
 const cursosData = [
   {
     id: 1,
-    titulo: "Formación Profesional en Grafología",
-    subtitulo: "Formación Profesional en Grafología",
+    emoji: "🎓",
+    categoria: "CARRERA DE",
+    titulo: "Formación Profesional en Psicografología",
+    subtitulo: "Formación Profesional en Psicografología Científica",
     tituloAdquirido: "Perito en Psicografología Científica",
-    tipo: "Formación Profesional",
+    tipo: "Carrera Terciaria",
     duracion: "2 años",
-    miniIntro: "Formate en grafología científica y profesional.",
-    descripcion: "Formación completa en grafología científica para aplicar en ámbitos clínicos, educativos y forenses.",
-    items: [],
-    extra: "",
+    modalidad: "Presencial",
+    miniIntro: "Formate como perito en psicografología científica con validez nacional.",
+    descripcion: "Carrera oficial de formación profesional en psicografología científica. Desarrollarás competencias para el análisis grafológico en ámbitos clínicos, educativos, laborales y forenses con metodología científica rigurosa.",
+    items: [
+      "Certificación oficial con validez nacional",
+      "Práctica en laboratorio grafológico equipado",
+      "Metodología científica aplicada",
+      "Peritajes forenses y clínicos",
+      "Acompañamiento docente especializado",
+      "Convenios con instituciones públicas y privadas"
+    ],
+    requisitos: "Título secundario completo",
+    salida_laboral: "Perito forense, consultor empresarial, clínica grafológica",
+    extra: "Inscripciones abiertas - Cupos limitados para garantizar calidad educativa"
   },
   {
     id: 2,
+    emoji: "💭",
+    categoria: "SEMINARIO EN",
     titulo: "Grafología Emocional",
-    subtitulo: "Capacitación Profesional",
-    tituloAdquirido: "",
-    tipo: "Capacitación Profesional",
+    subtitulo: "Seminario Profesional Intensivo",
+    tituloAdquirido: "Certificado en Grafología Emocional",
+    tipo: "Seminario Profesional",
     duracion: "2 meses",
-    miniIntro: "Capacitación intensiva en grafología emocional.",
-    descripcion: "Aprendé a analizar la escritura desde una perspectiva emocional y profesional.",
-    items: [],
-    extra: "",
+    modalidad: "Intensivo",
+    miniIntro: "Seminario especializado en análisis emocional a través de la escritura manuscrita.",
+    descripcion: "Seminario profesional que aborda el análisis de aspectos emocionales y psicológicos revelados en la escritura. Técnicas avanzadas para interpretar estados emocionales, patrones conductuales y rasgos de personalidad.",
+    items: [
+      "Técnicas de Curt A. Honroth",
+      "Análisis de trazos emocionales",
+      "Interpretación de presión y velocidad",
+      "Casos prácticos reales",
+      "Certificación profesional",
+      "Material didáctico especializado"
+    ],
+    requisitos: "Conocimientos básicos en grafología (deseable)",
+    salida_laboral: "Consultoría emocional, orientación vocacional, recursos humanos",
+    extra: "Incluye kit de materiales profesionales y acceso a biblioteca digital"
   },
   {
     id: 3,
+    emoji: "👥",
+    categoria: "CARRERA DE",
     titulo: "Psicología Social",
-    subtitulo: "Psicología Social",
+    subtitulo: "Carrera Universitaria en Psicología Social",
     tituloAdquirido: "Psicólogo Social",
-    tipo: "Carrera",
+    tipo: "Carrera Universitaria",
     duracion: "3 años",
-    miniIntro: "Formate para intervenir en ámbitos de salud, educación, comunidad y organizaciones.",
-    descripcion: "La carrera de Psicólogo/a Social examina fenómenos como la conformidad, la persuasión, la discriminación y la agresión, así como las relaciones intergrupales y las normas sociales.",
+    modalidad: "Online con prácticas presenciales",
+    miniIntro: "Carrera universitaria para intervenir profesionalmente en salud, educación, comunidad y organizaciones.",
+    descripcion: "Carrera universitaria que forma profesionales capacitados para comprender e intervenir en fenómenos psicosociales. Aborda conformidad, persuasión, discriminación, agresión, relaciones intergrupales y dinámicas comunitarias con enfoque científico y ético.",
     items: [
       "Modalidad online con clases en vivo",
-      "Certificación oficial",
-      "Aval ministerial",
-      "Acompañamiento docente permanente",
-      "Enfoque grupal comunitario"
+      "Prácticas profesionales supervisadas",
+      "Certificación universitaria oficial",
+      "Aval del Ministerio de Educación",
+      "Acompañamiento tutorial permanente",
+      "Enfoque comunitario y grupal",
+      "Convenios para prácticas profesionales",
+      "Acceso a plataforma virtual 24/7"
     ],
-    extra: "Cupos limitados- reservá tu lugar hoy"
+    requisitos: "Título secundario completo",
+    salida_laboral: "Hospitales, escuelas, ONGs, empresas, centros comunitarios",
+    extra: "Cupos limitados - Reservá tu lugar hoy. Financiación disponible y becas por mérito académico"
   },
   {
     id: 4,
-    titulo: "Diplomatura en Criminalística",
-    subtitulo: "Formación Profesional",
+    emoji: "🔍",
+    categoria: "DIPLOMATURA EN",
+    titulo: "Criminalística",
+    subtitulo: "Diplomatura Profesional en Ciencias Forenses",
     tituloAdquirido: "Diplomatura en Criminalística",
-    tipo: "Formación Profesional",
+    tipo: "Diplomatura Superior",
     duracion: "12 meses",
-    miniIntro: "Sumate al mundo de la investigación científica del delito.",
-    descripcion: "Integra conocimientos en criminalística, perfilación, pericias y análisis forense moderno.",
-    items: [],
-    extra: "",
+    modalidad: "Semi-presencial",
+    miniIntro: "Diplomatura superior en investigación científica del delito y análisis forense.",
+    descripcion: "Formación integral en criminalística moderna que integra conocimientos científicos para la investigación del delito. Abarca desde técnicas de laboratorio hasta perfilación criminal y análisis de evidencias con tecnología de vanguardia.",
+    items: [
+      "Laboratorio forense equipado",
+      "Técnicas de investigación científica",
+      "Análisis de evidencias físicas",
+      "Perfilación criminal avanzada",
+      "Tecnología forense actualizada",
+      "Convenios con fuerzas de seguridad",
+      "Prácticas en casos reales",
+      "Certificación reconocida nacionalmente"
+    ],
+    requisitos: "Título terciario o universitario",
+    salida_laboral: "Perito forense, investigador privado, asesor judicial",
+    extra: "Incluye acceso a laboratorio forense y biblioteca especializada. Convenio con Poder Judicial"
   },
   {
     id: 5,
-    titulo: "Detección de Abuso sexual infantil",
-    subtitulo: "Capacitación Profesional",
-    tituloAdquirido: "",
-    tipo: "Capacitación Profesional",
+    emoji: "🛡️",
+    categoria: "SEMINARIO EN",
+    titulo: "Detección de Abuso Sexual Infantil",
+    subtitulo: "Seminario Profesional de Protección Infantil",
+    tituloAdquirido: "Certificado en Detección de ASI",
+    tipo: "Seminario Especializado",
     duracion: "4 meses",
-    miniIntro: "Capacitación profesional en detección de abuso sexual infantil.",
-    descripcion: "Aprendé a detectar y abordar situaciones de abuso sexual infantil desde una perspectiva profesional.",
-    items: [],
-    extra: "",
+    modalidad: "Semi-presencial",
+    miniIntro: "Seminario profesional para la detección temprana y abordaje del abuso sexual infantil.",
+    descripcion: "Seminario especializado que capacita profesionales en la detección, evaluación e intervención en casos de abuso sexual infantil. Enfoque multidisciplinario con herramientas de diagnóstico y protocolos de actuación.",
+    items: [
+      "Indicadores físicos y psicológicos",
+      "Técnicas de entrevista especializada",
+      "Protocolos de intervención",
+      "Marco legal y derechos del niño",
+      "Trabajo interdisciplinario",
+      "Prevención y detección temprana",
+      "Acompañamiento familiar",
+      "Supervisión clínica incluida"
+    ],
+    requisitos: "Profesionales de salud, educación o derecho",
+    salida_laboral: "Hospitales, escuelas, juzgados, ONGs de protección infantil",
+    extra: "Certificación válida para concursos públicos. Incluye material bibliográfico especializado"
   },
   {
     id: 6,
+    emoji: "⚖️",
+    categoria: "CURSO EN",
     titulo: "Psicología Social y Criminalística Aplicada",
-    subtitulo: "Capacitación Profesional",
-    tituloAdquirido: "",
-    tipo: "Capacitación Profesional",
+    subtitulo: "Curso de Especialización Interdisciplinaria",
+    tituloAdquirido: "Especialista en Psicología Social Forense",
+    tipo: "Curso de Especialización",
     duracion: "4 meses",
-    miniIntro: "Capacitación en la intersección entre psicología social y criminalística.",
-    descripcion: "Formate en la aplicación de la psicología social en el ámbito criminalístico.",
-    items: [],
-    extra: "",
+    modalidad: "Online",
+    miniIntro: "Especialización en la intersección entre psicología social y investigación criminal.",
+    descripcion: "Curso avanzado que integra conocimientos de psicología social con técnicas criminalísticas. Analiza comportamientos grupales en contextos delictivos y desarrolla estrategias de intervención psicosocial en el ámbito forense.",
+    items: [
+      "Psicología del comportamiento criminal",
+      "Dinámicas grupales delictivas",
+      "Técnicas de interrogatorio psicológico",
+      "Análisis de víctimización",
+      "Prevención del delito comunitaria",
+      "Peritajes psicosociales",
+      "Casos prácticos forenses"
+    ],
+    requisitos: "Formación en psicología o criminalística",
+    salida_laboral: "Perito psicosocial, consultor forense, investigador criminal",
+    extra: "Acceso a base de datos de casos reales y simuladores de investigación"
   },
   {
     id: 7,
-    titulo: "Tecnografía Pericial Grafología",
-    subtitulo: "Post Grado p/ Peritos",
-    tituloAdquirido: "",
-    tipo: "Post Grado p/ Peritos",
-    duracion: "Consultar",
-    miniIntro: "Especialización en tecnografía pericial aplicada a la grafología.",
-    descripcion: "Consultá por esta formación avanzada para peritos en grafología.",
-    items: [],
-    extra: "",
+    emoji: "🔬",
+    categoria: "POSGRADO EN",
+    titulo: "Tecnografía Pericial Grafológica",
+    subtitulo: "Posgrado Especializado para Peritos",
+    tituloAdquirido: "Especialista en Tecnografía Pericial",
+    tipo: "Posgrado Especializado",
+    duracion: "6 meses",
+    modalidad: "Presencial intensivo",
+    miniIntro: "Posgrado especializado en tecnología aplicada al análisis pericial grafológico.",
+    descripcion: "Formación avanzada en el uso de tecnología de última generación para peritajes grafológicos. Combina métodos tradicionales con análisis digital, microscopia forense y software especializado para dictámenes periciales de máxima precisión.",
+    items: [
+      "Microscopía forense avanzada",
+      "Software de análisis digital",
+      "Espectrofotometría aplicada",
+      "Técnicas de datación de tintas",
+      "Análisis de soportes papeleros",
+      "Documentos dubitados e indubitados",
+      "Informes periciales técnicos",
+      "Tecnología de identificación biométrica"
+    ],
+    requisitos: "Título de perito grafólogo o equivalente",
+    salida_laboral: "Perito judicial especializado, consultor técnico, investigador forense",
+    extra: "Laboratorio equipado con tecnología europea. Certificación internacional disponible"
   },
   {
     id: 8,
+    emoji: "✍️",
+    categoria: "CURSO EN",
     titulo: "Análisis de Firmas y Rúbricas",
-    subtitulo: "Capacitación Profesional",
-    tituloAdquirido: "",
-    tipo: "Capacitación Profesional",
-    duracion: "Consultar",
-    miniIntro: "Capacitación profesional en análisis de firmas y rúbricas.",
-    descripcion: "Aprendé a analizar firmas y rúbricas desde una perspectiva técnica y profesional.",
-    items: [],
-    extra: "",
+    subtitulo: "Curso Técnico Especializado",
+    tituloAdquirido: "Especialista en Análisis de Firmas",
+    tipo: "Curso Técnico",
+    duracion: "3 meses",
+    modalidad: "Semi-presencial",
+    miniIntro: "Curso técnico especializado en autenticación y análisis forense de firmas y rúbricas.",
+    descripcion: "Formación técnica especializada en el análisis científico de firmas manuscritas y rúbricas. Desarrolla competencias para la detección de falsificaciones, análisis de autenticidad y peritajes documentales con metodología forense rigurosa.",
+    items: [
+      "Técnicas de identificación grafológica",
+      "Análisis de falsificaciones",
+      "Métodos de comparación científica",
+      "Presión, velocidad y ritmo gráfico",
+      "Características de identificación personal",
+      "Dictámenes periciales especializados",
+      "Casos prácticos documentales",
+      "Tecnología de análisis digital"
+    ],
+    requisitos: "Conocimientos básicos en grafología",
+    salida_laboral: "Perito calígrafo, consultor bancario, análisis documental",
+    extra: "Convenios con entidades bancarias y notariales. Kit de herramientas profesionales incluido"
   },
   {
     id: 9,
+    emoji: "🆘",
+    categoria: "CURSO DE",
     titulo: "Operador en Primeros Auxilios Psicológicos",
-    subtitulo: "Capacitación Profesional",
-    tituloAdquirido: "",
-    tipo: "Capacitación Profesional",
-    duracion: "Consultar",
-    miniIntro: "Formate para asistir emocionalmente en situaciones de emergencia.",
-    descripcion: "Capacitación profesional para operar en primeros auxilios psicológicos.",
-    items: [],
-    extra: "",
+    subtitulo: "Capacitación en Intervención de Crisis",
+    tituloAdquirido: "Operador en Primeros Auxilios Psicológicos",
+    tipo: "Capacitación Oficial",
+    duracion: "2 meses",
+    modalidad: "Presencial",
+    miniIntro: "Capacitación oficial para asistencia emocional inmediata en situaciones de emergencia y crisis.",
+    descripcion: "Formación especializada para brindar contención y asistencia psicológica inmediata en situaciones de crisis, emergencias y catástrofes. Desarrolla competencias para la estabilización emocional y derivación apropiada.",
+    items: [
+      "Técnicas de contención emocional",
+      "Protocolo de intervención en crisis",
+      "Manejo de situaciones traumáticas",
+      "Primeros auxilios psicológicos",
+      "Trabajo en equipo interdisciplinario",
+      "Autoprotección del operador",
+      "Técnicas de comunicación asertiva",
+      "Práctica en simulacros reales"
+    ],
+    requisitos: "Título secundario completo",
+    salida_laboral: "Emergencias médicas, bomberos, defensa civil, ONGs",
+    extra: "Certificación oficial válida para organismos de emergencia. Incluye kit de primera intervención"
   },
   {
     id: 10,
     emoji: "🧩",
+    categoria: "CURSO DE",
     titulo: "Perfilamiento Criminal",
-    subtitulo: "Perfilamiento Criminal",
+    subtitulo: "Especialización en Criminal Profiling",
     tituloAdquirido: "Especialista en Perfilamiento Criminal",
-    tipo: "Curso especializado",
-    duracion: "4 a 6 meses",
-    miniIntro: "Aprendé a identificar patrones conductuales y construir perfiles delictivos.",
-    descripcion: "Capacitación técnica en criminal profiling, enfocado en criminología, tipologías y análisis psicológico.",
-    items: [],
-    extra: "",
+    tipo: "Curso Especializado",
+    duracion: "6 meses",
+    modalidad: "Semi-presencial",
+    miniIntro: "Especialización en construcción de perfiles psicológicos delictivos y análisis conductual.",
+    descripcion: "Formación avanzada en criminal profiling que combina criminología, psicología forense y análisis conductual. Desarrolla competencias para construir perfiles delictivos, analizar escenas del crimen y asistir en investigaciones judiciales.",
+    items: [
+      "Técnicas de perfilación psicológica",
+      "Análisis de escenas del crimen",
+      "Tipologías criminales",
+      "Psicopatología forense",
+      "Métodos de investigación criminal",
+      "Análisis de modus operandi",
+      "Geografía del delito",
+      "Casos prácticos internacionales"
+    ],
+    requisitos: "Formación en psicología, criminalística o derecho",
+    salida_laboral: "Fuerzas de seguridad, consultoría forense, investigación judicial",
+    extra: "Acceso a base de casos del FBI. Metodología internacional validada"
   },
   {
     id: 11,
     emoji: "🧾",
+    categoria: "CURSO DE",
     titulo: "Grafología Forense",
-    subtitulo: "Grafología Forense",
-    tituloAdquirido: "Perito Grafólogo/a Forense",
-    tipo: "Curso profesional",
-    duracion: "6 a 9 meses",
-    miniIntro: "Capacitate en el análisis legal de manuscritos y documentos gráficos.",
-    descripcion: "Especialización en pericias grafológicas para determinar autenticidad, autoría y falsificación.",
-    items: [],
-    extra: ""
+    subtitulo: "Especialización en Peritajes Documentales",
+    tituloAdquirido: "Perito Grafólogo Forense",
+    tipo: "Curso Profesional",
+    duracion: "9 meses",
+    modalidad: "Presencial",
+    miniIntro: "Especialización en análisis forense de manuscritos y peritajes documentales judiciales.",
+    descripcion: "Formación profesional especializada en grafología aplicada al ámbito forense. Capacita para realizar peritajes documentales, análisis de autenticidad y dictámenes judiciales con validez legal y metodología científica reconocida.",
+    items: [
+      "Metodología pericial científica",
+      "Análisis de documentos dubitados",
+      "Técnicas de laboratorio forense",
+      "Dictámenes judiciales",
+      "Falsificación documental",
+      "Legislación pericial vigente",
+      "Presentación en tribunales",
+      "Ética profesional pericial"
+    ],
+    requisitos: "Título en grafología o psicografología",
+    salida_laboral: "Perito judicial, consultor legal, investigación documental",
+    extra: "Habilitación para actuar como perito de oficio. Laboratorio forense especializado"
   },
   {
     id: 12,
     emoji: "🎨",
-    titulo: "Análisis de Dibujos",
-    subtitulo: "Análisis de Dibujos",
-    tituloAdquirido: "Especialista en Análisis de Dibujos Proyectivos",
-    tipo: "Curso proyectivo",
-    duracion: "3 a 4 meses",
-    miniIntro: "Aprendé a interpretar gráficamente el mundo interno de niños, adolescentes y adultos.",
-    descripcion: "Aplicación psicológica del dibujo en procesos diagnósticos, terapéuticos y forenses.",
-    items: [],
-    extra: ""
+    categoria: "CURSO DE",
+    titulo: "Análisis de Dibujos Proyectivos",
+    subtitulo: "Especialización en Técnicas Proyectivas",
+    tituloAdquirido: "Especialista en Técnicas Proyectivas",
+    tipo: "Curso Proyectivo",
+    duracion: "4 meses",
+    modalidad: "Presencial",
+    miniIntro: "Especialización en interpretación psicológica del dibujo infantil, adolescente y adulto.",
+    descripcion: "Formación especializada en el análisis e interpretación de dibujos como herramienta proyectiva en evaluación psicológica. Aborda técnicas diagnósticas, terapéuticas y forenses aplicadas a diferentes grupos etarios.",
+    items: [
+      "Test del dibujo de la familia",
+      "Análisis del dibujo libre",
+      "Interpretación de colores y formas",
+      "Técnicas proyectivas específicas",
+      "Aplicación clínica y forense",
+      "Evaluación del desarrollo psicomotor",
+      "Indicadores de conflicto emocional",
+      "Informe psicológico especializado"
+    ],
+    requisitos: "Formación en psicología o áreas afines",
+    salida_laboral: "Consultorios psicológicos, escuelas, hospitales, peritajes",
+    extra: "Material didáctico especializado y casos clínicos supervisados incluidos"
   }
 ];
 
@@ -165,7 +320,8 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
   const sectionRef = useRef(null);
   const cardTitleRefs = useRef({});
   const [pendingFocus, setPendingFocus] = useState(null);
-  const [bouncing, setBouncing] = useState(null);
+  const [selectedCurso, setSelectedCurso] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Minimizar acordeón si la sección sale de pantalla
   useEffect(() => {
@@ -194,6 +350,17 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
         contactoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }, 100);
+  };
+
+  // Funciones para el modal
+  const handleVerMas = (curso) => {
+    setSelectedCurso(curso);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCurso(null);
   };
 
   // Enfocar card cuando focusCarrera cambia
@@ -230,23 +397,10 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
         console.log('Refs disponibles:', Object.keys(cardTitleRefs.current));
         
         if (ref) {
-          // Siempre hacer scroll primero para asegurar visibilidad
+          // Hacer scroll para asegurar visibilidad
           ref.scrollIntoView({ behavior: "smooth", block: "center" });
-          
-          // Luego hacer bounce
-          setTimeout(() => {
-            setBouncing(focusKey);
-            setTimeout(() => {
-              setBouncing(current => (current === focusKey ? null : current));
-            }, 1200);
-          }, 1000);
         } else {
           console.log('No se encontró ref para:', focusKey);
-          // Hacer bounce de todos modos
-          setBouncing(focusKey);
-          setTimeout(() => {
-            setBouncing(current => (current === focusKey ? null : current));
-          }, 1200);
         }
         
         setPendingFocus(null);
@@ -260,26 +414,15 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
   };
 
   const getTipoColor = (tipo) => {
-    switch (tipo) {
-      case "Carrera técnica":
-        return "#2E8B57";
-      case "Carrera terciaria":
-        return "#0F2A4E";
-      case "Diplomatura":
-        return "#B8860B";
-      case "Curso especializado":
-        return "#8B4513";
-      case "Curso profesional":
-        return "#4682B4";
-      case "Curso intensivo":
-        return "#CD853F";
-      case "Curso de intervención":
-        return "#9932CC";
-      case "Curso proyectivo":
-        return "#FF6347";
-      default:
-        return "#666";
-    }
+    const colors = {
+      'Carrera Terciaria': '#1e3a8a',  // Azul institucional principal
+      'Seminario': '#2d5a87',          // Azul institucional secundario
+      'Especialización': '#3182ce',    // Azul claro institucional
+      'Diplomatura': '#B8860B',        // Dorado institucional
+      'Certificación': '#0F2A4E',      // Azul marino institucional
+      'Curso': '#2d5a87'               // Azul secundario
+    };
+    return colors[tipo] || '#1e3a8a';
   };
 
   // Render
@@ -327,73 +470,67 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                   className="curso-card"
                   style={{ '--delay': `${curso.id * 0.15}s` }}
                 >
-                  <div className="curso-card-img-wrapper">
-                    <img src={cursosImg} alt="Curso" className="curso-card-img" />
+                  {/* Banner de curso con icono */}
+                  <div className="curso-card-banner">
+                    <div 
+                      className="curso-card-banner-bg"
+                      style={{ backgroundImage: `url(${cursosBannerImg})` }}
+                    >
+                      <div className="curso-card-banner-overlay"></div>
+                      {/* Icono flotante en el banner */}
+                      <div className="banner-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                          {/* Base del birrete */}
+                          <path d="M3 12L12 8L21 12L12 16L3 12Z" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.9)" strokeWidth="1"/>
+                          {/* Top del birrete */}
+                          <path d="M6 12V16C6 17.1046 8.68629 20 12 20C15.3137 20 18 17.1046 18 16V12" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
+                          {/* Borla */}
+                          <circle cx="21" cy="12" r="1.5" fill="rgba(255,255,255,0.9)"/>
+                          <path d="M21 13.5L21 15" stroke="rgba(255,255,255,0.9)" strokeWidth="1" strokeLinecap="round"/>
+                        </svg>
+                      </div>
+                    </div>
                   </div>
+                  
                   <div className="card-content">
-                    <div className="card-header">
-                      <h3
-                        className="card-titulo"
-                        ref={el => {
-                          if (el) {
-                            cardTitleRefs.current[curso.titulo] = el;
-                            cardTitleRefs.current[curso.tituloAdquirido] = el;
-                          }
-                        }}
-                      >
-                        {curso.titulo}
-                      </h3>
-                      <div className="card-badges">
-                        <span 
-                          className="tipo-badge"
-                          style={{ backgroundColor: getTipoColor(curso.tipo) }}
-                        >
+                    <div className="card-content-wrapper">
+                      {/* Header simplificado */}
+                      <div className="card-header-simple">
+                        <div className="card-title-container-simple">
+                          <span className="card-categoria-simple">{curso.categoria}</span>
+                          <h3 className="card-titulo-simple">{curso.titulo}</h3>
+                        </div>
+                      </div>
+
+                      {/* Badges esenciales */}
+                      <div className="card-badges-simple">
+                        <span className="tipo-badge-simple" style={{ backgroundColor: getTipoColor(curso.tipo) }}>
                           {curso.tipo}
                         </span>
-                        <span className="duracion-badge">
-                          {curso.duracion}
-                        </span>
+                        <span className="duracion-badge-simple">{curso.duracion}</span>
                       </div>
-                    </div>
-                    {/* Subtítulo extra: Título adquirido */}
-                    {curso.tituloAdquirido && (
-                      <div className="card-titulo-adquirido">
-                        <span><strong>Título:</strong> {curso.tituloAdquirido}</span>
-                      </div>
-                    )}
-                    <div className="card-mini-intro">
+
+                    {/* Intro resumida */}
+                    <div className="card-intro-simple">
                       <p>{curso.miniIntro}</p>
                     </div>
-                    <div className="card-descripcion-container">
-                      <p className="card-descripcion">{curso.descripcion}</p>
-                      {curso.items && curso.items.length > 0 && (
-                        <div className="card-items-container">
-                          <ul className="card-items">
-                            {curso.items.map((item, idx) => (
-                              <li key={idx}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {curso.extra && (
-                        <div className="card-extra">
-                          <p>
-                            {curso.extra.split('\n').map((line, idx) => (
-                              <React.Fragment key={idx}>
-                                {line}
-                                {idx < curso.extra.split('\n').length - 1 && <br />}
-                              </React.Fragment>
-                            ))}
-                          </p>
-                        </div>
-                      )}
+
+                    {/* Botones */}
+                    <div className="card-buttons-simple">
+                      <button className="card-button-ver-mas" onClick={() => handleVerMas(curso)}>
+                        <span>Ver más detalles</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+                      <button className="card-button-solicitar" onClick={() => handleSolicitarInfo(curso.titulo)}>
+                        <span>Consultar</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
                     </div>
-                    <button className="card-button" onClick={() => handleSolicitarInfo(curso.titulo)}>
-                      <span>Solicitá más información</span>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
+                    </div> {/* Cierre de card-content-wrapper */}
                   </div>
                 </div>
               ))}
@@ -401,6 +538,14 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
           </div>
         </div>
       </div>
+
+      {/* Modal del curso */}
+      <CursoModal 
+        curso={selectedCurso}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSolicitarInfo={handleSolicitarInfo}
+      />
     </section>
   );
 };

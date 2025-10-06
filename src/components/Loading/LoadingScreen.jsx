@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import "./LoadingScreenStyle.css";
 
 const LoadingScreen = ({ show, onFinish }) => {
@@ -40,7 +41,7 @@ const LoadingScreen = ({ show, onFinish }) => {
 
   if (!visible) return null;
 
-  return (
+  const overlay = (
     <div className={`loading-overlay${fadeOut ? " fade-out" : " fade-in"}`}>
       {showContent && (
         <div className="loading-content">
@@ -69,6 +70,8 @@ const LoadingScreen = ({ show, onFinish }) => {
       )}
     </div>
   );
+
+  return ReactDOM.createPortal(overlay, document.body);
 };
 
 export default LoadingScreen;
