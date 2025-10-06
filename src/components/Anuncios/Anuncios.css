@@ -209,12 +209,9 @@
   border-radius: 12px;
   border: 3px solid #3b82f6;
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
-  transition: transform 0.3s ease;
 }
 
-.anuncio-curt-img-rectangular:hover {
-  transform: scale(1.05);
-}
+/* Imagen sin efectos hover */
 
 .anuncio-grafologia-autor-bio {
   color: #4b5563;
@@ -347,19 +344,12 @@
   font-size: 1.1rem;
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
 }
 
-.anuncio-boton-grafologia-seminario:hover {
-  background: #1e3a8a;
-  color: #ffffff;
-  border-color: #1e3a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(45, 90, 135, 0.4);
-}
+/* Botón sin efectos hover */
 
 /* Responsive para Grafología Seminario */
 @media (max-width: 900px) {
@@ -714,56 +704,20 @@
   justify-content: flex-start;
   font-size: 1.1rem;
 }
-/* ===== OPTIMIZACIÓN DE CARGA DE IMÁGENES ===== */
+/* ===== IMÁGENES SIMPLIFICADAS - SIN ANIMACIONES ===== */
 .anuncio-optimized-background {
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: scroll !important;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  /* Sin transiciones para mejor rendimiento */
 }
 
-/* Aplicar lazy loading visual */
-.anuncio-optimized-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg, 
-    rgba(45, 90, 135, 0.1) 0%, 
-    rgba(49, 130, 206, 0.05) 50%, 
-    rgba(99, 179, 237, 0.1) 100%
-  );
-  opacity: 1;
-  transition: opacity 0.8s ease-out;
-  animation: smooth-fade-in 1.2s ease-out forwards;
-  z-index: 0;
-}
-
-@keyframes smooth-fade-in {
-  0% { 
-    opacity: 0.3;
-    filter: blur(2px);
-  }
-  50% {
-    opacity: 0.15;
-    filter: blur(1px);
-  }
-  100% { 
-    opacity: 0;
-    filter: blur(0px);
-  }
-}
-
-/* Optimización específica para overlay de contenido */
+/* Overlays simples sin efectos */
 .anuncio-optimized-background .anuncio-card-grafologia-seminario-overlay,
 .anuncio-optimized-background .anuncio-card-psicologia-overlay,
 .anuncio-optimized-background .anuncio-card-criminalistica-overlay {
   z-index: 1;
-  transition: all 0.5s ease-in-out;
 }
 
 .anuncio-optimized-background .anuncio-card-grafologia-seminario-content,
@@ -771,105 +725,16 @@
 .anuncio-optimized-background .anuncio-card-criminalistica-content {
   z-index: 2;
   position: relative;
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Loading skeleton optimizado - solo cuando se necesita */
-.anuncio-loading-skeleton {
-  background: #f0f0f0; /* Background estático en lugar de animado */
-  /* animation: loading-shimmer 2s infinite; - Removido para mejor rendimiento */
-}
-
-/* Shimmer solo para casos específicos de carga */
-.anuncio-loading-skeleton.loading-active {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading-shimmer 3s infinite; /* Más lento */
-}
-
-@keyframes loading-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
+/* Estados de carga simplificados */
 .anuncio-background-loaded {
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: none !important;
   opacity: 1;
 }
 
 .anuncio-background-loading {
-  opacity: 0.85;
-  filter: blur(1px) brightness(0.9);
-  transition: all 0.3s ease;
-}
-
-/* Lazy loading para imágenes de fondo */
-.anuncio-lazy-background {
-  background-image: none !important;
-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 50%, #a0aec0 100%);
-  position: relative;
-}
-
-/* Shimmer wave optimizado - solo en hover */
-.anuncio-lazy-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
-  background-size: 200% 200%;
-  /* animation: shimmer-wave 2s infinite; - Removido para mejor rendimiento */
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Solo activa shimmer en hover */
-.anuncio-lazy-background:hover::before {
   opacity: 1;
-  animation: shimmer-wave 1.5s ease-out 1; /* Solo una vez */
-}
-
-@keyframes shimmer-wave {
-  0% { background-position: -200% -200%; }
-  100% { background-position: 200% 200%; }
-}
-
-/* Mejoras para el contenido durante la carga */
-.anuncio-lazy-background .anuncio-card-grafologia-seminario-overlay,
-.anuncio-lazy-background .anuncio-card-psicologia-overlay,
-.anuncio-lazy-background .anuncio-card-criminalistica-overlay {
-  background: linear-gradient(
-    135deg, 
-    rgba(45, 90, 135, 0.7) 0%, 
-    rgba(49, 130, 206, 0.6) 30%, 
-    rgba(99, 179, 237, 0.4) 70%, 
-    rgba(45, 90, 135, 0.5) 100%
-  );
-  z-index: 2;
-}
-
-/* Optimizaciones adicionales para el contenido */
-.anuncio-background-loading .anuncio-card-grafologia-seminario-content,
-.anuncio-background-loading .anuncio-card-psicologia-content,
-.anuncio-background-loading .anuncio-card-criminalistica-content {
-  opacity: 0.95;
-  transform: translateY(2px);
-  transition: all 0.3s ease;
-}
-
-.anuncio-background-loaded .anuncio-card-grafologia-seminario-content,
-.anuncio-background-loaded .anuncio-card-psicologia-content,
-.anuncio-background-loaded .anuncio-card-criminalistica-content {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f5f7fa;
 }
 
 /* Card principal de la sección de anuncios, con bordes de colores arriba y abajo */
@@ -1322,12 +1187,9 @@
   font-size: 1.05rem;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-.anuncio-boton-principal:hover {
-  background: linear-gradient(90deg, #1565c0 0%, #1976d2 100%);
-}
+/* Botón principal sin efectos hover */
 
 /* ===== CRIMINALÍSTICA - DISEÑO POSTER ===== */
 .anuncio-card-criminalistica {
@@ -1528,19 +1390,12 @@
   font-size: 1.2rem;
   box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
 }
 
-.anuncio-boton-criminalistica:hover {
-  background: #1e3a8a;
-  color: #ffffff;
-  border-color: #1e3a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(45, 90, 135, 0.4);
-}
+/* Botón criminalística sin efectos hover */
 
 /* Teléfono de contacto */
 .anuncio-telefono-criminalistica {
@@ -1885,19 +1740,12 @@
   font-size: 1.1rem;
   box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
 }
 
-.anuncio-boton-psicologia:hover {
-  background: #1e3a8a;
-  color: #ffffff;
-  border-color: #1e3a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(45, 90, 135, 0.4);
-}
+/* Botón psicología sin efectos hover */
 
 /* ===== GRAFOLOGÍA EMOCIONAL - DISEÑO POSTER ===== */
 .anuncio-card-grafologia-poster {
@@ -2092,19 +1940,12 @@
   font-size: 1.1rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
 }
 
-.anuncio-boton-grafologia:hover {
-  background: transparent;
-  color: #ffffff;
-  border-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(90, 103, 216, 0.4);
-}
+/* Botón grafología sin efectos hover */
 
 /* ===== RESPONSIVE PARA PSICOLOGÍA SOCIAL ===== */
 @media (max-width: 900px) {

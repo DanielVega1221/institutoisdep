@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import "./Anuncios.css";
-import LazyAnuncioCard from "../LazyAnuncioCard";
+import StaticAnuncioCard from "../StaticAnuncioCard";
 
 import logo1 from "../../assets/Logo1.png";
 import curtImg from "../../assets/curt.png";
@@ -44,10 +44,10 @@ const Anuncios = ({ irACursos }) => {
         <div className="anuncios-card-container anuncios-card-container-spaced">
           <div className="anuncios-list">
             {/* ===== ANUNCIO GRAFOLOGÍA EMOCIONAL ===== */}
-            <LazyAnuncioCard
+            <StaticAnuncioCard
               optimizedSrc={anuncio1ImagenOpt}
               fallbackSrc={anuncio1ImagenOrig}
-              className="anuncio-card-grafologia-seminario anuncio-optimized-background"
+              className="anuncio-card-grafologia-seminario"
             >
               <div className="anuncio-card-grafologia-seminario-overlay"></div>
               <div className="anuncio-card-grafologia-seminario-content">
@@ -110,13 +110,13 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </LazyAnuncioCard>
+            </StaticAnuncioCard>
             
             {/* ===== ANUNCIO PSICOLOGÍA SOCIAL ===== */}
-            <LazyAnuncioCard
+            <StaticAnuncioCard
               optimizedSrc={anuncio2ImagenOpt}
               fallbackSrc={anuncio2ImagenOrig}
-              className="anuncio-card-psicologia anuncio-optimized-background"
+              className="anuncio-card-psicologia"
             >
               <div className="anuncio-card-psicologia-overlay"></div>
               <div className="anuncio-card-psicologia-content">
@@ -154,13 +154,13 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </LazyAnuncioCard>
+            </StaticAnuncioCard>
             
             {/* ===== ANUNCIO CRIMINALÍSTICA ===== */}
-            <LazyAnuncioCard
+            <StaticAnuncioCard
               optimizedSrc={anuncio3ImagenOpt}
               fallbackSrc={anuncio3ImagenOrig}
-              className="anuncio-card-criminalistica anuncio-optimized-background"
+              className="anuncio-card-criminalistica"
             >
               <div className="anuncio-card-criminalistica-overlay"></div>
               <div className="anuncio-card-criminalistica-content">
@@ -199,7 +199,7 @@ const Anuncios = ({ irACursos }) => {
                   </button>
                 </div>
               </div>
-            </LazyAnuncioCard>
+            </StaticAnuncioCard>
             </div>
           </div>
         </section>
