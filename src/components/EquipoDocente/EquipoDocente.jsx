@@ -1,7 +1,7 @@
 import React from 'react';
 import './EquipoDocente.css';
 import CloudinaryImage from '../CloudinaryImage';
-import { cloudinaryImages } from '../../utils/cloudinaryImages';
+import { localImages } from '../../utils/localImages';
 
 const EquipoDocente = () => {
   const docentes = [
@@ -12,7 +12,7 @@ const EquipoDocente = () => {
       especialidad: "Especialista en Terapia Cognitivo-Conductual",
       experiencia: "15 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: cloudinaryImages.people.profesorGirl
+      fallbackImage: localImages.people.profesorGirl
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const EquipoDocente = () => {
       especialidad: "Perito Calígrafo Judicial",
       experiencia: "12 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: cloudinaryImages.people.profesor
+      fallbackImage: localImages.people.profesor
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const EquipoDocente = () => {
       especialidad: "Especialista en Metodología de la Enseñanza",
       experiencia: "20 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: cloudinaryImages.people.profesorGirl
+      fallbackImage: localImages.people.profesorGirl
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const EquipoDocente = () => {
       especialidad: "Ilustración y Diseño Gráfico",
       experiencia: "8 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: cloudinaryImages.people.profesor
+      fallbackImage: localImages.people.profesor
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const EquipoDocente = () => {
       especialidad: "Terapia Musical para Adultos Mayores",
       experiencia: "10 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: cloudinaryImages.people.profesorGirl
+      fallbackImage: localImages.people.profesorGirl
     },
     {
       id: 6,
@@ -57,7 +57,7 @@ const EquipoDocente = () => {
       especialidad: "Evaluación y Diagnóstico Psicopedagógico",
       experiencia: "18 años de experiencia",
       cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: cloudinaryImages.people.profesor
+      fallbackImage: localImages.people.profesor
     }
   ];
 

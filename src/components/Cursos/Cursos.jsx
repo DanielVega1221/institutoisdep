@@ -3,7 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Contacto from "../Contacto/Contacto";
 import CursoModal from "./CursoModal";
 import "./Cursos.css";
-import { cloudinaryImages } from "../../utils/cloudinaryImages";
+// Usar imágenes locales optimizadas desde localImages
+import { localImages } from "../../utils/localImages";
 
 const cursosData = [
   {
@@ -58,7 +59,8 @@ const cursosData = [
     id: 3,
     emoji: "👥",
     categoria: "CARRERA DE",
-    titulo: "Psicología Social",
+  titulo: "Psicología Social",
+  estado: "disponible",
     subtitulo: "Carrera Universitaria en Psicología Social",
     tituloAdquirido: "Psicólogo Social",
     tipo: "Carrera Universitaria",
@@ -76,6 +78,70 @@ const cursosData = [
       "Convenios para prácticas profesionales",
       "Acceso a plataforma virtual 24/7"
     ],
+    planEstudios: {
+      primer_ano: {
+        titulo: "Primer Año",
+        tituloObtenido: null,
+        materias: [
+          "Introducción a la Psicología Social",
+          "Bibliografía de Pichón Riviere",
+          "Comunicación 1",
+          "Psicología General",
+          "Filosofía",
+          "Dialéctica",
+          "Ana Quiroga",
+          "Cono Invertido",
+          "Psicoanálisis 1",
+          "Teoría de Los grupos",
+          "Vida Cotidiana 1",
+          "Grupo Operativo",
+          "Examen Final Grupal - Reelaboración y Presentación",
+          "Examen Final Individual Teórico"
+        ]
+      },
+      segundo_ano: {
+        titulo: "Segundo Año",
+        tituloObtenido: "Al completarlo se obtiene titulo de: Operador Preventivo en Salud Mental",
+        materias: [
+          "Articulación de Teorías de 1 año",
+          "Operador Preventivo en Salud Mental",
+          "Sociología",
+          "Rol del Observador",
+          "Función Práctica del Observador",
+          "Técnicas Lúdicas",
+          "Psicoanálisis II",
+          "Psicología Familiar",
+          "Ciclos vitales",
+          "Vida cotidiana II",
+          "Método Científico",
+          "Examen Final Grupal - Reelaboración y Presentación",
+          "Examen Final Individual Teórico"
+        ]
+      },
+      tercer_ano: {
+        titulo: "Tercer Año",
+        tituloObtenido: "Al completarlo se obtiene titulo de: Psicólogo Social",
+        materias: [
+          "Articulación I",
+          "Articulación II",
+          "Articulación III",
+          "Rol Coordinador",
+          "Roles Complementarios",
+          "Metodología de coordinación",
+          "Función Práctica de coordinación",
+          "Proyecto de investigación social",
+          "Oratoria",
+          "Taller 1: E.S.I",
+          "Taller 2: Consumos Problemáticos",
+          "Taller 3: Adolescencia",
+          "Taller 4: Violencia de Género",
+          "Taller 5: Salud Mental y Derechos Humanos",
+          "Presentación Proyecto",
+          "Examen Final Grupal - Reelaboración y Presentación",
+          "Examen Final Individual Teórico"
+        ]
+      }
+    },
     requisitos: "Título secundario completo",
     salida_laboral: "Hospitales, escuelas, ONGs, empresas, centros comunitarios",
     extra: "Cupos limitados - Reservá tu lugar hoy. Financiación disponible y becas por mérito académico"
@@ -84,7 +150,8 @@ const cursosData = [
     id: 4,
     emoji: "🔍",
     categoria: "DIPLOMATURA EN",
-    titulo: "Criminalística",
+  titulo: "Criminalística",
+  estado: "disponible",
     subtitulo: "Diplomatura Profesional en Ciencias Forenses",
     tituloAdquirido: "Diplomatura en Criminalística",
     tipo: "Diplomatura Superior",
@@ -110,7 +177,8 @@ const cursosData = [
     id: 5,
     emoji: "🛡️",
     categoria: "SEMINARIO EN",
-    titulo: "Detección de Abuso Sexual Infantil",
+  titulo: "Detección de Abuso Sexual Infantil",
+  estado: "no disponible",
     subtitulo: "Seminario Profesional de Protección Infantil",
     tituloAdquirido: "Certificado en Detección de ASI",
     tipo: "Seminario Especializado",
@@ -136,7 +204,8 @@ const cursosData = [
     id: 6,
     emoji: "⚖️",
     categoria: "CURSO EN",
-    titulo: "Psicología Social y Criminalística Aplicada",
+  titulo: "Psicología Social y Criminalística Aplicada",
+  estado: "disponible",
     subtitulo: "Curso de Especialización Interdisciplinaria",
     tituloAdquirido: "Especialista en Psicología Social Forense",
     tipo: "Curso de Especialización",
@@ -161,7 +230,8 @@ const cursosData = [
     id: 7,
     emoji: "🔬",
     categoria: "POSGRADO EN",
-    titulo: "Tecnografía Pericial Grafológica",
+  titulo: "Tecnografía Pericial Grafológica",
+  estado: "disponible",
     subtitulo: "Posgrado Especializado para Peritos",
     tituloAdquirido: "Especialista en Tecnografía Pericial",
     tipo: "Posgrado Especializado",
@@ -187,7 +257,8 @@ const cursosData = [
     id: 8,
     emoji: "✍️",
     categoria: "CURSO EN",
-    titulo: "Análisis de Firmas y Rúbricas",
+  titulo: "Análisis de Firmas y Rúbricas",
+  estado: "disponible",
     subtitulo: "Curso Técnico Especializado",
     tituloAdquirido: "Especialista en Análisis de Firmas",
     tipo: "Curso Técnico",
@@ -213,7 +284,8 @@ const cursosData = [
     id: 9,
     emoji: "🆘",
     categoria: "CURSO DE",
-    titulo: "Operador en Primeros Auxilios Psicológicos",
+  titulo: "Operador en Primeros Auxilios Psicológicos",
+  estado: "no disponible",
     subtitulo: "Capacitación en Intervención de Crisis",
     tituloAdquirido: "Operador en Primeros Auxilios Psicológicos",
     tipo: "Capacitación Oficial",
@@ -239,7 +311,8 @@ const cursosData = [
     id: 10,
     emoji: "🧩",
     categoria: "CURSO DE",
-    titulo: "Perfilamiento Criminal",
+  titulo: "Perfilamiento Criminal",
+  estado: "disponible",
     subtitulo: "Especialización en Criminal Profiling",
     tituloAdquirido: "Especialista en Perfilamiento Criminal",
     tipo: "Curso Especializado",
@@ -265,7 +338,8 @@ const cursosData = [
     id: 11,
     emoji: "🧾",
     categoria: "CURSO DE",
-    titulo: "Grafología Forense",
+  titulo: "Grafología Forense",
+  estado: "disponible",
     subtitulo: "Especialización en Peritajes Documentales",
     tituloAdquirido: "Perito Grafólogo Forense",
     tipo: "Curso Profesional",
@@ -291,7 +365,8 @@ const cursosData = [
     id: 12,
     emoji: "🎨",
     categoria: "CURSO DE",
-    titulo: "Análisis de Dibujos Proyectivos",
+  titulo: "Análisis de Dibujos Proyectivos",
+  estado: "disponible",
     subtitulo: "Especialización en Técnicas Proyectivas",
     tituloAdquirido: "Especialista en Técnicas Proyectivas",
     tipo: "Curso Proyectivo",
@@ -427,17 +502,84 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
 
   // Render
   return (
-    <section className="cursos-section" ref={sectionRef}>
+    <section 
+      className="cursos-section" 
+      ref={sectionRef}
+      style={{
+        '--cursos-bg-image': `url(${localImages.banners.fondoParaCursos})`
+      }}
+    >
+      {/* Efectos de fondo sutiles sin animación */}
+      <div className="cursos-bg-effects">
+        <div className="cursos-particles"></div>
+        <div className="cursos-gradient-overlay"></div>
+      </div>
+      
       <div className="cursos-container">
-        {/* Título general */}
-        <div className="cursos-header">
-          <div className="cursos-title-wrapper">
-            <svg className="cursos-icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3L1 9L12 15L21 10.09V17H23V9L12 3ZM5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z" fill="currentColor"/>
-            </svg>
-            <h2 className="cursos-title">Conocé nuestros cursos y carreras</h2>
+        {/* Hero Section Compacto */}
+        <div className="cursos-hero-section">
+          <div className="cursos-hero-content">
+            <div className="cursos-hero-main">
+              <div className="cursos-hero-left">
+                <div className="cursos-hero-badge">
+                  <span className="hero-badge-icon">🏆</span>
+                  <span>Instituto Líder en Formación Profesional</span>
+                </div>
+                
+                <h1 className="cursos-hero-title">
+                  Transformá tu futuro con
+                  <span className="hero-title-highlight"> carreras que marcan la diferencia</span>
+                </h1>
+                
+                <p className="cursos-hero-subtitle">
+                  Formación profesional de excelencia con <strong>validez nacional</strong> y 
+                  <strong> reconocimiento internacional</strong>. Tu éxito profesional comienza aquí.
+                </p>
+
+                {/* Badges de credibilidad compactos */}
+                <div className="cursos-credibility-badges">
+                  <div className="cred-badge">
+                    <span className="cred-icon">📜</span>
+                    <span>Certificación Nacional</span>
+                  </div>
+                  <div className="cred-badge">
+                    <span className="cred-icon">💼</span>
+                    <span>Salida Laboral Garantizada</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="cursos-hero-right">
+                {/* Estadísticas compactas */}
+                <div className="cursos-stats-grid">
+                  <div className="stat-item">
+                    <div className="stat-number">+850</div>
+                    <div className="stat-label">Graduados</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-number">98%</div>
+                    <div className="stat-label">Inserción Laboral</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-number">25+</div>
+                    <div className="stat-label">Años</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-number">100%</div>
+                    <div className="stat-label">Avalado</div>
+                  </div>
+                </div>
+                
+                {/* CTA compacto */}
+                <div className="cursos-hero-cta">
+                  <div className="hero-cta-text">
+                    <h3>¿Listo para cambiar tu vida?</h3>
+                    <p>Descubrí nuestras carreras</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="cursos-title-line"></div>
         </div>
 
         {/* Acordeón */}
@@ -474,7 +616,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                   <div className="curso-card-banner">
                     <div 
                       className="curso-card-banner-bg"
-                      style={{ backgroundImage: `url(${cloudinaryImages.banners.cursosBanner})` }}
+                      style={{ backgroundImage: `url(${localImages.banners.fondoParaCursos})` }}
                     >
                       <div className="curso-card-banner-overlay"></div>
                       {/* Icono flotante en el banner */}
@@ -502,12 +644,13 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                         </div>
                       </div>
 
-                      {/* Badges esenciales */}
-                      <div className="card-badges-simple">
+                      {/* Badges esenciales + estado */}
+                      <div className="card-badges-simple" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span className="tipo-badge-simple" style={{ backgroundColor: getTipoColor(curso.tipo) }}>
                           {curso.tipo}
                         </span>
                         <span className="duracion-badge-simple">{curso.duracion}</span>
+                        <span className={`estado-badge-simple ${curso.estado === 'disponible' ? 'estado-disponible' : 'estado-no-disponible'}`}>{curso.estado === 'disponible' ? 'Disponible' : 'No disponible'}</span>
                       </div>
 
                     {/* Intro resumida */}
@@ -523,8 +666,13 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                           <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
                       </button>
-                      <button className="card-button-solicitar" onClick={() => handleSolicitarInfo(curso.titulo)}>
-                        <span>Consultar</span>
+                      <button 
+                        className="card-button-solicitar"
+                        onClick={() => handleSolicitarInfo(curso.titulo)}
+                        disabled={curso.estado !== 'disponible'}
+                        style={curso.estado !== 'disponible' ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
+                      >
+                        <span>{curso.estado === 'disponible' ? 'Consultar' : 'No disponible'}</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>

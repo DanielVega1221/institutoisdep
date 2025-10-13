@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CursoModal.css';
 
 const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
@@ -63,11 +63,11 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
               <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
-        </div>
+  </div>
 
-        <div className="curso-modal-content">
+  <div className="curso-modal-content">
           {/* Badges mejorados con iconos */}
-          <div className="modal-badges">
+          <div className="modal-badges" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
             <span className="modal-tipo-badge" style={{ backgroundColor: getTipoColor(curso.tipo) }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
@@ -88,6 +88,7 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
               </svg>
               {curso.modalidad}
             </span>
+            <span className={`estado-badge-modal ${curso.estado === 'disponible' ? 'estado-disponible' : 'estado-no-disponible'}`}>{curso.estado === 'disponible' ? 'Disponible' : 'No disponible'}</span>
           </div>
 
           {/* Título adquirido */}
@@ -135,6 +136,11 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
             </div>
           )}
 
+          {/* Plan de Estudios - Solo para cursos que lo tengan */}
+          {curso.planEstudios && (
+            <PlanEstudiosAccordion planEstudios={curso.planEstudios} />
+          )}
+
           {/* Información adicional */}
           <div className="modal-info-grid">
             {curso.requisitos && (
@@ -163,6 +169,7 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
               <p className="modal-extra-text">{curso.extra}</p>
             </div>
           )}
+          {/* ...el resto del contenido... */}
         </div>
 
         <div className="curso-modal-footer">
@@ -171,14 +178,19 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
               <h4 className="modal-cta-title">¿Te interesa este curso?</h4>
               <p className="modal-cta-subtitle">Solicitá información sin compromiso</p>
             </div>
-            <button className="modal-action-btn" onClick={handleSolicitarInfo}>
+            <button 
+              className="modal-action-btn"
+              onClick={handleSolicitarInfo}
+              disabled={curso.estado !== 'disponible'}
+              style={curso.estado !== 'disponible' ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
+            >
               <span className="modal-btn-icon-left">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2"/>
                   <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2"/>
                 </svg>
               </span>
-              <span className="modal-btn-text">Solicitá más información</span>
+              <span className="modal-btn-text">{curso.estado === 'disponible' ? 'Solicitá más información' : 'No disponible'}</span>
               <span className="modal-btn-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -203,6 +215,68 @@ const getTipoColor = (tipo) => {
     'Curso': '#2d5a87'               // Azul secundario
   };
   return colors[tipo] || '#1e3a8a';
+};
+
+// Componente para el Plan de Estudios con acordeones
+const PlanEstudiosAccordion = ({ planEstudios }) => {
+  const [expandedYear, setExpandedYear] = useState(null);
+
+  const toggleYear = (year) => {
+    setExpandedYear(expandedYear === year ? null : year);
+  };
+
+  return (
+    <div className="modal-plan-estudios">
+      <h3 className="modal-plan-estudios-titulo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2"/>
+        </svg>
+        Plan de Estudios
+      </h3>
+      
+      <div className="plan-estudios-accordion">
+        {Object.entries(planEstudios).map(([key, año]) => (
+          <div key={key} className="plan-estudios-year">
+            <button 
+              className={`plan-estudios-year-header ${expandedYear === key ? 'expanded' : ''}`}
+              onClick={() => toggleYear(key)}
+            >
+              <div className="year-header-content">
+                <h4 className="year-title">{año.titulo}</h4>
+                {año.tituloObtenido && (
+                  <span className="year-titulo-badge">
+                    📜 {año.tituloObtenido}
+                  </span>
+                )}
+              </div>
+              <svg 
+                className={`year-arrow ${expandedYear === key ? 'rotated' : ''}`}
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none"
+              >
+                <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            
+            <div className={`plan-estudios-materias ${expandedYear === key ? 'expanded' : ''}`}>
+              <ul className="materias-lista">
+                {año.materias.map((materia, idx) => (
+                  <li key={idx} className="materia-item" style={{ '--delay': `${idx * 0.05}s` }}>
+                    <span className="materia-bullet">•</span>
+                    <span className="materia-nombre">{materia}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default React.memo(CursoModal);

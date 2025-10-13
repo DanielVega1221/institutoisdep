@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import { cloudinaryImages } from "../../utils/cloudinaryImages";
+import { localImages } from "../../utils/localImages";
 
 
 const Footer = () => (
@@ -52,7 +52,7 @@ const Footer = () => (
           </a>
         </div>
         <div className="footer-logo-centered">
-          <img src={cloudinaryImages.icons.logo1} alt="ISDEP Logo" />
+          <img src={localImages.icons.logo1} alt="ISDEP Logo" />
           <div className="footer-logo-subtitle">Instituto Superior de Enseñanza Profesional</div>
         </div>
       </div>

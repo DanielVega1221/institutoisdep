@@ -12,23 +12,23 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Importar imágenes optimizadas desde Cloudinary
-import { cloudinaryImages } from "../../utils/cloudinaryImages";
+import { localImages } from "../../utils/localImages";
 
 const slides = [
   {
-    img: cloudinaryImages.icons.logo1,
+    img: localImages.icons.logo1,
     alt: "Logo ISDEP",
     title: "Capacitando Alumnos, Formando Profesionales",
     subtitle: "Vanguardia educativa para un mundo en cambio"
   },
   {
-    img: cloudinaryImages.cards.card1,
+    img: localImages.cards.card1,
     alt: "Card 1",
     title: "",
     subtitle: "Eduardo Marzano.\n Perito en Psicología Forense. \n Consultor en Grafopsicología.\n\nIntegrante de la Asociación Latinoamericana de Grafología"
   },
   {
-    img: cloudinaryImages.cards.card2,
+    img: localImages.cards.card2,
     alt: "Card 2",
     title: "Certificación y Validación Nacional",
     subtitle: "ISDEP Inscripto en la Cámara Argentina de Comercio para su Certificación y Validación Nacional en todo el Territorio Argentino."

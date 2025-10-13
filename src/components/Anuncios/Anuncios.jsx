@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import "./Anuncios.css";
 import CloudinaryAnuncioCard from "../CloudinaryAnuncioCard";
-import { cloudinaryImages } from "../../utils/cloudinaryImages";
+import { localImages } from "../../utils/localImages";
 
 const anuncioGrafologia = {
   carrera: "Grafología Emocional",
@@ -33,8 +33,8 @@ const Anuncios = ({ irACursos }) => {
           <div className="anuncios-list">
             {/* ===== ANUNCIO GRAFOLOGÍA EMOCIONAL ===== */}
             <CloudinaryAnuncioCard
-              backgroundSrc={cloudinaryImages.anuncios.anuncio1}
-              fallbackSrc={cloudinaryImages.anuncios.anuncio1}
+              backgroundSrc={localImages.anuncios.anuncio1}
+              fallbackSrc={localImages.anuncios.anuncio1}
               className="anuncio-card-grafologia-seminario"
             >
               <div className="anuncio-card-grafologia-seminario-overlay"></div>
@@ -45,7 +45,7 @@ const Anuncios = ({ irACursos }) => {
                       SEMINARIO PROFESIONAL EN <span className="titulo-highlight">Grafología Emocional</span>
                     </h3>
                     <h4 className="anuncio-subtitulo-alt-full anuncio-subtitulo-grafologia-seminario">
-                      Seminario Profesional
+                      Seminario Profesional - modalidad online
                     </h4>
                   </div>
                   
@@ -63,14 +63,14 @@ const Anuncios = ({ irACursos }) => {
                     <div className="anuncio-grafologia-autor-texto">
                       <div className="anuncio-modalidad-tag">• Seminario Especializado</div>
                       <h5 className="anuncio-grafologia-autor-nombre">Teoría de Curt A. Honroth</h5>
-                      <p className="anuncio-grafologia-frase-destacada">"Tiembla la mano, tiembla la letra"</p>
+                      <p className="anuncio-grafologia-frase-destacada">"Duda la mente, tiembla la mano"</p>
                       <p className="anuncio-grafologia-autor-bio">
                         Pionero en el análisis grafológico emocional, Curt A. Honroth desarrolló técnicas revolucionarias 
                         para interpretar los estados emocionales a través de la escritura manuscrita.
                       </p>
                     </div>
                     <div className="anuncio-grafologia-autor-imagen-nueva">
-                      <img src={cloudinaryImages.icons.curt} alt="Curt August Honroth" className="anuncio-curt-img-rectangular" />
+                      <img src={localImages.icons.curt} alt="Curt August Honroth" className="anuncio-curt-img-rectangular" />
                     </div>
                   </div>
                   
@@ -84,7 +84,7 @@ const Anuncios = ({ irACursos }) => {
                 <div className="anuncio-grafologia-seminario-content-right">
                   <div className="anuncio-logo-circle-grafologia-seminario">
                     <img
-                      src={cloudinaryImages.icons.logo1}
+                      src={localImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-grafologia-seminario"
                     />
@@ -102,8 +102,8 @@ const Anuncios = ({ irACursos }) => {
             
             {/* ===== ANUNCIO PSICOLOGÍA SOCIAL ===== */}
             <CloudinaryAnuncioCard
-              backgroundSrc={cloudinaryImages.anuncios.anuncio2}
-              fallbackSrc={cloudinaryImages.anuncios.anuncio2}
+              backgroundSrc={localImages.anuncios.anuncio2}
+              fallbackSrc={localImages.anuncios.anuncio2}
               className="anuncio-card-psicologia"
             >
               <div className="anuncio-card-psicologia-overlay"></div>
@@ -119,13 +119,13 @@ const Anuncios = ({ irACursos }) => {
                     Especialízate en el análisis del comportamiento humano en contextos sociales. Técnicas avanzadas de intervención comunitaria y psicología aplicada.
                   </p>
                   <div className="anuncio-modalidad-psicologia">
-                    • Modalidad presencial
+                    • Modalidad online
                   </div>
                 </div>
                 <div className="anuncio-psicologia-content-right">
                   <div className="anuncio-logo-circle-psicologia">
                     <img
-                      src={cloudinaryImages.icons.logo1}
+                      src={localImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-psicologia"
                     />
@@ -146,8 +146,8 @@ const Anuncios = ({ irACursos }) => {
             
             {/* ===== ANUNCIO CRIMINALÍSTICA ===== */}
             <CloudinaryAnuncioCard
-              backgroundSrc={cloudinaryImages.anuncios.anuncio3}
-              fallbackSrc={cloudinaryImages.anuncios.anuncio3}
+              backgroundSrc={localImages.anuncios.anuncio3}
+              fallbackSrc={localImages.anuncios.anuncio3}
               className="anuncio-card-criminalistica"
             >
               <div className="anuncio-card-criminalistica-overlay"></div>
@@ -164,13 +164,13 @@ const Anuncios = ({ irACursos }) => {
                     investigación criminal y el análisis forense.
                   </p>
                   <div className="anuncio-modalidad-criminalistica">
-                    • Modalidad a distancia
+                    • Modalidad online
                   </div>
                 </div>
                 <div className="anuncio-criminalistica-content-right">
                   <div className="anuncio-logo-circle-criminalistica">
                     <img
-                      src={cloudinaryImages.icons.logo1}
+                      src={localImages.icons.logo1}
                       alt="Logo ISDEP"
                       className="anuncio-logo-img-criminalistica"
                     />
