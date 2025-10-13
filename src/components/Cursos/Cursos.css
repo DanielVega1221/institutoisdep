@@ -605,9 +605,10 @@
   background-position: center;
   background-attachment: local;
   background-repeat: no-repeat;
+  transition: min-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Overlay con degradado azul que contrasta con textos blancos */
+/* Overlay base con degradado azul */
 .cursos-section::before {
   content: '';
   position: absolute;
@@ -621,6 +622,53 @@
     rgba(36, 44, 58, 0.85) 60%,
     rgba(19, 24, 32, 0.87) 100%);
   z-index: 1;
+}
+
+/* Overlay adicional usando los efectos de fondo */
+.cursos-bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cursos-bg-effects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(15, 42, 78, 0.85) 0%,     /* Muy opaco */
+    rgba(20, 42, 73, 0.90) 30%,    /* Muy opaco */
+    rgba(36, 44, 58, 0.88) 60%,    /* Muy opaco */
+    rgba(19, 24, 32, 0.95) 100%);  /* Casi sólido */
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cuando se expande, el overlay adicional se hace visible */
+.cursos-section.accordion-expanded .cursos-bg-effects::before {
+  opacity: 1;
+}
+
+/* Bordes decorativos que complementan el overlay azul */
+.cursos-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.8) 20%, rgba(99, 102, 241, 0.9) 50%, rgba(59, 130, 246, 0.8) 80%, transparent 100%) top / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.8) 20%, rgba(99, 102, 241, 0.9) 50%, rgba(59, 130, 246, 0.8) 80%, transparent 100%) bottom / 100% 2px no-repeat;
+  z-index: 4;
+  pointer-events: none;
 }
 
 /* Bordes decorativos que complementan el overlay azul */

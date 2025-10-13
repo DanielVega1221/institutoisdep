@@ -503,7 +503,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
   // Render
   return (
     <section 
-      className="cursos-section" 
+      className={`cursos-section ${isExpanded ? 'accordion-expanded' : ''}`}
       ref={sectionRef}
       style={{
         '--cursos-bg-image': `url(${localImages.banners.fondoParaCursos})`
@@ -616,7 +616,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                   <div className="curso-card-banner">
                     <div 
                       className="curso-card-banner-bg"
-                      style={{ backgroundImage: `url(${localImages.banners.fondoParaCursos})` }}
+                      style={{ backgroundImage: `url(${localImages.banners.cursosBanner})` }}
                     >
                       <div className="curso-card-banner-overlay"></div>
                       {/* Icono flotante en el banner */}
