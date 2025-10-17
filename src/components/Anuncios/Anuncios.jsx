@@ -188,6 +188,103 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </CloudinaryAnuncioCard>
+            
+            {/* ===== NUEVO ANUNCIO CRIMINALÍSTICA - DISEÑO LIMPIO Y MODERNO ===== */}
+            <div 
+              className="anuncio-criminalistica-clean"
+              style={{ backgroundImage: `url(${localImages.anuncios.anuncio3})` }}
+            >
+              {/* Overlay con efecto glass */}
+              <div className="clean-glass-overlay"></div>
+              
+              {/* Decoraciones SVG - Líneas y puntos modernos */}
+              <svg className="clean-svg-lines" viewBox="0 0 540 700" xmlns="http://www.w3.org/2000/svg">
+                {/* Decoración esquina inferior derecha */}
+                <g opacity="0.5">
+                  <line x1="450" y1="660" x2="510" y2="660" stroke="#f97316" strokeWidth="3" strokeLinecap="round"/>
+                  <line x1="470" y1="645" x2="510" y2="645" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="440" cy="660" r="4" fill="#22d3ee"/>
+                  <circle cx="460" cy="645" r="3" fill="#f97316"/>
+                </g>
+                
+                {/* Decoración esquina inferior izquierda */}
+                <g opacity="0.5">
+                  <line x1="30" y1="660" x2="90" y2="660" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round"/>
+                  <line x1="30" y1="645" x2="70" y2="645" stroke="#22d3ee" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="100" cy="660" r="4" fill="#f97316"/>
+                  <circle cx="80" cy="645" r="3" fill="#3b82f6"/>
+                </g>
+              </svg>
+              
+              {/* Formas decorativas circulares en esquinas */}
+              <div className="clean-circle-decoration top-right"></div>
+              <div className="clean-circle-decoration bottom-left"></div>
+              
+              {/* Logo en la esquina */}
+              <div className="clean-logo-corner">
+                <img
+                  src={localImages.icons.logo1}
+                  alt="Instituto ISDEP"
+                  className="clean-logo-img"
+                />
+                <span className="clean-logo-text">INSTITUTO ISDEP</span>
+              </div>
+              
+              {/* Contenido principal */}
+              <div className="clean-content">
+                <div className="clean-header">
+                  <h5 className="clean-category">CARRERA DE FORMACIÓN PROFESIONAL EN</h5>
+                  <h2 className="clean-title">Criminología y<br/>Criminalística</h2>
+                  <p className="clean-subtitle">Vení y Formate como un Profesional</p>
+                </div>
+                
+                {/* Lista de features con iconos */}
+                <div className="clean-features-list">
+                  <div className="clean-feature-item">
+                    <div className="clean-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span>Modalidad a distancia</span>
+                  </div>
+                  
+                  <div className="clean-feature-item">
+                    <div className="clean-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <span>Duración: {anuncioCriminalistica.duracion}</span>
+                  </div>
+                  
+                  <div className="clean-feature-item">
+                    <div className="clean-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span>Título con validez nacional</span>
+                  </div>
+                </div>
+                
+                {/* Botón CTA */}
+                <button
+                  onClick={() => irACursos("Diplomatura en Criminalística")}
+                  className="clean-cta-button"
+                >
+                  MÁS INFORMACIÓN
+                </button>
+                
+                {/* Contacto */}
+                <div className="clean-contact-section">
+                  <p className="clean-contact-label">Reservá tu lugar</p>
+                  <p className="clean-contact-number">11-2331-0461</p>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </section>

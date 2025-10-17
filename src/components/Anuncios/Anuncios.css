@@ -2377,3 +2377,349 @@
   font-family: 'Segoe UI', Arial, sans-serif;
   letter-spacing: 0.5px;
 }
+
+/* ===== ANUNCIO CRIMINALÍSTICA - DISEÑO LIMPIO ===== */
+.anuncio-criminalistica-clean {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  min-height: 600px;
+  border-radius: 32px;
+  padding: 48px 40px;
+  margin: 20px auto;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  /* Imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay con efecto glass */
+.clean-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(191, 219, 254, 0.68) 0%,
+    rgba(165, 243, 252, 0.70) 25%,
+    rgba(224, 242, 254, 0.68) 50%,
+    rgba(254, 240, 230, 0.66) 75%,
+    rgba(219, 234, 254, 0.68) 100%
+  );
+  backdrop-filter: blur(3.5px) saturate(130%);
+  -webkit-backdrop-filter: blur(3.5px) saturate(130%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Decoraciones circulares simples en las esquinas */
+.clean-circle-decoration {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.clean-circle-decoration.top-right {
+  width: 150px;
+  height: 150px;
+  top: -45px;
+  right: -45px;
+  background: radial-gradient(
+    circle at center,
+    rgba(59, 130, 246, 0.35) 0%,
+    rgba(147, 197, 253, 0.22) 50%,
+    rgba(191, 219, 254, 0.08) 100%
+  );
+  box-shadow: 0 0 50px rgba(59, 130, 246, 0.25);
+}
+
+.clean-circle-decoration.bottom-left {
+  width: 130px;
+  height: 130px;
+  bottom: -40px;
+  left: -40px;
+  background: radial-gradient(
+    circle at center,
+    rgba(249, 115, 22, 0.3) 0%,
+    rgba(251, 146, 60, 0.18) 50%,
+    rgba(254, 215, 170, 0.08) 100%
+  );
+  box-shadow: 0 0 45px rgba(249, 115, 22, 0.2);
+}
+
+.anuncio-criminalistica-clean:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 6px 10px rgba(0, 0, 0, 0.06),
+    0 20px 35px rgba(0, 0, 0, 0.1),
+    0 35px 70px rgba(0, 0, 0, 0.15);
+}
+
+.anuncio-criminalistica-clean:hover .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(191, 219, 254, 0.62) 0%,
+    rgba(165, 243, 252, 0.64) 25%,
+    rgba(224, 242, 254, 0.62) 50%,
+    rgba(254, 240, 230, 0.60) 75%,
+    rgba(219, 234, 254, 0.62) 100%
+  );
+  backdrop-filter: blur(2.5px) saturate(140%);
+  -webkit-backdrop-filter: blur(2.5px) saturate(140%);
+}
+
+/* SVG Líneas y puntos decorativos */
+.clean-svg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Logo esquina */
+.clean-logo-corner {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+}
+
+.clean-logo-img {
+  width: 85px;
+  height: auto;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.clean-logo-img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.2));
+}
+
+.clean-logo-text {
+  display: none;
+}
+
+/* Contenido */
+.clean-content {
+  position: relative;
+  z-index: 3;
+}
+
+.clean-header {
+  margin-bottom: 36px;
+}
+
+.clean-category {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 16px 0;
+  opacity: 0.8;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.clean-title {
+  font-size: 40px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.05;
+  margin: 0 0 20px 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.clean-subtitle {
+  font-size: 16px;
+  color: #475569;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Features list */
+.clean-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 36px 0;
+}
+
+.clean-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(248, 250, 252, 0.9);
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clean-feature-item:hover {
+  background: rgba(241, 245, 249, 0.95);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+}
+
+.clean-icon-box {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  transition: all 0.3s ease;
+}
+
+.clean-feature-item:hover .clean-icon-box {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.clean-feature-item span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  letter-spacing: 0.2px;
+}
+
+/* CTA Button */
+.clean-cta-button {
+  width: 100%;
+  padding: 20px 28px;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 36px 0 28px 0;
+  box-shadow: 
+    0 8px 24px rgba(249, 115, 22, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.clean-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.clean-cta-button:hover::before {
+  left: 100%;
+}
+
+.clean-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 32px rgba(249, 115, 22, 0.45),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+}
+
+.clean-cta-button:active {
+  transform: translateY(-1px);
+}
+
+/* Contacto */
+.clean-contact-section {
+  text-align: center;
+  padding: 20px 0 0 0;
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+  margin-top: 4px;
+}
+
+.clean-contact-label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.clean-contact-number {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .anuncio-criminalistica-clean {
+    padding: 36px 28px;
+    max-width: 100%;
+    margin: 16px 0;
+  }
+  
+  .clean-title {
+    font-size: 28px;
+  }
+  
+  .clean-logo-corner {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .clean-logo-img {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .clean-logo-text {
+    font-size: 8px;
+  }
+  
+  .clean-shape-top,
+  .clean-shape-bottom {
+    opacity: 0.6;
+  }
+}
