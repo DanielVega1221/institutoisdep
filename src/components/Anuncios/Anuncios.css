@@ -1142,10 +1142,14 @@
 
 .anuncios-list {
   display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: stretch;
   justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .anuncio-card {
@@ -2378,26 +2382,50 @@
   letter-spacing: 0.5px;
 }
 
-/* ===== ANUNCIO CRIMINALÍSTICA - DISEÑO LIMPIO ===== */
-.anuncio-criminalistica-clean {
+/* ===== ANUNCIOS CLEAN - DISEÑO LIMPIO Y MODERNO ===== */
+.anuncio-clean {
   position: relative;
   width: 100%;
   max-width: 540px;
   min-height: 600px;
   border-radius: 32px;
   padding: 48px 40px;
-  margin: 20px auto;
+  margin: 20px 10px;
   box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.05),
     0 10px 20px rgba(0, 0, 0, 0.08),
     0 20px 40px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
   
   /* Imagen de fondo */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* Efecto hover - El anuncio crece y los demás se achican */
+.anuncio-clean:hover {
+  flex: 1.5;
+  transform: translateY(0);
+  box-shadow: 
+    0 8px 12px rgba(0, 0, 0, 0.08),
+    0 20px 35px rgba(0, 0, 0, 0.12),
+    0 35px 70px rgba(0, 0, 0, 0.18);
+  z-index: 10;
+}
+
+.anuncio-clean:not(:hover) {
+  flex: 0.8;
+  transform: translateY(0);
+}
+
+/* Cuando un anuncio está en hover, los demás se achican */
+.anuncios-list:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
+  flex: 0.7;
+  opacity: 0.7;
+  transform: translateY(0);
 }
 
 /* Overlay con efecto glass */
@@ -2457,12 +2485,150 @@
   box-shadow: 0 0 45px rgba(249, 115, 22, 0.2);
 }
 
-.anuncio-criminalistica-clean:hover {
-  transform: translateY(-6px);
+/* ===== VARIANTES DE COLOR POR ANUNCIO ===== */
+
+/* GRAFOLOGÍA - Azul Oscuro/Índigo */
+.anuncio-grafologia-clean .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(224, 231, 255, 0.68) 0%,
+    rgba(199, 210, 254, 0.70) 25%,
+    rgba(238, 242, 255, 0.68) 50%,
+    rgba(248, 250, 255, 0.66) 75%,
+    rgba(224, 231, 255, 0.68) 100%
+  );
+}
+
+.anuncio-grafologia-clean:hover .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(224, 231, 255, 0.62) 0%,
+    rgba(199, 210, 254, 0.64) 25%,
+    rgba(238, 242, 255, 0.62) 50%,
+    rgba(248, 250, 255, 0.60) 75%,
+    rgba(224, 231, 255, 0.62) 100%
+  );
+}
+
+.clean-circle-decoration.top-right.grafologia {
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 70, 229, 0.35) 0%,
+    rgba(99, 102, 241, 0.22) 50%,
+    rgba(165, 180, 252, 0.08) 100%
+  );
+  box-shadow: 0 0 50px rgba(79, 70, 229, 0.25);
+}
+
+.clean-circle-decoration.bottom-left.grafologia {
+  background: radial-gradient(
+    circle at center,
+    rgba(67, 56, 202, 0.3) 0%,
+    rgba(109, 40, 217, 0.18) 50%,
+    rgba(196, 181, 253, 0.08) 100%
+  );
+  box-shadow: 0 0 45px rgba(67, 56, 202, 0.2);
+}
+
+.clean-icon-box.grafologia {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.clean-feature-item.grafologia:hover .clean-icon-box {
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+.clean-cta-button.grafologia {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
   box-shadow: 
-    0 6px 10px rgba(0, 0, 0, 0.06),
-    0 20px 35px rgba(0, 0, 0, 0.1),
-    0 35px 70px rgba(0, 0, 0, 0.15);
+    0 8px 24px rgba(79, 70, 229, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.clean-cta-button.grafologia:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+  box-shadow: 
+    0 12px 32px rgba(79, 70, 229, 0.45),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* PSICOLOGÍA - Verde/Teal */
+.anuncio-psicologia-clean .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(209, 250, 229, 0.68) 0%,
+    rgba(204, 251, 241, 0.70) 25%,
+    rgba(224, 252, 245, 0.68) 50%,
+    rgba(240, 253, 250, 0.66) 75%,
+    rgba(209, 250, 229, 0.68) 100%
+  );
+}
+
+.anuncio-psicologia-clean:hover .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(209, 250, 229, 0.62) 0%,
+    rgba(204, 251, 241, 0.64) 25%,
+    rgba(224, 252, 245, 0.62) 50%,
+    rgba(240, 253, 250, 0.60) 75%,
+    rgba(209, 250, 229, 0.62) 100%
+  );
+}
+
+.clean-circle-decoration.top-right.psicologia {
+  background: radial-gradient(
+    circle at center,
+    rgba(16, 185, 129, 0.35) 0%,
+    rgba(52, 211, 153, 0.22) 50%,
+    rgba(167, 243, 208, 0.08) 100%
+  );
+  box-shadow: 0 0 50px rgba(16, 185, 129, 0.25);
+}
+
+.clean-circle-decoration.bottom-left.psicologia {
+  background: radial-gradient(
+    circle at center,
+    rgba(20, 184, 166, 0.3) 0%,
+    rgba(45, 212, 191, 0.18) 50%,
+    rgba(153, 246, 228, 0.08) 100%
+  );
+  box-shadow: 0 0 45px rgba(20, 184, 166, 0.2);
+}
+
+.clean-icon-box.psicologia {
+  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.clean-feature-item.psicologia:hover .clean-icon-box {
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+.clean-cta-button.psicologia {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 
+    0 8px 24px rgba(16, 185, 129, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.clean-cta-button.psicologia:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 
+    0 12px 32px rgba(16, 185, 129, 0.45),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* CRIMINALÍSTICA - Azul/Naranja (original) */
+.anuncio-criminalistica-clean .clean-glass-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(191, 219, 254, 0.68) 0%,
+    rgba(165, 243, 252, 0.70) 25%,
+    rgba(224, 242, 254, 0.68) 50%,
+    rgba(254, 240, 230, 0.66) 75%,
+    rgba(219, 234, 254, 0.68) 100%
+  );
 }
 
 .anuncio-criminalistica-clean:hover .clean-glass-overlay {
@@ -2474,8 +2640,6 @@
     rgba(254, 240, 230, 0.60) 75%,
     rgba(219, 234, 254, 0.62) 100%
   );
-  backdrop-filter: blur(2.5px) saturate(140%);
-  -webkit-backdrop-filter: blur(2.5px) saturate(140%);
 }
 
 /* SVG Líneas y puntos decorativos */
@@ -2693,15 +2857,38 @@
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .anuncios-list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .anuncio-clean {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .anuncio-clean:hover,
+  .anuncio-clean:not(:hover) {
+    flex: 1;
+    opacity: 1;
+  }
+  
+  .anuncios-list:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
+    flex: 1;
+    opacity: 1;
+  }
+}
+
 @media (max-width: 768px) {
-  .anuncio-criminalistica-clean {
+  .anuncio-clean {
     padding: 36px 28px;
     max-width: 100%;
     margin: 16px 0;
   }
   
   .clean-title {
-    font-size: 28px;
+    font-size: 32px;
   }
   
   .clean-logo-corner {
@@ -2710,16 +2897,10 @@
   }
   
   .clean-logo-img {
-    width: 48px;
-    height: 48px;
+    width: 70px;
   }
   
-  .clean-logo-text {
-    font-size: 8px;
-  }
-  
-  .clean-shape-top,
-  .clean-shape-bottom {
+  .clean-circle-decoration {
     opacity: 0.6;
   }
 }
