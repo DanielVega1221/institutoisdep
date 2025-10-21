@@ -1142,13 +1142,22 @@
 
 .anuncios-list {
   display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor específico para los nuevos anuncios lado a lado */
+.anuncios-list-new {
+  display: flex;
   flex-direction: row;
   gap: 1rem;
   align-items: stretch;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 1800px;
-  margin: 0 auto;
+  margin: 4rem auto 0;
   padding: 0 20px;
 }
 
@@ -2422,7 +2431,7 @@
 }
 
 /* Cuando un anuncio está en hover, los demás se achican */
-.anuncios-list:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
+.anuncios-list-new:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
   flex: 0.7;
   opacity: 0.7;
   transform: translateY(0);
@@ -2858,7 +2867,7 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .anuncios-list {
+  .anuncios-list-new {
     flex-direction: column;
     gap: 2rem;
   }
@@ -2874,7 +2883,7 @@
     opacity: 1;
   }
   
-  .anuncios-list:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
+  .anuncios-list-new:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
     flex: 1;
     opacity: 1;
   }

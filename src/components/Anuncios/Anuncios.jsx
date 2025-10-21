@@ -188,7 +188,10 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </CloudinaryAnuncioCard>
-            
+          </div>
+          
+          {/* ===== NUEVOS ANUNCIOS CON DISEÑO MODERNO ===== */}
+          <div className="anuncios-list-new">
             {/* ===== NUEVO ANUNCIO 1 - GRAFOLOGÍA DISEÑO LIMPIO Y MODERNO ===== */}
             <div 
               className="anuncio-clean anuncio-grafologia-clean"
@@ -469,11 +472,11 @@ const Anuncios = ({ irACursos }) => {
                 </div>
               </div>
             </div>
-            </div>
           </div>
-        </section>
-      </>
-    );
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default memo(Anuncios);
