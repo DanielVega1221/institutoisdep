@@ -197,7 +197,7 @@ const Anuncios = ({ irACursos }) => {
               {/* Card Psicología Social */}
               <div className="promotional-card">
                 <img 
-                  src="/src/assets/optimized-final/psicologiasocial.jpg" 
+                  src="/images/psicologiasocial.jpg" 
                   alt="Formación Profesional en Psicología Social" 
                   className="promotional-card-image"
                 />
@@ -206,7 +206,7 @@ const Anuncios = ({ irACursos }) => {
               {/* Card Criminalística */}
               <div className="promotional-card">
                 <img 
-                  src="/src/assets/optimized-final/criminalistica.jpg" 
+                  src="/images/criminalistica.jpg" 
                   alt="Carrera de Formación Profesional en Criminalística" 
                   className="promotional-card-image"
                 />
