@@ -1,4 +1,4 @@
-/* Modo de alto rendimiento para usuarios que prefieren menos movimiento */
+﻿/* Modo de alto rendimiento para usuarios que prefieren menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   /* Simplificar todos los anuncios para mejor rendimiento */
   .anuncio-card-grafologia-seminario,
@@ -22,15 +22,15 @@
   }
 }
 
-/* Optimización para dispositivos de bajo rendimiento */
+/* OptimizaciÃ³n para dispositivos de bajo rendimiento */
 @media (max-width: 768px) {
-  /* Reducir la complejidad visual en móviles */
+  /* Reducir la complejidad visual en mÃ³viles */
   .anuncio-card-grafologia-seminario-content {
-    min-height: 350px; /* Más pequeño en móviles */
+    min-height: 350px; /* MÃ¡s pequeÃ±o en mÃ³viles */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
   
-  /* Simplificar overlays en móviles */
+  /* Simplificar overlays en mÃ³viles */
   .anuncio-card-grafologia-seminario-overlay,
   .anuncio-card-psicologia-overlay,
   .anuncio-card-criminalistica-overlay {
@@ -140,7 +140,7 @@
   left: 100%;
 }
 
-/* Animaciones para los logos - sin rotación */
+/* Animaciones para los logos - sin rotaciÃ³n */
 .anuncio-logo-circle-grafologia-seminario,
 .anuncio-logo-circle-psicologia,
 .anuncio-logo-circle-criminalistica {
@@ -153,7 +153,7 @@
   transform: scale(1.1);
 }
 
-/* Animaciones para títulos y texto */
+/* Animaciones para tÃ­tulos y texto */
 @keyframes anuncioTextSlide {
   from {
     opacity: 0;
@@ -183,7 +183,7 @@
   animation: anuncioTextSlide 0.6s ease-out 1.4s both;
 }
 
-/* Animación de pulsación para los call-to-action */
+/* AnimaciÃ³n de pulsaciÃ³n para los call-to-action */
 @keyframes anuncioPulse {
   0%, 100% {
     transform: scale(1);
@@ -197,7 +197,7 @@
   animation: anuncioPulse 2s ease-in-out infinite;
 }
 
-/* ===== GRAFOLOGÍA EMOCIONAL - SEMINARIO PROFESIONAL ===== */
+/* ===== GRAFOLOGÃA EMOCIONAL - SEMINARIO PROFESIONAL ===== */
 .anuncio-card-grafologia-seminario {
   margin: 3rem 0;
   background-image: var(--bg-image);
@@ -218,7 +218,7 @@
   overflow: hidden;
 }
 
-/* Overlay unificado para Grafología - igual a los otros */
+/* Overlay unificado para GrafologÃ­a - igual a los otros */
 .anuncio-card-grafologia-seminario-overlay {
   position: absolute;
   top: 0;
@@ -247,7 +247,7 @@
   min-height: 450px; /* Altura reducida */
 }
 
-/* Sección izquierda - Contenido principal */
+/* SecciÃ³n izquierda - Contenido principal */
 .anuncio-grafologia-seminario-content-left {
   padding: 3rem 3rem;
   background: #ffffff;
@@ -292,7 +292,7 @@
   font-style: italic;
 }
 
-/* Sección del autor */
+/* SecciÃ³n del autor */
 .anuncio-grafologia-autor-section {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   border-radius: 12px;
@@ -303,7 +303,7 @@
   border-left: 4px solid #3b82f6;
 }
 
-/* Descripción elegante del seminario */
+/* DescripciÃ³n elegante del seminario */
 .anuncio-grafologia-descripcion-elegante {
   background: #ecf7ff;
   border-radius: 8px;
@@ -321,7 +321,7 @@
   text-align: justify;
 }
 
-/* Nueva sección del autor rediseñada */
+/* Nueva secciÃ³n del autor rediseÃ±ada */
 .anuncio-grafologia-autor-section-nueva {
   background: #ecf7ff;
   border-radius: 12px;
@@ -414,7 +414,7 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-/* Información del profesor */
+/* InformaciÃ³n del profesor */
 .anuncio-grafologia-profesor-info {
   background: #ecf7ff;
   border-radius: 8px;
@@ -446,7 +446,7 @@
   line-height: 1.4;
 }
 
-/* Sección derecha - CTA */
+/* SecciÃ³n derecha - CTA */
 .anuncio-grafologia-seminario-content-right {
   background: linear-gradient(135deg, #2d5a87 0%, #3182ce 100%);
   padding: 3rem 2.5rem;
@@ -508,9 +508,9 @@
   margin: 0;
 }
 
-/* Botón sin efectos hover */
+/* BotÃ³n sin efectos hover */
 
-/* Responsive para Grafología Seminario */
+/* Responsive para GrafologÃ­a Seminario */
 @media (max-width: 900px) {
   .anuncio-card-grafologia-seminario-content {
     grid-template-columns: 1fr;
@@ -823,7 +823,7 @@
     width: 150px;
   }
 }
-/* Portada especial Historia de la Grafología */
+/* Portada especial Historia de la GrafologÃ­a */
 
 .anuncio-portada-grafologia {
   width: 100vw;
@@ -863,7 +863,7 @@
   justify-content: flex-start;
   font-size: 1.1rem;
 }
-/* ===== IMÁGENES SIMPLIFICADAS - SIN ANIMACIONES ===== */
+/* ===== IMÃGENES SIMPLIFICADAS - SIN ANIMACIONES ===== */
 .anuncio-optimized-background {
   background-size: cover !important;
   background-position: center !important;
@@ -896,7 +896,7 @@
   background: #f5f7fa;
 }
 
-/* Card principal de la sección de anuncios, con bordes de colores arriba y abajo */
+/* Card principal de la secciÃ³n de anuncios, con bordes de colores arriba y abajo */
 .anuncios-card-container {
   position: relative;
   background: linear-gradient(135deg, #f1f3f6 0%, #ffffff 50%, #f8f9fa 100%);
@@ -1148,7 +1148,7 @@
   justify-content: center;
 }
 
-/* Contenedor específico para los nuevos anuncios lado a lado */
+/* Contenedor especÃ­fico para los nuevos anuncios lado a lado */
 .anuncios-list-new {
   display: flex;
   flex-direction: row;
@@ -1284,14 +1284,14 @@
   padding: 0;
 }
 
-/* Estilos específicos para elementos inline convertidos a CSS */
+/* Estilos especÃ­ficos para elementos inline convertidos a CSS */
 
 /* Container principal con margen inferior */
 .anuncios-card-container-spaced {
   margin-bottom: 6rem;
 }
 
-/* Títulos y subtítulos con colores específicos */
+/* TÃ­tulos y subtÃ­tulos con colores especÃ­ficos */
 .anuncio-titulo-overlay-text-white {
   color: #fff;
   margin-bottom: 0.7rem;
@@ -1303,7 +1303,7 @@
   margin-top: 0;
 }
 
-/* Duración con estilos específicos */
+/* DuraciÃ³n con estilos especÃ­ficos */
 .anuncio-duracion {
   font-weight: 600;
   color: #fff;
@@ -1311,7 +1311,7 @@
   font-size: 1.1rem;
 }
 
-/* Información de títulos para Psicología Social */
+/* InformaciÃ³n de tÃ­tulos para PsicologÃ­a Social */
 .anuncio-titulos-info {
   margin: 1rem 0;
   color: #ffffff;
@@ -1330,7 +1330,7 @@
   font-weight: 600;
 }
 
-/* Títulos para el poster de Psicología */
+/* TÃ­tulos para el poster de PsicologÃ­a */
 .anuncio-titulos-psicologia {
   margin: 1.2rem 0;
 }
@@ -1347,7 +1347,7 @@
   font-weight: 700;
 }
 
-/* Botón principal */
+/* BotÃ³n principal */
 .anuncio-boton-principal {
   margin-top: 1.2rem;
   background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
@@ -1361,9 +1361,9 @@
   cursor: pointer;
 }
 
-/* Botón principal sin efectos hover */
+/* BotÃ³n principal sin efectos hover */
 
-/* ===== CRIMINALÍSTICA - DISEÑO POSTER ===== */
+/* ===== CRIMINALÃSTICA - DISEÃ‘O POSTER ===== */
 .anuncio-card-criminalistica {
   margin: 3rem 0;
   background-image: var(--bg-image);
@@ -1384,7 +1384,7 @@
   overflow: hidden;
 }
 
-/* Overlay simplificado para Criminalística */
+/* Overlay simplificado para CriminalÃ­stica */
 .anuncio-card-criminalistica-overlay {
   position: absolute;
   top: 0;
@@ -1395,13 +1395,13 @@
   z-index: 1;
 }
 
-/* Remover las formas geométricas anteriores */
+/* Remover las formas geomÃ©tricas anteriores */
 .anuncio-card-criminalistica::before,
 .anuncio-card-criminalistica::after {
   display: none;
 }
 
-/* Contenedor interno de la card de criminalística - REDISEÑADO */
+/* Contenedor interno de la card de criminalÃ­stica - REDISEÃ‘ADO */
 .anuncio-card-criminalistica-content {
   background: rgba(255, 255, 255, 0.98);
   border-radius: 0;
@@ -1423,7 +1423,7 @@
   min-height: 450px;
 }
 
-/* Sección izquierda con contenido */
+/* SecciÃ³n izquierda con contenido */
 .anuncio-criminalistica-content-left {
   padding: 3rem 3rem 3rem 3rem;
   background: #ffffff;
@@ -1444,7 +1444,7 @@
   background: linear-gradient(180deg, #3182ce 0%, #63b3ed 100%);
 }
 
-/* Sección derecha con llamada a la acción */
+/* SecciÃ³n derecha con llamada a la acciÃ³n */
 .anuncio-criminalistica-content-right {
   background: linear-gradient(135deg, #2d5a87 0%, #3182ce 100%);
   padding: 3rem 2.5rem;
@@ -1456,7 +1456,7 @@
   position: relative;
 }
 
-/* Logo circular en la card de criminalística - REDISEÑADO */
+/* Logo circular en la card de criminalÃ­stica - REDISEÃ‘ADO */
 .anuncio-logo-circle-criminalistica {
   width: 100px;
   height: 100px;
@@ -1471,7 +1471,7 @@
   border: 3px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Imagen del logo en criminalística */
+/* Imagen del logo en criminalÃ­stica */
 .anuncio-logo-img-criminalistica {
   width: 60px;
   height: 60px;
@@ -1480,7 +1480,7 @@
   filter: brightness(1.1) contrast(1.1);
 }
 
-/* Título de criminalística - REDISEÑADO */
+/* TÃ­tulo de criminalÃ­stica - REDISEÃ‘ADO */
 .anuncio-titulo-criminalistica {
   color: #1e3a8a;
   font-size: 2.8rem;
@@ -1497,7 +1497,7 @@
   font-size: 1.2em;
 }
 
-/* Subtítulo de criminalística - REDISEÑADO */
+/* SubtÃ­tulo de criminalÃ­stica - REDISEÃ‘ADO */
 .anuncio-subtitulo-criminalistica {
   color: #374151;
   font-size: 1.4rem;
@@ -1506,7 +1506,7 @@
   line-height: 1.3;
 }
 
-/* Descripción adicional */
+/* DescripciÃ³n adicional */
 .anuncio-descripcion-criminalistica {
   color: #718096;
   font-size: 1.1rem;
@@ -1530,7 +1530,7 @@
   align-self: flex-start;
 }
 
-/* Texto de llamada a la acción */
+/* Texto de llamada a la acciÃ³n */
 .anuncio-cta-text {
   color: #ffffff;
   font-size: 1.8rem;
@@ -1540,7 +1540,7 @@
   line-height: 1.2;
 }
 
-/* Duración en la sección derecha */
+/* DuraciÃ³n en la secciÃ³n derecha */
 .anuncio-duracion-criminalistica {
   color: #ffffff;
   font-weight: 600;
@@ -1551,7 +1551,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón de criminalística - REDISEÑADO */
+/* BotÃ³n de criminalÃ­stica - REDISEÃ‘ADO */
 .anuncio-boton-criminalistica {
   background: #ffffff;
   color: #1e3a8a;
@@ -1567,9 +1567,9 @@
   margin: 0;
 }
 
-/* Botón criminalística sin efectos hover */
+/* BotÃ³n criminalÃ­stica sin efectos hover */
 
-/* Teléfono de contacto */
+/* TelÃ©fono de contacto */
 .anuncio-telefono-criminalistica {
   color: #ffffff;
   font-size: 1.8rem;
@@ -1579,7 +1579,7 @@
   letter-spacing: 1px;
 }
 
-/* Responsive para el diseño poster */
+/* Responsive para el diseÃ±o poster */
 @media (max-width: 900px) {
   .anuncio-card-criminalistica {
     min-height: 700px;
@@ -1614,7 +1614,7 @@
     font-size: 1.5rem;
   }
   
-  /* Ajustar formas geométricas para móvil */
+  /* Ajustar formas geomÃ©tricas para mÃ³vil */
   .anuncio-card-criminalistica::before {
     top: -30%;
     right: -20%;
@@ -1690,7 +1690,7 @@
     font-size: 1.5rem;
   }
   
-  /* Formas geométricas más sutiles en móvil */
+  /* Formas geomÃ©tricas mÃ¡s sutiles en mÃ³vil */
   .anuncio-card-criminalistica::before {
     opacity: 0.8;
   }
@@ -1700,7 +1700,7 @@
   }
 }
 
-/* Media query para dispositivos muy pequeños */
+/* Media query para dispositivos muy pequeÃ±os */
 @media (max-width: 380px) {
   .anuncio-card-criminalistica {
     min-height: 600px;
@@ -1729,7 +1729,7 @@
   }
 }
 
-/* ===== PSICOLOGÍA SOCIAL - DISEÑO POSTER ===== */
+/* ===== PSICOLOGÃA SOCIAL - DISEÃ‘O POSTER ===== */
 .anuncio-card-psicologia {
   margin: 3rem 0;
   background-image: var(--bg-image);
@@ -1750,7 +1750,7 @@
   overflow: hidden;
 }
 
-/* Overlay simplificado para Psicología Social */
+/* Overlay simplificado para PsicologÃ­a Social */
 .anuncio-card-psicologia-overlay {
   position: absolute;
   top: 0;
@@ -1761,13 +1761,13 @@
   z-index: 1;
 }
 
-/* Remover las formas geométricas anteriores */
+/* Remover las formas geomÃ©tricas anteriores */
 .anuncio-card-psicologia::before,
 .anuncio-card-psicologia::after {
   display: none;
 }
 
-/* Contenedor interno de la card de psicología */
+/* Contenedor interno de la card de psicologÃ­a */
 .anuncio-card-psicologia-content {
   background: rgba(255, 255, 255, 0.98);
   border-radius: 0;
@@ -1789,7 +1789,7 @@
   min-height: 450px;
 }
 
-/* Sección izquierda con contenido */
+/* SecciÃ³n izquierda con contenido */
 .anuncio-psicologia-content-left {
   padding: 3rem 3rem 3rem 3rem;
   background: #ffffff;
@@ -1810,7 +1810,7 @@
   background: linear-gradient(180deg, #3182ce 0%, #63b3ed 100%);
 }
 
-/* Sección derecha con llamada a la acción */
+/* SecciÃ³n derecha con llamada a la acciÃ³n */
 .anuncio-psicologia-content-right {
   background: linear-gradient(135deg, #2d5a87 0%, #3182ce 100%);
   padding: 3rem 2.5rem;
@@ -1822,7 +1822,7 @@
   position: relative;
 }
 
-/* Logo circular en la card de psicología */
+/* Logo circular en la card de psicologÃ­a */
 .anuncio-logo-circle-psicologia {
   width: 100px;
   height: 100px;
@@ -1837,7 +1837,7 @@
   border: 3px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Imagen del logo en psicología */
+/* Imagen del logo en psicologÃ­a */
 .anuncio-logo-img-psicologia {
   width: 60px;
   height: 60px;
@@ -1846,7 +1846,7 @@
   filter: brightness(1.1) contrast(1.1);
 }
 
-/* Título de psicología */
+/* TÃ­tulo de psicologÃ­a */
 .anuncio-titulo-psicologia {
   color: #1e3a8a;
   font-size: 2.8rem;
@@ -1857,7 +1857,7 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* Subtítulo de psicología */
+/* SubtÃ­tulo de psicologÃ­a */
 .anuncio-subtitulo-psicologia {
   color: #374151;
   font-size: 1.4rem;
@@ -1866,7 +1866,7 @@
   line-height: 1.3;
 }
 
-/* Descripción de psicología */
+/* DescripciÃ³n de psicologÃ­a */
 .anuncio-descripcion-psicologia {
   color: #718096;
   font-size: 1.1rem;
@@ -1875,7 +1875,7 @@
   line-height: 1.5;
 }
 
-/* Modalidad de psicología */
+/* Modalidad de psicologÃ­a */
 .anuncio-modalidad-psicologia {
   background: rgba(49, 130, 206, 0.15);
   color: #2b6cb0;
@@ -1890,7 +1890,7 @@
   align-self: flex-start;
 }
 
-/* Duración en la sección derecha */
+/* DuraciÃ³n en la secciÃ³n derecha */
 .anuncio-duracion-psicologia {
   color: #ffffff;
   font-weight: 600;
@@ -1901,7 +1901,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón de psicología */
+/* BotÃ³n de psicologÃ­a */
 .anuncio-boton-psicologia {
   background: #ffffff;
   color: #1e3a8a;
@@ -1917,9 +1917,9 @@
   margin: 0;
 }
 
-/* Botón psicología sin efectos hover */
+/* BotÃ³n psicologÃ­a sin efectos hover */
 
-/* ===== GRAFOLOGÍA EMOCIONAL - DISEÑO POSTER ===== */
+/* ===== GRAFOLOGÃA EMOCIONAL - DISEÃ‘O POSTER ===== */
 .anuncio-card-grafologia-poster {
   margin: 3rem 0;
   background: linear-gradient(45deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
@@ -1937,7 +1937,7 @@
   overflow: hidden;
 }
 
-/* Formas geométricas hexagonales para grafología - DEFORMADAS E IRREGULARES */
+/* Formas geomÃ©tricas hexagonales para grafologÃ­a - DEFORMADAS E IRREGULARES */
 .anuncio-card-grafologia-poster::before {
   content: '';
   position: absolute;
@@ -2117,9 +2117,9 @@
   margin: 0;
 }
 
-/* Botón grafología sin efectos hover */
+/* BotÃ³n grafologÃ­a sin efectos hover */
 
-/* ===== RESPONSIVE PARA PSICOLOGÍA SOCIAL ===== */
+/* ===== RESPONSIVE PARA PSICOLOGÃA SOCIAL ===== */
 @media (max-width: 900px) {
   .anuncio-card-psicologia {
     min-height: 700px;
@@ -2208,7 +2208,7 @@
   }
 }
 
-/* Media query para dispositivos muy pequeños */
+/* Media query para dispositivos muy pequeÃ±os */
 @media (max-width: 380px) {
   .anuncio-card-psicologia {
     min-height: 600px;
@@ -2237,7 +2237,7 @@
   }
 }
 
-/* ===== RESPONSIVE PARA GRAFOLOGÍA EMOCIONAL ===== */
+/* ===== RESPONSIVE PARA GRAFOLOGÃA EMOCIONAL ===== */
 @media (max-width: 900px) {
   .anuncio-card-grafologia-poster {
     min-height: 700px;
@@ -2272,7 +2272,7 @@
     font-size: 1.5rem;
   }
   
-  /* Ajustar formas geométricas para móvil */
+  /* Ajustar formas geomÃ©tricas para mÃ³vil */
   .anuncio-card-grafologia-poster::before {
     top: -30%;
     right: -20%;
@@ -2349,7 +2349,7 @@
     padding: 0.6rem 1.2rem;
   }
   
-  /* Formas geométricas más sutiles en móvil */
+  /* Formas geomÃ©tricas mÃ¡s sutiles en mÃ³vil */
   .anuncio-card-grafologia-poster::before {
     opacity: 0.8;
   }
@@ -2359,12 +2359,12 @@
   }
 }
 
-/* Background image para grafología */
+/* Background image para grafologÃ­a */
 .anuncio-card-grafologia-img-bg-grafologia {
   background-image: var(--bg-image);
 }
 
-/* ===== ANIMACIONES CRIMINALÍSTICA ===== */
+/* ===== ANIMACIONES CRIMINALÃSTICA ===== */
 @keyframes criminalistica-float-right {
   0%, 100% { 
     transform: skewX(-15deg) translateX(0px); 
@@ -2383,7 +2383,7 @@
   }
 }
 
-/* Estilo para destacar la última palabra en los títulos */
+/* Estilo para destacar la Ãºltima palabra en los tÃ­tulos */
 .titulo-highlight {
   color: #3b82f6; /* Azul consistente con la paleta */
   font-weight: 800;
@@ -2391,525 +2391,55 @@
   letter-spacing: 0.5px;
 }
 
-/* ===== ANUNCIOS CLEAN - DISEÑO LIMPIO Y MODERNO ===== */
-.anuncio-clean {
+/* ===== CARDS PROMOCIONALES ===== */
+.promotional-cards-container {
+  margin: 4rem 0;
+  padding: 0 20px;
+}
+
+.promotional-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.promotional-card {
   position: relative;
-  width: 100%;
-  max-width: 540px;
-  min-height: 600px;
-  border-radius: 32px;
-  padding: 48px 40px;
-  margin: 20px 10px;
+  border-radius: 20px;
+  overflow: hidden;
   box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.05),
     0 10px 20px rgba(0, 0, 0, 0.08),
     0 20px 40px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  flex: 1;
-  
-  /* Imagen de fondo */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
 }
 
-/* Efecto hover - El anuncio crece y los demás se achican */
-.anuncio-clean:hover {
-  flex: 1.5;
-  transform: translateY(0);
+.promotional-card:hover {
+  transform: scale(1.05);
   box-shadow: 
     0 8px 12px rgba(0, 0, 0, 0.08),
-    0 20px 35px rgba(0, 0, 0, 0.12),
-    0 35px 70px rgba(0, 0, 0, 0.18);
-  z-index: 10;
+    0 20px 35px rgba(0, 0, 0, 0.15),
+    0 35px 70px rgba(0, 0, 0, 0.20);
 }
 
-.anuncio-clean:not(:hover) {
-  flex: 0.8;
-  transform: translateY(0);
-}
-
-/* Cuando un anuncio está en hover, los demás se achican */
-.anuncios-list-new:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
-  flex: 0.7;
-  opacity: 0.7;
-  transform: translateY(0);
-}
-
-/* Overlay con efecto glass */
-.clean-glass-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+.promotional-card-image {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(191, 219, 254, 0.68) 0%,
-    rgba(165, 243, 252, 0.70) 25%,
-    rgba(224, 242, 254, 0.68) 50%,
-    rgba(254, 240, 230, 0.66) 75%,
-    rgba(219, 234, 254, 0.68) 100%
-  );
-  backdrop-filter: blur(3.5px) saturate(130%);
-  -webkit-backdrop-filter: blur(3.5px) saturate(130%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Decoraciones circulares simples en las esquinas */
-.clean-circle-decoration {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.clean-circle-decoration.top-right {
-  width: 150px;
-  height: 150px;
-  top: -45px;
-  right: -45px;
-  background: radial-gradient(
-    circle at center,
-    rgba(59, 130, 246, 0.35) 0%,
-    rgba(147, 197, 253, 0.22) 50%,
-    rgba(191, 219, 254, 0.08) 100%
-  );
-  box-shadow: 0 0 50px rgba(59, 130, 246, 0.25);
-}
-
-.clean-circle-decoration.bottom-left {
-  width: 130px;
-  height: 130px;
-  bottom: -40px;
-  left: -40px;
-  background: radial-gradient(
-    circle at center,
-    rgba(249, 115, 22, 0.3) 0%,
-    rgba(251, 146, 60, 0.18) 50%,
-    rgba(254, 215, 170, 0.08) 100%
-  );
-  box-shadow: 0 0 45px rgba(249, 115, 22, 0.2);
-}
-
-/* ===== VARIANTES DE COLOR POR ANUNCIO ===== */
-
-/* GRAFOLOGÍA - Azul Oscuro/Índigo */
-.anuncio-grafologia-clean .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(224, 231, 255, 0.68) 0%,
-    rgba(199, 210, 254, 0.70) 25%,
-    rgba(238, 242, 255, 0.68) 50%,
-    rgba(248, 250, 255, 0.66) 75%,
-    rgba(224, 231, 255, 0.68) 100%
-  );
-}
-
-.anuncio-grafologia-clean:hover .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(224, 231, 255, 0.62) 0%,
-    rgba(199, 210, 254, 0.64) 25%,
-    rgba(238, 242, 255, 0.62) 50%,
-    rgba(248, 250, 255, 0.60) 75%,
-    rgba(224, 231, 255, 0.62) 100%
-  );
-}
-
-.clean-circle-decoration.top-right.grafologia {
-  background: radial-gradient(
-    circle at center,
-    rgba(79, 70, 229, 0.35) 0%,
-    rgba(99, 102, 241, 0.22) 50%,
-    rgba(165, 180, 252, 0.08) 100%
-  );
-  box-shadow: 0 0 50px rgba(79, 70, 229, 0.25);
-}
-
-.clean-circle-decoration.bottom-left.grafologia {
-  background: radial-gradient(
-    circle at center,
-    rgba(67, 56, 202, 0.3) 0%,
-    rgba(109, 40, 217, 0.18) 50%,
-    rgba(196, 181, 253, 0.08) 100%
-  );
-  box-shadow: 0 0 45px rgba(67, 56, 202, 0.2);
-}
-
-.clean-icon-box.grafologia {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-}
-
-.clean-feature-item.grafologia:hover .clean-icon-box {
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
-}
-
-.clean-cta-button.grafologia {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-  box-shadow: 
-    0 8px 24px rgba(79, 70, 229, 0.35),
-    0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.clean-cta-button.grafologia:hover {
-  background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
-  box-shadow: 
-    0 12px 32px rgba(79, 70, 229, 0.45),
-    0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* PSICOLOGÍA - Verde/Teal */
-.anuncio-psicologia-clean .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(209, 250, 229, 0.68) 0%,
-    rgba(204, 251, 241, 0.70) 25%,
-    rgba(224, 252, 245, 0.68) 50%,
-    rgba(240, 253, 250, 0.66) 75%,
-    rgba(209, 250, 229, 0.68) 100%
-  );
-}
-
-.anuncio-psicologia-clean:hover .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(209, 250, 229, 0.62) 0%,
-    rgba(204, 251, 241, 0.64) 25%,
-    rgba(224, 252, 245, 0.62) 50%,
-    rgba(240, 253, 250, 0.60) 75%,
-    rgba(209, 250, 229, 0.62) 100%
-  );
-}
-
-.clean-circle-decoration.top-right.psicologia {
-  background: radial-gradient(
-    circle at center,
-    rgba(16, 185, 129, 0.35) 0%,
-    rgba(52, 211, 153, 0.22) 50%,
-    rgba(167, 243, 208, 0.08) 100%
-  );
-  box-shadow: 0 0 50px rgba(16, 185, 129, 0.25);
-}
-
-.clean-circle-decoration.bottom-left.psicologia {
-  background: radial-gradient(
-    circle at center,
-    rgba(20, 184, 166, 0.3) 0%,
-    rgba(45, 212, 191, 0.18) 50%,
-    rgba(153, 246, 228, 0.08) 100%
-  );
-  box-shadow: 0 0 45px rgba(20, 184, 166, 0.2);
-}
-
-.clean-icon-box.psicologia {
-  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-}
-
-.clean-feature-item.psicologia:hover .clean-icon-box {
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-}
-
-.clean-cta-button.psicologia {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  box-shadow: 
-    0 8px 24px rgba(16, 185, 129, 0.35),
-    0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.clean-cta-button.psicologia:hover {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  box-shadow: 
-    0 12px 32px rgba(16, 185, 129, 0.45),
-    0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* CRIMINALÍSTICA - Azul/Naranja (original) */
-.anuncio-criminalistica-clean .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(191, 219, 254, 0.68) 0%,
-    rgba(165, 243, 252, 0.70) 25%,
-    rgba(224, 242, 254, 0.68) 50%,
-    rgba(254, 240, 230, 0.66) 75%,
-    rgba(219, 234, 254, 0.68) 100%
-  );
-}
-
-.anuncio-criminalistica-clean:hover .clean-glass-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(191, 219, 254, 0.62) 0%,
-    rgba(165, 243, 252, 0.64) 25%,
-    rgba(224, 242, 254, 0.62) 50%,
-    rgba(254, 240, 230, 0.60) 75%,
-    rgba(219, 234, 254, 0.62) 100%
-  );
-}
-
-/* SVG Líneas y puntos decorativos */
-.clean-svg-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-/* Logo esquina */
-.clean-logo-corner {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 3;
-}
-
-.clean-logo-img {
-  width: 85px;
   height: auto;
-  border-radius: 0;
-  padding: 0;
-  background: transparent;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.clean-logo-img:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.2));
-}
-
-.clean-logo-text {
-  display: none;
-}
-
-/* Contenido */
-.clean-content {
-  position: relative;
-  z-index: 3;
-}
-
-.clean-header {
-  margin-bottom: 36px;
-}
-
-.clean-category {
-  font-size: 10px;
-  font-weight: 700;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0 16px 0;
-  opacity: 0.8;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-}
-
-.clean-title {
-  font-size: 40px;
-  font-weight: 900;
-  color: #0f172a;
-  line-height: 1.05;
-  margin: 0 0 20px 0;
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.clean-subtitle {
-  font-size: 16px;
-  color: #475569;
-  font-weight: 500;
-  margin: 0;
-  line-height: 1.6;
-  letter-spacing: 0.2px;
-}
-
-/* Features list */
-.clean-features-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 36px 0;
-}
-
-.clean-feature-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: rgba(248, 250, 252, 0.9);
-  border-radius: 16px;
-  border: 1px solid rgba(226, 232, 240, 0.6);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.clean-feature-item:hover {
-  background: rgba(241, 245, 249, 0.95);
-  border-color: rgba(59, 130, 246, 0.3);
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
-}
-
-.clean-icon-box {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-  transition: all 0.3s ease;
-}
-
-.clean-feature-item:hover .clean-icon-box {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
-}
-
-.clean-feature-item span {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1e293b;
-  letter-spacing: 0.2px;
-}
-
-/* CTA Button */
-.clean-cta-button {
-  width: 100%;
-  padding: 20px 28px;
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-  color: white;
-  border: none;
-  border-radius: 18px;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin: 36px 0 28px 0;
-  box-shadow: 
-    0 8px 24px rgba(249, 115, 22, 0.35),
-    0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-}
-
-.clean-cta-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.clean-cta-button:hover::before {
-  left: 100%;
-}
-
-.clean-cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    0 12px 32px rgba(249, 115, 22, 0.45),
-    0 4px 8px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
-}
-
-.clean-cta-button:active {
-  transform: translateY(-1px);
-}
-
-/* Contacto */
-.clean-contact-section {
-  text-align: center;
-  padding: 20px 0 0 0;
-  border-top: 1px solid rgba(226, 232, 240, 0.5);
-  margin-top: 4px;
-}
-
-.clean-contact-label {
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 600;
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.clean-contact-number {
-  font-size: 26px;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
-  .anuncios-list-new {
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .anuncio-clean {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .anuncio-clean:hover,
-  .anuncio-clean:not(:hover) {
-    flex: 1;
-    opacity: 1;
-  }
-  
-  .anuncios-list-new:has(.anuncio-clean:hover) .anuncio-clean:not(:hover) {
-    flex: 1;
-    opacity: 1;
-  }
-}
-
 @media (max-width: 768px) {
-  .anuncio-clean {
-    padding: 36px 28px;
+  .promotional-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .promotional-card {
     max-width: 100%;
-    margin: 16px 0;
-  }
-  
-  .clean-title {
-    font-size: 32px;
-  }
-  
-  .clean-logo-corner {
-    top: 20px;
-    right: 20px;
-  }
-  
-  .clean-logo-img {
-    width: 70px;
-  }
-  
-  .clean-circle-decoration {
-    opacity: 0.6;
   }
 }
