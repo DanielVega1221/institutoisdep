@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import "./Anuncios.css";
 import CloudinaryAnuncioCard from "../CloudinaryAnuncioCard";
+import OptimizedImage from "../OptimizedImage";
 import { localImages } from "../../utils/localImages";
 
 const anuncioGrafologia = {
@@ -22,6 +23,8 @@ const anuncioCriminalistica = {
   titulo: "Diplomatura en Criminalística",
   duracion: "1 año",
 };
+
+
 
 
 
@@ -101,94 +104,6 @@ const Anuncios = ({ irACursos }) => {
               </div>
             </CloudinaryAnuncioCard>
             
-            {/* ===== ANUNCIO PSICOLOGÍA SOCIAL ===== */}
-            <CloudinaryAnuncioCard
-              backgroundSrc={localImages.anuncios.anuncio2}
-              fallbackSrc={localImages.anuncios.anuncio2}
-              className="anuncio-card-psicologia"
-            >
-              <div className="anuncio-card-psicologia-overlay"></div>
-              <div className="anuncio-card-psicologia-content">
-                <div className="anuncio-psicologia-content-left">
-                  <h3 className="anuncio-titulo-alt-full anuncio-titulo-psicologia">
-                    FORMACIÓN PROFESIONAL EN <span className="titulo-highlight">Psicología Social</span>
-                  </h3>
-                  <h4 className="anuncio-subtitulo-alt-full anuncio-subtitulo-psicologia">
-                    "Comprender las relaciones humanas"
-                  </h4>
-                  <p className="anuncio-descripcion-psicologia">
-                    Especialízate en el análisis del comportamiento humano en contextos sociales. Técnicas avanzadas de intervención comunitaria y psicología aplicada.
-                  </p>
-                  <div className="anuncio-modalidad-psicologia">
-                    • Modalidad online
-                  </div>
-                </div>
-                <div className="anuncio-psicologia-content-right">
-                  <div className="anuncio-logo-circle-psicologia">
-                    <img
-                      src={localImages.icons.logo1}
-                      alt="Logo ISDEP"
-                      className="anuncio-logo-img-psicologia"
-                    />
-                  </div>
-                  <h5 className="anuncio-cta-text">Comienza Tu Carrera</h5>
-                  <div className="anuncio-duracion-alt-full anuncio-duracion-psicologia">
-                    Duración: {anuncioPsicologia.duracion}
-                  </div>
-                  <button
-                    onClick={() => irACursos("Psicólogo Social")}
-                    className="anuncio-boton-psicologia"
-                  >
-                    Inscribite Ahora
-                  </button>
-                </div>
-              </div>
-            </CloudinaryAnuncioCard>
-            
-            {/* ===== ANUNCIO CRIMINALÍSTICA ===== */}
-            <CloudinaryAnuncioCard
-              backgroundSrc={localImages.anuncios.anuncio3}
-              fallbackSrc={localImages.anuncios.anuncio3}
-              className="anuncio-card-criminalistica"
-            >
-              <div className="anuncio-card-criminalistica-overlay"></div>
-              <div className="anuncio-card-criminalistica-content">
-                <div className="anuncio-criminalistica-content-left">
-                  <h3 className="anuncio-titulo-alt-full anuncio-titulo-criminalistica">
-                    CARRERA DE FORMACIÓN PROFESIONAL EN <span className="titulo-highlight">Criminalística</span>
-                  </h3>
-                  <h4 className="anuncio-subtitulo-alt-full anuncio-subtitulo-criminalistica">
-                    Vení y Formate como un Profesional
-                  </h4>
-                  <p className="anuncio-descripcion-criminalistica">
-                    Desarrollá habilidades técnicas y científicas para la
-                    investigación criminal y el análisis forense.
-                  </p>
-                  <div className="anuncio-modalidad-criminalistica">
-                    • Modalidad online
-                  </div>
-                </div>
-                <div className="anuncio-criminalistica-content-right">
-                  <div className="anuncio-logo-circle-criminalistica">
-                    <img
-                      src={localImages.icons.logo1}
-                      alt="Logo ISDEP"
-                      className="anuncio-logo-img-criminalistica"
-                    />
-                  </div>
-                  <h5 className="anuncio-cta-text">Más Información</h5>
-                  <div className="anuncio-duracion-alt-full anuncio-duracion-criminalistica">
-                    Duración: {anuncioCriminalistica.duracion}
-                  </div>
-                  <button
-                    onClick={() => irACursos("Diplomatura en Criminalística")}
-                    className="anuncio-boton-criminalistica"
-                  >
-                    Inscribite Ahora
-                  </button>
-                </div>
-              </div>
-            </CloudinaryAnuncioCard>
           </div>
           
           {/* ===== CARDS PROMOCIONALES ===== */}
@@ -196,8 +111,8 @@ const Anuncios = ({ irACursos }) => {
             <div className="promotional-cards-grid">
               {/* Card Psicología Social */}
               <div className="promotional-card">
-                <img 
-                  src="/images/psicologiasocial.jpg" 
+                <OptimizedImage 
+                  imageName="psicologiasocial"
                   alt="Formación Profesional en Psicología Social" 
                   className="promotional-card-image"
                 />
@@ -205,9 +120,54 @@ const Anuncios = ({ irACursos }) => {
               
               {/* Card Criminalística */}
               <div className="promotional-card">
-                <img 
-                  src="/images/criminalistica.jpg" 
+                <OptimizedImage 
+                  imageName="criminalistica"
                   alt="Carrera de Formación Profesional en Criminalística" 
+                  className="promotional-card-image"
+                />
+              </div>
+
+              {/* Card Detección de Falsificación */}
+              <div className="promotional-card">
+                <OptimizedImage 
+                  imageName="detecciondefalsificacion"
+                  alt="Capacitación Profesional en Detección de Falsificación de Firmas" 
+                  className="promotional-card-image"
+                />
+              </div>
+
+              {/* Card Grafología Emocional */}
+              <div className="promotional-card">
+                <OptimizedImage 
+                  imageName="grafologiaemocional"
+                  alt="Capacitación Profesional en Grafología Emocional" 
+                  className="promotional-card-image"
+                />
+              </div>
+
+              {/* Card Seminario Grafología Emocional (Kurt) */}
+              <div className="promotional-card">
+                <OptimizedImage 
+                  imageName="grafologiaemocionalkurt"
+                  alt="Seminario Profesional en Grafología Emocional - Teoría de Kurt A. Honroth" 
+                  className="promotional-card-image"
+                />
+              </div>
+
+              {/* Card Psicografología */}
+              <div className="promotional-card">
+                <OptimizedImage 
+                  imageName="psicografologia"
+                  alt="Formación Profesional en Psicografología" 
+                  className="promotional-card-image"
+                />
+              </div>
+
+              {/* Card Tecnografía Pericial */}
+              <div className="promotional-card">
+                <OptimizedImage 
+                  imageName="tecnografiapericial"
+                  alt="Diplomatura Superior en Tecnografía Pericial Forense Área Grafológica" 
                   className="promotional-card-image"
                 />
               </div>

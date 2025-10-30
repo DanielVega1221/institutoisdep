@@ -13,7 +13,21 @@ const Footer = () => (
         <div className="footer-info">Teléfono fijo: 469 0044</div>
         <div className="footer-info">Mar del Plata, Buenos Aires</div>
         <div className="footer-info">Argentina</div>
-        <div className="footer-info">Inscripto bajo Ley 13.046, Artículo 2, Inciso C</div>
+        <div className="footer-info">Inscripto bajo Ley 13.047, Artículo 2, Inc. C. Registro:  4297</div>
+        
+        {/* Sección de certificaciones */}
+        <div className="footer-certifications">
+          <div className="footer-cert-title">Certificación y Calidad</div>
+          <div className="footer-cert-item">
+            <strong>Validez Nacional:</strong> Certificación avalada por la Cámara Argentina para la formación profesional y capacitación laboral
+          </div>
+          <div className="footer-cert-item">
+            <strong>Resolución IGJ N° 2517/17:</strong> Certificaciones y diplomas avalados por la Cámara argentina para la formación profesional y capacitación laboral
+          </div>
+          <div className="footer-cert-item">
+            <strong>ISO 9001:2015:</strong> Certificamos calidad bajo la norma ISO (reconocimiento internacional)
+          </div>
+        </div>
       </div>
       {/* Columna central: Call to action */}
       <div className="footer-col footer-col-center">

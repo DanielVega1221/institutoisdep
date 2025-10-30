@@ -1,63 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { getOptimizedImage } from '../utils/optimizedImages.js';
 
+/**
+ * Componente para mostrar imágenes optimizadas con fallback automático
+ * @param {string} imageName - Nombre de la imagen (sin extensión)
+ * @param {string} alt - Texto alternativo
+ * @param {string} className - Clases CSS
+ * @param {object} style - Estilos inline
+ * @param {boolean} useWebP - Si usar WebP cuando esté disponible (default: true)
+ */
 const OptimizedImage = ({ 
-  src, 
-  webpSrc, 
+  imageName, 
   alt, 
   className = '', 
-  style = {},
-  onLoad,
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjY2NjIi8+PC9zdmc+'
+  style = {}, 
+  useWebP = true,
+  ...props 
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
-  const handleLoad = () => {
-    setIsLoaded(true);
-    if (onLoad) onLoad();
-  };
-
-  const handleError = () => {
-    setHasError(true);
-  };
-
+  const imageConfig = getOptimizedImage(imageName);
+  
+  if (!imageConfig) {
+    console.warn(`Imagen optimizada no encontrada: ${imageName}`);
+    return <div className="image-placeholder">Imagen no encontrada</div>;
+  }
+  
   return (
-    <>
-      {/* Placeholder mientras carga */}
-      {!isLoaded && !hasError && (
-        <div 
-          className={`${className} image-placeholder`}
-          style={{
-            ...style,
-            backgroundImage: `url(${placeholder})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'blur(2px)',
-            transition: 'opacity 0.3s ease'
-          }}
-        />
+    <picture>
+      {/* WebP para navegadores compatibles */}
+      {useWebP && imageConfig.webp && (
+        <source srcSet={imageConfig.webp} type="image/webp" />
       )}
       
-      {/* Imagen optimizada con soporte WebP */}
-      <picture style={{ display: isLoaded ? 'block' : 'none' }}>
-        {webpSrc && (
-          <source srcSet={webpSrc} type="image/webp" />
-        )}
-        <img
-          src={src}
-          alt={alt}
-          className={className}
-          style={{
-            ...style,
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.3s ease'
-          }}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading="lazy"
-        />
-      </picture>
-    </>
+      {/* Fallback para navegadores antiguos */}
+      <img 
+        src={imageConfig.fallback || imageConfig.webp}
+        alt={alt}
+        className={className}
+        style={style}
+        loading="lazy"
+        {...props}
+      />
+    </picture>
   );
 };
 

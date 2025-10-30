@@ -1,7 +1,5 @@
 import React from 'react';
 import './EquipoDocente.css';
-import CloudinaryImage from '../CloudinaryImage';
-import { localImages } from '../../utils/localImages';
 
 const EquipoDocente = () => {
   const docentes = [
@@ -10,54 +8,42 @@ const EquipoDocente = () => {
       nombre: "Dr. María Elena Rodríguez",
       titulo: "Doctora en Psicología Clínica",
       especialidad: "Especialista en Terapia Cognitivo-Conductual",
-      experiencia: "15 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: localImages.people.profesorGirl
+      experiencia: "15 años de experiencia"
     },
     {
       id: 2,
       nombre: "Lic. Carlos Alberto Mendez",
       titulo: "Licenciado en Grafología",
       especialidad: "Perito Calígrafo Judicial",
-      experiencia: "12 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: localImages.people.profesor
+      experiencia: "12 años de experiencia"
     },
     {
       id: 3,
       nombre: "Dra. Ana Patricia Silva",
       titulo: "Doctora en Educación",
       especialidad: "Especialista en Metodología de la Enseñanza",
-      experiencia: "20 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: localImages.people.profesorGirl
+      experiencia: "20 años de experiencia"
     },
     {
       id: 4,
       nombre: "Prof. Roberto Ariel Vera",
       titulo: "Profesor en Artes Visuales",
       especialidad: "Ilustración y Diseño Gráfico",
-      experiencia: "8 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: localImages.people.profesor
+      experiencia: "8 años de experiencia"
     },
     {
       id: 5,
       nombre: "Lic. Sofía Beatriz Morales",
       titulo: "Licenciada en Musicoterapia",
       especialidad: "Terapia Musical para Adultos Mayores",
-      experiencia: "10 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor-girl",
-      fallbackImage: localImages.people.profesorGirl
+      experiencia: "10 años de experiencia"
     },
     {
       id: 6,
       nombre: "Dr. Alejandro José Fernández",
       titulo: "Doctor en Psicología Educacional",
       especialidad: "Evaluación y Diagnóstico Psicopedagógico",
-      experiencia: "18 años de experiencia",
-      cloudinaryId: "instituto-isdep/profesores/profesor",
-      fallbackImage: localImages.people.profesor
+      experiencia: "18 años de experiencia"
     }
   ];
 
@@ -76,16 +62,6 @@ const EquipoDocente = () => {
             <div className="docentes-grid">
               {docentes.map((docente) => (
                 <div key={docente.id} className="docente-card">
-                  <div className="docente-image-container">
-                    <CloudinaryImage
-                      src={docente.fallbackImage}
-                      fallbackSrc={docente.fallbackImage}
-                      alt={docente.nombre}
-                      className="docente-image"
-                    />
-                    <div className="image-overlay"></div>
-                  </div>
-                  
                   <div className="docente-info">
                     <div className="info-content">
                       <div className="info-header">

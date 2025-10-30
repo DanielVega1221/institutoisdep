@@ -17,6 +17,7 @@ const cursosData = [
     tipo: "Carrera Terciaria",
     duracion: "2 años",
     modalidad: "Presencial",
+    inicia: "Marzo",
     miniIntro: "Formate como perito en psicografología científica con validez nacional.",
     descripcion: "Carrera oficial de formación profesional en psicografología científica. Desarrollarás competencias para el análisis grafológico en ámbitos clínicos, educativos, laborales y forenses con metodología científica rigurosa.",
     items: [
@@ -41,6 +42,7 @@ const cursosData = [
     tipo: "Seminario Profesional",
     duracion: "2 meses",
     modalidad: "Intensivo",
+    inicia: "Abril",
     miniIntro: "Seminario especializado en análisis emocional a través de la escritura manuscrita.",
     descripcion: "Seminario profesional que aborda el análisis de aspectos emocionales y psicológicos revelados en la escritura. Técnicas avanzadas para interpretar estados emocionales, patrones conductuales y rasgos de personalidad.",
     items: [
@@ -66,6 +68,7 @@ const cursosData = [
     tipo: "Carrera Universitaria",
     duracion: "3 años",
     modalidad: "Online con prácticas presenciales",
+    inicia: "Marzo",
     miniIntro: "Carrera universitaria para intervenir profesionalmente en salud, educación, comunidad y organizaciones.",
     descripcion: "Carrera universitaria que forma profesionales capacitados para comprender e intervenir en fenómenos psicosociales. Aborda conformidad, persuasión, discriminación, agresión, relaciones intergrupales y dinámicas comunitarias con enfoque científico y ético.",
     items: [
@@ -157,6 +160,7 @@ const cursosData = [
     tipo: "Diplomatura Superior",
     duracion: "12 meses",
     modalidad: "Semi-presencial",
+    inicia: "Abril",
     miniIntro: "Diplomatura superior en investigación científica del delito y análisis forense.",
     descripcion: "Formación integral en criminalística moderna que integra conocimientos científicos para la investigación del delito. Abarca desde técnicas de laboratorio hasta perfilación criminal y análisis de evidencias con tecnología de vanguardia.",
     items: [
@@ -184,6 +188,7 @@ const cursosData = [
     tipo: "Seminario Especializado",
     duracion: "4 meses",
     modalidad: "Semi-presencial",
+    inicia: "Junio",
     miniIntro: "Seminario profesional para la detección temprana y abordaje del abuso sexual infantil.",
     descripcion: "Seminario especializado que capacita profesionales en la detección, evaluación e intervención en casos de abuso sexual infantil. Enfoque multidisciplinario con herramientas de diagnóstico y protocolos de actuación.",
     items: [
@@ -211,6 +216,7 @@ const cursosData = [
     tipo: "Curso de Especialización",
     duracion: "4 meses",
     modalidad: "Online",
+    inicia: "Mayo",
     miniIntro: "Especialización en la intersección entre psicología social y investigación criminal.",
     descripcion: "Curso avanzado que integra conocimientos de psicología social con técnicas criminalísticas. Analiza comportamientos grupales en contextos delictivos y desarrolla estrategias de intervención psicosocial en el ámbito forense.",
     items: [
@@ -237,6 +243,7 @@ const cursosData = [
     tipo: "Posgrado Especializado",
     duracion: "6 meses",
     modalidad: "Presencial intensivo",
+    inicia: "Abril",
     miniIntro: "Posgrado especializado en tecnología aplicada al análisis pericial grafológico.",
     descripcion: "Formación avanzada en el uso de tecnología de última generación para peritajes grafológicos. Combina métodos tradicionales con análisis digital, microscopia forense y software especializado para dictámenes periciales de máxima precisión.",
     items: [
@@ -264,6 +271,7 @@ const cursosData = [
     tipo: "Curso Técnico",
     duracion: "3 meses",
     modalidad: "Semi-presencial",
+    inicia: "Mayo",
     miniIntro: "Curso técnico especializado en autenticación y análisis forense de firmas y rúbricas.",
     descripcion: "Formación técnica especializada en el análisis científico de firmas manuscritas y rúbricas. Desarrolla competencias para la detección de falsificaciones, análisis de autenticidad y peritajes documentales con metodología forense rigurosa.",
     items: [
@@ -291,6 +299,7 @@ const cursosData = [
     tipo: "Capacitación Oficial",
     duracion: "2 meses",
     modalidad: "Presencial",
+    inicia: "Agosto",
     miniIntro: "Capacitación oficial para asistencia emocional inmediata en situaciones de emergencia y crisis.",
     descripcion: "Formación especializada para brindar contención y asistencia psicológica inmediata en situaciones de crisis, emergencias y catástrofes. Desarrolla competencias para la estabilización emocional y derivación apropiada.",
     items: [
@@ -318,6 +327,7 @@ const cursosData = [
     tipo: "Curso Especializado",
     duracion: "6 meses",
     modalidad: "Semi-presencial",
+    inicia: "Abril",
     miniIntro: "Especialización en construcción de perfiles psicológicos delictivos y análisis conductual.",
     descripcion: "Formación avanzada en criminal profiling que combina criminología, psicología forense y análisis conductual. Desarrolla competencias para construir perfiles delictivos, analizar escenas del crimen y asistir en investigaciones judiciales.",
     items: [
@@ -345,6 +355,7 @@ const cursosData = [
     tipo: "Curso Profesional",
     duracion: "9 meses",
     modalidad: "Presencial",
+    inicia: "Marzo",
     miniIntro: "Especialización en análisis forense de manuscritos y peritajes documentales judiciales.",
     descripcion: "Formación profesional especializada en grafología aplicada al ámbito forense. Capacita para realizar peritajes documentales, análisis de autenticidad y dictámenes judiciales con validez legal y metodología científica reconocida.",
     items: [
@@ -372,6 +383,7 @@ const cursosData = [
     tipo: "Curso Proyectivo",
     duracion: "4 meses",
     modalidad: "Presencial",
+    inicia: "Mayo",
     miniIntro: "Especialización en interpretación psicológica del dibujo infantil, adolescente y adulto.",
     descripcion: "Formación especializada en el análisis e interpretación de dibujos como herramienta proyectiva en evaluación psicológica. Aborda técnicas diagnósticas, terapéuticas y forenses aplicadas a diferentes grupos etarios.",
     items: [
@@ -387,6 +399,179 @@ const cursosData = [
     requisitos: "Formación en psicología o áreas afines",
     salida_laboral: "Consultorios psicológicos, escuelas, hospitales, peritajes",
     extra: "Material didáctico especializado y casos clínicos supervisados incluidos"
+  },
+  // NUEVOS CURSOS
+  {
+    id: 13,
+    emoji: "🎓",
+    categoria: "CARRERA DE",
+    titulo: "Formación Profesional en Psicografología",
+    subtitulo: "Carrera Profesional en Análisis Psicografológico",
+    tituloAdquirido: "Psicografólogo Profesional",
+    tipo: "Carrera Profesional",
+    duracion: "18 meses",
+    modalidad: "Presencial",
+    inicia: "Marzo",
+    estado: "disponible",
+    miniIntro: "Formación integral en psicografología moderna con enfoque científico y aplicación práctica.",
+    descripcion: "Carrera profesional que forma especialistas en análisis psicografológico aplicando metodologías científicas actualizadas. Combina teoría psicológica con técnicas grafológicas avanzadas para el análisis de personalidad y comportamiento humano a través de la escritura manuscrita.",
+    items: [
+      "Fundamentos neuropsicológicos de la escritura",
+      "Técnicas de análisis grafológico moderno",
+      "Interpretación psicológica avanzada",
+      "Metodología científica aplicada",
+      "Análisis de casos clínicos reales",
+      "Herramientas digitales especializadas",
+      "Ética profesional en psicografología",
+      "Elaboración de informes técnicos"
+    ],
+    requisitos: "Título secundario completo. Preferible formación en psicología o ciencias sociales",
+    salida_laboral: "Consultoría empresarial, orientación vocacional, peritajes judiciales, clínica privada",
+    extra: "Certificación con validez nacional. Convenios con instituciones de salud mental y empresas"
+  },
+  {
+    id: 14,
+    emoji: "👥",
+    categoria: "CARRERA DE",
+    titulo: "Formación Profesional en Psicología Social",
+    subtitulo: "Carrera Profesional en Intervención Psicosocial",
+    tituloAdquirido: "Técnico en Psicología Social",
+    tipo: "Carrera Profesional",
+    duracion: "2 años",
+    modalidad: "Semi-presencial",
+    inicia: "Marzo",
+    estado: "disponible",
+    miniIntro: "Formación profesional en intervención psicosocial y trabajo comunitario con metodología grupal.",
+    descripcion: "Carrera que prepara profesionales especializados en dinámicas grupales, intervención comunitaria y procesos psicosociales. Desarrolla competencias para el trabajo en equipos interdisciplinarios y la promoción de salud mental comunitaria.",
+    items: [
+      "Teorías de la psicología social moderna",
+      "Técnicas de intervención grupal",
+      "Metodología de trabajo comunitario",
+      "Dinámicas de grupo operativo",
+      "Prevención en salud mental",
+      "Técnicas de coordinación de equipos",
+      "Investigación social aplicada",
+      "Prácticas profesionales supervisadas"
+    ],
+    requisitos: "Título secundario completo",
+    salida_laboral: "Centros de salud, organizaciones comunitarias, empresas, municipios, ONGs",
+    extra: "Prácticas en instituciones públicas y privadas. Metodología basada en Pichón-Rivière"
+  },
+  {
+    id: 15,
+    emoji: "🔍",
+    categoria: "CURSO DE",
+    titulo: "Detección en Falsificación de Firmas",
+    subtitulo: "Especialización en Análisis Documentoscópico",
+    tituloAdquirido: "Especialista en Detección de Falsificaciones",
+    tipo: "Curso Especializado",
+    duracion: "3 meses",
+    modalidad: "Presencial intensivo",
+    inicia: "Abril",
+    estado: "disponible",
+    miniIntro: "Curso especializado en técnicas científicas para detectar falsificaciones documentales y de firmas.",
+    descripcion: "Formación técnica especializada en métodos científicos para la detección de falsificaciones en documentos y firmas. Utiliza tecnología de vanguardia y metodologías forenses reconocidas internacionalmente para el análisis documentoscópico.",
+    items: [
+      "Técnicas de análisis microscópico",
+      "Identificación de tintas y papeles",
+      "Métodos de comparación grafológica",
+      "Uso de luz infrarroja y ultravioleta",
+      "Software especializado en análisis",
+      "Elaboración de informes periciales",
+      "Legislación en documentoscopía",
+      "Casos prácticos de laboratorio"
+    ],
+    requisitos: "Formación en grafología, criminalística o áreas afines",
+    salida_laboral: "Perito judicial, consultor bancario, investigador privado, asesor notarial",
+    extra: "Laboratorio equipado con tecnología europea. Certificación reconocida por el Poder Judicial"
+  },
+  {
+    id: 16,
+    emoji: "💭",
+    categoria: "CAPACITACIÓN EN",
+    titulo: "Capacitación Profesional en Grafología Emocional",
+    subtitulo: "Especialización en Análisis Emocional Grafológico",
+    tituloAdquirido: "Especialista en Grafología Emocional",
+    tipo: "Capacitación Profesional",
+    duracion: "4 meses",
+    modalidad: "Semi-presencial",
+    inicia: "Marzo",
+    estado: "disponible",
+    miniIntro: "Capacitación avanzada en interpretación de estados emocionales a través del análisis grafológico.",
+    descripcion: "Programa de capacitación que profundiza en el análisis de aspectos emocionales revelados en la escritura manuscrita. Integra conocimientos de psicología emocional con técnicas grafológicas especializadas para la evaluación de estados afectivos y patrones emocionales.",
+    items: [
+      "Neurociencia de las emociones en la escritura",
+      "Indicadores grafológicos de estados afectivos",
+      "Análisis de presión y velocidad emocional",
+      "Detección de estrés y ansiedad en el grafismo",
+      "Técnicas de Honroth actualizadas",
+      "Interpretación de cambios emocionales",
+      "Aplicación terapéutica y clínica",
+      "Protocolos de evaluación emocional"
+    ],
+    requisitos: "Formación básica en grafología o psicología",
+    salida_laboral: "Consultoría emocional, centros de salud mental, orientación vocacional, coaching",
+    extra: "Incluye kit de materiales de análisis y acceso a biblioteca digital especializada"
+  },
+  {
+    id: 17,
+    emoji: "🔬",
+    categoria: "DIPLOMATURA EN",
+    titulo: "Diplomatura Profesional en Criminalística",
+    subtitulo: "Formación Integral en Ciencias Forenses",
+    tituloAdquirido: "Técnico en Criminalística",
+    tipo: "Diplomatura Profesional",
+    duracion: "15 meses",
+    modalidad: "Presencial",
+    inicia: "Abril",
+    estado: "disponible",
+    miniIntro: "Diplomatura integral en ciencias forenses con formación práctica en laboratorio especializado.",
+    descripcion: "Formación completa en criminalística que abarca todas las áreas de las ciencias forenses modernas. Incluye formación teórica sólida y práctica intensiva en laboratorio equipado con tecnología de última generación para la investigación científica del delito.",
+    items: [
+      "Balística forense y armamentos",
+      "Dactiloscopía y lofoscopía",
+      "Química forense y toxicología",
+      "Fotografía y planimetría forense",
+      "Genética forense y ADN",
+      "Accidentología vial",
+      "Incendios y explosivos",
+      "Antropología forense",
+      "Entomología forense",
+      "Informática forense básica"
+    ],
+    requisitos: "Título secundario completo. Preferible formación técnica o universitaria",
+    salida_laboral: "Policía científica, poder judicial, consultorías forenses, investigación privada",
+    extra: "Laboratorio forense completo. Convenios con fuerzas de seguridad nacionales e internacionales"
+  },
+  {
+    id: 18,
+    emoji: "⚖️",
+    categoria: "DIPLOMATURA EN",
+    titulo: "Diplomatura Superior en Tecnografía Pericial Forense Área Grafológica",
+    subtitulo: "Especialización Superior en Peritajes Tecnográficos",
+    tituloAdquirido: "Perito Superior en Tecnografía Forense",
+    tipo: "Diplomatura Superior",
+    duracion: "12 meses",
+    modalidad: "Presencial intensivo",
+    inicia: "Abril",
+    estado: "disponible",
+    miniIntro: "Diplomatura superior en tecnología aplicada a peritajes grafológicos con metodología forense avanzada.",
+    descripcion: "Formación de élite en tecnografía pericial forense que combina las técnicas grafológicas tradicionales con la más alta tecnología disponible. Dirigida a profesionales que buscan especialización en peritajes de máxima complejidad y precisión científica.",
+    items: [
+      "Microscopia electrónica aplicada",
+      "Espectroscopia infrarroja FTIR",
+      "Análisis cromatográfico de tintas",
+      "Datación científica de documentos",
+      "Software forense especializado",
+      "Técnicas de revelado químico",
+      "Análisis de soportes y adhesivos",
+      "Metodología VSC (Video Spectral Comparator)",
+      "Documentos de seguridad y billetes",
+      "Presentación pericial en tribunales"
+    ],
+    requisitos: "Título universitario o terciario en grafología, criminalística o áreas afines",
+    salida_laboral: "Perito de máximo nivel, consultor internacional, investigador forense senior",
+    extra: "Laboratorio con tecnología europea de última generación. Certificación internacional disponible"
   }
 ];
 
@@ -650,6 +835,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                           {curso.tipo}
                         </span>
                         <span className="duracion-badge-simple">{curso.duracion}</span>
+                        <span className="inicia-badge-simple">Inicia: {curso.inicia}</span>
                         <span className={`estado-badge-simple ${curso.estado === 'disponible' ? 'estado-disponible' : 'estado-no-disponible'}`}>{curso.estado === 'disponible' ? 'Disponible' : 'No disponible'}</span>
                       </div>
 

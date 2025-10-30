@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "generated": "2025-10-30T00:28:10.277Z",
+    "description": "Mapeo de imágenes optimizadas - Instituto ISDEP",
+    "totalWebpFiles": 7,
+    "optimization": {
+      "format": "WebP",
+      "averageReduction": "92.4%",
+      "totalSpaceSaved": "6.70MB"
+    }
+  },
+  "images": {
+    "criminalistica": {
+      "webp": "/images/criminalistica.webp",
+      "size": "116.95KB",
+      "fallback": "/images/criminalistica.jpg"
+    },
+    "detecciondefalsificacion": {
+      "webp": "/images/detecciondefalsificacion.webp",
+      "size": "49.07KB",
+      "fallback": "/images/detecciondefalsificacion.png"
+    },
+    "grafologiaemocional": {
+      "webp": "/images/grafologiaemocional.webp",
+      "size": "48.99KB",
+      "fallback": "/images/grafologiaemocional.png"
+    },
+    "grafologiaemocionalkurt": {
+      "webp": "/images/grafologiaemocionalkurt.webp",
+      "size": "39.22KB",
+      "fallback": "/images/grafologiaemocionalkurt.png"
+    },
+    "psicografologia": {
+      "webp": "/images/psicografologia.webp",
+      "size": "52.45KB",
+      "fallback": "/images/psicografologia.png"
+    },
+    "psicologiasocial": {
+      "webp": "/images/psicologiasocial.webp",
+      "size": "111.71KB",
+      "fallback": "/images/psicologiasocial.jpg"
+    },
+    "tecnografiapericial": {
+      "webp": "/images/tecnografiapericial.webp",
+      "size": "51.70KB",
+      "fallback": "/images/tecnografiapericial.png"
+    }
+  }
+}

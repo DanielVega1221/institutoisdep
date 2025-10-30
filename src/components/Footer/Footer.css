@@ -44,6 +44,32 @@
   opacity: 0.85;
 }
 
+/* Estilos para certificaciones */
+.footer-certifications {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #d1d5db;
+}
+
+.footer-cert-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0B1F3A;
+  margin-bottom: 12px;
+}
+
+.footer-cert-item {
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.footer-cert-item strong {
+  color: #0B1F3A;
+  font-weight: 600;
+}
+
 .footer-cta-title {
   font-size: 1.18rem;
   font-weight: 700;

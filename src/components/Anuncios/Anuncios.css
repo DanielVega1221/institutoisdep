@@ -2399,9 +2399,9 @@
 
 .promotional-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -2415,6 +2415,8 @@
     0 20px 40px rgba(0, 0, 0, 0.12);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: #ffffff;
+  cursor: pointer;
+  min-height: 250px;
 }
 
 .promotional-card:hover {
@@ -2425,11 +2427,55 @@
     0 35px 70px rgba(0, 0, 0, 0.20);
 }
 
+.promotional-card:hover .promotional-card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .promotional-card-image {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.4s ease;
+  min-height: 250px;
+  object-fit: cover;
+}
+
+.promotional-card:hover .promotional-card-image {
+  transform: scale(1.1);
+}
+
+.promotional-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30, 58, 95, 0.95) 0%,
+    rgba(30, 58, 95, 0.8) 70%,
+    transparent 100%
+  );
+  color: white;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.promotional-card-overlay h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.promotional-card-overlay p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #e2e8f0;
+  font-weight: 500;
 }
 
 /* Responsive */
