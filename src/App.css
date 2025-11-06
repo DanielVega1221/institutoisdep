@@ -58,136 +58,101 @@ body {
 
 /* Overlay animación inicio */
 .intro-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #789bc4; /* azul sobrio pastel */
-  transition: background 1.2s cubic-bezier(.4,0,.2,1), opacity 0.7s cubic-bezier(.4,0,.2,1);
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
   opacity: 1;
   overflow: hidden;
-  z-index: 99999;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.intro-overlay.intro-bg-professional {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
 }
 
 .intro-overlay.intro-fadeout {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
 }
 
-.intro-bg-initial {
-  background: #789bc4; /* azul sobrio pastel */
-}
-
-.intro-bg-second {
-  background: #D7E3F4;
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .intro-logo-wrapper {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 28px auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.intro-logo-shadow {
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-  margin: auto;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  z-index: 0;
-  filter: blur(32px);
-  opacity: 0.55;
-  transition: background 1.2s;
-  pointer-events: none;
-}
-
-.intro-logo-shadow.initial {
-  background: var(--color-blanco);
-}
-
-.intro-logo-shadow.second {
-  background: var(--color-gris-celeste);
-}
-
-.intro-ilustracion {
-  width: 180px;
-  max-width: 50vw;
-  height: 180px;
+.intro-logo {
+  width: 400px;
+  max-width: 80vw;
+  height: auto;
   object-fit: contain;
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-  margin: auto;
   opacity: 0;
-  filter: none;
-  transition: opacity 0.7s, filter 1.2s;
-  pointer-events: none;
-  z-index: 1;
+  transform: scale(0.9);
+  transition: opacity 1s cubic-bezier(.4,0,.2,1), transform 1s cubic-bezier(.4,0,.2,1);
 }
 
-.intro-ilustracion.visible {
+.intro-logo.visible {
   opacity: 1;
+  transform: scale(1);
 }
 
-.logo-fadein {
-  animation: logoFadeIn 0.8s cubic-bezier(.4,0,.2,1) forwards;
+@media (max-width: 768px) {
+  .intro-logo {
+    width: 300px;
+  }
 }
 
-.logo-fadeout {
-  animation: logoFadeOut 0.8s cubic-bezier(.4,0,.2,1) forwards;
+@media (max-width: 480px) {
+  .intro-logo {
+    width: 250px;
+  }
 }
 
-@keyframes logoFadeIn {
-  0% { opacity: 0; transform: scale(0.92);}
-  100% { opacity: 1; transform: scale(1);}
-}
-
-@keyframes logoFadeOut {
-  0% { opacity: 1; transform: scale(1);}
-  100% { opacity: 0; transform: scale(1.08);}
-}
-
-.intro-phrase {
+.intro-phrase-single {
   opacity: 0;
-  pointer-events: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: 'Merriweather', serif;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  margin-bottom: 2.1rem;
-  min-height: 2.5em;
-  width: 100%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  letter-spacing: 0.02em;
   text-align: center;
-  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), color 1.2s;
-  animation: none;
-  color: #0F2A4E; /* Contraste fuerte para fondo claro y pastel */
-  text-shadow: none;
+  color: #003366;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(.4,0,.2,1), transform 1s cubic-bezier(.4,0,.2,1);
+  max-width: 90vw;
 }
 
-.intro-phrase.active {
+.intro-phrase-single.active {
   opacity: 1;
-  pointer-events: auto;
-  animation: introTextAppear 1s;
+  transform: translateY(0);
 }
 
-.intro-phrase.aurora-text {
-  color: #0F2A4E; /* Contraste fuerte para fondo celeste pastel */
-  /* Nueva sombra sutil, más elegante y legible */
-  text-shadow: 0 2px 8px #b0c4d9, 0 1px 2px #fff;
-  transition: color 1.2s, text-shadow 1.2s;
+@media (max-width: 768px) {
+  .intro-phrase-single {
+    font-size: 1.5rem;
+  }
 }
 
-@keyframes introTextAppear {
-  0% { opacity: 0; transform: translateY(24px);}
-  100% { opacity: 1; transform: translateY(0);}
+@media (max-width: 480px) {
+  .intro-phrase-single {
+    font-size: 1.2rem;
+  }
 }
 
 .intro-main-text,

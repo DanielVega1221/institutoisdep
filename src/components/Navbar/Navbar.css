@@ -107,6 +107,14 @@
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+}
+
+.navbar-logo:hover {
+  background: rgba(26, 34, 127, 0.05);
+  transform: translateY(-2px);
 }
 
 .navbar-logo img {
@@ -116,7 +124,7 @@
   transition: transform 0.3s ease;
 }
 
-.navbar-logo img:hover {
+.navbar-logo:hover img {
   transform: scale(1.05);
 }
 
@@ -205,6 +213,14 @@
   flex-direction: row;
   align-items: center;
   gap: 0.8rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+}
+
+.overlay-logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .overlay-logo img {
@@ -212,6 +228,11 @@
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.overlay-logo:hover img {
+  transform: scale(1.05);
 }
 
 /* Subtítulo en overlay (desktop) */

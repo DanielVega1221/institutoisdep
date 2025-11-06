@@ -1,31 +1,61 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { localImages } from "../../utils/localImages";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Equipo docente" },
-  { label: "Anuncios" },
-  { label: "Cursos" },
-  { label: "Contacto" },
+  { label: "Nuestra Institución", route: "/nuestra-institucion" },
+  { label: "Equipo docente", route: "/", section: "equipo-docente" },
+  { label: "Anuncios", route: "/", section: "anuncios" },
+  { label: "Contacto", route: "/", section: "contacto" },
 ];
 
-const Navbar = ({ handleNav }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleToggle = () => setMenuOpen(!menuOpen);
   const handleClose = () => setMenuOpen(false);
 
-  const handleNavClick = (label) => {
+  const handleLogoClick = () => {
     setMenuOpen(false);
-    setTimeout(() => {
-      if (handleNav) handleNav(label);
-    }, 500);
+    
+    if (location.pathname !== "/") {
+      // Si estamos en otra página, navegar a home
+      navigate("/");
+    } else {
+      // Si ya estamos en home, hacer scroll hacia arriba
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const handleNavClick = (item) => {
+    setMenuOpen(false);
+    
+    if (item.route && item.route !== "/") {
+      // Navegar a otra página
+      navigate(item.route);
+    } else if (item.section) {
+      // Si estamos en otra página, navegar a home primero
+      if (location.pathname !== "/") {
+        navigate("/", { state: { scrollToSection: item.section } });
+      } else {
+        // Si ya estamos en home, hacer scroll directo
+        setTimeout(() => {
+          const element = document.getElementById(item.section);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
+    }
   };
 
   return (
     <>
       <header className={`navbar${menuOpen ? ' menu-open' : ''}`}>
-        <div className="navbar-logo">
+        <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
           <img src={localImages.icons.logo1} alt="Instituto ISDEP" className="navbar-logo-img" />
           <div className="navbar-subtitle-desktop">
             <div className="subtitle-line">Instituto Superior de</div>
@@ -50,7 +80,7 @@ const Navbar = ({ handleNav }) => {
       {/* Overlay Menu */}
       <div className={`navbar-overlay ${menuOpen ? 'active' : ''}`}>
         <div className="overlay-header">
-          <div className="overlay-logo">
+          <div className="overlay-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
             <img src={localImages.icons.logo1} alt="Instituto ISDEP" />
             <div className="overlay-subtitle">
               <div className="subtitle-line">Instituto Superior de</div>
@@ -76,7 +106,7 @@ const Navbar = ({ handleNav }) => {
             <button
               key={item.label}
               className="nav-link"
-              onClick={() => handleNavClick(item.label)}
+              onClick={() => handleNavClick(item)}
               style={{
                 animationDelay: `${0.1 + index * 0.1}s`
               }}

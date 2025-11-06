@@ -45,7 +45,7 @@
 /* Header de la card */
 .card-header {
   text-align: center;
-  padding: 4rem 3rem 2rem;
+  padding: 4.5rem 4rem 3rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -61,6 +61,8 @@
   margin-bottom: 1.5rem;
   position: relative;
   letter-spacing: -0.02em;
+  text-align: center;
+  width: 100%;
 }
 
 .section-subtitle {
@@ -75,134 +77,109 @@
 
 /* Contenido de la card */
 .card-content {
-  padding: 2rem 3rem 4rem;
+  padding: 2.5rem 4rem 4.5rem;
 }
 
-/* Grid de docentes */
-.docentes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 4rem;
+/* Lista de docentes - Nuevo diseño sin imágenes */
+.docentes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4.5rem;
 }
 
-/* Card individual del docente */
-.docente-card {
+/* Item individual del docente */
+.docente-item {
   background: linear-gradient(145deg, #ffffff, #f8fafc);
-  border-radius: 28px;
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
   box-shadow: 
-    0 15px 35px rgba(30, 58, 138, 0.12),
-    0 5px 15px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+    0 8px 25px rgba(30, 58, 138, 0.08),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+  border: 2px solid rgba(59, 130, 246, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-  border: 2px solid rgba(59, 130, 246, 0.08);
-  display: flex;
-  flex-direction: column;
-  height: auto;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.6s ease forwards;
+  animation-delay: var(--delay);
 }
 
-.docente-card::before {
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.docente-item::before {
   content: '';
   position: absolute;
-  top: 0;
   left: 0;
-  right: 0;
+  top: 0;
   bottom: 0;
-  background: linear-gradient(145deg, transparent, rgba(59, 130, 246, 0.03));
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  width: 4px;
+  background: linear-gradient(180deg, #3b82f6 0%, #1e40af 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
-.docente-card:hover::before {
-  opacity: 1;
+.docente-item:hover::before {
+  transform: scaleY(1);
 }
 
-.docente-card:hover {
-  transform: translateY(-8px) scale(1.02);
+.docente-item:hover {
+  transform: translateY(-4px);
   box-shadow: 
-    0 25px 50px rgba(30, 58, 138, 0.2),
-    0 10px 25px rgba(0, 0, 0, 0.15);
-  border-color: rgba(59, 130, 246, 0.3);
+    0 15px 40px rgba(30, 58, 138, 0.15),
+    0 5px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(59, 130, 246, 0.2);
 }
 
-/* Contenedor de imagen */
-.docente-image-container {
-  position: relative;
-  height: 320px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-}
-
-.docente-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.4s ease;
-  opacity: 0.95;
-  filter: brightness(1.05) contrast(1.1);
-}
-
-.docente-card:hover .docente-image {
-  transform: scale(1.08);
-  opacity: 1;
-  filter: brightness(1.1) contrast(1.15);
-}
-
-.image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(30, 58, 138, 0.1) 0%,
-    transparent 30%,
-    transparent 70%,
-    rgba(30, 58, 138, 0.3) 100%
-  );
-  transition: all 0.3s ease;
-}
-
-.card-number {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  color: #1e40af;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.5rem 0.8rem;
-  border-radius: 12px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  display: none;
-}
-
-/* Información del docente */
-.docente-info {
-  padding: 1.8rem 1.8rem 1.5rem 1.8rem;
-  position: relative;
+/* Lado izquierdo - Avatar + Info */
+.docente-left {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 180px;
-}
-
-.info-content {
+  align-items: center;
+  gap: 2rem;
   flex: 1;
 }
 
-.info-header {
-  margin-bottom: 0.8rem;
+.docente-avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.docente-item:hover .docente-avatar {
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+}
+
+.avatar-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docente-info-main {
+  flex: 1;
 }
 
 .docente-nombre {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #1e3a8a;
   margin-bottom: 0.5rem;
@@ -215,63 +192,61 @@
   font-size: 1rem;
   font-weight: 600;
   color: #3b82f6;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   line-height: 1.4;
 }
 
 .docente-especialidad {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #64748b;
-  margin-bottom: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.experiencia-container {
+/* Lado derecho - Badge de experiencia */
+.docente-right {
+  flex-shrink: 0;
+}
+
+.experiencia-badge {
   display: flex;
-  justify-content: center;
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
-.docente-experiencia {
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1e40af;
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
-  min-height: 40px;
 }
 
-.docente-card:hover .docente-experiencia {
+.docente-item:hover .experiencia-badge {
   background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
 }
 
 /* Footer con quote */
 .section-footer {
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 3.5rem;
   border-top: 2px solid rgba(59, 130, 246, 0.1);
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .footer-quote {
   background: linear-gradient(145deg, #ffffff, #f8fafc);
-  padding: 3rem 2.5rem;
-  border-radius: 25px;
+  padding: 3.5rem 3.5rem;
+  border-radius: 28px;
   box-shadow: 0 10px 25px rgba(30, 58, 138, 0.08);
   border: 1px solid rgba(59, 130, 246, 0.1);
   position: relative;
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
@@ -320,11 +295,11 @@
   }
   
   .card-header {
-    padding: 3rem 2rem 1.5rem;
+    padding: 3.5rem 2.5rem 2rem;
   }
   
   .card-content {
-    padding: 1.5rem 2rem 3rem;
+    padding: 2rem 2.5rem 3.5rem;
   }
   
   .section-title {
@@ -335,27 +310,35 @@
     font-size: 1rem;
   }
   
-  .docentes-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
+  .docentes-lista {
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
   }
   
-  .docente-card {
-    border-radius: 20px;
+  .docente-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2.5rem 2rem;
   }
   
-  .docente-image-container {
-    height: 220px;
+  .docente-left {
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
-  .docente-info {
-    padding: 2rem;
+  .docente-avatar {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .docente-nome {
+    font-size: 1.3rem;
   }
   
   .footer-quote {
-    padding: 2rem 1.5rem;
-    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
   }
   
   .quote-icon {
@@ -367,26 +350,59 @@
 
 @media (max-width: 480px) {
   .card-header {
-    padding: 2rem 1.5rem 1rem;
+    padding: 2.5rem 1.8rem 1.5rem;
   }
   
   .card-content {
-    padding: 1rem 1.5rem 2rem;
+    padding: 1.5rem 1.8rem 2.5rem;
   }
   
   .section-title {
     font-size: 2rem;
   }
   
-  .docente-image-container {
-    height: 200px;
+  .docente-item {
+    padding: 2rem 1.5rem;
+    gap: 1.2rem;
   }
   
-  .docente-info {
-    padding: 1.5rem;
+  .docente-left {
+    gap: 1rem;
+  }
+  
+  .docente-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .avatar-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .docente-nome {
+    font-size: 1.2rem;
+  }
+  
+  .docente-titulo {
+    font-size: 0.9rem;
+  }
+  
+  .docente-especialidad {
+    font-size: 0.85rem;
+  }
+  
+  .experiencia-badge {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .experiencia-badge svg {
+    width: 14px;
+    height: 14px;
   }
   
   .footer-quote {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
   }
 }
