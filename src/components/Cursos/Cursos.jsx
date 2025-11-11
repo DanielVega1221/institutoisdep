@@ -317,6 +317,38 @@ const cursosData = [
     extra: "Certificación oficial válida para organismos de emergencia. Incluye kit de primera intervención"
   },
   {
+    id: 19,
+    emoji: "🤝",
+    categoria: "CURSO DE",
+    titulo: "Acompañante Terapéutico",
+    estado: "disponible",
+    subtitulo: "Formación Profesional en Acompañamiento Terapéutico",
+    tituloAdquirido: "Acompañante Terapéutico Matriculado",
+    tipo: "Curso Profesional",
+    duracion: "12 meses",
+    modalidad: "Semi-presencial",
+    inicia: "Marzo",
+    miniIntro: "Formación integral para el acompañamiento terapéutico de personas con padecimientos mentales y adicciones.",
+    descripcion: "Curso profesional que prepara acompañantes terapéuticos capacitados para trabajar en equipos interdisciplinarios de salud mental. Desarrolla competencias para el acompañamiento de personas con diversas patologías, promoviendo su autonomía e inclusión social.",
+    items: [
+      "Psicopatología y salud mental",
+      "Técnicas de acompañamiento terapéutico",
+      "Trabajo en equipo interdisciplinario",
+      "Intervención en crisis",
+      "Adicciones y consumos problemáticos",
+      "Trastornos del neurodesarrollo",
+      "Acompañamiento en discapacidad",
+      "Marco legal y derechos del paciente",
+      "Estrategias de contención emocional",
+      "Prácticas profesionales supervisadas",
+      "Ética y responsabilidad profesional",
+      "Técnicas de comunicación terapéutica"
+    ],
+    requisitos: "Título secundario completo",
+    salida_laboral: "Hospitales, clínicas psiquiátricas, centros de día, comunidades terapéuticas, domicilios particulares, centros de rehabilitación",
+    extra: "Certificación con validez nacional. Prácticas en instituciones de salud mental. Posibilidad de matriculación profesional"
+  },
+  {
     id: 10,
     emoji: "🧩",
     categoria: "CURSO DE",
