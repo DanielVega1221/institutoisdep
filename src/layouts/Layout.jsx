@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import VolumeControl from '../components/AudioPlayer/VolumeControl';
+import WhatsAppButton from '../components/WhatsAppButton/WhatsAppButton';
 import music from '../assets/Music.mp3';
 
 const Layout = () => {
@@ -20,6 +21,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <VolumeControl audioSrc={music} />
+      <WhatsAppButton />
       <div style={{ flex: 1 }} />
       <Footer />
     </div>

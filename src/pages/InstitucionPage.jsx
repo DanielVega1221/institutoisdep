@@ -1,8 +1,8 @@
 import React from "react";
-import NuestraInstitucion from '../components/NuestraInstitucion/NuestraInstitucion';
+import NuestraMetodologia from '../components/NuestraMetodologia/NuestraMetodologia';
 
 const InstitucionPage = () => {
-  return <NuestraInstitucion />;
+  return <NuestraMetodologia />;
 };
 
 export default InstitucionPage;

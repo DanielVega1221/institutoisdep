@@ -4,7 +4,8 @@ import { localImages } from "../../utils/localImages";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Nuestra Institución", route: "/nuestra-institucion" },
+  { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
+  { label: "¿Cómo inscribirme?", route: "/como-inscribirse" },
   { label: "Equipo docente", route: "/", section: "equipo-docente" },
   { label: "Anuncios", route: "/", section: "anuncios" },
   { label: "Contacto", route: "/", section: "contacto" },

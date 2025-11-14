@@ -18,6 +18,7 @@ const cursosData = [
     duracion: "2 años",
     modalidad: "Presencial",
     inicia: "Marzo",
+    estado: "no disponible",
     miniIntro: "Formate como perito en psicografología científica con validez nacional.",
     descripcion: "Carrera oficial de formación profesional en psicografología científica. Desarrollarás competencias para el análisis grafológico en ámbitos clínicos, educativos, laborales y forenses con metodología científica rigurosa.",
     items: [
@@ -41,8 +42,9 @@ const cursosData = [
     tituloAdquirido: "Certificado en Grafología Emocional",
     tipo: "Seminario Profesional",
     duracion: "2 meses",
-    modalidad: "Intensivo",
+    modalidad: "Online",
     inicia: "Abril",
+    estado: "disponible",
     miniIntro: "Seminario especializado en análisis emocional a través de la escritura manuscrita.",
     descripcion: "Seminario profesional que aborda el análisis de aspectos emocionales y psicológicos revelados en la escritura. Técnicas avanzadas para interpretar estados emocionales, patrones conductuales y rasgos de personalidad.",
     items: [
@@ -61,13 +63,13 @@ const cursosData = [
     id: 3,
     emoji: "👥",
     categoria: "CARRERA DE",
-  titulo: "Psicología Social",
-  estado: "disponible",
+    titulo: "Psicología Social",
+    estado: "disponible",
     subtitulo: "Carrera Universitaria en Psicología Social",
     tituloAdquirido: "Psicólogo Social",
     tipo: "Carrera Universitaria",
     duracion: "3 años",
-    modalidad: "Online con prácticas presenciales",
+    modalidad: "Online",
     inicia: "Marzo",
     miniIntro: "Carrera universitaria para intervenir profesionalmente en salud, educación, comunidad y organizaciones.",
     descripcion: "Carrera universitaria que forma profesionales capacitados para comprender e intervenir en fenómenos psicosociales. Aborda conformidad, persuasión, discriminación, agresión, relaciones intergrupales y dinámicas comunitarias con enfoque científico y ético.",
@@ -159,7 +161,7 @@ const cursosData = [
     tituloAdquirido: "Diplomatura en Criminalística",
     tipo: "Diplomatura Superior",
     duracion: "12 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Abril",
     miniIntro: "Diplomatura superior en investigación científica del delito y análisis forense.",
     descripcion: "Formación integral en criminalística moderna que integra conocimientos científicos para la investigación del delito. Abarca desde técnicas de laboratorio hasta perfilación criminal y análisis de evidencias con tecnología de vanguardia.",
@@ -187,7 +189,7 @@ const cursosData = [
     tituloAdquirido: "Certificado en Detección de ASI",
     tipo: "Seminario Especializado",
     duracion: "4 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Junio",
     miniIntro: "Seminario profesional para la detección temprana y abordaje del abuso sexual infantil.",
     descripcion: "Seminario especializado que capacita profesionales en la detección, evaluación e intervención en casos de abuso sexual infantil. Enfoque multidisciplinario con herramientas de diagnóstico y protocolos de actuación.",
@@ -237,12 +239,12 @@ const cursosData = [
     emoji: "🔬",
     categoria: "POSGRADO EN",
   titulo: "Tecnografía Pericial Grafológica",
-  estado: "disponible",
+  estado: "no disponible",
     subtitulo: "Posgrado Especializado para Peritos",
     tituloAdquirido: "Especialista en Tecnografía Pericial",
     tipo: "Posgrado Especializado",
     duracion: "6 meses",
-    modalidad: "Presencial intensivo",
+    modalidad: "Presencial",
     inicia: "Abril",
     miniIntro: "Posgrado especializado en tecnología aplicada al análisis pericial grafológico.",
     descripcion: "Formación avanzada en el uso de tecnología de última generación para peritajes grafológicos. Combina métodos tradicionales con análisis digital, microscopia forense y software especializado para dictámenes periciales de máxima precisión.",
@@ -270,7 +272,7 @@ const cursosData = [
     tituloAdquirido: "Especialista en Análisis de Firmas",
     tipo: "Curso Técnico",
     duracion: "3 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Mayo",
     miniIntro: "Curso técnico especializado en autenticación y análisis forense de firmas y rúbricas.",
     descripcion: "Formación técnica especializada en el análisis científico de firmas manuscritas y rúbricas. Desarrolla competencias para la detección de falsificaciones, análisis de autenticidad y peritajes documentales con metodología forense rigurosa.",
@@ -326,7 +328,7 @@ const cursosData = [
     tituloAdquirido: "Acompañante Terapéutico Matriculado",
     tipo: "Curso Profesional",
     duracion: "12 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Marzo",
     miniIntro: "Formación integral para el acompañamiento terapéutico de personas con padecimientos mentales y adicciones.",
     descripcion: "Curso profesional que prepara acompañantes terapéuticos capacitados para trabajar en equipos interdisciplinarios de salud mental. Desarrolla competencias para el acompañamiento de personas con diversas patologías, promoviendo su autonomía e inclusión social.",
@@ -358,7 +360,7 @@ const cursosData = [
     tituloAdquirido: "Especialista en Perfilamiento Criminal",
     tipo: "Curso Especializado",
     duracion: "6 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Abril",
     miniIntro: "Especialización en construcción de perfiles psicológicos delictivos y análisis conductual.",
     descripcion: "Formación avanzada en criminal profiling que combina criminología, psicología forense y análisis conductual. Desarrolla competencias para construir perfiles delictivos, analizar escenas del crimen y asistir en investigaciones judiciales.",
@@ -381,7 +383,7 @@ const cursosData = [
     emoji: "🧾",
     categoria: "CURSO DE",
   titulo: "Grafología Forense",
-  estado: "disponible",
+  estado: "no disponible",
     subtitulo: "Especialización en Peritajes Documentales",
     tituloAdquirido: "Perito Grafólogo Forense",
     tipo: "Curso Profesional",
@@ -409,7 +411,7 @@ const cursosData = [
     emoji: "🎨",
     categoria: "CURSO DE",
   titulo: "Análisis de Dibujos Proyectivos",
-  estado: "disponible",
+  estado: "no disponible",
     subtitulo: "Especialización en Técnicas Proyectivas",
     tituloAdquirido: "Especialista en Técnicas Proyectivas",
     tipo: "Curso Proyectivo",
@@ -442,7 +444,7 @@ const cursosData = [
     tituloAdquirido: "Psicografólogo Profesional",
     tipo: "Carrera Profesional",
     duracion: "18 meses",
-    modalidad: "Presencial",
+    modalidad: "Online",
     inicia: "Marzo",
     estado: "disponible",
     miniIntro: "Formación integral en psicografología moderna con enfoque científico y aplicación práctica.",
@@ -470,7 +472,7 @@ const cursosData = [
     tituloAdquirido: "Técnico en Psicología Social",
     tipo: "Carrera Profesional",
     duracion: "2 años",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Marzo",
     estado: "disponible",
     miniIntro: "Formación profesional en intervención psicosocial y trabajo comunitario con metodología grupal.",
@@ -498,9 +500,9 @@ const cursosData = [
     tituloAdquirido: "Especialista en Detección en Falsificaciones",
     tipo: "Curso Especializado",
     duracion: "3 meses",
-    modalidad: "Presencial intensivo",
+    modalidad: "Presencial",
     inicia: "Abril",
-    estado: "disponible",
+    estado: "no disponible",
     miniIntro: "Curso especializado en técnicas científicas para detectar falsificaciones documentales y de firmas.",
     descripcion: "Formación técnica especializada en métodos científicos para la detección de falsificaciones en documentos y firmas. Utiliza tecnología de vanguardia y metodologías forenses reconocidas internacionalmente para el análisis documentoscópico.",
     items: [
@@ -526,7 +528,7 @@ const cursosData = [
     tituloAdquirido: "Especialista en Grafología Emocional",
     tipo: "Capacitación Profesional",
     duracion: "4 meses",
-    modalidad: "Semi-presencial",
+    modalidad: "Online",
     inicia: "Marzo",
     estado: "disponible",
     miniIntro: "Capacitación avanzada en interpretación de estados emocionales a través del análisis grafológico.",
@@ -554,7 +556,7 @@ const cursosData = [
     tituloAdquirido: "Técnico en Criminalística",
     tipo: "Diplomatura Profesional",
     duracion: "15 meses",
-    modalidad: "Presencial",
+    modalidad: "Online",
     inicia: "Abril",
     estado: "disponible",
     miniIntro: "Diplomatura integral en ciencias forenses con formación práctica en laboratorio especializado.",
@@ -584,9 +586,9 @@ const cursosData = [
     tituloAdquirido: "Perito Superior en Tecnografía Forense",
     tipo: "Diplomatura Superior",
     duracion: "12 meses",
-    modalidad: "Presencial intensivo",
+    modalidad: "Presencial",
     inicia: "Abril",
-    estado: "disponible",
+    estado: "no disponible",
     miniIntro: "Diplomatura superior en tecnología aplicada a peritajes grafológicos con metodología forense avanzada.",
     descripcion: "Formación de élite en tecnografía pericial forense que combina las técnicas grafológicas tradicionales con la más alta tecnología disponible. Dirigida a profesionales que buscan especialización en peritajes de máxima complejidad y precisión científica.",
     items: [
@@ -703,18 +705,6 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);
-  };
-
-  const getTipoColor = (tipo) => {
-    const colors = {
-      'Carrera Terciaria': '#1e3a8a',  // Azul institucional principal
-      'Seminario': '#2d5a87',          // Azul institucional secundario
-      'Especialización': '#3182ce',    // Azul claro institucional
-      'Diplomatura': '#B8860B',        // Dorado institucional
-      'Certificación': '#0F2A4E',      // Azul marino institucional
-      'Curso': '#2d5a87'               // Azul secundario
-    };
-    return colors[tipo] || '#1e3a8a';
   };
 
   // Render
@@ -862,11 +852,9 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                       </div>
 
                       {/* Badges esenciales + estado */}
-                      <div className="card-badges-simple" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span className="tipo-badge-simple" style={{ backgroundColor: getTipoColor(curso.tipo) }}>
-                          {curso.tipo}
-                        </span>
+                      <div className="card-badges-simple" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                         <span className="duracion-badge-simple">{curso.duracion}</span>
+                        {curso.modalidad && <span className="modalidad-badge-simple">{curso.modalidad}</span>}
                         <span className="inicia-badge-simple">Inicia: {curso.inicia}</span>
                         <span className={`estado-badge-simple ${curso.estado === 'disponible' ? 'estado-disponible' : 'estado-no-disponible'}`}>{curso.estado === 'disponible' ? 'Disponible' : 'No disponible'}</span>
                       </div>
