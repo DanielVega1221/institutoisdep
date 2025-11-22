@@ -952,6 +952,32 @@
 }
 
 /* ===== ESTILOS PARA NORMATIVA DE ESTUDIOS ===== */
+.normativa-text-content {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  margin-top: 2rem;
+  box-shadow: 0 10px 40px rgba(15, 42, 78, 0.1);
+  border-left: 5px solid #3b82f6;
+}
+
+.normativa-text-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #334155;
+  margin-bottom: 1.5rem;
+}
+
+.normativa-text-content p:last-child {
+  margin-bottom: 0;
+}
+
+.normativa-text-content strong {
+  color: #0f2a4e;
+  font-weight: 600;
+}
+
 .normativa-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

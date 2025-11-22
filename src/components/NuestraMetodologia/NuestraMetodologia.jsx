@@ -224,114 +224,34 @@ const NuestraMetodologia = () => {
           <div className="section-header">
             <h2 className="section-title">Normativa de Estudios</h2>
             <p className="section-subtitle">
-              Condiciones y requisitos que el instituto establece para garantizar tu formación exitosa
+              Requisitos y normativas de estudios
             </p>
           </div>
           
-          <div className="normativa-grid">
-            <div className="normativa-card">
-              <div className="normativa-icon">
-                <CheckCircleIcon />
-              </div>
-              <h3>Asistencias</h3>
-              <p className="normativa-description">
-                Se requiere un mínimo de 75% de asistencia a las clases virtuales para 
-                mantener la regularidad en el curso. Las asistencias se registran automáticamente 
-                al momento de ingresar a la sala de Zoom.
-              </p>
-              <div className="normativa-details">
-                <div className="detail-item">
-                  <span className="detail-label">Mínimo requerido:</span>
-                  <span className="detail-value">75% de asistencia</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Registro:</span>
-                  <span className="detail-value">Automático en plataforma</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Justificaciones:</span>
-                  <span className="detail-value">Con certificado válido</span>
-                </div>
-              </div>
-            </div>
+          <div className="normativa-text-content">
+            <p><strong>No es requisito tener otras formaciones ni otros conocimientos para ninguna Formación de este Instituto.</strong></p>
             
-            <div className="normativa-card">
-              <div className="normativa-icon">
-                <BookOpenIcon />
-              </div>
-              <h3>Trabajos Prácticos</h3>
-              <p className="normativa-description">
-                Los trabajos prácticos son obligatorios y deben entregarse en las fechas establecidas. 
-                Cada curso incluye entre 3 y 5 trabajos prácticos que evalúan la comprensión y aplicación 
-                de los contenidos desarrollados.
-              </p>
-              <div className="normativa-details">
-                <div className="detail-item">
-                  <span className="detail-label">Cantidad:</span>
-                  <span className="detail-value">3 a 5 por curso</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Entrega:</span>
-                  <span className="detail-value">Plataforma digital</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Aprobación:</span>
-                  <span className="detail-value">Nota mínima 7/10</span>
-                </div>
-              </div>
-            </div>
+            <p>Es fundamental contar con una PC de escritorio o notebook.</p>
             
-            <div className="normativa-card">
-              <div className="normativa-icon">
-                <BoltIcon />
-              </div>
-              <h3>Días y Horarios</h3>
-              <p className="normativa-description">
-                Las clases se dictan una vez por semana en horario fijo establecido al inicio del curso. 
-                Los horarios están diseñados para adaptarse a diferentes zonas horarias y compromisos laborales, 
-                ofreciendo opciones de mañana, tarde y noche.
-              </p>
-              <div className="normativa-details">
-                <div className="detail-item">
-                  <span className="detail-label">Frecuencia:</span>
-                  <span className="detail-value">1 vez por semana</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Duración:</span>
-                  <span className="detail-value">2 a 3 horas por clase</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Plataforma:</span>
-                  <span className="detail-value">Zoom Professional</span>
-                </div>
-              </div>
-            </div>
+            <p>Tener conocimiento del uso de las herramientas de Google Meet.</p>
             
-            <div className="normativa-card highlight">
-              <div className="normativa-icon">
-                <TargetIcon />
-              </div>
-              <h3>Faltas Toleradas</h3>
-              <p className="normativa-description">
-                El instituto permite un máximo de 25% de inasistencias sin perder la regularidad. 
-                Esto equivale a 3 faltas en un curso de 12 clases o 2 faltas en un curso de 8 clases. 
-                Las faltas justificadas no afectan la regularidad.
-              </p>
-              <div className="normativa-details">
-                <div className="detail-item">
-                  <span className="detail-label">Máximo permitido:</span>
-                  <span className="detail-value">25% de inasistencias</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Recuperación:</span>
-                  <span className="detail-value">Clases grabadas disponibles</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Consecuencia:</span>
-                  <span className="detail-value">Pérdida de regularidad</span>
-                </div>
-              </div>
-            </div>
+            <p>Para participar de las clases: teóricas y grupo operativo, puede conectarse desde cualquier dispositivo que tenga conexión a internet.</p>
+            
+            <p>Es obligatoria la asistencia a clases, teniendo en cuenta que se cursa una vez por semana, el alumno asume el compromiso de presentismo del 75% de participación y cumplir con los trabajos Prácticos y Teóricos.</p>
+            
+            <p>Es requisito abonar la cuota del 1 al 10 de cada mes y haber leído el reglamento, los aumentos son semestrales y están sujetos a aumentos si fuera necesario.</p>
+            
+            <p>Luego de la inscripción el alumno ingresa en un grupo de Whatsapp donde aguarda el día de la fecha de inicio de la cursada.</p>
+            
+            <p>Unos minutos antes de la clase se publicará el link para que pueda acceder.</p>
+            
+            <p>El sistema verifica automáticamente tu presentismo.</p>
+            
+            <p>La comunicación con Administración, Centro de Alumnos, Coordinación y Profesores debe estar disponible por parte del alumno.</p>
+            
+            <p>Para obtener el título y las certificaciones el alumno deberá haber participado en todas las clases, realizado todos los trabajos prácticos y presentaciones que los profesores le soliciten, el examen final y contar con los pagos correspondientes.</p>
+            
+            <p><strong>El título y certificaciones tienen un valor aparte que se informa de forma actualizada al momento de solicitarlos.</strong></p>
           </div>
 
           {/* Información adicional sobre Zoom */}

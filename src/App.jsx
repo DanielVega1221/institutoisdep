@@ -4,6 +4,7 @@ import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
 import InstitucionPage from './pages/InstitucionPage';
 import InscripcionPage from './pages/InscripcionPage';
+import CodigoEticaPage from './pages/CodigoEticaPage';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="nuestra-metodologia" element={<InstitucionPage />} />
           <Route path="como-inscribirse" element={<InscripcionPage />} />
+          <Route path="codigo-etica-grafologico" element={<CodigoEticaPage />} />
         </Route>
       </Routes>
     </Router>
