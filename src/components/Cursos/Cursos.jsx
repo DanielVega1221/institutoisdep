@@ -8,32 +8,6 @@ import { localImages } from "../../utils/localImages";
 
 const cursosData = [
   {
-    id: 1,
-    emoji: "🎓",
-    categoria: "CARRERA DE",
-    titulo: "Formación Profesional en Psicografología",
-    subtitulo: "Formación Profesional en Psicografología Científica",
-    tituloAdquirido: "Perito en Psicografología Científica",
-    tipo: "Carrera Terciaria",
-    duracion: "2 años",
-    modalidad: "Online - Google Meet",
-    inicia: "Marzo",
-    estado: "no disponible",
-    miniIntro: "Formate como perito en psicografología científica con reconocimiento nacional.",
-    descripcion: "Carrera oficial de formación profesional en psicografología científica. Desarrollarás competencias para el análisis grafológico en ámbitos clínicos, educativos, laborales y forenses con metodología científica rigurosa.",
-    items: [
-      "Certificación oficial con reconocimiento nacional",
-      "Práctica en laboratorio grafológico equipado",
-      "Metodología científica aplicada",
-      "Peritajes forenses y clínicos",
-      "Acompañamiento docente especializado",
-      "Convenios con instituciones públicas y privadas"
-    ],
-    requisitos: "Título secundario completo",
-    salida_laboral: "Perito forense, consultor empresarial, clínica grafológica",
-    extra: "Inscripciones abiertas - Cupos limitados para garantizar calidad educativa"
-  },
-  {
     id: 2,
     emoji: "💭",
     categoria: "SEMINARIO EN",
@@ -840,7 +814,7 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
                       </div>
 
                       {/* Badges esenciales + estado */}
-                      <div className="card-badges-simple" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                      <div className="card-badges-simple">
                         <span className="duracion-badge-simple">{curso.duracion}</span>
                         {curso.modalidad && <span className="modalidad-badge-simple">{curso.modalidad}</span>}
                         <span className="inicia-badge-simple">Inicia: {curso.inicia}</span>

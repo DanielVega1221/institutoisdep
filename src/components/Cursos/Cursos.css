@@ -1,28 +1,55 @@
 /* Estado badge para cards y modal */
 .estado-badge-simple {
-  padding: 6px 14px;
+  padding: 10px 16px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-left: 8px;
+  letter-spacing: 0.5px;
   background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
   color: #0F2A4E;
-  box-shadow: 0 2px 8px rgba(15, 42, 78, 0.12);
+  box-shadow: 0 4px 12px rgba(15, 42, 78, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border: 2px solid #e2e8f0;
   position: relative;
   transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  overflow: hidden;
 }
+
+.estado-badge-simple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.curso-card:hover .estado-badge-simple::before {
+  left: 100%;
+}
+
 .estado-disponible {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
+
 .estado-no-disponible {
-  background: linear-gradient(135deg, #f87171 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
-  border-color: #f87171;
+  border-color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .estado-badge-modal {
   padding: 8px 18px;
@@ -1606,10 +1633,19 @@
 
 /* Badges simplificados */
 .card-badges-simple {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Desktop: permitir flex-wrap */
+@media (min-width: 769px) {
+  .card-badges-simple {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }
 
 .tipo-badge-simple {
@@ -1645,20 +1681,25 @@
 }
 
 .duracion-badge-simple {
-  padding: 8px 16px;
+  padding: 10px 16px;
   background: linear-gradient(135deg, #2d5a87 0%, #1e3a8a 100%);
   color: white;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   box-shadow: 
     0 4px 12px rgba(45, 90, 135, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
 }
 
 .duracion-badge-simple::before {
@@ -1677,20 +1718,25 @@
 }
 
 .modalidad-badge-simple {
-  padding: 8px 16px;
+  padding: 10px 16px;
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   color: white;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   box-shadow: 
     0 4px 12px rgba(139, 92, 246, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
 }
 
 .modalidad-badge-simple::before {
@@ -1709,20 +1755,25 @@
 }
 
 .inicia-badge-simple {
-  padding: 8px 16px;
+  padding: 10px 16px;
   background: linear-gradient(135deg, #059669 0%, #10b981 100%);
   color: white;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   box-shadow: 
     0 4px 12px rgba(5, 150, 105, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
 }
 
 .inicia-badge-simple::before {

@@ -174,17 +174,16 @@ const ComoInscribirse = () => {
                     <CheckCircleIcon />
                   </div>
                   <div className="success-content">
-                    <h3>Te daremos acceso inmediato</h3>
+                    <h3>Te enviaremos las credenciales de acceso</h3>
                     <p>
-                      Recibirás un email con las credenciales de acceso a la sección del curso 
-                      en nuestra plataforma virtual. Podrás comenzar a estudiar de inmediato y 
-                      acceder a todo el material del curso.
+                      Recibirás por email o WhatsApp una clave de acceso personal que te 
+                      permitirá ingresar al material del curso desde nuestra página web.
                     </p>
                   </div>
                 </div>
 
                 <div className="beneficios-acceso">
-                  <h4>Con tu acceso obtenés:</h4>
+                  <h4>Con tu clave de acceso obtenés:</h4>
                   <div className="beneficios-grid">
                     <div className="beneficio-item">
                       <CheckCircleIcon />

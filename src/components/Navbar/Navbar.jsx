@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { localImages } from "../../utils/localImages";
+import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
 
 const navItems = [
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
   { label: "¿Cómo inscribirme?", route: "/como-inscribirse" },
   { label: "Código de Ética Grafológico", route: "/codigo-etica-grafologico" },
+  { label: "Material de Estudio", action: "material" },
   { label: "Equipo docente", route: "/", section: "equipo-docente" },
   { label: "Anuncios", route: "/", section: "anuncios" },
   { label: "Contacto", route: "/", section: "contacto" },
@@ -14,6 +16,7 @@ const navItems = [
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [materialModalOpen, setMaterialModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,7 +38,10 @@ const Navbar = () => {
   const handleNavClick = (item) => {
     setMenuOpen(false);
     
-    if (item.route && item.route !== "/") {
+    if (item.action === "material") {
+      // Abrir modal de acceso al material
+      setMaterialModalOpen(true);
+    } else if (item.route && item.route !== "/") {
       // Navegar a otra página
       navigate(item.route);
     } else if (item.section) {
@@ -118,6 +124,12 @@ const Navbar = () => {
           ))}
         </nav>
       </div>
+
+      {/* Modal de Acceso al Material */}
+      <MaterialAccessModal 
+        isOpen={materialModalOpen}
+        onClose={() => setMaterialModalOpen(false)}
+      />
     </>
   );
 };

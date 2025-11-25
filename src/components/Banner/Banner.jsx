@@ -48,10 +48,10 @@ const Banner = () => {
       <div className="banner-content">
         <div className="scrolling-text">
           <span className="banner-text">
-            🎓 ABIERTA LA INSCRIPCIÓN 2025 🎓 ¡Únete a nosotros y transforma tu futuro! INSCRIPCIONES ABIERTAS  
+            🎓 ABIERTA LA INSCRIPCIÓN 🎓 ¡Únete a nosotros y transforma tu futuro! INSCRIPCIONES ABIERTAS  
           </span>
           <span className="banner-text">
-            🎓 ABIERTA LA INSCRIPCIÓN 2025 🎓 ¡Únete a nosotros y transforma tu futuro!  INSCRIPCIONES ABIERTAS  
+            🎓 ABIERTA LA INSCRIPCIÓN 🎓 ¡Únete a nosotros y transforma tu futuro!  INSCRIPCIONES ABIERTAS  
           </span>
         </div>
       </div>

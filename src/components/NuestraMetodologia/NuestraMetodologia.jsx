@@ -85,7 +85,7 @@ const NuestraMetodologia = () => {
                     <ComputerIcon />
                   </div>
                   <div className="feature-content">
-                    <h4>Plataforma Zoom</h4>
+                    <h4>Plataforma Google Meet</h4>
                     <p>Clases en vivo con audio y video de alta calidad</p>
                   </div>
                 </div>
@@ -254,16 +254,16 @@ const NuestraMetodologia = () => {
             <p><strong>El título y certificaciones tienen un valor aparte que se informa de forma actualizada al momento de solicitarlos.</strong></p>
           </div>
 
-          {/* Información adicional sobre Zoom */}
+          {/* Información adicional sobre Google Meet */}
           <div className="zoom-info">
             <div className="zoom-header">
               <ComputerIcon />
-              <h3>Plataforma Zoom - Nuestra Aula Virtual</h3>
+              <h3>Google Meet - Nuestra Aula Virtual</h3>
             </div>
             <div className="zoom-content">
               <p>
-                Utilizamos <strong>Zoom Professional</strong> como nuestra plataforma de clases virtuales. 
-                Esta herramienta profesional nos permite ofrecer:
+                Utilizamos <strong>Google Meet</strong> como nuestra plataforma de clases virtuales. 
+                Esta herramienta profesional de Google nos permite ofrecer:
               </p>
               <div className="zoom-features">
                 <div className="zoom-feature">
@@ -276,7 +276,7 @@ const NuestraMetodologia = () => {
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
-                  <span>Pizarra interactiva para demostraciones en vivo</span>
+                  <span>Pizarra colaborativa Jamboard para demostraciones en vivo</span>
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
@@ -284,11 +284,11 @@ const NuestraMetodologia = () => {
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
-                  <span>Salas de trabajo grupal para actividades colaborativas</span>
+                  <span>Salas de trabajo grupal (breakout rooms) para actividades colaborativas</span>
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
-                  <span>Grabación de clases para revisión posterior</span>
+                  <span>Grabación de clases guardadas en Google Drive para revisión posterior</span>
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
@@ -296,13 +296,13 @@ const NuestraMetodologia = () => {
                 </div>
                 <div className="zoom-feature">
                   <CheckCircleIcon />
-                  <span>Acceso desde cualquier dispositivo (PC, tablet, smartphone)</span>
+                  <span>Acceso desde cualquier dispositivo (PC, tablet, smartphone) sin instalar software</span>
                 </div>
               </div>
               <div className="zoom-nota">
-                <strong>Nota importante:</strong> No necesitas tener experiencia previa con Zoom. 
+                <strong>Nota importante:</strong> No necesitas tener experiencia previa con Google Meet. 
                 Al inicio del curso te brindaremos una guía completa y soporte técnico para que 
-                puedas aprovechar al máximo todas las funcionalidades de la plataforma.
+                puedas aprovechar al máximo todas las funcionalidades de la plataforma. Solo necesitas una cuenta de Google.
               </div>
             </div>
           </div>
