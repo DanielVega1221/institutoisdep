@@ -30,7 +30,7 @@ const Inicio = () => {
       <div className="inicio-overlay">
         <div className="inicio-content">
           <h1 className="inicio-title">
-            ISDEP, Instituto Superior de Enseñanza Profesional
+            ISDEP Instituto Superior de Enseñanza Profesional
           </h1>
           <p className="inicio-subtitle">
             Descubriendo los secretos de la personalidad a través de la escritura. 

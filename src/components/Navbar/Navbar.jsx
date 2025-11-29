@@ -6,11 +6,11 @@ import "./Navbar.css";
 
 const navItems = [
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
-  { label: "¿Cómo inscribirme?", route: "/como-inscribirse" },
+  { label: "Cómo inscribirme", route: "/como-inscribirse" },
   { label: "Código de Ética Grafológico", route: "/codigo-etica-grafologico" },
   { label: "Material de Estudio", action: "material" },
   { label: "Equipo docente", route: "/", section: "equipo-docente" },
-  { label: "Anuncios", route: "/", section: "anuncios" },
+  { label: "Próxima Apertura", route: "/", section: "anuncios" },
   { label: "Contacto", route: "/", section: "contacto" },
 ];
 

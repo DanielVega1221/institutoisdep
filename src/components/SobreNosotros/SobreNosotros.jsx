@@ -19,7 +19,7 @@ const slides = [
     img: localImages.icons.logo1,
     alt: "Logo ISDEP",
     title: "Capacitando Alumnos, Formando Profesionales",
-    subtitle: "Vanguardia educativa para un mundo en cambio"
+    subtitle: "Posicionarse a nivel Global, como una institución líder en el desarrollo de competencias laborales, a través de Consultorías, Asesorías y Capacitaciones de Alto Nivel, adaptándose al avance de la tecnología en la Vanguardia Educativa."
   },
   {
     img: localImages.cards.card1,
