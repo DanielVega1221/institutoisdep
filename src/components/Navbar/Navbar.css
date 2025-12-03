@@ -54,6 +54,23 @@
   white-space: nowrap;
 }
 
+/* Línea de texto legal más pequeña y sutil */
+.subtitle-legal {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #64748b;
+  margin-top: 2px;
+  opacity: 0.85;
+  letter-spacing: 0.3px;
+}
+
+/* En el overlay (menú hamburguesa), mantener el texto legal en blanco */
+.overlay-subtitle .subtitle-legal,
+.overlay-subtitle-mobile .subtitle-legal {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+}
+
 /* Bigger logo in navbar */
 .navbar-logo-img {
   width: 130px;

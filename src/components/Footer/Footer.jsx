@@ -9,9 +9,6 @@ const Footer = () => (
       {/* Columna izquierda: Identidad institucional */}
       <div className="footer-col footer-col-left">
         <div className="footer-title">ISDEP - Instituto Superior de Enseñanza Profesional</div>
-        <div className="footer-info">Catamarca 2336</div>
-        <div className="footer-info">Teléfono fijo: 469 0044</div>
-        <div className="footer-info">Mar del Plata, Buenos Aires</div>
         <div className="footer-info">Argentina</div>
         <div className="footer-info">Inscripto bajo Ley 13.047, Artículo 2, Inc. C. Registro:  4297</div>
         

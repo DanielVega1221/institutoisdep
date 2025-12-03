@@ -68,11 +68,13 @@ const Navbar = () => {
           <div className="navbar-subtitle-desktop">
             <div className="subtitle-line">Instituto Superior de</div>
             <div className="subtitle-line">Enseñanza Profesional</div>
+            <div className="subtitle-line subtitle-legal">Gestión Educativa Privada SNEP Ley 13047</div>
           </div>
         </div>
         <div className="navbar-subtitle-mobile">
           <div className="subtitle-line">Instituto Superior de</div>
           <div className="subtitle-line">Enseñanza Profesional</div>
+          <div className="subtitle-line subtitle-legal">Gestión Educativa Privada SNEP Ley 13047</div>
         </div>
         <button
           className={`navbar-hamburger ${menuOpen ? 'active' : ''}`}
@@ -93,11 +95,13 @@ const Navbar = () => {
             <div className="overlay-subtitle">
               <div className="subtitle-line">Instituto Superior de</div>
               <div className="subtitle-line">Enseñanza Profesional</div>
+              <div className="subtitle-line subtitle-legal">Gestión Educativa Privada SNEP Ley 13047</div>
             </div>
           </div>
           <div className="overlay-subtitle-mobile">
             <div className="subtitle-line">Instituto Superior de</div>
             <div className="subtitle-line">Enseñanza Profesional</div>
+            <div className="subtitle-line subtitle-legal">Gestión Educativa Privada SNEP Ley 13047</div>
           </div>
           <button
             className="close-button"

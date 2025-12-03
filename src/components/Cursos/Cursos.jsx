@@ -316,13 +316,12 @@ const cursosData = [
       "Acompañamiento en discapacidad",
       "Marco legal y derechos del paciente",
       "Estrategias de contención emocional",
-      "Prácticas profesionales supervisadas",
       "Ética y responsabilidad profesional",
       "Técnicas de comunicación terapéutica"
     ],
     requisitos: "Título secundario completo",
     salida_laboral: "Hospitales, clínicas psiquiátricas, centros de día, comunidades terapéuticas, domicilios particulares, centros de rehabilitación",
-    extra: "Certificación con validez nacional. Prácticas en instituciones de salud mental. Posibilidad de matriculación profesional"
+    extra: "Certificación con validez nacional"
   },
   {
     id: 10,
@@ -415,7 +414,7 @@ const cursosData = [
     categoria: "CARRERA DE",
     titulo: "Formación Profesional en Psicografología",
     subtitulo: "Carrera Profesional en Análisis Psicografológico",
-    tituloAdquirido: "Psicografólogo Profesional",
+    tituloAdquirido: "Perito en Psicografologia",
     tipo: "Carrera Profesional",
     duracion: "2 años",
     modalidad: "Online - Google Meet",
@@ -445,7 +444,7 @@ const cursosData = [
     subtitulo: "Carrera Profesional en Intervención Psicosocial",
     tituloAdquirido: "Técnico en Psicología Social",
     tipo: "Carrera Profesional",
-    duracion: "2 años",
+    duracion: "3 años",
     modalidad: "Online - Google Meet",
     inicia: "Marzo",
     estado: "disponible",

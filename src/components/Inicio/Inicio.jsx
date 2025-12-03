@@ -33,7 +33,7 @@ const Inicio = () => {
             ISDEP Instituto Superior de Enseñanza Profesional
           </h1>
           <p className="inicio-subtitle">
-            Descubriendo los secretos de la personalidad a través de la escritura. 
+            Descubre los secretos de la personalidad a través de la escritura. 
             Donde cada trazo revela una historia y cada letra construye un futuro profesional. 
             Formamos expertos en grafología con pasión, precisión y propósito.
           </p>
