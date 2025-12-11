@@ -5,45 +5,17 @@ const EquipoDocente = () => {
   const docentes = [
     {
       id: 1,
-      nombre: "Dr. María Elena Rodríguez",
-      titulo: "Doctora en Psicología Clínica",
-      especialidad: "Especialista en Terapia Cognitivo-Conductual",
-      experiencia: "15 años de experiencia"
+      nombre: "Alberto Antonio Domínguez Aguilera",
+      titulo: "Técnico Superior en Grafología",
+      especialidad: "Tit. Of. Nro. 506087",
+      experiencia: ""
     },
     {
       id: 2,
-      nombre: "Lic. Carlos Alberto Mendez",
-      titulo: "Licenciado en Grafología",
-      especialidad: "Perito Calígrafo Judicial",
-      experiencia: "12 años de experiencia"
-    },
-    {
-      id: 3,
-      nombre: "Dra. Ana Patricia Silva",
-      titulo: "Doctora en Educación",
-      especialidad: "Especialista en Metodología de la Enseñanza",
-      experiencia: "20 años de experiencia"
-    },
-    {
-      id: 4,
-      nombre: "Prof. Roberto Ariel Vera",
-      titulo: "Profesor en Artes Visuales",
-      especialidad: "Ilustración y Diseño Gráfico",
-      experiencia: "8 años de experiencia"
-    },
-    {
-      id: 5,
-      nombre: "Lic. Sofía Beatriz Morales",
-      titulo: "Licenciada en Musicoterapia",
-      especialidad: "Terapia Musical para Adultos Mayores",
-      experiencia: "10 años de experiencia"
-    },
-    {
-      id: 6,
-      nombre: "Dr. Alejandro José Fernández",
-      titulo: "Doctor en Psicología Educacional",
-      especialidad: "Evaluación y Diagnóstico Psicopedagógico",
-      experiencia: "18 años de experiencia"
+      nombre: "Laura Emilce Ramírez",
+      titulo: "Psicóloga Social",
+      especialidad: "Técnica Superior en AT - Formación Universitaria",
+      experiencia: ""
     }
   ];
 
@@ -78,13 +50,15 @@ const EquipoDocente = () => {
                     </div>
                   </div>
                   <div className="docente-right">
-                    <div className="experiencia-badge">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                        <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                      <span>{docente.experiencia}</span>
-                    </div>
+                    {docente.experiencia && (
+                      <div className="experiencia-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                          <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                        <span>{docente.experiencia}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
