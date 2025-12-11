@@ -23,11 +23,27 @@ const HomePage = () => {
   const [phraseVisible, setPhraseVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [selectedInteres, setSelectedInteres] = useState(null);
+  const [focusCarrera, setFocusCarrera] = useState(null);
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
   const anunciosRef = React.useRef(null);
   const equipoDocenteRef = React.useRef(null);
   const location = useLocation();
+
+  // Función para manejar click en anuncios y navegar a cursos
+  const handleAnuncioClick = (carreraName) => {
+    // Primero hacer scroll a la sección de cursos después de 0.5s
+    setTimeout(() => {
+      if (cursosRef.current) {
+        cursosRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 500);
+    
+    // Luego establecer el foco en la carrera después de 1s (tiempo para que se abra el acordeón)
+    setTimeout(() => {
+      setFocusCarrera(carreraName);
+    }, 1000);
+  };
 
   // Manejar scroll desde navegación
   useEffect(() => {
@@ -117,10 +133,15 @@ const HomePage = () => {
       <div style={{ height: 80 }} />
       <SobreNosotros />
       <section ref={anunciosRef} id="anuncios">
-        <Anuncios />
+        <Anuncios onAnuncioClick={handleAnuncioClick} />
       </section>
       <section ref={cursosRef} id="cursos">
-        <Cursos />
+        <Cursos 
+          setSelectedInteres={setSelectedInteres}
+          contactoRef={contactoRef}
+          focusCarrera={focusCarrera}
+          setFocusCarrera={setFocusCarrera}
+        />
       </section>
       <section ref={equipoDocenteRef} id="equipo-docente">
         <EquipoDocente />

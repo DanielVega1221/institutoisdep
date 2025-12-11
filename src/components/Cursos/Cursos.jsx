@@ -777,6 +777,11 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
               {cursosData.map((curso) => (
                 <div
                   key={curso.id}
+                  ref={(el) => {
+                    if (el) {
+                      cardTitleRefs.current[curso.titulo] = el;
+                    }
+                  }}
                   className="curso-card"
                   style={{ '--delay': `${curso.id * 0.15}s` }}
                 >

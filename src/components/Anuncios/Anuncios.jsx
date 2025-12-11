@@ -3,7 +3,13 @@ import "./Anuncios.css";
 import CloudinaryAnuncioCard from "../CloudinaryAnuncioCard";
 import OptimizedImage from "../OptimizedImage";
 
-const Anuncios = () => {
+const Anuncios = ({ onAnuncioClick }) => {
+
+  const handlePsicologiaSocialClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Formación Profesional en Psicología Social");
+    }
+  };
 
   return (
     <>
@@ -15,7 +21,13 @@ const Anuncios = () => {
           <div className="promotional-cards-container">
             <div className="promotional-cards-grid">
               {/* Card Psicología Social */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable" 
+                onClick={handlePsicologiaSocialClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handlePsicologiaSocialClick()}
+              >
                 <OptimizedImage 
                   imageName="psicologiasocial"
                   alt="Formación Profesional en Psicología Social" 
