@@ -8,7 +8,7 @@ import { localImages } from "../../utils/localImages";
 
 const cursosData = [
   {
-    id: 2,
+    id: 1,
     emoji: "💭",
     categoria: "SEMINARIO EN",
     titulo: "Grafología Emocional",
@@ -34,10 +34,10 @@ const cursosData = [
     extra: "Incluye kit de materiales profesionales y acceso a biblioteca digital"
   },
   {
-    id: 3,
+    id: 2,
     emoji: "👥",
     categoria: "CARRERA DE",
-    titulo: "Psicología Social",
+    titulo: "Formación Profesional en Psicología Social",
     estado: "disponible",
     subtitulo: "Carrera en Psicología Social",
     tituloAdquirido: "Psicólogo Social",
@@ -126,7 +126,7 @@ const cursosData = [
     extra: "Cupos limitados - Reservá tu lugar hoy. Financiación disponible y becas por mérito académico"
   },
   {
-    id: 4,
+    id: 3,
     emoji: "🔍",
     categoria: "DIPLOMATURA EN",
   titulo: "Criminalística",
@@ -154,7 +154,7 @@ const cursosData = [
     extra: "Incluye acceso a laboratorio forense y biblioteca especializada. Convenio con Poder Judicial"
   },
   {
-    id: 5,
+    id: 4,
     emoji: "🛡️",
     categoria: "SEMINARIO EN",
   titulo: "Detección de Abuso Sexual Infantil",
@@ -182,7 +182,7 @@ const cursosData = [
     extra: "Certificación válida para concursos públicos. Incluye material bibliográfico especializado"
   },
   {
-    id: 6,
+    id: 5,
     emoji: "⚖️",
     categoria: "CURSO EN",
   titulo: "Psicología Social y Criminalística Aplicada",
@@ -209,7 +209,7 @@ const cursosData = [
     extra: "Acceso a base de datos de casos reales y simuladores de investigación"
   },
   {
-    id: 7,
+    id: 6,
     emoji: "🔬",
     categoria: "POSGRADO EN",
   titulo: "Tecnografía Pericial Grafológica",
@@ -237,7 +237,7 @@ const cursosData = [
     extra: "Laboratorio equipado con tecnología europea. Certificación internacional disponible"
   },
   {
-    id: 8,
+    id: 7,
     emoji: "✍️",
     categoria: "CURSO EN",
   titulo: "Análisis de Firmas y Rúbricas",
@@ -265,7 +265,7 @@ const cursosData = [
     extra: "Convenios con entidades bancarias y notariales. Kit de herramientas profesionales incluido"
   },
   {
-    id: 9,
+    id: 8,
     emoji: "🆘",
     categoria: "CURSO DE",
   titulo: "Especialista en Primeros Auxilios Psicológicos",
@@ -293,7 +293,7 @@ const cursosData = [
     extra: "Certificación oficial válida para organismos de emergencia. Incluye kit de primera intervención"
   },
   {
-    id: 19,
+    id: 9,
     emoji: "🤝",
     categoria: "CURSO DE",
     titulo: "Acompañante Terapéutico",
@@ -438,29 +438,6 @@ const cursosData = [
   },
   {
     id: 14,
-    emoji: "👥",
-    categoria: "CARRERA DE",
-    titulo: "Formación Profesional en Psicología Social",
-    subtitulo: "Carrera Profesional en Intervención Psicosocial",
-    tituloAdquirido: "Técnico en Psicología Social",
-    tipo: "Carrera Profesional",
-    duracion: "3 años",
-    modalidad: "Online - Google Meet",
-    inicia: "Marzo",
-    estado: "disponible",
-    miniIntro: "¿Querés comprender las dinámicas humanas, los grupos y la sociedad? Con nuestra Formación Profesional en Psicología Social vas a adquirir herramientas teóricas y prácticas para intervenir en distintos contextos.",
-    descripcion: "¿Querés comprender las dinámicas humanas, los grupos y la sociedad? Con nuestra Formación Profesional en Psicología Social vas a adquirir herramientas teóricas y prácticas para intervenir en distintos contextos: individual, grupal y comunitario.",
-    items: [
-      "Intervención a nivel Individual",
-      "Intervención a nivel Grupal",
-      "Intervención a nivel Comunitario"
-    ],
-    requisitos: "Título secundario completo",
-    salida_laboral: "Centros de salud, organizaciones comunitarias, empresas, municipios, ONGs",
-    extra: "Prácticas en instituciones públicas y privadas. Metodología basada en Pichón-Rivière"
-  },
-  {
-    id: 15,
     emoji: "🔍",
     categoria: "CURSO DE",
   titulo: "Detección en Falsificación en Firmas",
@@ -481,7 +458,7 @@ const cursosData = [
     extra: "Laboratorio equipado con tecnología europea. Certificación reconocida por el Poder Judicial"
   },
   {
-    id: 16,
+    id: 15,
     emoji: "💭",
     categoria: "CAPACITACIÓN EN",
     titulo: "Capacitación Profesional en Grafología Emocional",
@@ -509,7 +486,7 @@ const cursosData = [
     extra: "Incluye kit de materiales de análisis y acceso a biblioteca digital especializada"
   },
   {
-    id: 17,
+    id: 16,
     emoji: "🔬",
     categoria: "DIPLOMATURA EN",
     titulo: "Diplomatura Profesional en Criminalística",
@@ -539,7 +516,7 @@ const cursosData = [
     extra: "Laboratorio forense completo. Convenios con fuerzas de seguridad nacionales e internacionales"
   },
   {
-    id: 18,
+    id: 17,
     emoji: "⚖️",
     categoria: "DIPLOMATURA EN",
     titulo: "Diplomatura Superior en Tecnografía Pericial Forense: Área Grafológica",
