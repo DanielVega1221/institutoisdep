@@ -175,7 +175,7 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
         <div className="curso-modal-footer">
           <div className="modal-footer-content">
             <div className="modal-cta-section">
-              <h4 className="modal-cta-title">¿Te interesa este curso?</h4>
+              <h4 className="modal-cta-title">¿Te interesa esta carrera?</h4>
               <p className="modal-cta-subtitle">Solicitá información sin compromiso</p>
             </div>
             <button 
