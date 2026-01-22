@@ -11,6 +11,36 @@ const Anuncios = ({ onAnuncioClick }) => {
     }
   };
 
+  const handleCriminalisticaClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Diplomatura Profesional en Criminalística");
+    }
+  };
+
+  const handleDeteccionFalsificacionClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Detección en Falsificación en Firmas");
+    }
+  };
+
+  const handleGrafologiaEmocionalClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Grafología Emocional");
+    }
+  };
+
+  const handlePsicografologiaClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Formación Profesional en Psicografología");
+    }
+  };
+
+  const handleTecnografiaClick = () => {
+    if (onAnuncioClick) {
+      onAnuncioClick("Diplomatura Superior en Tecnografía Pericial Forense: Área Grafológica");
+    }
+  };
+
   return (
     <>
       <section className="anuncios-section">
@@ -36,7 +66,13 @@ const Anuncios = ({ onAnuncioClick }) => {
               </div>
               
               {/* Card Criminalística */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable"
+                onClick={handleCriminalisticaClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleCriminalisticaClick()}
+              >
                 <OptimizedImage 
                   imageName="criminalistica"
                   alt="Carrera de Formación Profesional en Criminalística" 
@@ -45,7 +81,13 @@ const Anuncios = ({ onAnuncioClick }) => {
               </div>
 
               {/* Card Detección de Falsificación */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable"
+                onClick={handleDeteccionFalsificacionClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleDeteccionFalsificacionClick()}
+              >
                 <OptimizedImage 
                   imageName="detecciondefalsificacion"
                   alt="Capacitación Profesional en Detección de Falsificación de Firmas" 
@@ -55,7 +97,13 @@ const Anuncios = ({ onAnuncioClick }) => {
 
 
               {/* Card Seminario Grafología Emocional (Kurt) */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable"
+                onClick={handleGrafologiaEmocionalClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleGrafologiaEmocionalClick()}
+              >
                 <OptimizedImage 
                   imageName="grafologiaemocionalkurt"
                   alt="Seminario Profesional en Grafología Emocional - Teoría de Kurt A. Honroth" 
@@ -64,7 +112,13 @@ const Anuncios = ({ onAnuncioClick }) => {
               </div>
 
               {/* Card Psicografología */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable"
+                onClick={handlePsicografologiaClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handlePsicografologiaClick()}
+              >
                 <OptimizedImage 
                   imageName="psicografologia"
                   alt="Formación Profesional en Psicografología" 
@@ -73,7 +127,13 @@ const Anuncios = ({ onAnuncioClick }) => {
               </div>
 
               {/* Card Tecnografía Pericial */}
-              <div className="promotional-card">
+              <div 
+                className="promotional-card promotional-card-clickable"
+                onClick={handleTecnografiaClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleTecnografiaClick()}
+              >
                 <OptimizedImage 
                   imageName="tecnografiapericial"
                   alt="Diplomatura Superior en Tecnografía Pericial Forense Área Grafológica" 

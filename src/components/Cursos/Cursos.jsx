@@ -26,8 +26,8 @@ const cursosData = [
       "Análisis de trazos emocionales",
       "Interpretación de presión y velocidad",
       "Casos prácticos reales",
-      "Certificación profesional",
-      "Material didáctico especializado"
+      "Material didáctico especializado",
+      "Biblioteca digital especializada"
     ],
     requisitos: "Conocimientos básicos en grafología (deseable)",
     salida_laboral: "Consultoría emocional, orientación vocacional, recursos humanos",
@@ -49,13 +49,12 @@ const cursosData = [
     descripcion: "Carrera que forma profesionales capacitados para comprender e intervenir en fenómenos psicosociales en el marco de la ley 26.206 y concordantes de Salud Mental. Aborda conformidad, persuasión, discriminación, agresión, relaciones intergrupales y dinámicas comunitarias con enfoque científico y ético.",
     items: [
       "Modalidad online con clases en vivo",
-      "Prácticas profesionales supervisadas",
-      "Certificación universitaria oficial",
-      "Aval del Ministerio de Educación",
+      "Material bibliográfico completo",
       "Acompañamiento tutorial permanente",
       "Enfoque comunitario y grupal",
-      "Convenios para prácticas profesionales",
-      "Acceso a plataforma virtual 24/7"
+      "Estudio de casos reales supervisados",
+      "Acceso a plataforma virtual 24/7",
+      "Recursos didácticos actualizados"
     ],
     planEstudios: {
       primer_ano: {
@@ -86,7 +85,7 @@ const cursosData = [
           "Operador Preventivo en Salud Mental",
           "Sociología",
           "Rol del Observador",
-          "Función Práctica del Observador",
+          "Función y Aplicación del Observador",
           "Técnicas Lúdicas",
           "Psicoanálisis II",
           "Psicología Familiar",
@@ -107,7 +106,7 @@ const cursosData = [
           "Rol Coordinador",
           "Roles Complementarios",
           "Metodología de coordinación",
-          "Función Práctica de coordinación",
+          "Función y Aplicación de coordinación",
           "Proyecto de investigación social",
           "Oratoria",
           "Taller 1: E.S.I",
@@ -145,9 +144,9 @@ const cursosData = [
       "Análisis de evidencias físicas",
       "Perfilación criminal avanzada",
       "Tecnología forense actualizada",
-      "Convenios con fuerzas de seguridad",
-      "Prácticas en casos reales",
-      "Certificación reconocida nacionalmente"
+      "Estudio de casos reales documentados",
+      "Material didáctico profesional",
+      "Metodología científica aplicada"
     ],
     requisitos: "Título terciario o universitario",
     salida_laboral: "Perito forense, investigador privado, asesor judicial",
@@ -179,7 +178,7 @@ const cursosData = [
     ],
     requisitos: "Profesionales de salud, educación o derecho",
     salida_laboral: "Hospitales, escuelas, juzgados, ONGs de protección infantil",
-    extra: "Certificación válida para concursos públicos. Incluye material bibliográfico especializado"
+    extra: "Incluye material bibliográfico especializado y kit de recursos profesionales"
   },
   {
     id: 5,
@@ -234,7 +233,7 @@ const cursosData = [
     ],
     requisitos: "Título de perito grafólogo o equivalente",
     salida_laboral: "Perito judicial especializado, consultor técnico, investigador forense",
-    extra: "Laboratorio equipado con tecnología europea. Certificación internacional disponible"
+    extra: "Laboratorio equipado con tecnología europea. Material didáctico especializado"
   },
   {
     id: 7,
@@ -262,7 +261,7 @@ const cursosData = [
     ],
     requisitos: "Conocimientos básicos en grafología",
     salida_laboral: "Perito calígrafo, consultor bancario, análisis documental",
-    extra: "Convenios con entidades bancarias y notariales. Kit de herramientas profesionales incluido"
+    extra: "Kit de herramientas profesionales incluido y material didáctico especializado"
   },
   {
     id: 8,
@@ -286,11 +285,11 @@ const cursosData = [
       "Trabajo en equipo interdisciplinario",
       "Autoprotección del operador",
       "Técnicas de comunicación asertiva",
-      "Práctica en simulacros reales"
+      "Ejercicios de aplicación profesional"
     ],
-    requisitos: "Título secundario completo",
+    requisitos: "Secundario completo",
     salida_laboral: "Emergencias médicas, bomberos, defensa civil, ONGs",
-    extra: "Certificación oficial válida para organismos de emergencia. Incluye kit de primera intervención"
+    extra: "Incluye kit de primera intervención y material didáctico completo"
   },
   {
     id: 9,
@@ -319,9 +318,9 @@ const cursosData = [
       "Ética y responsabilidad profesional",
       "Técnicas de comunicación terapéutica"
     ],
-    requisitos: "Título secundario completo",
+    requisitos: "Secundario completo",
     salida_laboral: "Hospitales, clínicas psiquiátricas, centros de día, comunidades terapéuticas, domicilios particulares, centros de rehabilitación",
-    extra: "Certificación con validez nacional"
+    extra: "Material didáctico completo y recursos profesionales especializados"
   },
   {
     id: 10,
@@ -349,7 +348,7 @@ const cursosData = [
     ],
     requisitos: "Formación en psicología, criminalística o derecho",
     salida_laboral: "Fuerzas de seguridad, consultoría forense, investigación judicial",
-    extra: "Acceso a base de casos del FBI. Metodología internacional validada"
+    extra: "Estudio de casos internacionales documentados. Metodología científica actualizada"
   },
   {
     id: 11,
@@ -377,7 +376,7 @@ const cursosData = [
     ],
     requisitos: "Título en grafología o psicografología",
     salida_laboral: "Perito judicial, consultor legal, investigación documental",
-    extra: "Habilitación para actuar como perito de oficio. Laboratorio forense especializado"
+    extra: "Laboratorio forense especializado. Material didáctico profesional"
   },
   {
     id: 12,
@@ -432,9 +431,9 @@ const cursosData = [
       "Ética profesional en psicografología",
       "Elaboración de informes técnicos"
     ],
-    requisitos: "Título secundario completo. Preferible formación en psicología o ciencias sociales",
+    requisitos: "Secundario completo. Preferible formación en psicología o ciencias sociales",
     salida_laboral: "Consultoría empresarial, orientación vocacional, peritajes judiciales, clínica privada",
-    extra: "Certificación con validez nacional. Convenios con instituciones de salud mental y empresas"
+    extra: "Material didáctico completo y acceso a recursos profesionales especializados"
   },
   {
     id: 14,
@@ -455,7 +454,7 @@ const cursosData = [
     ],
     requisitos: "Formación en grafología, criminalística o áreas afines",
     salida_laboral: "Perito judicial, consultor bancario, investigador privado, asesor notarial",
-    extra: "Laboratorio equipado con tecnología europea. Certificación reconocida por el Poder Judicial"
+    extra: "Laboratorio equipado con tecnología europea. Material didáctico especializado"
   },
   {
     id: 15,
@@ -511,9 +510,9 @@ const cursosData = [
       "Entomología forense",
       "Informática forense básica"
     ],
-    requisitos: "Título secundario completo. Preferible formación técnica o universitaria",
+    requisitos: "Secundario completo. Preferible formación técnica o superior",
     salida_laboral: "Policía científica, poder judicial, consultorías forenses, investigación privada",
-    extra: "Laboratorio forense completo. Convenios con fuerzas de seguridad nacionales e internacionales"
+    extra: "Laboratorio forense completo. Material didáctico actualizado y recursos profesionales"
   },
   {
     id: 17,
@@ -541,9 +540,9 @@ const cursosData = [
       "Documentos de seguridad y billetes",
       "Presentación pericial en tribunales"
     ],
-    requisitos: "Título universitario o terciario en grafología, criminalística o áreas afines",
+    requisitos: "Formación superior en grafología, criminalística o áreas afines",
     salida_laboral: "Perito de máximo nivel, consultor internacional, investigador forense senior",
-    extra: "Laboratorio con tecnología europea de última generación. Certificación internacional disponible"
+    extra: "Laboratorio con tecnología europea de última generación. Material didáctico de nivel superior"
   }
 ];
 
@@ -666,62 +665,15 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
           <div className="cursos-hero-content">
             <div className="cursos-hero-main">
               <div className="cursos-hero-left">
-                <div className="cursos-hero-badge">
-                  <span className="hero-badge-icon">🏆</span>
-                  <span>Instituto Líder en Formación Profesional</span>
-                </div>
-                
                 <h1 className="cursos-hero-title">
                   Transformá tu futuro con
                   <span className="hero-title-highlight"> carreras que marcan la diferencia</span>
                 </h1>
                 
                 <p className="cursos-hero-subtitle">
-                  Formación profesional de excelencia con <strong>validez nacional</strong> y 
-                  <strong> reconocimiento internacional</strong>. Tu éxito profesional comienza aquí.
+                  Formación profesional de excelencia en grafología, criminalística y ciencias forenses. 
+                  Tu desarrollo profesional comienza aquí.
                 </p>
-
-                {/* Badges de credibilidad compactos */}
-                <div className="cursos-credibility-badges">
-                  <div className="cred-badge">
-                    <span className="cred-icon">📜</span>
-                    <span>Reconocimiento Nacional</span>
-                  </div>
-                  <div className="cred-badge">
-                    <span className="cred-icon">💼</span>
-                    <span>Salida Laboral Garantizada</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="cursos-hero-right">
-                {/* Estadísticas compactas */}
-                <div className="cursos-stats-grid">
-                  <div className="stat-item">
-                    <div className="stat-number">+850</div>
-                    <div className="stat-label">Graduados</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">98%</div>
-                    <div className="stat-label">Inserción Laboral</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">20</div>
-                    <div className="stat-label">Años</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">100%</div>
-                    <div className="stat-label">Avalado</div>
-                  </div>
-                </div>
-                
-                {/* CTA compacto */}
-                <div className="cursos-hero-cta">
-                  <div className="hero-cta-text">
-                    <h3>¿Listo para cambiar tu vida?</h3>
-                    <p>Descubrí nuestras carreras</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
