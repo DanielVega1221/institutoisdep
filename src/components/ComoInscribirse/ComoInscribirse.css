@@ -98,29 +98,225 @@
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.2rem);
   color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ===== FORMULARIO DE INSCRIPCIÓN EN PÁGINA ===== */
+.formulario-inscripcion-section {
+  padding: 60px 20px 80px;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.formulario-container {
+  max-width: 800px;
   margin: 0 auto;
-  line-height: 1.7;
 }
 
-/* ===== SECCIÓN DE PASOS ===== */
-.pasos-section {
-  padding: 80px 20px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+.formulario-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+.formulario-header {
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a5f 100%);
+  padding: 40px;
+  text-align: center;
+  color: white;
 }
 
-.pasos-timeline {
+.formulario-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.formulario-titulo {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.formulario-subtitulo {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.inscripcion-form-page {
+  padding: 40px;
+}
+
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section-titulo {
   display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  position: relative;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.2);
 }
+
+.form-section-titulo svg {
+  color: #3b82f6;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.form-required {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  color: #1e293b;
+  transition: all 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.error {
+  border-color: #dc2626;
+}
+
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+  appearance: none;
+}
+
+.form-error {
+  display: block;
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.form-actions {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-btn {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.form-btn-whatsapp:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.form-btn-email {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.form-btn-email:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.form-nota {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.form-nota svg {
+  color: #3b82f6;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== SECCIÓN DE PASOS (REMOVIDA) ===== */
 
 .paso-item {
   display: grid;
@@ -528,6 +724,13 @@
   margin-bottom: 2rem;
 }
 
+.ayuda-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .btn-contacto {
   display: inline-flex;
   align-items: center;
@@ -541,12 +744,42 @@
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  border: none;
+  cursor: pointer;
 }
 
 .btn-contacto:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.btn-inscribirse-secundario {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-inscribirse-secundario:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+}
+
+.btn-inscribirse-secundario:active,
+.btn-contacto:active {
+  transform: translateY(-1px);
 }
 
 .btn-contacto::before {
@@ -559,52 +792,33 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .paso-item {
-    grid-template-columns: 60px 1fr;
-    gap: 1rem;
+  .formulario-card {
+    border-radius: 16px;
   }
 
-  .paso-number {
-    width: 60px;
-    height: 60px;
+  .formulario-header {
+    padding: 30px 24px;
   }
 
-  .paso-number span {
-    font-size: 1.5rem;
+  .formulario-titulo {
+    font-size: 24px;
   }
 
-  .paso-item:not(:last-child)::after {
-    left: 30px;
+  .inscripcion-form-page {
+    padding: 30px 24px;
   }
 
-  .paso-content {
-    padding: 2rem;
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .medios-pago-grid {
+  .form-actions {
     grid-template-columns: 1fr;
   }
 
-  .documento-item {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .documento-icon {
-    margin: 0 auto;
-  }
-
-  .beneficios-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .success-box {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .success-icon {
-    margin: 0 auto;
+  .form-section-titulo {
+    font-size: 18px;
   }
 }
 
@@ -613,21 +827,11 @@
     padding: 120px 15px 60px;
   }
 
-  .paso-content {
-    padding: 1.5rem;
+  .formulario-header {
+    padding: 24px 20px;
   }
 
-  .paso-title {
-    font-size: 1.4rem;
-  }
-
-  .contacto-box,
-  .success-box {
-    padding: 1.5rem;
-  }
-
-  .whatsapp-link {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+  .inscripcion-form-page {
+    padding: 24px 20px;
   }
 }

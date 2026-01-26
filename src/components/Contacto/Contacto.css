@@ -311,6 +311,13 @@
   box-sizing: border-box;
 }
 
+.contacto-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
 .contacto-input:focus,
 .contacto-select:focus {
   outline: none;
@@ -368,7 +375,8 @@
 
 /* Botones de Envío */
 .contacto-form-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-top: 15px;
   padding-top: 10px;
@@ -402,10 +410,13 @@
 }
 
 .contacto-btn-email {
-  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-  box-shadow: 0 4px 16px rgba(107, 114, 128, 0.3);
-  cursor: not-allowed;
-  opacity: 0.6;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.contacto-btn-email:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.45);
 }
 
 .contacto-btn-enviar:disabled {
@@ -416,6 +427,27 @@
 .contacto-btn-enviar svg {
   width: 20px;
   height: 20px;
+}
+
+/* Nota del formulario */
+.contacto-form-nota {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.contacto-form-nota svg {
+  color: #3b82f6;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* ============================================
@@ -450,7 +482,7 @@
   }
 
   .contacto-form-actions {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 }
 

@@ -22,7 +22,6 @@ const HomePage = () => {
   const [logoVisible, setLogoVisible] = useState(false);
   const [phraseVisible, setPhraseVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [selectedInteres, setSelectedInteres] = useState(null);
   const [focusCarrera, setFocusCarrera] = useState(null);
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
@@ -54,11 +53,6 @@ const HomePage = () => {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 500); // Dar tiempo para que la página se renderice
-    }
-    
-    // Manejar interés seleccionado desde otra página
-    if (location.state?.selectedInteres) {
-      setSelectedInteres(location.state.selectedInteres);
     }
   }, [location.state]);
 
@@ -137,8 +131,6 @@ const HomePage = () => {
       </section>
       <section ref={cursosRef} id="cursos">
         <Cursos 
-          setSelectedInteres={setSelectedInteres}
-          contactoRef={contactoRef}
           focusCarrera={focusCarrera}
           setFocusCarrera={setFocusCarrera}
         />
@@ -147,7 +139,7 @@ const HomePage = () => {
         <EquipoDocente />
       </section>
       <section ref={contactoRef} id="contacto">
-        <Contacto ref={contactoRef} selectedInteres={selectedInteres} setSelectedInteres={setSelectedInteres} />
+        <Contacto ref={contactoRef} />
       </section>
     </>
   );

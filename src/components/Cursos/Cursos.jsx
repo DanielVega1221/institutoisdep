@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
-import Contacto from "../Contacto/Contacto";
 import CursoModal from "./CursoModal";
+import InscripcionModal from "../InscripcionModal/InscripcionModal";
 import "./Cursos.css";
 // Usar imágenes locales optimizadas desde localImages
 import { localImages } from "../../utils/localImages";
@@ -546,13 +546,15 @@ const cursosData = [
   }
 ];
 
-const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera }) => {
+const Cursos = ({ focusCarrera, setFocusCarrera }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef(null);
   const cardTitleRefs = useRef({});
   const [pendingFocus, setPendingFocus] = useState(null);
   const [selectedCurso, setSelectedCurso] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInscripcionModalOpen, setIsInscripcionModalOpen] = useState(false);
+  const [cursoParaInscripcion, setCursoParaInscripcion] = useState(null);
 
   // Minimizar acordeón si la sección sale de pantalla
   useEffect(() => {
@@ -575,15 +577,11 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
 
   // Para scroll y auto-selección
   const handleSolicitarInfo = (titulo) => {
-    setSelectedInteres(titulo);
-    setTimeout(() => {
-      if (contactoRef && contactoRef.current) {
-        contactoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
+    setCursoParaInscripcion(titulo);
+    setIsInscripcionModalOpen(true);
   };
 
-  // Funciones para el modal
+  // Funciones para el modal de detalles
   const handleVerMas = (curso) => {
     setSelectedCurso(curso);
     setIsModalOpen(true);
@@ -592,6 +590,12 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedCurso(null);
+  };
+
+  // Función para cerrar modal de inscripción
+  const handleCloseInscripcionModal = () => {
+    setIsInscripcionModalOpen(false);
+    setCursoParaInscripcion(null);
   };
 
   // Enfocar card cuando focusCarrera cambia
@@ -794,6 +798,14 @@ const Cursos = ({ setSelectedInteres, contactoRef, focusCarrera, setFocusCarrera
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSolicitarInfo={handleSolicitarInfo}
+      />
+
+      {/* Modal de inscripción */}
+      <InscripcionModal
+        isOpen={isInscripcionModalOpen}
+        onClose={handleCloseInscripcionModal}
+        cursoPreseleccionado={cursoParaInscripcion}
+        mostrarDropdown={false}
       />
     </section>
   );

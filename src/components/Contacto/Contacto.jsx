@@ -1,42 +1,16 @@
 import React, { useState } from "react";
 import "./Contacto.css";
 
-const formacionesDisponibles = [
-  "Psicografología",
-  "Ciencias Criminalistas",
-  "Perfilamiento Criminal",
-  "Psicología Social",
-  "Grafología Forense",
-  "Firmas y Rúbricas",
-  "Primeros Auxilios Psicológicos",
-  "Análisis de Dibujos",
-  "Otro (consultar)"
-];
-
-const Contacto = React.forwardRef(({ selectedInteres, setSelectedInteres }, ref) => {
+const Contacto = React.forwardRef((props, ref) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
-    apellido: "",
-    dni: "",
-    fechaNacimiento: "",
     email: "",
     telefono: "",
-    pais: "",
-    ciudad: "",
-    profesion: "",
-    formacionSolicitada: formacionesDisponibles[0]
+    mensaje: ""
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-
-  // Sincronizar interés si viene de Cursos
-  React.useEffect(() => {
-    if (selectedInteres && formacionesDisponibles.includes(selectedInteres)) {
-      setFormData(prev => ({ ...prev, formacionSolicitada: selectedInteres }));
-      setSelectedInteres && setSelectedInteres(null);
-    }
-  }, [selectedInteres, setSelectedInteres]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,41 +24,67 @@ const Contacto = React.forwardRef(({ selectedInteres, setSelectedInteres }, ref)
   const validate = () => {
     const newErrors = {};
     if (!formData.nombre.trim()) newErrors.nombre = "Campo obligatorio";
-    if (!formData.apellido.trim()) newErrors.apellido = "Campo obligatorio";
-    if (!formData.dni.trim()) newErrors.dni = "Campo obligatorio";
-    if (!formData.fechaNacimiento) newErrors.fechaNacimiento = "Campo obligatorio";
     if (!formData.email.trim()) {
       newErrors.email = "Campo obligatorio";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Email inválido";
     }
     if (!formData.telefono.trim()) newErrors.telefono = "Campo obligatorio";
-    if (!formData.pais.trim()) newErrors.pais = "Campo obligatorio";
-    if (!formData.ciudad.trim()) newErrors.ciudad = "Campo obligatorio";
-    if (!formData.profesion.trim()) newErrors.profesion = "Campo obligatorio";
+    if (!formData.mensaje.trim()) newErrors.mensaje = "Campo obligatorio";
     return newErrors;
   };
 
   const generateWhatsAppMessage = () => {
-    return `*SOLICITUD DE INSCRIPCIÓN - ISDEP*
+    return `*═══════════════════════*
+*      CONSULTA GENERAL*
+*        ISDEP - Instituto*
+*═══════════════════════*
 
-*Datos Personales:*
-• Nombre: ${formData.nombre}
-• Apellido: ${formData.apellido}
-• DNI: ${formData.dni}
-• Fecha de Nacimiento: ${formData.fechaNacimiento}
-• Email: ${formData.email}
-• Teléfono: ${formData.telefono}
+* DATOS DE CONTACTO*
+─────────────────────
 
-*Ubicación:*
-• País: ${formData.pais}
-• Ciudad: ${formData.ciudad}
+ *Nombre:* ${formData.nombre}
+ *Email:* ${formData.email}
+ *Teléfono:* ${formData.telefono}
 
-*Información Académica:*
-• Profesión/Ocupación: ${formData.profesion}
-• Formación Solicitada: ${formData.formacionSolicitada}
 
-_Adjuntaré fotografías de mis títulos educativos para completar la solicitud._`;
+* CONSULTA*
+─────────────────────
+
+${formData.mensaje}
+
+
+*═══════════════════════*
+ _Consulta generada desde www.institutoisdep.com.ar_`;
+  };
+
+  const generateEmailBody = () => {
+    return `═══════════════════════════════════════════════════
+              CONSULTA GENERAL - ISDEP
+              Instituto de Estudios Superiores
+═══════════════════════════════════════════════════
+
+
+ DATOS DE CONTACTO
+───────────────────────────────────────────────────
+
+  Nombre:       ${formData.nombre}
+  Email:        ${formData.email}
+  Teléfono:     ${formData.telefono}
+
+
+ CONSULTA
+───────────────────────────────────────────────────
+
+${formData.mensaje}
+
+
+═══════════════════════════════════════════════════
+
+Consulta generada desde: www.institutoisdep.com.ar
+Fecha: ${new Date().toLocaleDateString('es-AR')}
+
+═══════════════════════════════════════════════════`;
   };
 
   const handleSubmit = (e, method) => {
@@ -106,24 +106,22 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
       setModalOpen(false);
       resetForm();
     } else if (method === "email") {
-      // Preparado para implementar envío por email
-      alert("La funcionalidad de envío por email estará disponible próximamente.");
+      const subject = encodeURIComponent(`Consulta - ${formData.nombre}`);
+      const body = encodeURIComponent(generateEmailBody());
+      const mailtoUrl = `mailto:isdep@hotmail.com.ar?subject=${subject}&body=${body}`;
+      window.location.href = mailtoUrl;
       setSending(false);
+      setModalOpen(false);
+      resetForm();
     }
   };
 
   const resetForm = () => {
     setFormData({
       nombre: "",
-      apellido: "",
-      dni: "",
-      fechaNacimiento: "",
       email: "",
       telefono: "",
-      pais: "",
-      ciudad: "",
-      profesion: "",
-      formacionSolicitada: formacionesDisponibles[0]
+      mensaje: ""
     });
     setErrors({});
   };
@@ -162,11 +160,11 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
             <circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.2"/>
             <path d="M10 7V13M7 10H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
-          Solicitar información
+          Hacer una consulta
         </button>
       </div>
 
-      {/* Modal del formulario */}
+      {/* Modal del formulario simplificado */}
       {modalOpen && (
         <div className="contacto-modal-overlay" onClick={(e) => {
           if (e.target.className === "contacto-modal-overlay") {
@@ -186,82 +184,29 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
               ×
             </button>
 
-            <h3 className="contacto-modal-titulo">Solicitud de información</h3>
-            <p className="contacto-modal-subtitulo">Completá tus datos para que podamos contactarte</p>
+            <h3 className="contacto-modal-titulo">Hacenos tu consulta</h3>
+            <p className="contacto-modal-subtitulo">Completá el formulario y te responderemos a la brevedad</p>
 
             <form className="contacto-form">
-              {/* Datos Personales */}
-              <div className="contacto-form-section">
-                <h4 className="contacto-form-section-titulo">Datos Personales</h4>
-                
-                <div className="contacto-form-row">
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      Nombre <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="nombre"
-                      className={`contacto-input ${errors.nombre ? "error" : ""}`}
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      placeholder="Tu nombre"
-                    />
-                    {errors.nombre && <span className="contacto-error">{errors.nombre}</span>}
-                  </div>
-
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      Apellido <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="apellido"
-                      className={`contacto-input ${errors.apellido ? "error" : ""}`}
-                      value={formData.apellido}
-                      onChange={handleChange}
-                      placeholder="Tu apellido"
-                    />
-                    {errors.apellido && <span className="contacto-error">{errors.apellido}</span>}
-                  </div>
-                </div>
-
-                <div className="contacto-form-row">
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      DNI <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="dni"
-                      className={`contacto-input ${errors.dni ? "error" : ""}`}
-                      value={formData.dni}
-                      onChange={handleChange}
-                      placeholder="12345678"
-                    />
-                    {errors.dni && <span className="contacto-error">{errors.dni}</span>}
-                  </div>
-
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      Fecha de Nacimiento <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="date"
-                      name="fechaNacimiento"
-                      className={`contacto-input ${errors.fechaNacimiento ? "error" : ""}`}
-                      value={formData.fechaNacimiento}
-                      onChange={handleChange}
-                    />
-                    {errors.fechaNacimiento && <span className="contacto-error">{errors.fechaNacimiento}</span>}
-                  </div>
-                </div>
-              </div>
-
-              {/* Datos de Contacto */}
+              {/* Datos básicos */}
               <div className="contacto-form-section">
                 <h4 className="contacto-form-section-titulo">Datos de Contacto</h4>
                 
+                <div className="contacto-form-group">
+                  <label className="contacto-label">
+                    Nombre Completo <span className="contacto-required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    className={`contacto-input ${errors.nombre ? "error" : ""}`}
+                    value={formData.nombre}
+                    onChange={handleChange}
+                    placeholder="Tu nombre completo"
+                  />
+                  {errors.nombre && <span className="contacto-error">{errors.nombre}</span>}
+                </div>
+
                 <div className="contacto-form-group">
                   <label className="contacto-label">
                     Correo Electrónico <span className="contacto-required">*</span>
@@ -292,84 +237,19 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
                   {errors.telefono && <span className="contacto-error">{errors.telefono}</span>}
                 </div>
 
-                <div className="contacto-form-row">
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      País <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="pais"
-                      className={`contacto-input ${errors.pais ? "error" : ""}`}
-                      value={formData.pais}
-                      onChange={handleChange}
-                      placeholder="Argentina"
-                    />
-                    {errors.pais && <span className="contacto-error">{errors.pais}</span>}
-                  </div>
-
-                  <div className="contacto-form-group">
-                    <label className="contacto-label">
-                      Ciudad <span className="contacto-required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="ciudad"
-                      className={`contacto-input ${errors.ciudad ? "error" : ""}`}
-                      value={formData.ciudad}
-                      onChange={handleChange}
-                      placeholder="Mar del Plata"
-                    />
-                    {errors.ciudad && <span className="contacto-error">{errors.ciudad}</span>}
-                  </div>
-                </div>
-              </div>
-
-              {/* Información Académica */}
-              <div className="contacto-form-section">
-                <h4 className="contacto-form-section-titulo">Información Académica</h4>
-                
                 <div className="contacto-form-group">
                   <label className="contacto-label">
-                    Profesión/Ocupación actual <span className="contacto-required">*</span>
+                    Tu Consulta <span className="contacto-required">*</span>
                   </label>
-                  <input
-                    type="text"
-                    name="profesion"
-                    className={`contacto-input ${errors.profesion ? "error" : ""}`}
-                    value={formData.profesion}
+                  <textarea
+                    name="mensaje"
+                    className={`contacto-input contacto-textarea ${errors.mensaje ? "error" : ""}`}
+                    value={formData.mensaje}
                     onChange={handleChange}
-                    placeholder="Ej: Estudiante, Psicólogo, Abogado, etc."
+                    placeholder="Escribí aquí tu consulta o duda..."
+                    rows="5"
                   />
-                  {errors.profesion && <span className="contacto-error">{errors.profesion}</span>}
-                </div>
-
-                <div className="contacto-form-group">
-                  <label className="contacto-label">
-                    Formación Solicitada <span className="contacto-required">*</span>
-                  </label>
-                  <select
-                    name="formacionSolicitada"
-                    className="contacto-input contacto-select"
-                    value={formData.formacionSolicitada}
-                    onChange={handleChange}
-                  >
-                    {formacionesDisponibles.map(formacion => (
-                      <option key={formacion} value={formacion}>{formacion}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Aviso importante */}
-              <div className="contacto-aviso-importante">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M12 8V12M12 16H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                <div>
-                  <strong>Documentación requerida:</strong>
-                  <p>Al enviar tu solicitud, te pediremos que adjuntes fotografías de tus títulos educativos (secundario completo y estudios superiores si los tuvieras) para validar tu inscripción.</p>
+                  {errors.mensaje && <span className="contacto-error">{errors.mensaje}</span>}
                 </div>
               </div>
 
@@ -381,27 +261,32 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
                   onClick={(e) => handleSubmit(e, "whatsapp")}
                   disabled={sending}
                 >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 0C4.477 0 0 4.477 0 10c0 1.89.525 3.66 1.438 5.168L0 20l4.938-1.297A9.959 9.959 0 0010 20c5.523 0 10-4.477 10-10S15.523 0 10 0z" fill="currentColor"/>
-                    <path d="M14.5 13.3c-.2.6-.9 1.1-1.5 1.2-.4.1-.9.1-2.9-.6-2.5-1-4.1-3.6-4.2-3.8-.1-.2-.9-1.2-.9-2.3s.6-1.6.8-1.8c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3.2.4.6 1.5.6 1.6.1.1.1.2 0 .4-.1.1-.1.2-.2.3l-.3.3c-.1.1-.2.2-.1.4.1.2.5.9 1.1 1.5.8.7 1.4 1 1.6 1.1.2.1.3.1.4-.1.1-.2.5-.5.6-.7.1-.2.3-.2.5-.1l1.3.6c.2.1.3.1.4.2.1.3.1.7-.1 1z" fill="#fff"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                   </svg>
-                  Enviar por WhatsApp
+                  {sending ? "Enviando..." : "Enviar por WhatsApp"}
                 </button>
 
                 <button
                   type="button"
                   className="contacto-btn-enviar contacto-btn-email"
                   onClick={(e) => handleSubmit(e, "email")}
-                  disabled={true}
-                  title="Próximamente disponible"
+                  disabled={sending}
                 >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 4h16v12H2V4z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 4l8 6 8-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
-                  Enviar por Email (Próximamente)
+                  {sending ? "Enviando..." : "Enviar por Email"}
                 </button>
               </div>
+
+              <p className="contacto-form-nota">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                Podés enviar tu consulta por WhatsApp o Email para una respuesta rápida y personalizada.
+              </p>
             </form>
           </div>
         </div>
@@ -410,5 +295,4 @@ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud.
   );
 });
 
-export { formacionesDisponibles };
 export default Contacto;

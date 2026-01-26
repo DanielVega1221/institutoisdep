@@ -1,211 +1,433 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ComoInscribirse.css";
-import {
-  CreditCardIcon,
-  DocumentCheckIcon,
-  UserPlusIcon,
-  CheckCircleIcon,
-  BankIcon,
-  MercadoPagoIcon,
-  UploadIcon,
-  ClipboardIcon
-} from "./InscripcionIcons";
+
+const formacionesDisponibles = [
+  "Psicografología",
+  "Ciencias Criminalistas",
+  "Perfilamiento Criminal",
+  "Psicología Social",
+  "Grafología Forense",
+  "Firmas y Rúbricas",
+  "Primeros Auxilios Psicológicos",
+  "Análisis de Dibujos",
+  "Grafología Emocional",
+  "Criminalística",
+  "Otro (consultar)"
+];
 
 const ComoInscribirse = () => {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    dni: "",
+    fechaNacimiento: "",
+    email: "",
+    telefono: "",
+    pais: "",
+    ciudad: "",
+    profesion: "",
+    formacionSolicitada: formacionesDisponibles[0]
+  });
+  const [errors, setErrors] = useState({});
+  const [sending, setSending] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.nombre.trim()) newErrors.nombre = "Campo obligatorio";
+    if (!formData.apellido.trim()) newErrors.apellido = "Campo obligatorio";
+    if (!formData.dni.trim()) newErrors.dni = "Campo obligatorio";
+    if (!formData.fechaNacimiento) newErrors.fechaNacimiento = "Campo obligatorio";
+    if (!formData.email.trim()) {
+      newErrors.email = "Campo obligatorio";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Email inválido";
+    }
+    if (!formData.telefono.trim()) newErrors.telefono = "Campo obligatorio";
+    if (!formData.pais.trim()) newErrors.pais = "Campo obligatorio";
+    if (!formData.ciudad.trim()) newErrors.ciudad = "Campo obligatorio";
+    if (!formData.profesion.trim()) newErrors.profesion = "Campo obligatorio";
+    return newErrors;
+  };
+
+  const generateWhatsAppMessage = () => {
+    return `*═══════════════════════*
+*   SOLICITUD DE INSCRIPCIÓN*
+*        ISDEP - Instituto*
+*═══════════════════════*
+
+*📋 DATOS PERSONALES*
+─────────────────────
+
+👤 *Nombre Completo:*
+   ${formData.nombre} ${formData.apellido}
+
+🆔 *DNI:* ${formData.dni}
+
+📅 *Fecha de Nacimiento:*
+   ${formData.fechaNacimiento}
+
+📧 *Email:* ${formData.email}
+
+📱 *Teléfono:* ${formData.telefono}
+
+
+*🌍 UBICACIÓN*
+─────────────────────
+
+🌎 *País:* ${formData.pais}
+🏙️ *Ciudad:* ${formData.ciudad}
+
+
+*🎓 INFORMACIÓN ACADÉMICA*
+─────────────────────
+
+💼 *Profesión/Ocupación:*
+   ${formData.profesion}
+
+📚 *Formación Solicitada:*
+   ${formData.formacionSolicitada}
+
+
+*═══════════════════════*
+
+📎 _Adjuntaré fotografías de mis títulos educativos para completar la solicitud._
+
+✅ _Solicitud generada automáticamente desde www.institutoisdep.com.ar_`;
+  };
+
+  const generateEmailBody = () => {
+    return `═══════════════════════════════════════════════════
+        SOLICITUD DE INSCRIPCIÓN - ISDEP
+              Instituto de Estudios Superiores
+═══════════════════════════════════════════════════
+
+
+📋 DATOS PERSONALES
+───────────────────────────────────────────────────
+
+  Nombre Completo:    ${formData.nombre} ${formData.apellido}
+  DNI:                ${formData.dni}
+  Fecha Nacimiento:   ${formData.fechaNacimiento}
+  Email:              ${formData.email}
+  Teléfono:           ${formData.telefono}
+
+
+🌍 UBICACIÓN
+───────────────────────────────────────────────────
+
+  País:               ${formData.pais}
+  Ciudad:             ${formData.ciudad}
+
+
+🎓 INFORMACIÓN ACADÉMICA
+───────────────────────────────────────────────────
+
+  Profesión/Ocupación:    ${formData.profesion}
+  Formación Solicitada:   ${formData.formacionSolicitada}
+
+
+═══════════════════════════════════════════════════
+
+NOTA: Adjuntaré fotografías de mis títulos educativos 
+para completar la solicitud de inscripción.
+
+Solicitud generada desde: www.institutoisdep.com.ar
+Fecha: ${new Date().toLocaleDateString('es-AR')}
+
+═══════════════════════════════════════════════════`;
+  };
+
+  const handleSubmit = (e, method) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setSending(true);
+
+    if (method === "whatsapp") {
+      const message = encodeURIComponent(generateWhatsAppMessage());
+      const whatsappUrl = `https://wa.me/5492236741300?text=${message}`;
+      window.open(whatsappUrl, "_blank");
+      setSending(false);
+    } else if (method === "email") {
+      const subject = encodeURIComponent(`Solicitud de Inscripción - ${formData.nombre} ${formData.apellido}`);
+      const body = encodeURIComponent(generateEmailBody());
+      const mailtoUrl = `mailto:isdep@hotmail.com.ar?subject=${subject}&body=${body}`;
+      window.location.href = mailtoUrl;
+      setSending(false);
+    }
+  };
+
   return (
     <section className="como-inscribirse">
       {/* Hero Section */}
       <div className="inscripcion-hero">
         <div className="hero-container">
           <div className="hero-content">
-            <div className="hero-badge">
-              <span className="hero-badge-icon"><UserPlusIcon /></span>
-              <span>Proceso Simple y Rápido</span>
-            </div>
             <h1 className="hero-title">
-              ¿Cómo <span className="hero-highlight">Inscribirte?</span>
+              Solicitud de <span className="hero-highlight">Inscripción</span>
             </h1>
             <p className="hero-subtitle">
-              Seguí estos sencillos pasos para comenzar tu formación profesional en ISDEP
+              Completá el formulario para iniciar tu proceso de inscripción en ISDEP
             </p>
           </div>
         </div>
       </div>
 
-      {/* Pasos de Inscripción */}
-      <div className="pasos-section">
-        <div className="section-container">
-          <div className="pasos-timeline">
-            
-            {/* Paso 1 */}
-            <div className="paso-item">
-              <div className="paso-number">
-                <span>1</span>
+      {/* Formulario de Inscripción */}
+      <div className="formulario-inscripcion-section">
+        <div className="formulario-container">
+          <div className="formulario-card">
+            <div className="formulario-header">
+              <div className="formulario-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                </svg>
               </div>
-              <div className="paso-content">
-                <div className="paso-icon">
-                  <CreditCardIcon />
-                </div>
-                <h2 className="paso-title">Seleccioná el Medio de Pago</h2>
-                <p className="paso-description">
-                  Elegí la opción que más te convenga para realizar tu pago
-                </p>
-                
-                <div className="medios-pago-grid">
-                  <div className="medio-pago-card">
-                    <div className="medio-icon">
-                      <BankIcon />
-                    </div>
-                    <h3>Transferencia Bancaria</h3>
-                    <p>Realizá una transferencia directa a nuestra cuenta bancaria</p>
-                    <div className="medio-badge">Sin comisiones adicionales</div>
-                  </div>
-                  
-                  <div className="medio-pago-card">
-                    <div className="medio-icon mercadopago">
-                      <MercadoPagoIcon />
-                    </div>
-                    <h3>Mercado Pago</h3>
-                    <p>Pago online seguro con link de Mercado Pago</p>
-                    <div className="medio-badge">Pago inmediato</div>
-                  </div>
-                </div>
-              </div>
+              <h2 className="formulario-titulo">Formulario de Inscripción</h2>
+              <p className="formulario-subtitulo">
+                Completá todos los campos para procesar tu solicitud
+              </p>
             </div>
 
-            {/* Paso 2 */}
-            <div className="paso-item">
-              <div className="paso-number">
-                <span>2</span>
-              </div>
-              <div className="paso-content">
-                <div className="paso-icon">
-                  <DocumentCheckIcon />
-                </div>
-                <h2 className="paso-title">Realizá el Pago</h2>
-                <p className="paso-description">
-                  Completá la transacción usando el medio de pago seleccionado
-                </p>
+            <form className="inscripcion-form-page">
+              {/* Datos Personales */}
+              <div className="form-section">
+                <h3 className="form-section-titulo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                  Datos Personales
+                </h3>
                 
-                <div className="info-box">
-                  <CheckCircleIcon />
-                  <div>
-                    <strong>Importante:</strong> Guardá el comprobante de pago que te proporcionan 
-                    al finalizar la transacción. Lo vas a necesitar en el siguiente paso.
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">
+                      Nombre <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      className={`form-input ${errors.nombre ? "error" : ""}`}
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      placeholder="Tu nombre"
+                    />
+                    {errors.nombre && <span className="form-error">{errors.nombre}</span>}
                   </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Paso 3 */}
-            <div className="paso-item">
-              <div className="paso-number">
-                <span>3</span>
-              </div>
-              <div className="paso-content">
-                <div className="paso-icon">
-                  <UploadIcon />
-                </div>
-                <h2 className="paso-title">Compartí tu Información</h2>
-                <p className="paso-description">
-                  Para registrar tu pago, envianos la siguiente información
-                </p>
-                
-                <div className="documentos-requeridos">
-                  <div className="documento-item">
-                    <div className="documento-icon">
-                      <ClipboardIcon />
-                    </div>
-                    <div className="documento-info">
-                      <h4>Comprobante de Pago</h4>
-                      <p>Captura de pantalla o PDF del comprobante de tu transacción</p>
-                    </div>
-                  </div>
-                  
-                  <div className="documento-item">
-                    <div className="documento-icon">
-                      <UserPlusIcon />
-                    </div>
-                    <div className="documento-info">
-                      <h4>Datos Personales</h4>
-                      <ul className="datos-lista">
-                        <li><CheckCircleIcon /> Nombre y Apellido completo</li>
-                        <li><CheckCircleIcon /> DNI o Número de Identificación</li>
-                        <li><CheckCircleIcon /> Dirección de Email</li>
-                      </ul>
-                    </div>
+                  <div className="form-group">
+                    <label className="form-label">
+                      Apellido <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="apellido"
+                      className={`form-input ${errors.apellido ? "error" : ""}`}
+                      value={formData.apellido}
+                      onChange={handleChange}
+                      placeholder="Tu apellido"
+                    />
+                    {errors.apellido && <span className="form-error">{errors.apellido}</span>}
                   </div>
                 </div>
 
-                <div className="contacto-box">
-                  <h4>¿Dónde enviar la información?</h4>
-                  <p>Podés enviarnos todos los datos por WhatsApp al:</p>
-                  <a 
-                    href="https://wa.me/5492236741300" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="whatsapp-link"
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">
+                      DNI <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="dni"
+                      className={`form-input ${errors.dni ? "error" : ""}`}
+                      value={formData.dni}
+                      onChange={handleChange}
+                      placeholder="12345678"
+                    />
+                    {errors.dni && <span className="form-error">{errors.dni}</span>}
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">
+                      Fecha de Nacimiento <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      name="fechaNacimiento"
+                      className={`form-input ${errors.fechaNacimiento ? "error" : ""}`}
+                      value={formData.fechaNacimiento}
+                      onChange={handleChange}
+                    />
+                    {errors.fechaNacimiento && <span className="form-error">{errors.fechaNacimiento}</span>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Datos de Contacto */}
+              <div className="form-section">
+                <h3 className="form-section-titulo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                  Datos de Contacto
+                </h3>
+                
+                <div className="form-group">
+                  <label className="form-label">
+                    Correo Electrónico <span className="form-required">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className={`form-input ${errors.email ? "error" : ""}`}
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="tu@email.com"
+                  />
+                  {errors.email && <span className="form-error">{errors.email}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    Teléfono <span className="form-required">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    className={`form-input ${errors.telefono ? "error" : ""}`}
+                    value={formData.telefono}
+                    onChange={handleChange}
+                    placeholder="+54 9 11 1234-5678"
+                  />
+                  {errors.telefono && <span className="form-error">{errors.telefono}</span>}
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">
+                      País <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="pais"
+                      className={`form-input ${errors.pais ? "error" : ""}`}
+                      value={formData.pais}
+                      onChange={handleChange}
+                      placeholder="Argentina"
+                    />
+                    {errors.pais && <span className="form-error">{errors.pais}</span>}
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">
+                      Ciudad <span className="form-required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="ciudad"
+                      className={`form-input ${errors.ciudad ? "error" : ""}`}
+                      value={formData.ciudad}
+                      onChange={handleChange}
+                      placeholder="Buenos Aires"
+                    />
+                    {errors.ciudad && <span className="form-error">{errors.ciudad}</span>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Información Académica */}
+              <div className="form-section">
+                <h3 className="form-section-titulo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12L12 8L21 12L12 16L3 12Z" fill="currentColor" stroke="currentColor" strokeWidth="1"/>
+                    <path d="M6 12V16C6 17.1046 8.68629 20 12 20C15.3137 20 18 17.1046 18 16V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                  Información Académica
+                </h3>
+                
+                <div className="form-group">
+                  <label className="form-label">
+                    Profesión/Ocupación <span className="form-required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="profesion"
+                    className={`form-input ${errors.profesion ? "error" : ""}`}
+                    value={formData.profesion}
+                    onChange={handleChange}
+                    placeholder="Ej: Psicólogo, Estudiante, etc."
+                  />
+                  {errors.profesion && <span className="form-error">{errors.profesion}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    Formación Solicitada <span className="form-required">*</span>
+                  </label>
+                  <select
+                    name="formacionSolicitada"
+                    className="form-input form-select"
+                    value={formData.formacionSolicitada}
+                    onChange={handleChange}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    223 674 1300
-                  </a>
+                    {formacionesDisponibles.map((formacion) => (
+                      <option key={formacion} value={formacion}>
+                        {formacion}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
-            </div>
 
-            {/* Paso 4 */}
-            <div className="paso-item">
-              <div className="paso-number">
-                <span>4</span>
+              {/* Botones de envío */}
+              <div className="form-actions">
+                <button
+                  type="button"
+                  className="form-btn form-btn-whatsapp"
+                  onClick={(e) => handleSubmit(e, "whatsapp")}
+                  disabled={sending}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  {sending ? "Enviando..." : "Enviar por WhatsApp"}
+                </button>
+
+                <button
+                  type="button"
+                  className="form-btn form-btn-email"
+                  onClick={(e) => handleSubmit(e, "email")}
+                  disabled={sending}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                  {sending ? "Enviando..." : "Enviar por Email"}
+                </button>
               </div>
-              <div className="paso-content">
-                <div className="paso-icon success">
-                  <CheckCircleIcon />
-                </div>
-                <h2 className="paso-title">¡Listo! Accedé a tu Curso</h2>
-                <p className="paso-description">
-                  Una vez que recibamos y verifiquemos tu información
-                </p>
-                
-                <div className="success-box">
-                  <div className="success-icon">
-                    <CheckCircleIcon />
-                  </div>
-                  <div className="success-content">
-                    <h3>Te enviaremos las credenciales de acceso</h3>
-                    <p>
-                      Recibirás por email o WhatsApp una clave de acceso personal que te 
-                      permitirá ingresar al material del curso desde nuestra página web.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="beneficios-acceso">
-                  <h4>Con tu clave de acceso obtenés:</h4>
-                  <div className="beneficios-grid">
-                    <div className="beneficio-item">
-                      <CheckCircleIcon />
-                      <span>Material de estudio completo</span>
-                    </div>
-                    <div className="beneficio-item">
-                      <CheckCircleIcon />
-                      <span>Acceso a clases virtuales en vivo</span>
-                    </div>
-                    <div className="beneficio-item">
-                      <CheckCircleIcon />
-                      <span>Grabaciones de todas las clases</span>
-                    </div>
-                    <div className="beneficio-item">
-                      <CheckCircleIcon />
-                      <span>Soporte de docentes especializados</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+              <p className="form-nota">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                Podés enviar tu solicitud por WhatsApp o Email. Recordá adjuntar fotos de tus títulos educativos para completar el proceso.
+              </p>
+            </form>
           </div>
         </div>
       </div>
@@ -219,18 +441,19 @@ const ComoInscribirse = () => {
               Estamos aquí para ayudarte en cada paso del proceso de inscripción. 
               No dudes en contactarnos por cualquier consulta.
             </p>
-            <a 
-              href="https://wa.me/5492236741300" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-contacto"
-            >
-              Contactanos por WhatsApp
-            </a>
+            <div className="ayuda-buttons">
+              <a 
+                href="https://wa.me/5492236741300" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-contacto"
+              >
+                Contactanos por WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
     </section>
   );
 };
