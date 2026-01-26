@@ -116,44 +116,44 @@ const InscripcionModal = ({
 *        ISDEP - Instituto*
 *═══════════════════════*
 
-*📋 DATOS PERSONALES*
+* DATOS PERSONALES*
 ─────────────────────
 
-👤 *Nombre Completo:*
+ *Nombre Completo:*
    ${formData.nombre} ${formData.apellido}
 
-🆔 *DNI:* ${formData.dni}
+ *DNI:* ${formData.dni}
 
-📅 *Fecha de Nacimiento:*
+ *Fecha de Nacimiento:*
    ${formData.fechaNacimiento}
 
-📧 *Email:* ${formData.email}
+ *Email:* ${formData.email}
 
-📱 *Teléfono:* ${formData.telefono}
+ *Teléfono:* ${formData.telefono}
 
 
-*🌍 UBICACIÓN*
+* UBICACIÓN*
 ─────────────────────
 
-🌎 *País:* ${formData.pais}
-🏙️ *Ciudad:* ${formData.ciudad}
+ *País:* ${formData.pais}
+ *Ciudad:* ${formData.ciudad}
 
 
-*🎓 INFORMACIÓN ACADÉMICA*
+* INFORMACIÓN ACADÉMICA*
 ─────────────────────
 
-💼 *Profesión/Ocupación:*
+ *Profesión/Ocupación:*
    ${formData.profesion}
 
-📚 *Formación Solicitada:*
+ *Formación Solicitada:*
    ${formData.formacionSolicitada}
 
 
 *═══════════════════════*
 
-📎 _Adjuntaré fotografías de mis títulos educativos para completar la solicitud._
+ _Adjuntaré fotografías de mis títulos educativos para completar la solicitud._
 
-✅ _Solicitud generada automáticamente desde www.institutoisdep.com.ar_`;
+ _Solicitud generada automáticamente desde www.institutoisdep.com.ar_`;
   };
 
   const generateEmailBody = () => {
@@ -163,7 +163,7 @@ const InscripcionModal = ({
 ═══════════════════════════════════════════════════
 
 
-📋 DATOS PERSONALES
+ DATOS PERSONALES
 ───────────────────────────────────────────────────
 
   Nombre Completo:    ${formData.nombre} ${formData.apellido}
@@ -173,14 +173,14 @@ const InscripcionModal = ({
   Teléfono:           ${formData.telefono}
 
 
-🌍 UBICACIÓN
+ UBICACIÓN
 ───────────────────────────────────────────────────
 
   País:               ${formData.pais}
   Ciudad:             ${formData.ciudad}
 
 
-🎓 INFORMACIÓN ACADÉMICA
+ INFORMACIÓN ACADÉMICA
 ───────────────────────────────────────────────────
 
   Profesión/Ocupación:    ${formData.profesion}
