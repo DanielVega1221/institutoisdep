@@ -351,7 +351,7 @@ const ComoInscribirse = () => {
                       value={formData.fechaNacimiento}
                       onChange={handleChange}
                     />
-                    <p className="form-helper">Debes tener entre 16 y 100 años</p>
+                    <p className="form-helper">Debes tener más de 18 años</p>
                     {errors.fechaNacimiento && <span className="form-error">{errors.fechaNacimiento}</span>}
                   </div>
                 </div>
