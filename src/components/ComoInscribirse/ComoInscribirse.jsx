@@ -12,7 +12,6 @@ const formacionesDisponibles = [
   "Análisis de Dibujos",
   "Grafología Emocional",
   "Criminalística",
-  "Otro (consultar)"
 ];
 
 const ComoInscribirse = () => {
