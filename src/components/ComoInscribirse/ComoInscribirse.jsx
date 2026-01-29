@@ -447,7 +447,7 @@ const ComoInscribirse = () => {
                     className={`form-input ${errors.profesion ? "error" : ""}`}
                     value={formData.profesion}
                     onChange={handleChange}
-                    placeholder="Ej: Psicólogo, Estudiante, etc."
+                    placeholder="Ej: Secundario completo, Universitario, Terciario, etc."
                   />
                   {errors.profesion && <span className="form-error">{errors.profesion}</span>}
                 </div>
