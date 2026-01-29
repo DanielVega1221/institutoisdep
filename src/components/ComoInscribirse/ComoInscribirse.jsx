@@ -26,126 +26,119 @@ const ComoInscribirse = () => {
     pais: "",
     ciudad: "",
     profesion: "",
-    formacionSolicitada: formacionesDisponibles[0]
+    formacionSolicitada: formacionesDisponibles[0],
+    tieneConocimientosPrevios: false
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
   };
 
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedFiles(files);
+    if (errors.images) {
+      setErrors(prev => ({ ...prev, images: "" }));
+    }
+  };
+
+  const removeFile = (index) => {
+    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
   const validate = () => {
     const newErrors = {};
-    if (!formData.nombre.trim()) newErrors.nombre = "Campo obligatorio";
-    if (!formData.apellido.trim()) newErrors.apellido = "Campo obligatorio";
-    if (!formData.dni.trim()) newErrors.dni = "Campo obligatorio";
-    if (!formData.fechaNacimiento) newErrors.fechaNacimiento = "Campo obligatorio";
+    
+    // Nombre (2-50 caracteres, solo letras)
+    if (!formData.nombre.trim()) {
+      newErrors.nombre = "Campo obligatorio";
+    } else if (formData.nombre.length < 2 || formData.nombre.length > 50) {
+      newErrors.nombre = "Debe tener entre 2 y 50 caracteres";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.nombre)) {
+      newErrors.nombre = "Solo puede contener letras";
+    }
+    
+    // Apellido (2-50 caracteres, solo letras)
+    if (!formData.apellido.trim()) {
+      newErrors.apellido = "Campo obligatorio";
+    } else if (formData.apellido.length < 2 || formData.apellido.length > 50) {
+      newErrors.apellido = "Debe tener entre 2 y 50 caracteres";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.apellido)) {
+      newErrors.apellido = "Solo puede contener letras";
+    }
+    
+    // DNI (6-12 dígitos, solo números)
+    if (!formData.dni.trim()) {
+      newErrors.dni = "Campo obligatorio";
+    } else if (!/^[0-9]{6,12}$/.test(formData.dni)) {
+      newErrors.dni = "Debe tener entre 6 y 12 dígitos";
+    }
+    
+    // Fecha de nacimiento (16-100 años)
+    if (!formData.fechaNacimiento) {
+      newErrors.fechaNacimiento = "Campo obligatorio";
+    } else {
+      const date = new Date(formData.fechaNacimiento);
+      const today = new Date();
+      const age = today.getFullYear() - date.getFullYear();
+      if (age < 18 || age > 100) {
+        newErrors.fechaNacimiento = "Debe tener mas de 18 años";
+      }
+    }
+    
+    // Email
     if (!formData.email.trim()) {
       newErrors.email = "Campo obligatorio";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Email inválido";
     }
-    if (!formData.telefono.trim()) newErrors.telefono = "Campo obligatorio";
-    if (!formData.pais.trim()) newErrors.pais = "Campo obligatorio";
-    if (!formData.ciudad.trim()) newErrors.ciudad = "Campo obligatorio";
-    if (!formData.profesion.trim()) newErrors.profesion = "Campo obligatorio";
+    
+    // Teléfono (8-20 caracteres)
+    if (!formData.telefono.trim()) {
+      newErrors.telefono = "Campo obligatorio";
+    } else if (formData.telefono.length < 8 || formData.telefono.length > 20) {
+      newErrors.telefono = "Debe tener entre 8 y 20 caracteres";
+    } else if (!/^[0-9+\s()-]+$/.test(formData.telefono)) {
+      newErrors.telefono = "Formato inválido (solo números, +, -, (), espacios)";
+    }
+    
+    // País (2-50 caracteres, solo letras)
+    if (!formData.pais.trim()) {
+      newErrors.pais = "Campo obligatorio";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.pais)) {
+      newErrors.pais = "Solo puede contener letras";
+    }
+    
+    // Ciudad (2-50 caracteres, solo letras)
+    if (!formData.ciudad.trim()) {
+      newErrors.ciudad = "Campo obligatorio";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.ciudad)) {
+      newErrors.ciudad = "Solo puede contener letras";
+    }
+    
+    // Profesión (2-100 caracteres)
+    if (!formData.profesion.trim()) {
+      newErrors.profesion = "Campo obligatorio";
+    } else if (formData.profesion.length < 2 || formData.profesion.length > 100) {
+      newErrors.profesion = "Debe tener entre 2 y 100 caracteres";
+    }
+    
     return newErrors;
   };
 
-  const generateWhatsAppMessage = () => {
-    return `*═══════════════════════*
-*   SOLICITUD DE INSCRIPCIÓN*
-*        ISDEP - Instituto*
-*═══════════════════════*
-
-*📋 DATOS PERSONALES*
-─────────────────────
-
-👤 *Nombre Completo:*
-   ${formData.nombre} ${formData.apellido}
-
-🆔 *DNI:* ${formData.dni}
-
-📅 *Fecha de Nacimiento:*
-   ${formData.fechaNacimiento}
-
-📧 *Email:* ${formData.email}
-
-📱 *Teléfono:* ${formData.telefono}
-
-
-*🌍 UBICACIÓN*
-─────────────────────
-
-🌎 *País:* ${formData.pais}
-🏙️ *Ciudad:* ${formData.ciudad}
-
-
-*🎓 INFORMACIÓN ACADÉMICA*
-─────────────────────
-
-💼 *Profesión/Ocupación:*
-   ${formData.profesion}
-
-📚 *Formación Solicitada:*
-   ${formData.formacionSolicitada}
-
-
-*═══════════════════════*
-
-📎 _Adjuntaré fotografías de mis títulos educativos para completar la solicitud._
-
-✅ _Solicitud generada automáticamente desde www.institutoisdep.com.ar_`;
-  };
-
-  const generateEmailBody = () => {
-    return `═══════════════════════════════════════════════════
-        SOLICITUD DE INSCRIPCIÓN - ISDEP
-              Instituto de Estudios Superiores
-═══════════════════════════════════════════════════
-
-
-📋 DATOS PERSONALES
-───────────────────────────────────────────────────
-
-  Nombre Completo:    ${formData.nombre} ${formData.apellido}
-  DNI:                ${formData.dni}
-  Fecha Nacimiento:   ${formData.fechaNacimiento}
-  Email:              ${formData.email}
-  Teléfono:           ${formData.telefono}
-
-
-🌍 UBICACIÓN
-───────────────────────────────────────────────────
-
-  País:               ${formData.pais}
-  Ciudad:             ${formData.ciudad}
-
-
-🎓 INFORMACIÓN ACADÉMICA
-───────────────────────────────────────────────────
-
-  Profesión/Ocupación:    ${formData.profesion}
-  Formación Solicitada:   ${formData.formacionSolicitada}
-
-
-═══════════════════════════════════════════════════
-
-NOTA: Adjuntaré fotografías de mis títulos educativos 
-para completar la solicitud de inscripción.
-
-Solicitud generada desde: www.institutoisdep.com.ar
-Fecha: ${new Date().toLocaleDateString('es-AR')}
-
-═══════════════════════════════════════════════════`;
-  };
-
-  const handleSubmit = (e, method) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     
@@ -155,24 +148,93 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
     }
 
     setSending(true);
+    setSuccessMessage("");
+    setErrorMessage("");
 
-    if (method === "whatsapp") {
-      const message = encodeURIComponent(generateWhatsAppMessage());
-      const whatsappUrl = `https://wa.me/5492236741300?text=${message}`;
-      window.open(whatsappUrl, "_blank");
-      setSending(false);
-    } else if (method === "email") {
-      const subject = encodeURIComponent(`Solicitud de Inscripción - ${formData.nombre} ${formData.apellido}`);
-      const body = encodeURIComponent(generateEmailBody());
-      const mailtoUrl = `mailto:isdep@hotmail.com.ar?subject=${subject}&body=${body}`;
-      window.location.href = mailtoUrl;
+    try {
+      // Configurar la URL del backend
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+      
+      // Crear FormData para enviar al backend (que espera multipart/form-data)
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach(key => {
+        // Convertir booleanos a string para FormData
+        const value = typeof formData[key] === 'boolean' 
+          ? formData[key].toString() 
+          : formData[key];
+        formDataToSend.append(key, value);
+      });
+      
+      // Agregar imágenes si hay alguna seleccionada
+      selectedFiles.forEach((file) => {
+        formDataToSend.append('images', file);
+      });
+
+      // Debug: ver qué se está enviando
+      console.log('Datos a enviar:', Object.fromEntries(formDataToSend.entries()));
+      
+      // Crear AbortController para timeout de 90 segundos (da margen para que Render despierte)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 segundos
+      
+      const response = await fetch(`${backendUrl}/api/inscripcion`, {
+        method: 'POST',
+        body: formDataToSend, // No incluir Content-Type, el navegador lo establecerá automáticamente con el boundary correcto
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (response.ok && data.success) {
+        setSuccessMessage("¡Inscripción enviada exitosamente! Nos pondremos en contacto contigo pronto.");
+        // Limpiar el formulario
+        setFormData({
+          nombre: "",
+          apellido: "",
+          dni: "",
+          fechaNacimiento: "",
+          email: "",
+          telefono: "",
+          pais: "",
+          ciudad: "",
+          profesion: "",
+          formacionSolicitada: formacionesDisponibles[0],
+          tieneConocimientosPrevios: false
+        });
+        setSelectedFiles([]);
+        
+        // Scroll hacia arriba para mostrar el mensaje
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Mostrar detalles del error para debugging
+        console.error('Error del backend:', data);
+        const errorMsg = data.errors 
+          ? Object.values(data.errors).flat().join(', ')
+          : (data.message || "Error al enviar la inscripción. Por favor, intenta nuevamente.");
+        setErrorMessage(errorMsg);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      
+      // Manejo de errores específico
+      if (error.name === 'AbortError') {
+        setErrorMessage("El servidor tardó demasiado en responder. Por favor, intenta nuevamente en unos minutos.");
+      } else if (error.message.includes('fetch')) {
+        setErrorMessage("Error de conexión. Por favor, verifica tu conexión a internet e intenta nuevamente.");
+      } else {
+        setErrorMessage("Error al enviar la inscripción. Por favor, intenta nuevamente.");
+      }
+    } finally {
       setSending(false);
     }
   };
 
   return (
     <section className="como-inscribirse">
-      {/* Hero Section */}
       <div className="inscripcion-hero">
         <div className="hero-container">
           <div className="hero-content">
@@ -186,7 +248,6 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
         </div>
       </div>
 
-      {/* Formulario de Inscripción */}
       <div className="formulario-inscripcion-section">
         <div className="formulario-container">
           <div className="formulario-card">
@@ -200,10 +261,27 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
               <p className="formulario-subtitulo">
                 Completá todos los campos para procesar tu solicitud
               </p>
+              
+              {successMessage && (
+                <div className="alert alert-success">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                  {successMessage}
+                </div>
+              )}
+              
+              {errorMessage && (
+                <div className="alert alert-error">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                  {errorMessage}
+                </div>
+              )}
             </div>
 
             <form className="inscripcion-form-page">
-              {/* Datos Personales */}
               <div className="form-section">
                 <h3 className="form-section-titulo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -258,6 +336,7 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                       onChange={handleChange}
                       placeholder="12345678"
                     />
+                    <p className="form-helper">6 a 12 dígitos, solo números</p>
                     {errors.dni && <span className="form-error">{errors.dni}</span>}
                   </div>
 
@@ -272,12 +351,12 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                       value={formData.fechaNacimiento}
                       onChange={handleChange}
                     />
+                    <p className="form-helper">Debes tener entre 16 y 100 años</p>
                     {errors.fechaNacimiento && <span className="form-error">{errors.fechaNacimiento}</span>}
                   </div>
                 </div>
               </div>
 
-              {/* Datos de Contacto */}
               <div className="form-section">
                 <h3 className="form-section-titulo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -313,6 +392,7 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                     onChange={handleChange}
                     placeholder="+54 9 11 1234-5678"
                   />
+                  <p className="form-helper">Incluye código de área (ej: +54 9 11 1234-5678)</p>
                   {errors.telefono && <span className="form-error">{errors.telefono}</span>}
                 </div>
 
@@ -349,7 +429,6 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                 </div>
               </div>
 
-              {/* Información Académica */}
               <div className="form-section">
                 <h3 className="form-section-titulo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -361,7 +440,7 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                 
                 <div className="form-group">
                   <label className="form-label">
-                    Profesión/Ocupación <span className="form-required">*</span>
+                    Nivel de educación <span className="form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -391,33 +470,93 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                     ))}
                   </select>
                 </div>
+
+                <div className="form-group">
+                  <label className="form-label-checkbox">
+                    <input
+                      type="checkbox"
+                      name="tieneConocimientosPrevios"
+                      checked={formData.tieneConocimientosPrevios}
+                      onChange={handleChange}
+                      className="form-checkbox"
+                    />
+                    <span className="checkbox-label-text">
+                      Tengo conocimientos previos en el área
+                    </span>
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    Títulos Educativos <span className="form-optional">(opcional)</span>
+                  </label>
+                  <p className="form-helper">Adjuntá fotos de tus títulos o certificados (máximo 5 archivos, 5MB cada uno)</p>
+                  <input
+                    type="file"
+                    id="images"
+                    name="images"
+                    accept="image/*"
+                    multiple
+                    onChange={handleFileChange}
+                    className="form-input-file"
+                  />
+                  <label htmlFor="images" className="form-file-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 8L12 3M12 3L7 8M12 3V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    {selectedFiles.length > 0 ? `${selectedFiles.length} archivo(s) seleccionado(s)` : 'Seleccionar archivos'}
+                  </label>
+                  {errors.images && <span className="form-error">{errors.images}</span>}
+                  
+                  {selectedFiles.length > 0 && (
+                    <div className="selected-files-list">
+                      {selectedFiles.map((file, index) => (
+                        <div key={index} className="file-item">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V9L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M13 2V9H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          <span className="file-name">{file.name}</span>
+                          <span className="file-size">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                          <button
+                            type="button"
+                            onClick={() => removeFile(index)}
+                            className="file-remove"
+                            aria-label="Eliminar archivo"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {/* Botones de envío */}
               <div className="form-actions">
                 <button
-                  type="button"
-                  className="form-btn form-btn-whatsapp"
-                  onClick={(e) => handleSubmit(e, "whatsapp")}
-                  disabled={sending}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                  {sending ? "Enviando..." : "Enviar por WhatsApp"}
-                </button>
-
-                <button
-                  type="button"
+                  type="submit"
                   className="form-btn form-btn-email"
-                  onClick={(e) => handleSubmit(e, "email")}
+                  onClick={handleSubmit}
                   disabled={sending}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
-                  {sending ? "Enviando..." : "Enviar por Email"}
+                  {sending ? "Enviando..." : "Enviar Inscripción"}
                 </button>
+                
+                {sending && (
+                  <p className="sending-info">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="spinning">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
+                      <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                    Procesando tu solicitud... Esto puede tardar hasta 60 segundos en la primera conexión.
+                  </p>
+                )}
               </div>
 
               <p className="form-nota">
@@ -425,14 +564,13 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
                   <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
-                Podés enviar tu solicitud por WhatsApp o Email. Recordá adjuntar fotos de tus títulos educativos para completar el proceso.
+                <span>Nos pondremos en contacto contigo a la brevedad.</span>
               </p>
             </form>
           </div>
         </div>
       </div>
 
-      {/* Sección de ayuda */}
       <div className="ayuda-section">
         <div className="section-container">
           <div className="ayuda-content">

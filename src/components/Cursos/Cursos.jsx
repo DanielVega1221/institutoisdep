@@ -1,7 +1,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import CursoModal from "./CursoModal";
-import InscripcionModal from "../InscripcionModal/InscripcionModal";
 import "./Cursos.css";
 // Usar imágenes locales optimizadas desde localImages
 import { localImages } from "../../utils/localImages";
@@ -553,8 +552,6 @@ const Cursos = ({ focusCarrera, setFocusCarrera }) => {
   const [pendingFocus, setPendingFocus] = useState(null);
   const [selectedCurso, setSelectedCurso] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isInscripcionModalOpen, setIsInscripcionModalOpen] = useState(false);
-  const [cursoParaInscripcion, setCursoParaInscripcion] = useState(null);
 
   // Minimizar acordeón si la sección sale de pantalla
   useEffect(() => {
@@ -575,12 +572,6 @@ const Cursos = ({ focusCarrera, setFocusCarrera }) => {
     };
   }, [isExpanded]);
 
-  // Para scroll y auto-selección
-  const handleSolicitarInfo = (titulo) => {
-    setCursoParaInscripcion(titulo);
-    setIsInscripcionModalOpen(true);
-  };
-
   // Funciones para el modal de detalles
   const handleVerMas = (curso) => {
     setSelectedCurso(curso);
@@ -590,12 +581,6 @@ const Cursos = ({ focusCarrera, setFocusCarrera }) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedCurso(null);
-  };
-
-  // Función para cerrar modal de inscripción
-  const handleCloseInscripcionModal = () => {
-    setIsInscripcionModalOpen(false);
-    setCursoParaInscripcion(null);
   };
 
   // Enfocar card cuando focusCarrera cambia
@@ -771,17 +756,6 @@ const Cursos = ({ focusCarrera, setFocusCarrera }) => {
                           <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
                       </button>
-                      <button 
-                        className="card-button-solicitar"
-                        onClick={() => handleSolicitarInfo(curso.titulo)}
-                        disabled={curso.estado !== 'disponible'}
-                        style={curso.estado !== 'disponible' ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
-                      >
-                        <span>{curso.estado === 'disponible' ? 'Consultar' : 'No disponible'}</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
                     </div>
                     </div> {/* Cierre de card-content-wrapper */}
                   </div>
@@ -797,15 +771,6 @@ const Cursos = ({ focusCarrera, setFocusCarrera }) => {
         curso={selectedCurso}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        onSolicitarInfo={handleSolicitarInfo}
-      />
-
-      {/* Modal de inscripción */}
-      <InscripcionModal
-        isOpen={isInscripcionModalOpen}
-        onClose={handleCloseInscripcionModal}
-        cursoPreseleccionado={cursoParaInscripcion}
-        mostrarDropdown={false}
       />
     </section>
   );

@@ -378,12 +378,12 @@
     align-items: center;
     justify-content: center;
     color: #26265e;
-    font-size: 1.08rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.5px;
-    line-height: 1.18;
+    line-height: 1.15;
     font-family: 'Poppins', sans-serif;
-    margin-left: 1.2rem;
+    margin-left: 1rem;
     text-align: center;
     flex: 1;
   }
@@ -393,12 +393,12 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.08rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.5px;
-    line-height: 1.18;
+    line-height: 1.15;
     font-family: 'Poppins', sans-serif;
-    margin-left: 1.2rem;
+    margin-left: 1rem;
     text-align: center;
     flex: 1;
   }
@@ -417,12 +417,13 @@
   .navbar {
     padding: 0.7rem 1rem 0.7rem 1rem;
     height: auto;
-    min-height: 80px;
+    min-height: 75px;
   }
   /* Eliminar subtítulo centrado anterior */
   .navbar-hamburger {
     width: 44px;
     height: 44px;
+    flex-shrink: 0;
   }
   .hamburger-line {
     width: 20px;
@@ -446,9 +447,92 @@
   }
 }
 
+@media (max-width: 520px) {
+  .navbar-subtitle-mobile {
+    font-size: 0.95rem;
+    line-height: 1.1;
+    margin-left: 0.8rem;
+  }
+  .overlay-subtitle-mobile {
+    font-size: 0.95rem;
+    line-height: 1.1;
+  }
+}
+
 @media (max-width: 480px) {
   .nav-link {
     font-size: 2rem;
+  }
+  .navbar {
+    padding: 0.6rem 0.9rem;
+    min-height: 65px;
+  }
+  .navbar-subtitle-mobile {
+    font-size: 0.85rem;
+    line-height: 1.05;
+    margin-left: 0.6rem;
+  }
+  .overlay-subtitle-mobile {
+    font-size: 0.85rem;
+    line-height: 1.05;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar-subtitle-mobile {
+    font-size: 0.75rem;
+    line-height: 1;
+    margin-left: 0.5rem;
+  }
+  .overlay-subtitle-mobile {
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+  .subtitle-legal {
+    font-size: 0.6rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-subtitle-mobile {
+    font-size: 0.7rem;
+    line-height: 0.95;
+    margin-left: 0.4rem;
+  }
+  .overlay-subtitle-mobile {
+    font-size: 0.7rem;
+    line-height: 0.95;
+  }
+}
+
+@media (max-width: 350px) {
+  /* Ocultar texto solo en pantallas MUY pequeñas (menos de 350px) */
+  .navbar-subtitle-mobile {
+    display: none !important;
+  }
+  .overlay-subtitle-mobile {
+    display: none !important;
+  }
+  .navbar {
+    justify-content: space-between;
+    padding: 0.7rem 0.8rem;
+    min-height: 65px;
+  }
+  .navbar-logo {
+    height: 42px;
+  }
+  .navbar-logo img {
+    height: 42px;
+  }
+  .navbar-logo-img {
+    height: 42px;
+  }
+  .navbar-hamburger {
+    width: 46px;
+    height: 46px;
+  }
+  .hamburger-line {
+    width: 22px;
   }
 }
 

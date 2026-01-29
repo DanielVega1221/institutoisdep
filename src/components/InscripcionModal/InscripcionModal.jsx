@@ -31,7 +31,8 @@ const InscripcionModal = ({
     pais: "",
     ciudad: "",
     profesion: "",
-    formacionSolicitada: cursoPreseleccionado || formacionesDisponibles[0]
+    formacionSolicitada: cursoPreseleccionado || formacionesDisponibles[0],
+    tieneConocimientosPrevios: false
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
@@ -59,7 +60,8 @@ const InscripcionModal = ({
         pais: "",
         ciudad: "",
         profesion: "",
-        formacionSolicitada: cursoPreseleccionado || formacionesDisponibles[0]
+        formacionSolicitada: cursoPreseleccionado || formacionesDisponibles[0],
+        tieneConocimientosPrevios: false
       });
       setErrors({});
     }
@@ -85,8 +87,11 @@ const InscripcionModal = ({
   }, [isOpen]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }));
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
@@ -148,6 +153,9 @@ const InscripcionModal = ({
  *Formación Solicitada:*
    ${formData.formacionSolicitada}
 
+ *Conocimientos Previos:*
+   ${formData.tieneConocimientosPrevios ? 'Sí' : 'No'}
+
 
 *═══════════════════════*
 
@@ -185,6 +193,7 @@ const InscripcionModal = ({
 
   Profesión/Ocupación:    ${formData.profesion}
   Formación Solicitada:   ${formData.formacionSolicitada}
+  Conocimientos Previos:  ${formData.tieneConocimientosPrevios ? 'Sí' : 'No'}
 
 
 ═══════════════════════════════════════════════════
@@ -473,6 +482,21 @@ Fecha: ${new Date().toLocaleDateString('es-AR')}
                   disabled
                 />
               )}
+            </div>
+
+            <div className="inscripcion-form-group">
+              <label className="inscripcion-label-checkbox">
+                <input
+                  type="checkbox"
+                  name="tieneConocimientosPrevios"
+                  checked={formData.tieneConocimientosPrevios}
+                  onChange={handleChange}
+                  className="inscripcion-checkbox"
+                />
+                <span className="checkbox-label-text">
+                  Tengo conocimientos previos en el área
+                </span>
+              </label>
             </div>
           </div>
 

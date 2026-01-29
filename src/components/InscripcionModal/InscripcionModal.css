@@ -213,6 +213,34 @@
   font-weight: 500;
 }
 
+/* Checkbox styles */
+.inscripcion-label-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 12px;
+}
+
+.inscripcion-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #3b82f6;
+  transition: all 0.2s;
+}
+
+.inscripcion-checkbox:hover {
+  transform: scale(1.05);
+}
+
+.checkbox-label-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+}
+
 /* Form Actions */
 .inscripcion-form-actions {
   margin-top: 30px;

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CursoModal.css';
 
-const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
+const CursoModal = ({ curso, isOpen, onClose }) => {
+  const navigate = useNavigate();
+  
   // Bloquear scroll del body cuando el modal está abierto
   useEffect(() => {
     if (isOpen) {
@@ -35,9 +38,10 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
     }
   };
 
-  const handleSolicitarInfo = () => {
-    onSolicitarInfo(curso.titulo);
+  const handleIrAInscripcion = () => {
     onClose();
+    // Navegar a la página de inscripción
+    navigate('/como-inscribirse');
   };
 
   return (
@@ -172,25 +176,25 @@ const CursoModal = ({ curso, isOpen, onClose, onSolicitarInfo }) => {
           {/* ...el resto del contenido... */}
         </div>
 
+        {/* Footer con botón de inscripción */}
         <div className="curso-modal-footer">
           <div className="modal-footer-content">
             <div className="modal-cta-section">
               <h4 className="modal-cta-title">¿Te interesa esta carrera?</h4>
-              <p className="modal-cta-subtitle">Solicitá información sin compromiso</p>
+              <p className="modal-cta-subtitle">Completá el formulario de inscripción</p>
             </div>
             <button 
               className="modal-action-btn"
-              onClick={handleSolicitarInfo}
+              onClick={handleIrAInscripcion}
               disabled={curso.estado !== 'disponible'}
               style={curso.estado !== 'disponible' ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
             >
               <span className="modal-btn-icon-left">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12H15M12 16H15M9 12H9.01M9 16H9.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
               </span>
-              <span className="modal-btn-text">{curso.estado === 'disponible' ? 'Solicitá más información' : 'No disponible'}</span>
+              <span className="modal-btn-text">{curso.estado === 'disponible' ? 'Ir al formulario de inscripción' : 'No disponible'}</span>
               <span className="modal-btn-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
