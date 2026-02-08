@@ -50,8 +50,24 @@ const ComoInscribirse = () => {
   };
 
   const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setSelectedFiles(files);
+    const newFiles = Array.from(e.target.files);
+    
+    // Agregar los nuevos archivos a los existentes (sin duplicados)
+    setSelectedFiles(prev => {
+      const existingNames = prev.map(f => f.name);
+      const filesToAdd = newFiles.filter(f => !existingNames.includes(f.name));
+      const combined = [...prev, ...filesToAdd];
+      
+      // Limitar a 5 archivos máximo
+      if (combined.length > 5) {
+        return combined.slice(0, 5);
+      }
+      return combined;
+    });
+    
+    // Limpiar el input para permitir seleccionar el mismo archivo nuevamente si se elimina
+    e.target.value = '';
+    
     if (errors.images) {
       setErrors(prev => ({ ...prev, images: "" }));
     }
