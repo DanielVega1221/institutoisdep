@@ -34,18 +34,6 @@ const Footer = () => (
         <div className="footer-cta-desc">
           Escribinos y te ayudamos a elegir la formación que mejor se adapta a vos.
         </div>
-        <button
-          className="footer-contact-btn"
-          type="button"
-          onClick={() => {
-            const section = document.getElementById('contacto-section');
-            if (section) {
-              section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-          }}
-        >
-          Contactar
-        </button>
       </div>
       {/* Columna derecha: Redes sociales */}
       <div className="footer-col footer-col-right">

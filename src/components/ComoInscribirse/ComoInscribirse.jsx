@@ -12,6 +12,7 @@ const formacionesDisponibles = [
   "Análisis de Dibujos",
   "Grafología Emocional",
   "Criminalística",
+  "Otro (consultar)"
 ];
 
 const ComoInscribirse = () => {
@@ -19,7 +20,9 @@ const ComoInscribirse = () => {
     nombre: "",
     apellido: "",
     dni: "",
-    fechaNacimiento: "",
+    dia: "",
+    mes: "",
+    anio: "",
     email: "",
     telefono: "",
     pais: "",
@@ -30,6 +33,7 @@ const ComoInscribirse = () => {
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
+  const [sendingStage, setSendingStage] = useState(""); // "connecting", "sending", "processing"
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -85,15 +89,34 @@ const ComoInscribirse = () => {
       newErrors.dni = "Debe tener entre 6 y 12 dígitos";
     }
     
-    // Fecha de nacimiento (16-100 años)
-    if (!formData.fechaNacimiento) {
-      newErrors.fechaNacimiento = "Campo obligatorio";
+    // Fecha de nacimiento (18-100 años)
+    if (!formData.dia || !formData.mes || !formData.anio) {
+      newErrors.fechaNacimiento = "La fecha de nacimiento es obligatoria";
     } else {
-      const date = new Date(formData.fechaNacimiento);
-      const today = new Date();
-      const age = today.getFullYear() - date.getFullYear();
-      if (age < 18 || age > 100) {
-        newErrors.fechaNacimiento = "Debe tener mas de 18 años";
+      const dia = parseInt(formData.dia);
+      const mes = parseInt(formData.mes);
+      const anio = parseInt(formData.anio);
+      
+      // Validar que los valores sean válidos
+      if (dia < 1 || dia > 31) {
+        newErrors.fechaNacimiento = "Día inválido";
+      } else if (mes < 1 || mes > 12) {
+        newErrors.fechaNacimiento = "Mes inválido";
+      } else if (anio < 1900 || anio > new Date().getFullYear()) {
+        newErrors.fechaNacimiento = "Año inválido";
+      } else {
+        // Crear fecha y validar edad
+        const fechaNacimiento = new Date(anio, mes - 1, dia);
+        const today = new Date();
+        const age = today.getFullYear() - fechaNacimiento.getFullYear();
+        const monthDiff = today.getMonth() - fechaNacimiento.getMonth();
+        const dayDiff = today.getDate() - fechaNacimiento.getDate();
+        
+        const edadReal = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
+        
+        if (edadReal < 18 || edadReal > 100) {
+          newErrors.fechaNacimiento = "Debes tener entre 18 y 100 años";
+        }
       }
     }
     
@@ -147,6 +170,7 @@ const ComoInscribirse = () => {
     }
 
     setSending(true);
+    setSendingStage("connecting");
     setSuccessMessage("");
     setErrorMessage("");
 
@@ -154,9 +178,22 @@ const ComoInscribirse = () => {
       // Configurar la URL del backend
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
       
+      // Simular un pequeño delay para mostrar el estado de conexión
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setSendingStage("sending");
+      
       // Crear FormData para enviar al backend (que espera multipart/form-data)
       const formDataToSend = new FormData();
+      
+      // Construir fecha en formato YYYY-MM-DD
+      const fechaNacimiento = `${formData.anio}-${String(formData.mes).padStart(2, '0')}-${String(formData.dia).padStart(2, '0')}`;
+      
       Object.keys(formData).forEach(key => {
+        // Saltear los campos de fecha individuales
+        if (key === 'dia' || key === 'mes' || key === 'anio') {
+          return;
+        }
+        
         // Convertir booleanos a string para FormData
         const value = typeof formData[key] === 'boolean' 
           ? formData[key].toString() 
@@ -164,25 +201,42 @@ const ComoInscribirse = () => {
         formDataToSend.append(key, value);
       });
       
-      // Agregar imágenes si hay alguna seleccionada
-      selectedFiles.forEach((file) => {
-        formDataToSend.append('images', file);
-      });
-
-      // Debug: ver qué se está enviando
-      console.log('Datos a enviar:', Object.fromEntries(formDataToSend.entries()));
+      // Agregar la fecha completa
+      formDataToSend.append('fechaNacimiento', fechaNacimiento);
       
-      // Crear AbortController para timeout de 90 segundos (da margen para que Render despierte)
+      // Agregar imágenes si hay alguna seleccionada
+      if (selectedFiles.length > 0) {
+        console.log(`📎 Adjuntando ${selectedFiles.length} archivo(s):`);
+        selectedFiles.forEach((file, index) => {
+          formDataToSend.append('images', file);
+          console.log(`  ${index + 1}. ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB, ${file.type})`);
+        });
+      } else {
+        console.log('📎 No hay archivos para adjuntar');
+      }
+
+      // Debug: verificar qué se está enviando
+      console.log('📋 Datos del formulario:');
+      for (let [key, value] of formDataToSend.entries()) {
+        if (value instanceof File) {
+          console.log(`  ${key}: [File] ${value.name} (${(value.size / 1024).toFixed(2)} KB)`);
+        } else {
+          console.log(`  ${key}: ${value}`);
+        }
+      }
+      
+      // Crear AbortController para timeout de 90 segundos
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 segundos
+      const timeoutId = setTimeout(() => controller.abort(), 90000);
       
       const response = await fetch(`${backendUrl}/api/inscripcion`, {
         method: 'POST',
-        body: formDataToSend, // No incluir Content-Type, el navegador lo establecerá automáticamente con el boundary correcto
+        body: formDataToSend,
         signal: controller.signal
       });
       
       clearTimeout(timeoutId);
+      setSendingStage("processing");
 
       console.log('Response status:', response.status);
       const data = await response.json();
@@ -190,12 +244,15 @@ const ComoInscribirse = () => {
 
       if (response.ok && data.success) {
         setSuccessMessage("¡Inscripción enviada exitosamente! Nos pondremos en contacto contigo pronto.");
+        
         // Limpiar el formulario
         setFormData({
           nombre: "",
           apellido: "",
           dni: "",
-          fechaNacimiento: "",
+          dia: "",
+          mes: "",
+          anio: "",
           email: "",
           telefono: "",
           pais: "",
@@ -209,7 +266,6 @@ const ComoInscribirse = () => {
         // Scroll hacia arriba para mostrar el mensaje
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        // Mostrar detalles del error para debugging
         console.error('Error del backend:', data);
         const errorMsg = data.errors 
           ? Object.values(data.errors).flat().join(', ')
@@ -219,7 +275,6 @@ const ComoInscribirse = () => {
     } catch (error) {
       console.error('Error:', error);
       
-      // Manejo de errores específico
       if (error.name === 'AbortError') {
         setErrorMessage("El servidor tardó demasiado en responder. Por favor, intenta nuevamente en unos minutos.");
       } else if (error.message.includes('fetch')) {
@@ -229,6 +284,7 @@ const ComoInscribirse = () => {
       }
     } finally {
       setSending(false);
+      setSendingStage("");
     }
   };
 
@@ -280,7 +336,7 @@ const ComoInscribirse = () => {
               )}
             </div>
 
-            <form className="inscripcion-form-page">
+            <form className="inscripcion-form-page" onSubmit={handleSubmit}>
               <div className="form-section">
                 <h3 className="form-section-titulo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -343,14 +399,62 @@ const ComoInscribirse = () => {
                     <label className="form-label">
                       Fecha de Nacimiento <span className="form-required">*</span>
                     </label>
-                    <input
-                      type="date"
-                      name="fechaNacimiento"
-                      className={`form-input ${errors.fechaNacimiento ? "error" : ""}`}
-                      value={formData.fechaNacimiento}
-                      onChange={handleChange}
-                    />
-                    <p className="form-helper">Debes tener más de 18 años</p>
+                    <div className="form-row form-date-group">
+                      <div className="form-date-field">
+                        <label className="form-date-label">Día</label>
+                        <select
+                          name="dia"
+                          className={`form-input form-select ${errors.fechaNacimiento ? "error" : ""}`}
+                          value={formData.dia}
+                          onChange={handleChange}
+                        >
+                          <option value="">--</option>
+                          {Array.from({length: 31}, (_, i) => i + 1).map(d => (
+                            <option key={d} value={d}>{d}</option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      <div className="form-date-field">
+                        <label className="form-date-label">Mes</label>
+                        <select
+                          name="mes"
+                          className={`form-input form-select ${errors.fechaNacimiento ? "error" : ""}`}
+                          value={formData.mes}
+                          onChange={handleChange}
+                        >
+                          <option value="">--</option>
+                          <option value="1">Enero</option>
+                          <option value="2">Febrero</option>
+                          <option value="3">Marzo</option>
+                          <option value="4">Abril</option>
+                          <option value="5">Mayo</option>
+                          <option value="6">Junio</option>
+                          <option value="7">Julio</option>
+                          <option value="8">Agosto</option>
+                          <option value="9">Septiembre</option>
+                          <option value="10">Octubre</option>
+                          <option value="11">Noviembre</option>
+                          <option value="12">Diciembre</option>
+                        </select>
+                      </div>
+                      
+                      <div className="form-date-field">
+                        <label className="form-date-label">Año</label>
+                        <select
+                          name="anio"
+                          className={`form-input form-select ${errors.fechaNacimiento ? "error" : ""}`}
+                          value={formData.anio}
+                          onChange={handleChange}
+                        >
+                          <option value="">----</option>
+                          {Array.from({length: 83}, (_, i) => new Date().getFullYear() - 18 - i).map(y => (
+                            <option key={y} value={y}>{y}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <p className="form-helper">Debes tener entre 18 y 100 años</p>
                     {errors.fechaNacimiento && <span className="form-error">{errors.fechaNacimiento}</span>}
                   </div>
                 </div>
@@ -439,7 +543,7 @@ const ComoInscribirse = () => {
                 
                 <div className="form-group">
                   <label className="form-label">
-                    Nivel de educación <span className="form-required">*</span>
+                    Profesión/Ocupación <span className="form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -447,7 +551,7 @@ const ComoInscribirse = () => {
                     className={`form-input ${errors.profesion ? "error" : ""}`}
                     value={formData.profesion}
                     onChange={handleChange}
-                    placeholder="Ej: Secundario completo, Universitario, Terciario, etc."
+                    placeholder="Ej: Psicólogo, Estudiante, etc."
                   />
                   {errors.profesion && <span className="form-error">{errors.profesion}</span>}
                 </div>
@@ -538,7 +642,6 @@ const ComoInscribirse = () => {
                 <button
                   type="submit"
                   className="form-btn form-btn-email"
-                  onClick={handleSubmit}
                   disabled={sending}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -548,13 +651,34 @@ const ComoInscribirse = () => {
                 </button>
                 
                 {sending && (
-                  <p className="sending-info">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="spinning">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
-                      <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                    Procesando tu solicitud... Esto puede tardar hasta 60 segundos en la primera conexión.
-                  </p>
+                  <div className="sending-progress">
+                    <div className="progress-bar-container">
+                      <div className={`progress-bar progress-${sendingStage}`}></div>
+                    </div>
+                    <div className="sending-stages">
+                      <div className={`stage ${sendingStage === 'connecting' ? 'active' : sendingStage === 'sending' || sendingStage === 'processing' ? 'completed' : ''}`}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                        </svg>
+                        <span>Conectando al servidor...</span>
+                      </div>
+                      <div className={`stage ${sendingStage === 'sending' ? 'active' : sendingStage === 'processing' ? 'completed' : ''}`}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                        </svg>
+                        <span>Enviando datos...</span>
+                      </div>
+                      <div className={`stage ${sendingStage === 'processing' ? 'active' : ''}`}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                        <span>Procesando solicitud...</span>
+                      </div>
+                    </div>
+                    <p className="sending-info-note">
+                      🔐 <strong>Conexión segura establecida.</strong> Procesando tu solicitud en nuestros servidores. Este proceso puede tomar unos momentos.
+                    </p>
+                  </div>
                 )}
               </div>
 
