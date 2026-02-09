@@ -5,6 +5,7 @@ import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
 
 const navItems = [
+  { label: "Carreras", route: "/", section: "cursos" },
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
   { label: "Cómo inscribirme", route: "/como-inscribirse" },
   { label: "Código de Ética Grafológico", route: "/codigo-etica-grafologico" },
