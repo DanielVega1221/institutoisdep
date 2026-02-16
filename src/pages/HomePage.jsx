@@ -23,6 +23,7 @@ const HomePage = () => {
   const [phraseVisible, setPhraseVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [focusCarrera, setFocusCarrera] = useState(null);
+  const [expandCursos, setExpandCursos] = useState(false);
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
   const anunciosRef = React.useRef(null);
@@ -47,6 +48,11 @@ const HomePage = () => {
   // Manejar scroll desde navegación
   useEffect(() => {
     if (location.state?.scrollToSection) {
+      // Si la sección es cursos, señalar que debe expandirse
+      if (location.state.expandCursos) {
+        setExpandCursos(true);
+      }
+      
       setTimeout(() => {
         const element = document.getElementById(location.state.scrollToSection);
         if (element) {
@@ -55,6 +61,19 @@ const HomePage = () => {
       }, 500); // Dar tiempo para que la página se renderice
     }
   }, [location.state]);
+
+  // Escuchar evento personalizado para expandir cursos
+  useEffect(() => {
+    const handleExpandCursos = () => {
+      setExpandCursos(true);
+    };
+    
+    window.addEventListener('expandCursos', handleExpandCursos);
+    
+    return () => {
+      window.removeEventListener('expandCursos', handleExpandCursos);
+    };
+  }, []);
 
   useEffect(() => {
     // Solo ejecutar la animación si es la primera vez en esta navegación
@@ -133,6 +152,8 @@ const HomePage = () => {
         <Cursos 
           focusCarrera={focusCarrera}
           setFocusCarrera={setFocusCarrera}
+          expandCursos={expandCursos}
+          setExpandCursos={setExpandCursos}
         />
       </section>
       <section ref={equipoDocenteRef} id="equipo-docente">

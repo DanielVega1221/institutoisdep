@@ -545,13 +545,26 @@ const cursosData = [
   }
 ];
 
-const Cursos = ({ focusCarrera, setFocusCarrera }) => {
+const Cursos = ({ focusCarrera, setFocusCarrera, expandCursos, setExpandCursos }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef(null);
   const cardTitleRefs = useRef({});
   const [pendingFocus, setPendingFocus] = useState(null);
   const [selectedCurso, setSelectedCurso] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Expandir acordeón cuando se navega desde el navbar
+  useEffect(() => {
+    if (expandCursos) {
+      setTimeout(() => {
+        setIsExpanded(true);
+        // Resetear el estado después de expandir
+        if (setExpandCursos) {
+          setExpandCursos(false);
+        }
+      }, 800); // Delay para que el scroll termine antes de expandir
+    }
+  }, [expandCursos, setExpandCursos]);
 
   // Minimizar acordeón si la sección sale de pantalla
   useEffect(() => {

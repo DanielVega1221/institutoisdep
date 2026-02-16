@@ -48,9 +48,13 @@ const Navbar = () => {
     } else if (item.section) {
       // Si estamos en otra página, navegar a home primero
       if (location.pathname !== "/") {
-        navigate("/", { state: { scrollToSection: item.section } });
+        navigate("/", { state: { scrollToSection: item.section, expandCursos: item.section === "cursos" } });
       } else {
-        // Si ya estamos en home, hacer scroll directo
+        // Si ya estamos en home, hacer scroll directo y disparar evento si es cursos
+        if (item.section === "cursos") {
+          // Disparar evento personalizado para expandir cursos
+          window.dispatchEvent(new CustomEvent('expandCursos'));
+        }
         setTimeout(() => {
           const element = document.getElementById(item.section);
           if (element) {
