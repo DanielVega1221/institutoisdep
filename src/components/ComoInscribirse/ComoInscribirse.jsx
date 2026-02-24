@@ -29,7 +29,8 @@ const ComoInscribirse = () => {
     ciudad: "",
     profesion: "",
     formacionSolicitada: formacionesDisponibles[0],
-    tieneConocimientosPrevios: false
+    tieneConocimientosPrevios: false,
+    observacion: ""
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
@@ -173,6 +174,11 @@ const ComoInscribirse = () => {
       newErrors.profesion = "Debe tener entre 2 y 100 caracteres";
     }
     
+    // Observación (opcional, máximo 500 caracteres)
+    if (formData.observacion && formData.observacion.length > 500) {
+      newErrors.observacion = "Máximo 500 caracteres permitidos";
+    }
+    
     return newErrors;
   };
 
@@ -275,7 +281,8 @@ const ComoInscribirse = () => {
           ciudad: "",
           profesion: "",
           formacionSolicitada: formacionesDisponibles[0],
-          tieneConocimientosPrevios: false
+          tieneConocimientosPrevios: false,
+          observacion: ""
         });
         setSelectedFiles([]);
         
@@ -607,6 +614,24 @@ const ComoInscribirse = () => {
 
                 <div className="form-group">
                   <label className="form-label">
+                    Observaciones <span className="form-optional">(opcional)</span>
+                  </label>
+                  <p className="form-helper">Si adeudás documentación o tenés algún comentario importante sobre tu situación, escribilo aquí (máximo 500 caracteres)</p>
+                  <textarea
+                    name="observacion"
+                    className={`form-input form-textarea ${errors.observacion ? "error" : ""}`}
+                    value={formData.observacion}
+                    onChange={handleChange}
+                    placeholder="Ejemplo: Adeudo título secundario, lo presentaré en 2 meses..."
+                    rows="5"
+                    maxLength="500"
+                  />
+                  <p className="form-helper">{formData.observacion.length}/500 caracteres</p>
+                  {errors.observacion && <span className="form-error">{errors.observacion}</span>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
                     Títulos Educativos <span className="form-optional">(opcional)</span>
                   </label>
                   <p className="form-helper">Adjuntá fotos de tus títulos o certificados (máximo 5 archivos, 5MB cada uno)</p>
@@ -665,6 +690,21 @@ const ComoInscribirse = () => {
                   </svg>
                   {sending ? "Enviando..." : "Enviar Inscripción"}
                 </button>
+                
+                <a 
+                  href="https://isdep-pagos.web.app" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="form-btn form-btn-payment"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 10H21M7 15H8M12 15H13M6 19H18C19.1046 19 20 18.1046 20 17V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V17C4 18.1046 4.89543 19 6 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Plataforma de Pago
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11M15 3H21M21 3V9M21 3L10 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
                 
                 {sending && (
                   <div className="sending-progress">
