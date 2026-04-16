@@ -39,11 +39,21 @@ const VolumeControl = ({ audioSrc }) => {
         window.addEventListener("click", resumeAudio, { once: true, passive: false });
       });
 
+    const handleInscripcionSuccess = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+
+    window.addEventListener("inscripcion:success", handleInscripcionSuccess);
+
     return () => {
       audio.pause();
       window.removeEventListener("touchstart", resumeAudio);
       window.removeEventListener("pointerdown", resumeAudio);
       window.removeEventListener("click", resumeAudio);
+      window.removeEventListener("inscripcion:success", handleInscripcionSuccess);
     };
     // eslint-disable-next-line
   }, [audioSrc]);

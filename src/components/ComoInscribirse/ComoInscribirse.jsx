@@ -254,6 +254,7 @@ const ComoInscribirse = () => {
 
       if (response.ok && data.success) {
         setSuccessMessage("¡Inscripción enviada exitosamente! Nos pondremos en contacto contigo pronto.");
+        window.dispatchEvent(new CustomEvent("inscripcion:success"));
         setFormData({
           nombre: "",
           apellido: "",
