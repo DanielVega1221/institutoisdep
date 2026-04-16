@@ -112,13 +112,13 @@ const HomePage = () => {
     }
   }, [showIntro]);
 
-  const isdepProvider = { "@type": "Organization", "name": "ISDEP - Instituto Superior de Enseñanza Profesional", "url": "https://www.institutoisdep.com" };
+  const isdepProvider = { "@type": "Organization", "name": "ISDEP - Instituto Superior de Enseñanza Profesional", "url": "https://www.isdep.com.ar" };
 
   const coursesJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Cursos y Carreras - ISDEP",
-    "url": "https://www.institutoisdep.com/#cursos",
+    "url": "https://www.isdep.com.ar/#cursos",
     "itemListElement": [
       { name: "Grafología Emocional", description: "Seminario especializado en análisis emocional a través de la escritura manuscrita.", credential: "Certificado en Grafología Emocional", duration: "P2M", mode: "online" },
       { name: "Formación Profesional en Psicología Social", description: "Carrera para intervenir profesionalmente en salud, educación, comunidad y organizaciones en el marco de la ley 26.206 y concordantes de Salud Mental.", credential: "Psicólogo Social", duration: "P3Y", mode: "online" },
@@ -158,16 +158,16 @@ const HomePage = () => {
       <Helmet>
         <title>ISDEP - Instituto Superior de Enseñanza Profesional</title>
         <meta name="description" content="ISDEP forma expertos en Grafología, Grafología Forense, Ciencias Criminalistas y Perfilamiento Criminal. Cursada online con título avalado por ALGRA. Inscribíte hoy." />
-        <link rel="canonical" href="https://www.institutoisdep.com/" />
+        <link rel="canonical" href="https://www.isdep.com.ar/" />
         <meta property="og:title" content="ISDEP - Instituto Superior de Enseñanza Profesional" />
         <meta property="og:description" content="Formaciones en Grafología, Criminalística y Ciencias Forenses. Cursada online, título oficial avalado por ALGRA." />
-        <meta property="og:url" content="https://www.institutoisdep.com/" />
+        <meta property="og:url" content="https://www.isdep.com.ar/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "EducationalOrganization",
           "name": "ISDEP - Instituto Superior de Enseñanza Profesional",
-          "url": "https://www.institutoisdep.com",
-          "logo": "https://res.cloudinary.com/dlcuy0ky7/image/upload/f_auto,q_auto:good,w_400,h_400,c_limit/institutoisdep/icons/icons/Logo1",
+          "url": "https://www.isdep.com.ar",
+          "logo": "https://www.isdep.com.ar/favicon.png",
           "description": "Instituto especializado en Grafología, Grafología Forense, Ciencias Criminalistas y Perfilamiento Criminal. Cursada online con título avalado por ALGRA.",
           "email": "consultasisdep@proton.me",
           "knowsAbout": ["Grafología", "Grafología Forense", "Criminalística", "Perfilamiento Criminal", "Ciencias Criminalistas", "Psicología Social", "Primeros Auxilios Psicológicos"],

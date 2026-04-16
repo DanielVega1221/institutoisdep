@@ -8,10 +8,10 @@ const CodigoEticaPage = () => {
       <Helmet>
         <title>Código de Ética y Deontología - ISDEP | ALGRA</title>
         <meta name="description" content="Código de ética y deontología profesional del grafólogo según ALGRA - Asociación Latinoamericana de Grafología. Pautas éticas que rigen la práctica profesional en ISDEP." />
-        <link rel="canonical" href="https://www.institutoisdep.com/codigo-etica-grafologico" />
+        <link rel="canonical" href="https://www.isdep.com.ar/codigo-etica-grafologico" />
         <meta property="og:title" content="Código de Ética Grafológico - ISDEP | ALGRA" />
         <meta property="og:description" content="Conoce el decálogo ético-profesional que rige a los grafólogos formados en ISDEP, avalado por ALGRA." />
-        <meta property="og:url" content="https://www.institutoisdep.com/codigo-etica-grafologico" />
+        <meta property="og:url" content="https://www.isdep.com.ar/codigo-etica-grafologico" />
       </Helmet>
       <div className="codigo-etica-page">
       <div className="codigo-etica-hero">
