@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/como-inscribirse",
+      "destination": "/como-inscribirse/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
