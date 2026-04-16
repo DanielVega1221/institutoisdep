@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./ComoInscribirse.css";
 
 const formacionesDisponibles = [
@@ -16,6 +16,7 @@ const formacionesDisponibles = [
 ];
 
 const ComoInscribirse = () => {
+  const formLoadTime = useRef(Date.now());
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -30,7 +31,8 @@ const ComoInscribirse = () => {
     profesion: "",
     formacionSolicitada: formacionesDisponibles[0],
     tieneConocimientosPrevios: false,
-    observacion: ""
+    observacion: "",
+    website: ""
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
@@ -197,77 +199,61 @@ const ComoInscribirse = () => {
     setErrorMessage("");
 
     try {
-      // Configurar la URL del backend
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-      
-      // Simular un pequeño delay para mostrar el estado de conexión
-      await new Promise(resolve => setTimeout(resolve, 500));
       setSendingStage("sending");
-      
-      // Crear FormData para enviar al backend (que espera multipart/form-data)
+
+      // Construir FormData
       const formDataToSend = new FormData();
-      
-      // Construir fecha en formato YYYY-MM-DD
       const fechaNacimiento = `${formData.anio}-${String(formData.mes).padStart(2, '0')}-${String(formData.dia).padStart(2, '0')}`;
-      
+
       Object.keys(formData).forEach(key => {
-        // Saltear los campos de fecha individuales
-        if (key === 'dia' || key === 'mes' || key === 'anio') {
-          return;
-        }
-        
-        // Convertir booleanos a string para FormData
-        const value = typeof formData[key] === 'boolean' 
-          ? formData[key].toString() 
+        if (key === 'dia' || key === 'mes' || key === 'anio') return;
+        const value = typeof formData[key] === 'boolean'
+          ? formData[key].toString()
           : formData[key];
         formDataToSend.append(key, value);
       });
-      
-      // Agregar la fecha completa
-      formDataToSend.append('fechaNacimiento', fechaNacimiento);
-      
-      // Agregar imágenes si hay alguna seleccionada
-      if (selectedFiles.length > 0) {
-        console.log(`📎 Adjuntando ${selectedFiles.length} archivo(s):`);
-        selectedFiles.forEach((file, index) => {
-          formDataToSend.append('images', file);
-          console.log(`  ${index + 1}. ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB, ${file.type})`);
-        });
-      } else {
-        console.log('📎 No hay archivos para adjuntar');
-      }
 
-      // Debug: verificar qué se está enviando
-      console.log('📋 Datos del formulario:');
-      for (let [key, value] of formDataToSend.entries()) {
-        if (value instanceof File) {
-          console.log(`  ${key}: [File] ${value.name} (${(value.size / 1024).toFixed(2)} KB)`);
-        } else {
-          console.log(`  ${key}: ${value}`);
+      formDataToSend.append('fechaNacimiento', fechaNacimiento);
+      formDataToSend.append('_t', formLoadTime.current.toString());
+
+      selectedFiles.forEach((file) => formDataToSend.append('images', file));
+
+      // Enviar con reintento automático (máx. 2 intentos, 30s timeout c/u)
+      let response = null;
+      let data = null;
+      let lastError = null;
+      const MAX_RETRIES = 2;
+
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+          response = await fetch(`${backendUrl}/api/inscripcion`, {
+            method: 'POST',
+            body: formDataToSend,
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId);
+          setSendingStage("processing");
+          data = await response.json();
+          lastError = null;
+          break;
+        } catch (err) {
+          lastError = err;
+          if (err.name === 'AbortError' || attempt >= MAX_RETRIES) break;
+          setSendingStage("connecting");
+          await new Promise(r => setTimeout(r, 3000));
+          setSendingStage("sending");
         }
       }
-      
-      // Crear AbortController para timeout de 90 segundos
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 90000);
-      
-      const response = await fetch(`${backendUrl}/api/inscripcion`, {
-        method: 'POST',
-        body: formDataToSend,
-        signal: controller.signal
-      });
-      
-      clearTimeout(timeoutId);
-      setSendingStage("processing");
 
-      console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Response data:', data);
+      if (lastError) throw lastError;
 
       if (response.ok && data.success) {
         setSuccessMessage("¡Inscripción enviada exitosamente! Nos pondremos en contacto contigo pronto.");
-        
-        // Limpiar el formulario
         setFormData({
           nombre: "",
           apellido: "",
@@ -282,26 +268,23 @@ const ComoInscribirse = () => {
           profesion: "",
           formacionSolicitada: formacionesDisponibles[0],
           tieneConocimientosPrevios: false,
-          observacion: ""
+          observacion: "",
+          website: ""
         });
         setSelectedFiles([]);
-        
-        // Scroll hacia arriba para mostrar el mensaje
+        formLoadTime.current = Date.now();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        console.error('Error del backend:', data);
-        const errorMsg = data.errors 
+        const errorMsg = data.errors
           ? Object.values(data.errors).flat().join(', ')
           : (data.message || "Error al enviar la inscripción. Por favor, intenta nuevamente.");
         setErrorMessage(errorMsg);
       }
     } catch (error) {
-      console.error('Error:', error);
-      
       if (error.name === 'AbortError') {
         setErrorMessage("El servidor tardó demasiado en responder. Por favor, intenta nuevamente en unos minutos.");
-      } else if (error.message.includes('fetch')) {
-        setErrorMessage("Error de conexión. Por favor, verifica tu conexión a internet e intenta nuevamente.");
+      } else if (error.message && error.message.includes('fetch')) {
+        setErrorMessage("Error de conexión. Verificá tu conexión a internet e intentá nuevamente.");
       } else {
         setErrorMessage("Error al enviar la inscripción. Por favor, intenta nuevamente.");
       }
@@ -360,6 +343,19 @@ const ComoInscribirse = () => {
             </div>
 
             <form className="inscripcion-form-page" onSubmit={handleSubmit}>
+              {/* Campo trampa anti-bots: los usuarios reales nunca lo ven ni completan */}
+              <div style={{ position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="new-password"
+                />
+              </div>
               <div className="form-section">
                 <h3 className="form-section-titulo">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -690,10 +686,14 @@ const ComoInscribirse = () => {
                   </svg>
                   {sending ? "Enviando..." : "Enviar Inscripción"}
                 </button>
-                
-                <a 
-                  href="https://isdep-pagos.web.app" 
-                  target="_blank" 
+
+                <div className="form-actions-divider">
+                  <span>¿Ya enviaste tu inscripción? Accedé al pago</span>
+                </div>
+
+                <a
+                  href="https://isdep-pagos.web.app"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="form-btn form-btn-payment"
                 >
