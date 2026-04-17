@@ -36,6 +36,7 @@ const ComoInscribirse = () => {
   const formLoadTime = useRef(Date.now());
   const isSubmitting = useRef(false); // Guard sincrónico contra doble-submit
   const requestId = useRef(generateRequestId()); // ID único por sesión de formulario
+  const formularioRef = useRef(null);
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -299,7 +300,7 @@ const ComoInscribirse = () => {
           ? Object.values(data.errors).flat().join(', ')
           : (data.message || "Error al enviar la inscripción. Por favor, intenta nuevamente.");
         setErrorMessage(errorMsg);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        formularioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     } catch (error) {
       if (error.name === 'AbortError') {
@@ -309,14 +310,26 @@ const ComoInscribirse = () => {
       } else {
         setErrorMessage("Error al enviar la inscripción. Por favor, intenta nuevamente.");
       }
-      // Asegurar que el usuario vea el mensaje de error aunque esté scrolleado abajo
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      formularioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } finally {
       isSubmitting.current = false;
       setSending(false);
       setSendingStage("");
     }
   };
+
+  const isFormValid =
+    formData.nombre.trim() &&
+    formData.apellido.trim() &&
+    formData.dni.trim() &&
+    formData.dia &&
+    formData.mes &&
+    formData.anio &&
+    formData.email.trim() &&
+    formData.telefono.trim() &&
+    formData.pais.trim() &&
+    formData.ciudad.trim() &&
+    formData.profesion.trim();
 
   return (
     <section className="como-inscribirse">
@@ -334,7 +347,7 @@ const ComoInscribirse = () => {
       </div>
 
       <div className="formulario-inscripcion-section">
-        <div className="formulario-container">
+        <div className="formulario-container" ref={formularioRef}>
           <div className="formulario-card">
             <div className="formulario-header">
               <div className="formulario-icon">
@@ -703,7 +716,7 @@ const ComoInscribirse = () => {
                 <button
                   type="submit"
                   className="form-btn form-btn-email"
-                  disabled={sending}
+                  disabled={sending || !isFormValid}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
