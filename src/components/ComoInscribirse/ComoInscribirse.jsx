@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { flushSync } from "react-dom";
 import "./ComoInscribirse.css";
 
 const formacionesDisponibles = [
@@ -14,9 +15,27 @@ const formacionesDisponibles = [
   "Criminalística",
   "Otro (consultar)"
 ];
-
+// Genera un ID único para idempotencia.
+// Usa crypto.randomUUID() si está disponible (requiere HTTPS o localhost);
+// cae a un fallback basado en Math.random() para navegadores sin soporte.
+const generateRequestId = () => {
+  try {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+  } catch {
+    // contexto no seguro u otro error: usar fallback
+  }
+  // Fallback: no es criptográficamente seguro pero suficiente para idempotencia de formulario
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+  });
+};
 const ComoInscribirse = () => {
   const formLoadTime = useRef(Date.now());
+  const isSubmitting = useRef(false); // Guard sincrónico contra doble-submit
+  const requestId = useRef(generateRequestId()); // ID único por sesión de formulario
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -36,7 +55,7 @@ const ComoInscribirse = () => {
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-  const [sendingStage, setSendingStage] = useState(""); // "connecting", "sending", "processing"
+  const [sendingStage, setSendingStage] = useState(""); // "sending" | "processing"
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -186,21 +205,31 @@ const ComoInscribirse = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Guard sincrónico: si ya hay un submit en curso, ignorar clicks adicionales
+    if (isSubmitting.current) return;
+    isSubmitting.current = true;
+
     const validationErrors = validate();
     
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      isSubmitting.current = false;
       return;
     }
 
-    setSending(true);
-    setSendingStage("connecting");
-    setSuccessMessage("");
-    setErrorMessage("");
+    // flushSync fuerza a React a renderizar AHORA, de forma síncrona,
+    // antes de continuar con el código. El botón queda visualmente
+    // bloqueado en el mismo ciclo de JS del clic, sin esperar el primer await.
+    flushSync(() => {
+      setSending(true);
+      setSendingStage("sending");
+      setSuccessMessage("");
+      setErrorMessage("");
+    });
 
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-      setSendingStage("sending");
 
       // Construir FormData
       const formDataToSend = new FormData();
@@ -216,41 +245,30 @@ const ComoInscribirse = () => {
 
       formDataToSend.append('fechaNacimiento', fechaNacimiento);
       formDataToSend.append('_t', formLoadTime.current.toString());
+      formDataToSend.append('requestId', requestId.current);
 
       selectedFiles.forEach((file) => formDataToSend.append('images', file));
 
-      // Enviar con reintento automático (máx. 2 intentos, 30s timeout c/u)
-      let response = null;
-      let data = null;
-      let lastError = null;
-      const MAX_RETRIES = 2;
+      // Un único intento, sin retry automático.
+      // El retry manual (el usuario vuelve a enviar) es seguro solo con idempotencia en el backend.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s: suficiente para emails con adjuntos
 
-      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-          response = await fetch(`${backendUrl}/api/inscripcion`, {
-            method: 'POST',
-            body: formDataToSend,
-            signal: controller.signal
-          });
-
-          clearTimeout(timeoutId);
-          setSendingStage("processing");
-          data = await response.json();
-          lastError = null;
-          break;
-        } catch (err) {
-          lastError = err;
-          if (err.name === 'AbortError' || attempt >= MAX_RETRIES) break;
-          setSendingStage("connecting");
-          await new Promise(r => setTimeout(r, 3000));
-          setSendingStage("sending");
-        }
+      let response;
+      let data;
+      try {
+        response = await fetch(`${backendUrl}/api/inscripcion`, {
+          method: 'POST',
+          body: formDataToSend,
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        setSendingStage("processing");
+        data = await response.json();
+      } catch (err) {
+        clearTimeout(timeoutId);
+        throw err;
       }
-
-      if (lastError) throw lastError;
 
       if (response.ok && data.success) {
         setSuccessMessage("¡Inscripción enviada exitosamente! Nos pondremos en contacto contigo pronto.");
@@ -274,12 +292,14 @@ const ComoInscribirse = () => {
         });
         setSelectedFiles([]);
         formLoadTime.current = Date.now();
+        requestId.current = generateRequestId(); // Rotar ID solo tras éxito
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         const errorMsg = data.errors
           ? Object.values(data.errors).flat().join(', ')
           : (data.message || "Error al enviar la inscripción. Por favor, intenta nuevamente.");
         setErrorMessage(errorMsg);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       if (error.name === 'AbortError') {
@@ -289,7 +309,10 @@ const ComoInscribirse = () => {
       } else {
         setErrorMessage("Error al enviar la inscripción. Por favor, intenta nuevamente.");
       }
+      // Asegurar que el usuario vea el mensaje de error aunque esté scrolleado abajo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
+      isSubmitting.current = false;
       setSending(false);
       setSendingStage("");
     }
@@ -713,12 +736,6 @@ const ComoInscribirse = () => {
                       <div className={`progress-bar progress-${sendingStage}`}></div>
                     </div>
                     <div className="sending-stages">
-                      <div className={`stage ${sendingStage === 'connecting' ? 'active' : sendingStage === 'sending' || sendingStage === 'processing' ? 'completed' : ''}`}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                        </svg>
-                        <span>Conectando al servidor...</span>
-                      </div>
                       <div className={`stage ${sendingStage === 'sending' ? 'active' : sendingStage === 'processing' ? 'completed' : ''}`}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
