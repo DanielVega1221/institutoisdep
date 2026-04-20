@@ -262,6 +262,179 @@
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
+.form-input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1; /* Firefox */
+}
+
+.form-textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+/* ===== REQUISITOS DE INSCRIPCIÓN ===== */
+.requisitos-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0,0,0,0.04);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.requisitos-header {
+  background: linear-gradient(135deg, #f59e0b 0%, #e08b00 100%);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+}
+
+.requisitos-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  flex-shrink: 0;
+  color: white;
+}
+
+.requisitos-header-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin: 0 0 2px;
+}
+
+.requisitos-header-sub {
+  font-size: 12px;
+  opacity: 0.85;
+  margin: 0;
+  font-weight: 400;
+}
+
+.requisitos-body {
+  padding: 20px 24px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .requisitos-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.requisito-bloque {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid #e9eef5;
+  border-top: 3px solid #f59e0b;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.requisito-bloque--alt {
+  border-top-color: #3b82f6;
+}
+
+.requisito-bloque-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.requisito-year-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #e08b00 100%);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.requisito-year-badge--alt {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+}
+
+.requisito-bloque-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.requisito-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.requisito-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.requisito-lista li span:last-child {
+  padding-top: 1px;
+}
+
+.req-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.requisito-art7 {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #92400e;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.requisito-art7 svg {
+  flex-shrink: 0;
+  color: #d97706;
+  margin-top: 1px;
+}
+
 .form-select {
   cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");

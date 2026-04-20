@@ -348,6 +348,75 @@ const ComoInscribirse = () => {
 
       <div className="formulario-inscripcion-section">
         <div className="formulario-container" ref={formularioRef}>
+
+          {/* === REQUISITOS DE INSCRIPCIÓN === */}
+          <div className="requisitos-card">
+            <div className="requisitos-header">
+              <div className="requisitos-header-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className="requisitos-header-title">Requisitos de Inscripción</h3>
+                <p className="requisitos-header-sub">Documentación necesaria para iniciar el proceso</p>
+              </div>
+            </div>
+            <div className="requisitos-body">
+              <div className="requisito-bloque">
+                <div className="requisito-bloque-header">
+                  <span className="requisito-year-badge">1° Año</span>
+                  <span className="requisito-bloque-label">Ingreso</span>
+                </div>
+                <ul className="requisito-lista">
+                  <li>
+                    <span className="req-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span>DNI — foto de frente y dorso</span>
+                  </li>
+                  <li>
+                    <span className="req-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span>Certificado de estudios secundarios o terciarios</span>
+                  </li>
+                </ul>
+                <div className="requisito-art7">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/><path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                  <span>Sin secundario: aplica Art. 7 de Educación Superior</span>
+                </div>
+              </div>
+
+              <div className="requisito-bloque requisito-bloque--alt">
+                <div className="requisito-bloque-header">
+                  <span className="requisito-year-badge requisito-year-badge--alt">2° / 3° Año</span>
+                  <span className="requisito-bloque-label">Ingreso</span>
+                </div>
+                <ul className="requisito-lista">
+                  <li>
+                    <span className="req-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span>DNI — foto de frente y dorso</span>
+                  </li>
+                  <li>
+                    <span className="req-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span>Certificado de aprobación de años anteriores de Psicología</span>
+                  </li>
+                  <li>
+                    <span className="req-check">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span>Pago de inscripción</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="formulario-card">
             <div className="formulario-header">
               <div className="formulario-icon">
