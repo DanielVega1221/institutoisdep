@@ -379,7 +379,7 @@ const ComoInscribirse = () => {
                     <span className="req-check">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </span>
-                    <span>Certificado de estudios secundarios o terciarios</span>
+                    <span>Último Certificado de Estudios: Secundario o Carrera</span>
                   </li>
                 </ul>
                 <div className="requisito-art7">
