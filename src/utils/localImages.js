@@ -16,6 +16,8 @@ import ilustracionImg from "../assets/optimized-final/Ilustracion.png";
 import grafologiaEmocionalImg from "../assets/optimized-final/GrafologiaEmocional.png";
 import card1Img from "../assets/optimized-final/card1.png";
 import card2Img from "../assets/optimized-final/card2.png";
+import carruselCentroArticuladorImg from "../assets/optimized-final/CarruselCentroArticulador.jpg";
+import carruselEntidadVinculadaImg from "../assets/optimized-final/CarruselEntidadVinculada.jpg";
 
 // Personas
 import profesorImg from "../assets/optimized-final/profesor.jpg";
@@ -45,6 +47,10 @@ export const localImages = {
   people: {
     profesor: profesorImg,
     profesorGirl: profesorGirlImg
+  },
+  carousel: {
+    centroArticulador: carruselCentroArticuladorImg,
+    entidadVinculada: carruselEntidadVinculadaImg
   }
 };
 

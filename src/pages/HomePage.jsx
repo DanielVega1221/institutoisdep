@@ -6,7 +6,6 @@ import Inicio from '../components/Inicio/Inicio';
 import SobreNosotros from '../components/SobreNosotros/SobreNosotros';
 import Cursos from '../components/Cursos/Cursos';
 import Anuncios from '../components/Anuncios/Anuncios';
-import EquipoDocente from '../components/EquipoDocente/EquipoDocente';
 import Contacto from '../components/Contacto/Contacto';
 import { localImages } from "../utils/localImages";
 import { useLocation } from 'react-router-dom';
@@ -28,7 +27,6 @@ const HomePage = () => {
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
   const anunciosRef = React.useRef(null);
-  const equipoDocenteRef = React.useRef(null);
   const location = useLocation();
 
   // Función para manejar click en anuncios y navegar a cursos
@@ -222,9 +220,6 @@ const HomePage = () => {
           expandCursos={expandCursos}
           setExpandCursos={setExpandCursos}
         />
-      </section>
-      <section ref={equipoDocenteRef} id="equipo-docente">
-        <EquipoDocente />
       </section>
       <section ref={contactoRef} id="contacto">
         <Contacto ref={contactoRef} />

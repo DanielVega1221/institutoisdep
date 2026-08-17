@@ -156,8 +156,7 @@
 
 /* Optimizaciones para imágenes con transiciones suaves */
 .carousel-slide img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  image-rendering: auto;
   backface-visibility: hidden;
   transform: translateZ(0) scale(1);
 .carousel-content .carousel-title {
@@ -708,4 +707,32 @@
   transition-property: opacity;
   transition-duration: 800ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === Layout: simple (imagen grande + título + subtítulo) === */
+.carousel-slide-simple {
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.simple-img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simple-img {
+  max-height: 40vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .simple-img {
+    max-height: 36vh;
+  }
 }

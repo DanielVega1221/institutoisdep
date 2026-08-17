@@ -32,6 +32,20 @@ const slides = [
     alt: "Card 2",
     title: "Certificación y Validación Nacional",
     subtitle: "ISDEP Inscripto en la Cámara Argentina de Comercio para su Certificación y Validación Nacional en todo el Territorio Argentino."
+  },
+  {
+    img: localImages.carousel.centroArticulador,
+    alt: "ISDEP Centro Articulador",
+    layout: "simple",
+    title: "Centro Articulador a la Tecnicatura Terciaria",
+    subtitle: "Carrera bimodal en formación profesional y estudios superiores"
+  },
+  {
+    img: localImages.carousel.entidadVinculada,
+    alt: "ISDEP Entidad Vinculada",
+    layout: "simple",
+    title: "Entidad Vinculada",
+    subtitle: "ISDEP · Instituto Superior de Enseñanza Profesional"
   }
 ];
 
@@ -69,31 +83,50 @@ const SobreNosotros = ({ autoPlay = true }) => {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
-                <div className="carousel-slide carousel-slide-horizontal">
-                  <div className="carousel-slide-img">
-                        <img
-                          src={slide.img}
-                          alt={slide.alt}
-                          loading={index === 0 ? "eager" : "lazy"}
-                          className="carousel-img"
-                        />
-                  </div>
-                  <div className="carousel-slide-text">
-                    <div className="carousel-content">
-                      <span className="carousel-title">{slide.title}</span>
-                      {slide.subtitle && (
-                        <span className="carousel-subtitle">
-                          {slide.subtitle.split('\n').map((line, idx) => (
-                            <React.Fragment key={idx}>
-                              {line}
-                              {idx < slide.subtitle.split('\n').length - 1 && <br />}
-                            </React.Fragment>
-                          ))}
-                        </span>
-                      )}
+                {slide.layout === "simple" ? (
+                  <div className="carousel-slide carousel-slide-simple">
+                    <div className="simple-img-wrap">
+                      <img
+                        src={slide.img}
+                        alt={slide.alt}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        className="simple-img"
+                      />
+                    </div>
+                    <div className="carousel-slide-text">
+                      <div className="carousel-content">
+                        {slide.title && <span className="carousel-title">{slide.title}</span>}
+                        {slide.subtitle && <span className="carousel-subtitle">{slide.subtitle}</span>}
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="carousel-slide carousel-slide-horizontal">
+                    <div className="carousel-slide-img">
+                          <img
+                            src={slide.img}
+                            alt={slide.alt}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            className="carousel-img"
+                          />
+                    </div>
+                    <div className="carousel-slide-text">
+                      <div className="carousel-content">
+                        <span className="carousel-title">{slide.title}</span>
+                        {slide.subtitle && (
+                          <span className="carousel-subtitle">
+                            {slide.subtitle.split('\n').map((line, idx) => (
+                              <React.Fragment key={idx}>
+                                {line}
+                                {idx < slide.subtitle.split('\n').length - 1 && <br />}
+                              </React.Fragment>
+                            ))}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

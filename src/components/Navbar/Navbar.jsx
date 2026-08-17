@@ -5,12 +5,12 @@ import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Carreras", route: "/", section: "cursos" },
+  { label: "Carreras, Diplomaturas y Cursos", route: "/", section: "cursos" },
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
   { label: "Cómo inscribirme", route: "/como-inscribirse" },
+  { label: "Plataforma de Pago", action: "payment" },
   { label: "Código de Ética Grafológico", route: "/codigo-etica-grafologico" },
   { label: "Material de Estudio", action: "material" },
-  { label: "Equipo docente", route: "/", section: "equipo-docente" },
   { label: "Próxima Apertura", route: "/", section: "anuncios" },
   { label: "Contacto", route: "/", section: "contacto" },
 ];
@@ -42,6 +42,9 @@ const Navbar = () => {
     if (item.action === "material") {
       // Abrir modal de acceso al material
       setMaterialModalOpen(true);
+    } else if (item.action === "payment") {
+      // Abrir plataforma de pago en pestaña nueva
+      window.open("https://isdep-pagos.web.app", "_blank", "noopener,noreferrer");
     } else if (item.route && item.route !== "/") {
       // Navegar a otra página
       navigate(item.route);
