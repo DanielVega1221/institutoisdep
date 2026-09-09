@@ -1,0 +1,654 @@
+/* =====================================================================================
+   PÁGINA DE DETALLE DE CARRERA / CURSO
+   Reemplaza al modal anterior (CursoModal.css), que se conserva sin cambios para
+   la versión anterior de la sección de cursos (CursosAnterior.jsx).
+   Paleta institucional: #0F2A4E (azul), #B8860B (dorado), #3b82f6 (azul claro).
+   ===================================================================================== */
+
+.formacion-detalle-page {
+  --fd-acento: #3b82f6;
+  --fd-acento-suave: rgba(59, 130, 246, 0.14);
+  --fd-acento-borde: rgba(59, 130, 246, 0.45);
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef3fb 0%, #f7f9fd 45%, #ffffff 100%);
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  padding-bottom: 4rem;
+}
+
+/* Las carreras se identifican con el dorado institucional */
+.formacion-detalle-page.fd-tipo-carrera {
+  --fd-acento: #B8860B;
+  --fd-acento-suave: rgba(184, 134, 11, 0.13);
+  --fd-acento-borde: rgba(184, 134, 11, 0.45);
+}
+
+/* ===== Encabezado ===== */
+.fd-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a8a 45%, #2d5a87 100%);
+  color: #ffffff;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.fd-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, var(--fd-acento-suave) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.fd-hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--fd-acento) 25%, #ffffff 50%, var(--fd-acento) 75%, transparent 100%);
+  opacity: 0.75;
+}
+
+.fd-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.fd-btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.fd-btn-volver:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateX(-4px);
+}
+
+.fd-hero-texto {
+  margin-top: 1.75rem;
+}
+
+.fd-hero-kickers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.fd-tipo-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.fd-tipo-badge-carrera {
+  background: linear-gradient(135deg, #B8860B 0%, #d9a520 100%);
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+}
+
+.fd-tipo-badge-curso {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.fd-categoria {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.fd-hero-titulo {
+  font-family: 'Merriweather', 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 0.6rem 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.fd-hero-subtitulo {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fd-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.fd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.fd-badge-light {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.fd-badge-estado {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.fd-badge-estado.estado-disponible {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.55);
+  color: #6ee7b7;
+}
+
+.fd-badge-estado.estado-no-disponible {
+  background: rgba(148, 163, 184, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  color: #cbd5e1;
+}
+
+/* ===== Contenedor y tarjeta ===== */
+.fd-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.fd-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(15, 42, 78, 0.08);
+  box-shadow: 0 20px 60px rgba(15, 42, 78, 0.12), 0 4px 16px rgba(15, 42, 78, 0.06);
+  padding: 2.5rem;
+  margin-top: -1.5rem;
+}
+
+/* Título que obtenés */
+.fd-titulo-adquirido {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  background: var(--fd-acento-suave);
+  border-left: 5px solid var(--fd-acento);
+  margin-bottom: 1.75rem;
+}
+
+.fd-titulo-adquirido-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.fd-titulo-adquirido-value {
+  font-family: 'Merriweather', serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0F2A4E;
+  line-height: 1.3;
+}
+
+.fd-intro {
+  margin-bottom: 1.25rem;
+}
+
+.fd-intro p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #1e293b;
+  margin: 0;
+}
+
+.fd-descripcion {
+  margin-bottom: 2rem;
+}
+
+.fd-descripcion p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #475569;
+  margin: 0;
+}
+
+/* ===== Contenido ===== */
+.fd-seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Merriweather', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F2A4E;
+  margin: 0 0 1.25rem 0;
+}
+
+.fd-seccion-titulo svg {
+  color: var(--fd-acento);
+  flex-shrink: 0;
+}
+
+.fd-contenido {
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(15, 42, 78, 0.08);
+  margin-bottom: 2rem;
+}
+
+.fd-contenido-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.85rem;
+}
+
+.fd-contenido-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 42, 78, 0.06);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #334155;
+  transition: all 0.3s ease;
+}
+
+.fd-contenido-item:hover {
+  background: var(--fd-acento-suave);
+  border-color: var(--fd-acento-borde);
+  transform: translateY(-2px);
+}
+
+.fd-item-check {
+  color: var(--fd-acento);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ===== Plan de estudios ===== */
+.fd-plan-estudios {
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(15, 42, 78, 0.08);
+  margin-bottom: 2rem;
+}
+
+.fd-plan-estudios-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Merriweather', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F2A4E;
+  margin: 0 0 1.25rem 0;
+}
+
+.fd-plan-estudios-titulo svg {
+  color: var(--fd-acento);
+}
+
+.fd-plan-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fd-plan-year {
+  border-radius: 14px;
+  border: 1px solid rgba(15, 42, 78, 0.1);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.fd-plan-year-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.fd-plan-year-header:hover {
+  background: var(--fd-acento-suave);
+}
+
+.fd-plan-year-header.expanded {
+  background: #0F2A4E;
+}
+
+.fd-plan-year-header.expanded .fd-plan-year-title,
+.fd-plan-year-header.expanded .fd-plan-year-arrow {
+  color: #ffffff;
+}
+
+.fd-plan-year-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.fd-plan-year-title {
+  font-family: 'Merriweather', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F2A4E;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.fd-plan-year-badge {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--fd-acento);
+  line-height: 1.4;
+}
+
+.fd-plan-year-header.expanded .fd-plan-year-badge {
+  color: #f0c14b;
+}
+
+.fd-plan-year-arrow {
+  color: #0F2A4E;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+}
+
+.fd-plan-year-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.fd-plan-materias {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+}
+
+.fd-plan-materias.expanded {
+  max-height: 1600px;
+}
+
+.fd-materias-lista {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.5rem;
+}
+
+.fd-materia-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #475569;
+}
+
+.fd-materia-bullet {
+  color: var(--fd-acento);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ===== Información adicional ===== */
+.fd-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(15, 42, 78, 0.08);
+  margin-bottom: 1.75rem;
+}
+
+.fd-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 42, 78, 0.07);
+}
+
+.fd-info-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.fd-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fd-info-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.fd-info-value {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #334155;
+}
+
+.fd-extra {
+  padding: 1.15rem 1.4rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(15, 42, 78, 0.05) 0%, var(--fd-acento-suave) 100%);
+  border: 1px dashed var(--fd-acento-borde);
+}
+
+.fd-extra-text {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #0F2A4E;
+}
+
+/* ===== CTA ===== */
+.fd-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1.75rem 2rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a8a 100%);
+  box-shadow: 0 20px 50px rgba(15, 42, 78, 0.28);
+}
+
+.fd-cta-titulo {
+  font-family: 'Merriweather', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.25rem 0;
+}
+
+.fd-cta-subtitulo {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+}
+
+.fd-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1.6rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--fd-acento) 0%, #ffffff 260%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.fd-cta-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.fd-cta-btn-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ===== Sin resultados ===== */
+.fd-no-encontrada {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 3rem 2rem;
+}
+
+.fd-no-encontrada-titulo {
+  font-family: 'Merriweather', serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F2A4E;
+  margin: 0 0 0.75rem 0;
+}
+
+.fd-no-encontrada-texto {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0 0 1.75rem 0;
+}
+
+.fd-no-encontrada .fd-btn-volver {
+  background: #0F2A4E;
+  border-color: #0F2A4E;
+  color: #ffffff;
+}
+
+.fd-no-encontrada .fd-btn-volver:hover {
+  background: #1e3a8a;
+  transform: translateY(-2px);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .fd-hero {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .fd-container {
+    padding: 0 1rem;
+  }
+
+  .fd-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .fd-titulo-adquirido-value {
+    font-size: 1.15rem;
+  }
+
+  .fd-contenido-lista,
+  .fd-materias-lista,
+  .fd-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fd-cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .fd-cta-btn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .fd-hero-badges {
+    gap: 0.5rem;
+  }
+
+  .fd-badge,
+  .fd-badge-estado {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .fd-btn-volver {
+    font-size: 0.82rem;
+  }
+}

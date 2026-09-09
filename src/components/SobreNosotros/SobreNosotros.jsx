@@ -25,7 +25,12 @@ const slides = [
     img: localImages.cards.card1,
     alt: "Card 1",
     title: "",
+    /* ANTERIOR:
     subtitle: "Eduardo Marzano.\n Perito en Psicología Forense. \n Consultor en Grafopsicología. \n Diplomado en Criminalística y Ciencias Forense.\n\nIntegrante de la Asociación Latinoamericana de Grafología"
+    */
+    // NUEVO (cambio de esta sesión): se agregó "Psicólogo Social." como una credencial más,
+    // en la línea siguiente al nombre.
+    subtitle: "Eduardo Marzano.\n Psicólogo Social.\n Perito en Psicología Forense. \n Consultor en Grafopsicología. \n Diplomado en Criminalística y Ciencias Forense.\n\nIntegrante de la Asociación Latinoamericana de Grafología"
   },
   {
     img: localImages.cards.card2,
@@ -45,7 +50,13 @@ const slides = [
     alt: "ISDEP Entidad Vinculada",
     layout: "simple",
     title: "Entidad Vinculada",
-    subtitle: "ISDEP · Instituto Superior de Enseñanza Profesional"
+    subtitle: "ISDEP · Instituto Superior de Enseñanza Profesional",
+    // NUEVO (cambio de esta sesión): bloque destacado debajo del subtítulo.
+    // La última línea se resalta como "línea fuerte".
+    destacado: [
+      "El título es oficial y tiene validez nacional",
+      "ESTÁ ABIERTA LA INSCRIPCIÓN para el Ciclo Lectivo 2027"
+    ]
   }
 ];
 
@@ -97,6 +108,19 @@ const SobreNosotros = ({ autoPlay = true }) => {
                       <div className="carousel-content">
                         {slide.title && <span className="carousel-title">{slide.title}</span>}
                         {slide.subtitle && <span className="carousel-subtitle">{slide.subtitle}</span>}
+                        {/* NUEVO (cambio de esta sesión): texto destacado debajo del subtítulo */}
+                        {slide.destacado && slide.destacado.length > 0 && (
+                          <div className="carousel-destacado">
+                            {slide.destacado.map((linea, idx) => (
+                              <p
+                                key={idx}
+                                className={`carousel-destacado-linea${idx === slide.destacado.length - 1 ? " carousel-destacado-linea-fuerte" : ""}`}
+                              >
+                                {linea}
+                              </p>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

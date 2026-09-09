@@ -5,7 +5,17 @@ import Banner from '../components/Banner/Banner';
 import Inicio from '../components/Inicio/Inicio';
 import SobreNosotros from '../components/SobreNosotros/SobreNosotros';
 import Cursos from '../components/Cursos/Cursos';
-import Anuncios from '../components/Anuncios/Anuncios';
+// NUEVO (cambio de esta sesión): fuente única de datos de carreras y cursos.
+// Se usa para generar el SEO (JSON-LD ItemList) con las 19 URLs de detalle.
+import { carrerasData, cursosData, nombreFormacion } from '../data/formaciones';
+// ANTERIOR (cambio de esta sesión): se quitaron del home las imágenes promocionales
+// que estaban entre el carrusel y la sección de carreras.
+// Para revertir: descomentar este import y el bloque <section id="anuncios"> de abajo,
+// junto con anunciosRef y handleAnuncioClick.
+// import Anuncios from '../components/Anuncios/Anuncios';
+// Si se revierte y se quiere volver al acordeón de cards en vez de los dropdowns:
+// import Cursos from '../components/Cursos/CursosAnterior';
+import EquipoDocente from '../components/EquipoDocente/EquipoDocente';
 import Contacto from '../components/Contacto/Contacto';
 import { localImages } from "../utils/localImages";
 import { useLocation } from 'react-router-dom';
@@ -22,14 +32,18 @@ const HomePage = () => {
   const [logoVisible, setLogoVisible] = useState(false);
   const [phraseVisible, setPhraseVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [focusCarrera, setFocusCarrera] = useState(null);
-  const [expandCursos, setExpandCursos] = useState(false);
+  // ANTERIOR: estos estados manejaban el acordeón de cursos y el foco sobre una card
+  // const [focusCarrera, setFocusCarrera] = useState(null);
+  // const [expandCursos, setExpandCursos] = useState(false);
   const contactoRef = React.useRef(null);
   const cursosRef = React.useRef(null);
-  const anunciosRef = React.useRef(null);
+  // ANTERIOR: const anunciosRef = React.useRef(null);
+  const equipoDocenteRef = React.useRef(null);
   const location = useLocation();
 
-  // Función para manejar click en anuncios y navegar a cursos
+  // ANTERIOR (cambio de esta sesión): función para manejar el click en las imágenes
+  // promocionales y navegar a la card correspondiente dentro del acordeón de cursos.
+  /*
   const handleAnuncioClick = (carreraName) => {
     // Primero hacer scroll a la sección de cursos después de 0.5s
     setTimeout(() => {
@@ -37,21 +51,22 @@ const HomePage = () => {
         cursosRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }, 500);
-    
+
     // Luego establecer el foco en la carrera después de 1s (tiempo para que se abra el acordeón)
     setTimeout(() => {
       setFocusCarrera(carreraName);
     }, 1000);
   };
+  */
 
   // Manejar scroll desde navegación
   useEffect(() => {
     if (location.state?.scrollToSection) {
-      // Si la sección es cursos, señalar que debe expandirse
-      if (location.state.expandCursos) {
-        setExpandCursos(true);
-      }
-      
+      // ANTERIOR: la sección de cursos era un acordeón y había que pedirle que se expanda
+      // if (location.state.expandCursos) {
+      //   setExpandCursos(true);
+      // }
+
       setTimeout(() => {
         const element = document.getElementById(location.state.scrollToSection);
         if (element) {
@@ -61,18 +76,20 @@ const HomePage = () => {
     }
   }, [location.state]);
 
-  // Escuchar evento personalizado para expandir cursos
+  // ANTERIOR (cambio de esta sesión): listener del evento que expandía el acordeón de cursos
+  /*
   useEffect(() => {
     const handleExpandCursos = () => {
       setExpandCursos(true);
     };
-    
+
     window.addEventListener('expandCursos', handleExpandCursos);
-    
+
     return () => {
       window.removeEventListener('expandCursos', handleExpandCursos);
     };
   }, []);
+  */
 
   useEffect(() => {
     // Solo ejecutar la animación si es la primera vez en esta navegación
@@ -112,6 +129,8 @@ const HomePage = () => {
 
   const isdepProvider = { "@type": "Organization", "name": "ISDEP - Instituto Superior de Enseñanza Profesional", "url": "https://www.isdep.com.ar" };
 
+  /* ANTERIOR: ItemList con 16 cursos escritos a mano y sin URL de detalle.
+     Para revertir, borrar el bloque NUEVO de abajo y descomentar este.
   const coursesJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -147,6 +166,31 @@ const HomePage = () => {
         "inLanguage": "es",
         "provider": isdepProvider,
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": c.mode }
+      }
+    }))
+  };
+  */
+
+  // NUEVO (cambio de esta sesión): ItemList generado desde src/data/formaciones.js.
+  // Incluye las 19 formaciones (6 carreras + 13 cursos) con la URL de su página de detalle.
+  const coursesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Carreras y Cursos - ISDEP",
+    "url": "https://www.isdep.com.ar/#cursos",
+    "itemListElement": [...carrerasData, ...cursosData].map((f, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Course",
+        "name": nombreFormacion(f),
+        "description": f.descripcion || f.miniIntro,
+        "educationalCredentialAwarded": f.tituloAdquirido,
+        "timeToComplete": f.duracion,
+        "inLanguage": "es",
+        "url": `https://www.isdep.com.ar/${f.tipoFormacion}s/${f.slug}`,
+        "provider": isdepProvider,
+        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": f.modalidad === "Presencial" ? "onsite" : "online" }
       }
     }))
   };
@@ -210,16 +254,25 @@ const HomePage = () => {
       {/* Espaciador para el alto del Navbar fijo */}
       <div style={{ height: 80 }} />
       <SobreNosotros />
+      {/* ANTERIOR (cambio de esta sesión): imágenes promocionales de cursos que estaban
+          entre el carrusel y la sección de carreras.
       <section ref={anunciosRef} id="anuncios">
         <Anuncios onAnuncioClick={handleAnuncioClick} />
       </section>
+      */}
       <section ref={cursosRef} id="cursos">
+        {/* ANTERIOR: el acordeón de cursos recibía props para expandirse y enfocar una card
         <Cursos 
           focusCarrera={focusCarrera}
           setFocusCarrera={setFocusCarrera}
           expandCursos={expandCursos}
           setExpandCursos={setExpandCursos}
         />
+        */}
+        <Cursos />
+      </section>
+      <section ref={equipoDocenteRef} id="equipo-docente">
+        <EquipoDocente />
       </section>
       <section ref={contactoRef} id="contacto">
         <Contacto ref={contactoRef} />

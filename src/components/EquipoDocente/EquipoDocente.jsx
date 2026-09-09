@@ -44,7 +44,6 @@ const EquipoDocente = () => {
                       </span>
                     </div>
                     <div className="docente-info-main">
-                      <h3 className="docente-nombre">{docente.nombre}</h3>
                       <p className="docente-titulo">{docente.titulo}</p>
                       <p className="docente-especialidad">{docente.especialidad}</p>
                     </div>

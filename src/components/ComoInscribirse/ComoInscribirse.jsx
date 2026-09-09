@@ -1,7 +1,14 @@
 import React, { useState, useRef } from "react";
 import { flushSync } from "react-dom";
 import "./ComoInscribirse.css";
+// CAMBIO DE ESTA SESIÓN: el selector "Formación Solicitada" ahora lista las 19 formaciones
+// reales (6 carreras + 13 cursos) desde la fuente única de datos, en vez de las 11
+// categorías viejas escritas a mano. ANTERIOR: el array formacionesDisponibles de abajo
+// (comentado al final de este import).
+import { carrerasData, cursosData, nombreFormacion } from "../../data/formaciones";
 
+/* ANTERIOR (cambio de esta sesión): categorías viejas del selector. Se conserva comentado
+   por trazabilidad, ya no se usa: el listado sale de src/data/formaciones.js.
 const formacionesDisponibles = [
   "Psicografología",
   "Ciencias Criminalistas",
@@ -15,6 +22,10 @@ const formacionesDisponibles = [
   "Criminalística",
   "Otro (consultar)"
 ];
+*/
+// Primer valor por defecto del selector: la primera carrera disponible.
+const PRIMERA_FORMACION = nombreFormacion(carrerasData[0]);
+const OPCION_OTRO = "Otro (consultar)";
 // Genera un ID único para idempotencia.
 // Usa crypto.randomUUID() si está disponible (requiere HTTPS o localhost);
 // cae a un fallback basado en Math.random() para navegadores sin soporte.
@@ -49,7 +60,7 @@ const ComoInscribirse = () => {
     pais: "",
     ciudad: "",
     profesion: "",
-    formacionSolicitada: formacionesDisponibles[0],
+    formacionSolicitada: PRIMERA_FORMACION,
     tieneConocimientosPrevios: false,
     observacion: "",
     website: ""
@@ -286,7 +297,7 @@ const ComoInscribirse = () => {
           pais: "",
           ciudad: "",
           profesion: "",
-          formacionSolicitada: formacionesDisponibles[0],
+formacionSolicitada: PRIMERA_FORMACION,
           tieneConocimientosPrevios: false,
           observacion: "",
           website: ""
@@ -691,11 +702,23 @@ const ComoInscribirse = () => {
                     value={formData.formacionSolicitada}
                     onChange={handleChange}
                   >
-                    {formacionesDisponibles.map((formacion) => (
-                      <option key={formacion} value={formacion}>
-                        {formacion}
+                    {/* CAMBIO DE ESTA SESIÓN: las 19 formaciones reales agrupadas por tipo.
+                      Antes: {formacionesDisponibles.map((formacion) => (...))} */}
+                  <optgroup label="Carreras">
+                    {carrerasData.map((f) => (
+                      <option key={f.slug} value={nombreFormacion(f)}>
+                        {nombreFormacion(f)}
                       </option>
                     ))}
+                  </optgroup>
+                  <optgroup label="Cursos y Diplomaturas">
+                    {cursosData.map((f) => (
+                      <option key={f.slug} value={nombreFormacion(f)}>
+                        {nombreFormacion(f)}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <option value={OPCION_OTRO}>{OPCION_OTRO}</option>
                   </select>
                 </div>
 

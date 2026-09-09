@@ -5,13 +5,20 @@ import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Carreras, Diplomaturas y Cursos", route: "/", section: "cursos" },
+  // CAMBIO DE ESTA SESIÓN: el item único "Carreras, Diplomaturas y Cursos" (que bajaba
+  // scrolleando a la sección #cursos) ahora son dos botones que abren páginas aparte:
+  //   ANTERIOR: { label: "Carreras, Diplomaturas y Cursos", route: "/", section: "cursos" },
+  { label: "Carreras", route: "/carreras" },
+  { label: "Cursos", route: "/cursos" },
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
   { label: "Cómo inscribirme", route: "/como-inscribirse" },
   { label: "Plataforma de Pago", action: "payment" },
-  { label: "Código de Ética Grafológico", route: "/codigo-etica-grafologico" },
   { label: "Material de Estudio", action: "material" },
-  { label: "Próxima Apertura", route: "/", section: "anuncios" },
+  { label: "Equipo docente", route: "/", section: "equipo-docente" },
+  { label: "Avales", route: "/avales" },
+  // ANTERIOR (cambio de esta sesión): llevaba a la sección de imágenes promocionales del home,
+  // que fue quitada. Se conserva comentado por si el cliente quiere revertir.
+  // { label: "Próxima Apertura", route: "/", section: "anuncios" },
   { label: "Contacto", route: "/", section: "contacto" },
 ];
 
@@ -51,13 +58,15 @@ const Navbar = () => {
     } else if (item.section) {
       // Si estamos en otra página, navegar a home primero
       if (location.pathname !== "/") {
-        navigate("/", { state: { scrollToSection: item.section, expandCursos: item.section === "cursos" } });
+        // ANTERIOR: navigate("/", { state: { scrollToSection: item.section, expandCursos: item.section === "cursos" } });
+        navigate("/", { state: { scrollToSection: item.section } });
       } else {
-        // Si ya estamos en home, hacer scroll directo y disparar evento si es cursos
-        if (item.section === "cursos") {
-          // Disparar evento personalizado para expandir cursos
-          window.dispatchEvent(new CustomEvent('expandCursos'));
-        }
+        // ANTERIOR: la sección de cursos era un acordeón y se disparaba un evento para expandirlo.
+        // Ahora la sección muestra dos dropdowns, ya no hace falta expandir nada.
+        // if (item.section === "cursos") {
+        //   // Disparar evento personalizado para expandir cursos
+        //   window.dispatchEvent(new CustomEvent('expandCursos'));
+        // }
         setTimeout(() => {
           const element = document.getElementById(item.section);
           if (element) {
@@ -121,6 +130,16 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
+
+        {/* NUEVO (cambio de esta sesión): cartel informativo de inscripción.
+            No es un botón ni navega a ningún lado, es solo texto destacado. */}
+        <div className="overlay-aviso-inscripcion" role="status">
+          <span className="overlay-aviso-punto" aria-hidden="true"></span>
+          <span className="overlay-aviso-texto">
+            Está abierta la inscripción para el Ciclo Lectivo 2027
+          </span>
+        </div>
+
         <nav className="overlay-nav">
           {navItems.map((item, index) => (
             <button

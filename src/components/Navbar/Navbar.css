@@ -567,3 +567,107 @@
     transform: translateX(0);
   }
 }
+
+/* =====================================================================================
+   NUEVO (cambio de esta sesión): CARTEL DE INSCRIPCIÓN DENTRO DEL MENÚ HAMBURGUESA
+   Va arriba, debajo del header del overlay. Es solo informativo: no es un botón
+   ni dispara ninguna navegación.
+   ===================================================================================== */
+.overlay-aviso-inscripcion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 1.5rem 2rem 0;
+  padding: 0.85rem 1.5rem;
+  border-radius: 60px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  /* ANTERIOR: el cartel tenía un bordecito dorado a la izquierda.
+     Se quitó por pedido del cliente (cambio de esta sesión). */
+  /* border-left: 5px solid #B8860B; */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+}
+
+.navbar-overlay.active .overlay-aviso-inscripcion {
+  animation: fadeInDown 0.6s ease 0.3s both;
+}
+
+.overlay-aviso-punto {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f0c14b;
+  animation: avisoPulso 2.2s ease-out infinite;
+}
+
+@keyframes avisoPulso {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 193, 75, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(240, 193, 75, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(240, 193, 75, 0);
+  }
+}
+
+.overlay-aviso-texto {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: #ffffff;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .overlay-aviso-inscripcion {
+    margin: 1.25rem 1rem 0;
+    padding: 0.75rem 1.1rem;
+  }
+
+  .overlay-aviso-texto {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-aviso-inscripcion {
+    margin: 1rem 0.75rem 0;
+    padding: 0.7rem 0.95rem;
+    gap: 0.5rem;
+    border-radius: 20px;
+  }
+
+  .overlay-aviso-texto {
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .overlay-aviso-punto {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay-aviso-punto {
+    animation: none;
+  }
+}
+
+/* CAMBIO DE ESTA SESIÓN: en pantallas bajas el menú se alinea arriba para que
+   el scrolleo pueda llegar al primer ítem. Con justify-content: center el
+   overflow se reparte arriba y abajo y "Carreras" queda inaccesible. */
+@media (max-height: 700px) {
+  .overlay-nav {
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+  }
+}

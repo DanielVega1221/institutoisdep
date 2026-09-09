@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import './Banner.css';
 
+// NUEVO (cambio de esta sesión): texto institucional que se desplaza bajo el navbar.
+// Se repite dos veces para que el recorrido de la animación cubra todo el ancho.
+// PENDIENTE CLIENTE: revisar qué formaciones lista esta línea. Se corrigió el nombre de la
+// diplomatura para que coincida con el real ("Diplomatura Superior en Psicología Social
+// Psicoanalítica"), pero "Acompañante Terapéutico" es un curso, no una tecnicatura terciaria.
+const TEXTO_BANNER = '¡Únete a Nosotros y Transforma tu Futuro! ISDEP Tecnicaturas Terciarias en Psicología Social y Acompañante Terapéutico - Diplomatura Superior en Psicología Social Psicoanalítica';
+
 const Banner = () => {
   const bannerRef = useRef(null);
 
@@ -47,12 +54,14 @@ const Banner = () => {
     <div className="banner-container" ref={bannerRef}>
       <div className="banner-content">
         <div className="scrolling-text">
-          <span className="banner-text">
-            🎓 ABIERTA LA INSCRIPCIÓN 🎓 ¡Únete a nosotros y transforma tu futuro! INSCRIPCIONES ABIERTAS  
-          </span>
-          <span className="banner-text">
-            🎓 ABIERTA LA INSCRIPCIÓN 🎓 ¡Únete a nosotros y transforma tu futuro!  INSCRIPCIONES ABIERTAS  
-          </span>
+          {/* ANTERIOR (texto que se desplazaba antes del cambio):
+          <span className="banner-text">Inscripciones ENERO · Inicio MARZO</span>
+          <span className="banner-text">Inscripciones JUNIO · Inicio AGOSTO</span>
+          <span className="banner-text">Inscripciones ENERO · Inicio MARZO</span>
+          <span className="banner-text">Inscripciones JUNIO · Inicio AGOSTO</span>
+          */}
+          <span className="banner-text">{TEXTO_BANNER}</span>
+          <span className="banner-text">{TEXTO_BANNER}</span>
         </div>
       </div>
     </div>

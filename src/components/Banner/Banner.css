@@ -44,7 +44,10 @@
 /* Texto con animación optimizada */
 .scrolling-text {
   display: flex;
-  animation: scroll 30s linear infinite; /* Más lento = menos CPU */
+  /* ANTERIOR: animation: scroll 30s linear infinite; */
+  /* El texto nuevo es mucho más largo, se sube la duración para conservar
+     la misma velocidad de lectura que antes */
+  animation: scroll 52s linear infinite; /* Más lento = menos CPU */
   white-space: nowrap;
   will-change: transform;
 }
@@ -123,7 +126,8 @@
   }
   
   .scrolling-text {
-    animation-duration: 35s; /* Más lento en móviles */
+    /* ANTERIOR: animation-duration: 35s; */
+    animation-duration: 58s; /* Más lento en móviles */
   }
 }
 
@@ -139,7 +143,8 @@
   }
   
   .scrolling-text {
-    animation-duration: 40s; /* Muy lento para ahorrar batería */
+    /* ANTERIOR: animation-duration: 40s; */
+    animation-duration: 68s; /* Muy lento para ahorrar batería */
   }
   
   /* Pausar animación en móviles pequeños si es necesario */

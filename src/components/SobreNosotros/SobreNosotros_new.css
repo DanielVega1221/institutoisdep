@@ -736,3 +736,74 @@
     max-height: 36vh;
   }
 }
+
+/* =====================================================================================
+   NUEVO (cambio de esta sesión): BLOQUE DESTACADO DEL SLIDE "ENTIDAD VINCULADA"
+   Se muestra debajo del subtítulo. La última línea va resaltada (validez nacional +
+   inscripción abierta para el Ciclo Lectivo 2027).
+   ===================================================================================== */
+.carousel-destacado {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.carousel-destacado-linea {
+  margin: 0;
+  padding: 0.5rem 1.15rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 42, 78, 0.14);
+  color: #0F2A4E !important;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-shadow: none !important;
+  box-shadow: 0 4px 16px rgba(15, 42, 78, 0.1);
+  max-width: 100%;
+  opacity: 1 !important;
+}
+
+.carousel-destacado-linea-fuerte {
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a8a 100%);
+  border: 1px solid #B8860B;
+  color: #ffffff !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(15, 42, 78, 0.35);
+}
+
+@media (max-width: 900px) {
+  .carousel-destacado {
+    margin-top: 0.8rem;
+    gap: 0.4rem;
+  }
+
+  .carousel-destacado-linea {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.95rem;
+  }
+
+  .carousel-destacado-linea-fuerte {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel-destacado-linea {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 40px;
+  }
+
+  .carousel-destacado-linea-fuerte {
+    font-size: 0.66rem;
+  }
+}

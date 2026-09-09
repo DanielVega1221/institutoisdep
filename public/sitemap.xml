@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
@@ -20,9 +20,136 @@
   </url>
 
   <url>
-    <loc>https://www.isdep.com.ar/codigo-etica-grafologico</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.isdep.com.ar/avales</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Páginas de listado por tipo (cambio de esta sesión) -->
+  <url>
+    <loc>https://www.isdep.com.ar/carreras</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/psicologia-social</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/grafologia-cientifica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/diplomatura-superior-en-psicologia-social-psicoanalitica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/analista-en-criminalistica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/diplomatura-profesional-en-criminalistica-y-criminologia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/carreras/tramo-terciario-de-tecnico-superior-en-psicologia-social</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/grafologia-emocional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/deteccion-de-abuso-sexual-infantil</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/psicologia-social-y-criminalistica-aplicada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/tecnografia-pericial-grafologica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/analisis-de-firmas-y-rubricas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/especialista-en-primeros-auxilios-psicologicos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/acompanante-terapeutico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/perfilamiento-criminal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/grafologia-forense</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/analisis-de-dibujos-proyectivos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/deteccion-en-falsificacion-en-firmas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/capacitacion-profesional-en-grafologia-emocional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.isdep.com.ar/cursos/diplomatura-superior-en-tecnografia-pericial-forense-area-grafologica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

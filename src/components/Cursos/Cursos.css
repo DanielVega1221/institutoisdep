@@ -1999,3 +1999,431 @@
     font-size: 0.85rem;
   }
 }
+
+/* =====================================================================================
+   NUEVO (cambio de esta sesión): DROPDOWNS DE CARRERAS Y CURSOS
+   Reemplazan al acordeón de cards anterior. Las reglas del acordeón (.accordion-*)
+   y de las cards (.cards-*, .curso-card*) se conservan arriba sin modificaciones,
+   porque las sigue usando CursosAnterior.jsx
+   ===================================================================================== */
+/* CAMBIO DE ESTA SESIÓN: los dropdowns van apilados (una columna), no al costado.
+   Antes: grid-template-columns: repeat(2, minmax(0, 1fr)); */
+.formaciones-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 4;
+}
+
+.formacion-panel {
+  --panel-acento: #3b82f6;
+  --panel-acento-fuerte: #1e3a8a;
+  --panel-acento-suave: rgba(59, 130, 246, 0.12);
+  --panel-acento-borde: rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(0, 0, 0, 0.14);
+backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.formacion-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34), 0 6px 20px rgba(0, 0, 0, 0.16);
+}
+
+/* Las carreras llevan el dorado institucional, los cursos el azul */
+.formacion-panel-carrera {
+  --panel-acento: #B8860B;
+  --panel-acento-fuerte: #8a6508;
+  --panel-acento-suave: rgba(184, 134, 11, 0.12);
+  --panel-acento-borde: rgba(184, 134, 11, 0.4);
+}
+
+/* Barra superior de color que identifica cada panel */
+.formacion-panel::before {
+  content: '';
+  display: block;
+  height: 6px;
+  background: linear-gradient(90deg, var(--panel-acento-fuerte) 0%, var(--panel-acento) 50%, var(--panel-acento-fuerte) 100%);
+}
+
+.formacion-panel-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.6rem 1.75rem;
+  background: linear-gradient(135deg, #0F2A4E 0%, #1e3a8a 100%);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+
+.formacion-panel-trigger::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.formacion-panel-trigger:hover::after {
+  left: 100%;
+}
+
+.formacion-panel.abierto .formacion-panel-trigger {
+  background: linear-gradient(135deg, var(--panel-acento-fuerte) 0%, var(--panel-acento) 100%);
+}
+
+.formacion-panel-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+.formacion-panel-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.formacion-panel-titulo {
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+}
+
+.formacion-panel-bajada {
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.formacion-panel-contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 0.6rem;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: var(--panel-acento);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.formacion-panel-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.formacion-panel-chevron.rotado {
+  transform: rotate(180deg);
+}
+
+/* Listado */
+.formacion-panel-lista {
+  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+  padding: 1rem 1.1rem 1.5rem;
+  border-top: 1px solid rgba(15, 42, 78, 0.07);
+}
+
+.formacion-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.formacion-lista-item {
+  animation: formacionItemIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes formacionItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formacion-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 42, 78, 0.09);
+  border-left: 4px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.formacion-item:hover,
+.formacion-item:focus-visible {
+  background: var(--panel-acento-suave);
+  border-color: var(--panel-acento-borde);
+  border-left-color: var(--panel-acento);
+  transform: translateX(6px);
+  box-shadow: 0 8px 22px rgba(15, 42, 78, 0.12);
+  outline: none;
+}
+
+.formacion-item-indice {
+  font-family: 'Merriweather', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--panel-acento);
+  opacity: 0.75;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.formacion-item-nombre {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #0F2A4E;
+}
+
+.formacion-item:hover .formacion-item-nombre {
+  color: var(--panel-acento-fuerte);
+}
+
+.formacion-item-flecha {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--panel-acento);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.formacion-item:hover .formacion-item-flecha,
+.formacion-item:focus-visible .formacion-item-flecha {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.formaciones-ayuda {
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.82);
+  position: relative;
+  z-index: 4;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .formaciones-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .formacion-panel-trigger {
+    padding: 1.35rem 1.25rem;
+    gap: 0.85rem;
+  }
+
+  .formacion-panel-titulo {
+    font-size: 1.3rem;
+  }
+
+  .formacion-panel-icono {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .formacion-panel-trigger {
+    padding: 1.15rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .formacion-panel-bajada {
+    font-size: 0.8rem;
+  }
+
+  .formacion-panel-contador {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+
+  .formacion-panel-lista {
+    padding: 0.85rem 0.85rem 1.25rem;
+  }
+
+  .formacion-item {
+    padding: 0.8rem 0.85rem;
+    gap: 0.6rem;
+  }
+
+  .formacion-item-nombre {
+    font-size: 0.92rem;
+  }
+
+.formacion-item-indice {
+    display: none;
+  }
+}
+
+/* ===== Badge "No disponible" (cambio de esta sesión) =====
+   Marca discreta para las formaciones con estado != "disponible" dentro del dropdown.
+   Se anexan al final para no tocar los estilos anteriores. */
+.formacion-item-estado {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #7a8ba0;
+  border: 1px solid #dbe3ec;
+  white-space: nowrap;
+}
+
+.formacion-item:hover .formacion-item-estado,
+.formacion-item:focus-visible .formacion-item-estado {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 520px) {
+  .formacion-item-estado {
+    font-size: 0.62rem;
+    padding: 0.18rem 0.45rem;
+  }
+}
+
+/* ===== Extras de las páginas /carreras y /cursos (cambio de esta sesión) ===== */
+.formaciones-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.formaciones-volver:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateX(-2px);
+}
+
+.formaciones-otro-lista {
+  margin: 2rem auto 0;
+  text-align: center;
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+  z-index: 4;
+}
+
+.formaciones-otro-lista a {
+  color: #ffd966;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.formaciones-otro-lista a:hover {
+  color: #ffe9a8;
+  border-bottom-color: currentColor;
+}
+
+/* ===== Páginas /carreras y /cursos (cambio de esta sesión) =====
+   En las páginas no hay contenido arriba de la sección, así que se anula el
+   margin-top: 6rem del .cursos-section (que es para cuando va en el home). */
+.cursos-section--pagina {
+  margin-top: 0;
+}
+
+/* CAMBIO DE ESTA SESIÓN: en pantallas muy angostas el chip + la flecha no
+   dejan ancho para nombres largos; el chip pasa a su propia fila. */
+@media (max-width: 380px) {
+  .formacion-item {
+    flex-wrap: wrap;
+  }
+  .formacion-item-estado {
+    margin-left: 0;
+  }
+  .formacion-item-flecha {
+    margin-left: auto;
+  }
+}
+
+/* CAMBIO DE ESTA SESIÓN: fallback para navegadores sin gap en flexbox
+   (Chrome < 84, Safari < 14.1): se aplica margen mientras no se soporte gap. */
+@supports not (gap: 0.4rem) {
+  .formacion-panel-trigger > *,
+  .formacion-lista > * {
+    margin-right: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+}

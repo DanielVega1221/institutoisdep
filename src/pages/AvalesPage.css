@@ -1,0 +1,24 @@
+.avales-page {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.avales-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.avales-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+}
+
+.avales-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #64748b;
+}
