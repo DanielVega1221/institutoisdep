@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { localImages } from "../../utils/localImages";
+import { carrerasData, nombreFormacion } from "../../data/formaciones";
 import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
 
@@ -8,10 +9,11 @@ const navItems = [
   // CAMBIO DE ESTA SESIÓN: el item único "Carreras, Diplomaturas y Cursos" (que bajaba
   // scrolleando a la sección #cursos) ahora son dos botones que abren páginas aparte:
   //   ANTERIOR: { label: "Carreras, Diplomaturas y Cursos", route: "/", section: "cursos" },
-  { label: "Carreras", route: "/carreras" },
+  // "Carreras" ahora además abre un desplegable con todas las carreras (submenu: "carreras").
+  { label: "Carreras", route: "/carreras", submenu: "carreras" },
   { label: "Cursos", route: "/cursos" },
   { label: "Nuestra Metodología", route: "/nuestra-metodologia" },
-  { label: "Cómo inscribirme", route: "/como-inscribirse" },
+  { label: "Acceso a inscripción", route: "/como-inscribirse" },
   { label: "Plataforma de Pago", action: "payment" },
   { label: "Material de Estudio", action: "material" },
   { label: "Equipo docente", route: "/", section: "equipo-docente" },
@@ -22,18 +24,62 @@ const navItems = [
   { label: "Contacto", route: "/", section: "contacto" },
 ];
 
+/* Contenido de los desplegables del menú.
+   La clave la define `submenu` en el ítem de navItems: cada entrada es la lista de
+   formaciones de src/data/formaciones.js. Para sumar uno nuevo (ej. "cursos") alcanza
+   con poner la clave en el ítem y agregar la entrada acá. */
+const navSubmenus = {
+  carreras: carrerasData,
+};
+
+const Chevron = ({ size = 26 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ArrowRight = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [materialModalOpen, setMaterialModalOpen] = useState(false);
+  const [submenuAbierto, setSubmenuAbierto] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleToggle = () => setMenuOpen(!menuOpen);
-  const handleClose = () => setMenuOpen(false);
+  // El desplegable se cierra solo al cambiar de ruta.
+  useEffect(() => {
+    setSubmenuAbierto(null);
+  }, [location.pathname]);
+
+  const handleToggle = () => {
+    setMenuOpen((prev) => !prev);
+    setSubmenuAbierto(null);
+  };
+
+  const handleClose = () => {
+    setMenuOpen(false);
+    setSubmenuAbierto(null);
+  };
+
+  const handleSubmenuToggle = (clave) => {
+    setSubmenuAbierto((prev) => (prev === clave ? null : clave));
+  };
+
+  const handleFormacionClick = (clave, formacion) => {
+    setMenuOpen(false);
+    setSubmenuAbierto(null);
+    navigate(`/${clave}/${formacion.slug}`);
+  };
 
   const handleLogoClick = () => {
     setMenuOpen(false);
-    
+    setSubmenuAbierto(null);
+
     if (location.pathname !== "/") {
       // Si estamos en otra página, navegar a home
       navigate("/");
@@ -45,7 +91,8 @@ const Navbar = () => {
 
   const handleNavClick = (item) => {
     setMenuOpen(false);
-    
+    setSubmenuAbierto(null);
+
     if (item.action === "material") {
       // Abrir modal de acceso al material
       setMaterialModalOpen(true);
@@ -131,28 +178,89 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* NUEVO (cambio de esta sesión): cartel informativo de inscripción.
-            No es un botón ni navega a ningún lado, es solo texto destacado. */}
-        <div className="overlay-aviso-inscripcion" role="status">
-          <span className="overlay-aviso-punto" aria-hidden="true"></span>
-          <span className="overlay-aviso-texto">
-            Está abierta la inscripción para el Ciclo Lectivo 2027
-          </span>
-        </div>
-
         <nav className="overlay-nav">
-          {navItems.map((item, index) => (
-            <button
-              key={item.label}
-              className="nav-link"
-              onClick={() => handleNavClick(item)}
-              style={{
-                animationDelay: `${0.1 + index * 0.1}s`
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
+          {navItems.map((item, index) => {
+            const delay = { animationDelay: `${0.1 + index * 0.1}s` };
+            const lista = item.submenu ? navSubmenus[item.submenu] : null;
+
+            /* Ítem con desplegable: el botón principal solo abre/cierra la lista.
+               Adentro están todas las formaciones (cada una a su página de detalle)
+               más un enlace al listado completo del ítem. */
+            if (lista) {
+              const abierto = submenuAbierto === item.submenu;
+
+              return (
+                <div key={item.label} className="nav-group">
+                  <button
+                    type="button"
+                    className={`nav-link nav-link-toggle${abierto ? " abierto" : ""}`}
+                    onClick={() => handleSubmenuToggle(item.submenu)}
+                    aria-expanded={abierto}
+                    aria-controls={`nav-submenu-${item.submenu}`}
+                    style={delay}
+                  >
+                    {item.label}
+                    <span className="nav-link-chevron">
+                      <Chevron />
+                    </span>
+                  </button>
+
+                  {abierto && (
+                    <div className="nav-submenu" id={`nav-submenu-${item.submenu}`}>
+                      <ul className="nav-submenu-lista">
+                        {lista.map((formacion, i) => (
+                          <li
+                            key={formacion.slug}
+                            className="nav-submenu-item"
+                            style={{ animationDelay: `${0.05 + i * 0.05}s` }}
+                          >
+                            <button
+                              type="button"
+                              className="nav-submenu-link"
+                              onClick={() => handleFormacionClick(item.submenu, formacion)}
+                              title={nombreFormacion(formacion)}
+                            >
+                              {formacion.emoji && (
+                                <span className="nav-submenu-emoji" aria-hidden="true">
+                                  {formacion.emoji}
+                                </span>
+                              )}
+                              <span className="nav-submenu-nombre">
+                                {nombreFormacion(formacion)}
+                              </span>
+                              {formacion.estado !== "disponible" && (
+                                <span className="nav-submenu-estado">No disponible</span>
+                              )}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <button
+                        type="button"
+                        className="nav-submenu-todas"
+                        onClick={() => handleNavClick(item)}
+                      >
+                        Ver todas las {item.label.toLowerCase()}
+                        <ArrowRight />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
+              <button
+                key={item.label}
+                className="nav-link"
+                onClick={() => handleNavClick(item)}
+                style={delay}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
       </div>
 

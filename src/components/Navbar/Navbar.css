@@ -671,3 +671,214 @@
     padding-top: 0.5rem;
   }
 }
+
+/* =====================================================================================
+   DESPLEGABLE DE "CARRERAS" EN EL MENÚ HAMBURGUESA
+
+   El ítem "Carreras" dejó de ser un link directo a /carreras: ahora su botón
+   abre y cierra una lista con las carreras de src/data/formaciones.js. Cada
+   entrada lleva a /carreras/:slug y al pie está el enlace al listado completo.
+   Los estilos viven acá porque el proyecto usa CSS global (sin módulos).
+   ===================================================================================== */
+.nav-group {
+  width: 100%;
+}
+
+.nav-link-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: auto;
+}
+
+.nav-link-chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-link-toggle:hover .nav-link-chevron,
+.nav-link-toggle.abierto .nav-link-chevron {
+  opacity: 1;
+}
+
+.nav-link-toggle.abierto .nav-link-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-link-toggle.abierto::after {
+  width: 100px;
+}
+
+.nav-submenu {
+  max-width: 660px;
+  margin: 0.2rem 0 0.6rem;
+  padding: 0.6rem 1rem 1rem 1.15rem;
+  border-left: 3px solid rgba(240, 193, 75, 0.85);
+  border-radius: 0 14px 14px 0;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  animation: navSubmenuIn 0.35s ease both;
+}
+
+@keyframes navSubmenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-submenu-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-submenu-item {
+  opacity: 0;
+  animation: navSubmenuItemIn 0.4s ease forwards;
+}
+
+@keyframes navSubmenuItemIn {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.nav-submenu-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.86);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-submenu-link:hover,
+.nav-submenu-link:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: translateX(6px);
+  outline: none;
+}
+
+.nav-submenu-emoji {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.nav-submenu-nombre {
+  flex: 1;
+}
+
+.nav-submenu-estado {
+  flex-shrink: 0;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  background: rgba(240, 193, 75, 0.92);
+  color: #1a227f;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nav-submenu-todas {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+  padding: 0.45rem 1rem;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 30px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.nav-submenu-todas:hover,
+.nav-submenu-todas:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(6px);
+  outline: none;
+}
+
+.nav-submenu-todas svg {
+  transition: transform 0.25s ease;
+}
+
+.nav-submenu-todas:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .nav-submenu {
+    padding: 0.5rem 0.8rem 0.85rem 0.95rem;
+  }
+
+  .nav-submenu-link {
+    font-size: 0.98rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  .nav-submenu-todas {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-submenu-link {
+    font-size: 0.9rem;
+  }
+
+  .nav-submenu-emoji {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-submenu,
+  .nav-submenu-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav-link-chevron,
+  .nav-submenu-link,
+  .nav-submenu-todas,
+  .nav-submenu-todas svg {
+    transition: none;
+  }
+}
