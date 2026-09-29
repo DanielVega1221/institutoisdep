@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { localImages } from "../../utils/localImages";
+import { isOverlayMarked, markOverlay, clearOverlay } from "../../utils/overlayHistory";
 import { carrerasData, nombreFormacion } from "../../data/formaciones";
 import MaterialAccessModal from "./MaterialAccessModal";
 import "./Navbar.css";
@@ -56,14 +57,93 @@ const Navbar = () => {
     setSubmenuAbierto(null);
   }, [location.pathname]);
 
-  const handleToggle = () => {
-    setMenuOpen((prev) => !prev);
+  /* --- Capa(superpuesta) <-> historial del navegador -------------------------
+     El menú overlay y el modal de Material nunca están abiertos a la vez
+     (handleNavClick cierra el primero antes de abrir el segundo), así que una
+     sola entrada de historial representa "hay algo abierto". Volver la saca y
+     el popstate de abajo cierra la UI, sin cambiar de página.
+
+     Hay dos maneras de consumido el marcador y no se pueden mezclar:
+       - navigate(destino, { replace: true })  -> lo SOBRESCRIBE. Se usa cuando
+         además hay que ir a otra página: la entrada marcada pasa a ser el destino.
+       - history.back()                        -> la SACA. Se usa cuando solo se
+         cierra la capa, porque replace no puede eliminar una entrada del historial
+         y dejaría dos entradas para la misma página (un "volver" neutro). */
+
+  // Si hay una capa abierta, el destino reemplaza la entrada del marcador en vez
+  // de apilarse. Sin esto el historial quedaría [page, page(marcador), destino]
+  // y el usuario tendría que apretar volver dos veces.
+  const irA = (to, opts) =>
+    navigate(to, isOverlayMarked() ? { ...opts, replace: true } : opts);
+
+  const abrirMenu = () => {
+    markOverlay();
     setSubmenuAbierto(null);
+    setMenuOpen(true);
   };
 
-  const handleClose = () => {
+  // back() es asíncrono (el popstate llega después), así que se bloquea con el
+  // ref para que un doble toque en mobile no salte dos entradas. Lo destraba el
+  // popstate. La UI se cierra antes, sin esperar al historial.
+  const backPendingRef = useRef(false);
+
+  const popOverlay = useCallback(() => {
+    if (!isOverlayMarked() || backPendingRef.current) return;
+    backPendingRef.current = true;
+    window.history.back();
+  }, []);
+
+  const cerrarMenu = useCallback(() => {
     setMenuOpen(false);
     setSubmenuAbierto(null);
+    popOverlay();
+  }, [popOverlay]);
+
+  const cerrarModal = useCallback(() => {
+    setMaterialModalOpen(false);
+    popOverlay();
+  }, [popOverlay]);
+
+  // Volver (o avanzar) saca la entrada del marcador, así que el popstate solo
+  // tiene que reflejar el cierre en la UI. Cierra todo por las dudas: si el
+  // marcador no está, la capa tampoco debería estar.
+  useEffect(() => {
+    const handlePopState = () => {
+      backPendingRef.current = false;
+      setMenuOpen(false);
+      setSubmenuAbierto(null);
+      setMaterialModalOpen(false);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  // Escape cierra la capa de arriba: primero el modal, después el menú.
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key !== "Escape") return;
+      if (materialModalOpen) cerrarModal();
+      else if (menuOpen) cerrarMenu();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen, materialModalOpen, cerrarMenu, cerrarModal]);
+
+  // Si se recargó la página con una capa abierta, el marcador quedó huérfano.
+  // replaceState lo limpia sin navegar. No usamos history.go(-1) a propósito:
+  // es navegación en montaje y con StrictMode correría dos veces en dev.
+  useEffect(() => {
+    clearOverlay();
+  }, []);
+
+  const handleToggle = () => {
+    if (menuOpen) {
+      cerrarMenu();
+    } else {
+      abrirMenu();
+    }
   };
 
   const handleSubmenuToggle = (clave) => {
@@ -73,18 +153,18 @@ const Navbar = () => {
   const handleFormacionClick = (clave, formacion) => {
     setMenuOpen(false);
     setSubmenuAbierto(null);
-    navigate(`/${clave}/${formacion.slug}`);
+    irA(`/${clave}/${formacion.slug}`);
   };
 
   const handleLogoClick = () => {
-    setMenuOpen(false);
-    setSubmenuAbierto(null);
-
     if (location.pathname !== "/") {
       // Si estamos en otra página, navegar a home
-      navigate("/");
+      setMenuOpen(false);
+      setSubmenuAbierto(null);
+      irA("/");
     } else {
-      // Si ya estamos en home, hacer scroll hacia arriba
+      // Si ya estamos en home, consumir el marcador y hacer scroll hacia arriba
+      cerrarMenu();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -94,19 +174,23 @@ const Navbar = () => {
     setSubmenuAbierto(null);
 
     if (item.action === "material") {
-      // Abrir modal de acceso al material
+      // Abrir modal de acceso al material.
+      // No se toca el historial: el marcador ya está puesto y su entrada sigue
+      // siendo la actual, así que ahora pasa a representar al modal.
       setMaterialModalOpen(true);
     } else if (item.action === "payment") {
-      // Abrir plataforma de pago en pestaña nueva
+      // Abrir plataforma de pago en pestaña nueva.
+      // No hay navegación, así que el marcador se consume con cerrarMenu().
       window.open("https://isdep-pagos.web.app", "_blank", "noopener,noreferrer");
+      cerrarMenu();
     } else if (item.route && item.route !== "/") {
       // Navegar a otra página
-      navigate(item.route);
+      irA(item.route);
     } else if (item.section) {
       // Si estamos en otra página, navegar a home primero
       if (location.pathname !== "/") {
         // ANTERIOR: navigate("/", { state: { scrollToSection: item.section, expandCursos: item.section === "cursos" } });
-        navigate("/", { state: { scrollToSection: item.section } });
+        irA("/", { state: { scrollToSection: item.section } });
       } else {
         // ANTERIOR: la sección de cursos era un acordeón y se disparaba un evento para expandirlo.
         // Ahora la sección muestra dos dropdowns, ya no hace falta expandir nada.
@@ -114,6 +198,7 @@ const Navbar = () => {
         //   // Disparar evento personalizado para expandir cursos
         //   window.dispatchEvent(new CustomEvent('expandCursos'));
         // }
+        cerrarMenu();
         setTimeout(() => {
           const element = document.getElementById(item.section);
           if (element) {
@@ -169,7 +254,7 @@ const Navbar = () => {
           </div>
           <button
             className="close-button"
-            onClick={handleClose}
+            onClick={cerrarMenu}
             aria-label="Close menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -267,7 +352,7 @@ const Navbar = () => {
       {/* Modal de Acceso al Material */}
       <MaterialAccessModal 
         isOpen={materialModalOpen}
-        onClose={() => setMaterialModalOpen(false)}
+        onClose={cerrarModal}
       />
     </>
   );
